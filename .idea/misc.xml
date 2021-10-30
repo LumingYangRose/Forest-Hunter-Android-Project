@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/drawable/eye.xml" value="0.3536458333333333" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/drawable/face.xml" value="0.3536458333333333" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/drawable/game_title_border.xml" value="0.3536458333333333" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/drawable/health_bar.xml" value="0.458984375" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/drawable/progress.xml" value="0.196875" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/layout/character_view.xml" value="0.33" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/layout/game_view.xml" value="0.33" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
