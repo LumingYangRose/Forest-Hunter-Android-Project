@@ -6,14 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
     Button new_game_button;
     Button select_stage_button;
-    Button Setting_game_button;
+    Button Character_customization_button;
     Button exit_game_button;
-    Button store_button;
+    ImageButton store_button;
+    ImageButton setting_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Setting_game_button = findViewById(R.id.Setting_game_button);
-        Setting_game_button.setOnClickListener(new View.OnClickListener() {
+        Character_customization_button = findViewById(R.id.Character_customization_button);
+        Character_customization_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                //TODO
+                activate_character_customize_activity();
             }
         });
 
@@ -65,11 +67,27 @@ public class MainActivity extends AppCompatActivity {
                 //TODO
             }
         });
+
+        setting_button = findViewById(R.id.setting_button);
+        setting_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //TODO
+            }
+        });
     }
 
     public void activate_game_view_activity()
     {
         Intent locator_intent = new Intent(this, Game_view_Activity.class);
+        startActivity(locator_intent);
+
+    }
+
+    public void activate_character_customize_activity()
+    {
+        Intent locator_intent = new Intent(this, Character_customize_Activity.class);
         startActivity(locator_intent);
 
     }
