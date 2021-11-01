@@ -96,8 +96,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                 {
                     current_hair_index++;
                     appearance_change_textview1.setText("Style " + Integer.toString(current_hair_index + 1));
-                    hair_view.setImageResource(R.drawable.hair_3);
-                    //hair_view.setImageResource(hair_pic_id_list.get(current_hair_index));
+                    hair_view.setImageDrawable(getResources().getDrawable(R.drawable.hair_2));
                 }
             }
         });
