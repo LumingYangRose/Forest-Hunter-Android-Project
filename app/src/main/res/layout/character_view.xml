@@ -614,7 +614,7 @@
         android:layout_height="44dp"
         android:backgroundTint="@color/white"
         android:gravity="center"
-        android:text="selection_title4"
+        android:text="Nose"
         android:textColor="#151414"
         android:textSize="16sp"
         android:textStyle="bold|italic"
@@ -740,7 +740,7 @@
         android:layout_height="44dp"
         android:backgroundTint="@color/white"
         android:gravity="center"
-        android:text="selection_title1"
+        android:text="Hair"
         android:textColor="#151414"
         android:textSize="16sp"
         android:textStyle="bold|italic"
@@ -773,7 +773,7 @@
         android:layout_height="44dp"
         android:backgroundTint="@color/white"
         android:gravity="center"
-        android:text="selection_title2"
+        android:text="Head"
         android:textColor="#151414"
         android:textSize="16sp"
         android:textStyle="bold|italic"
@@ -782,7 +782,7 @@
         app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.373" />
+        app:layout_constraintVertical_bias="0.389" />
 
     <ImageButton
         android:id="@+id/appearance_next_button1"
@@ -837,7 +837,7 @@
         android:layout_height="44dp"
         android:backgroundTint="@color/white"
         android:gravity="center"
-        android:text="selection_title3"
+        android:text="Eye"
         android:textColor="#151414"
         android:textSize="16sp"
         android:textStyle="bold|italic"

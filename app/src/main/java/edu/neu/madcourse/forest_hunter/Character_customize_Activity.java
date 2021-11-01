@@ -36,11 +36,21 @@ public class Character_customize_Activity extends AppCompatActivity {
     public ImageButton character_last_page_button;
 
     public ImageView hair_view;
+    public ImageView head_view;
+    public ImageView eye_view;
+    public ImageView nose_view;
 
     private int current_page_number;
+
     private int current_hair_index;
+    private int current_head_index;
+    private int current_eye_index;
+    private int current_nose_index;
 
     private int[] hair_image_id_list;
+    private int[] head_image_id_list;
+    private int[] eye_image_id_list;
+    private int[] nose_image_id_list;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,13 +63,43 @@ public class Character_customize_Activity extends AppCompatActivity {
 
 
         hair_view = findViewById(R.id.hair_view);
+        head_view = findViewById(R.id.head_view);
+        eye_view = findViewById(R.id.eyes_view);
+        nose_view = findViewById(R.id.nose_view);
 
         current_page_number = 1;
+
+
         current_hair_index = 0;
-        appearance_change_textview1.setText("Style 1");
+        current_head_index = 0;
+        current_eye_index = 0;
+        current_nose_index = 0;
+
+
+        appearance_change_textview1.setText("Hair Style 1");
+        appearance_change_textview2.setText("Head Style 1");
+        appearance_change_textview3.setText("Eye Style 1");
+        appearance_change_textview4.setText("Nose Style 1");
 
         hair_image_id_list = new int[]{R.drawable.hair_1, R.drawable.hair_2, R.drawable.hair_3, R.drawable.hair_4,
-                R.drawable.hair_5, R.drawable.hair_6, R.drawable.hair_7, R.drawable.hair_8};
+                R.drawable.hair_5, R.drawable.hair_6, R.drawable.hair_7, R.drawable.hair_8, R.drawable.hair_9};
+
+        head_image_id_list = new int[]{R.drawable.face_1, R.drawable.face_2, R.drawable.face_3, R.drawable.face_4,
+                R.drawable.face_5, R.drawable.face_6, R.drawable.face_7, R.drawable.face_8, R.drawable.face_9,
+                R.drawable.face_10, R.drawable.face_11, R.drawable.face_12};
+
+        eye_image_id_list = new int[] {R.drawable.open_eyes_1, R.drawable.open_eyes_2, R.drawable.open_eyes_3,
+                R.drawable.open_eyes_4, R.drawable.open_eyes_5, R.drawable.open_eyes_6, R.drawable.open_eyes_7,
+                R.drawable.open_eyes_8, R.drawable.open_eyes_9, R.drawable.open_eyes_10, R.drawable.open_eyes_11,
+                R.drawable.open_eyes_12, R.drawable.open_eyes_13, R.drawable.open_eyes_14, R.drawable.open_eyes_15,
+                R.drawable.open_eyes_16, R.drawable.open_eyes_17, R.drawable.open_eyes_18, R.drawable.open_eyes_19,
+                R.drawable.open_eyes_20, R.drawable.open_eyes_21, R.drawable.open_eyes_22, R.drawable.open_eyes_23,
+                R.drawable.open_eyes_24, R.drawable.open_eyes_25, R.drawable.open_eyes_26, R.drawable.open_eyes_27,
+                R.drawable.open_eyes_28, R.drawable.open_eyes_29};
+
+        nose_image_id_list = new int[] {R.drawable.nose_1, R.drawable.nose_2, R.drawable.nose_3,
+                R.drawable.nose_4, R.drawable.nose_5, R.drawable.nose_6, R.drawable.nose_7, R.drawable.nose_8,
+                R.drawable.nose_9, R.drawable.nose_10, R.drawable.nose_11, R.drawable.nose_12, R.drawable.nose_13};
 
 
         User_name_Edit_Text = findViewById(R.id.User_name_EditText);
@@ -87,7 +127,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                         current_hair_index = hair_image_id_list.length - 1;
                     }
 
-                    appearance_change_textview1.setText("Style " + Integer.toString(current_hair_index + 1));
+                    appearance_change_textview1.setText("Hair Style " + Integer.toString(current_hair_index + 1));
                     hair_view.setBackground(null);
                     hair_view.setImageResource(hair_image_id_list[current_hair_index]);
 
@@ -122,7 +162,20 @@ public class Character_customize_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //TODO
+                if (current_page_number == 1)
+                {
+                    current_head_index--;
+
+                    if (current_head_index < 0)
+                    {
+                        current_head_index = head_image_id_list.length - 1;
+                    }
+
+                    appearance_change_textview2.setText("Head Style " + Integer.toString(current_head_index + 1));
+                    head_view.setBackground(null);
+                    head_view.setImageResource(head_image_id_list[current_head_index]);
+
+                }
             }
         });
 
@@ -131,7 +184,20 @@ public class Character_customize_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //TODO
+                if (current_page_number == 1)
+                {
+                    current_head_index++;
+
+                    if (current_head_index > head_image_id_list.length - 1)
+                    {
+                        current_head_index = 0;
+                    }
+
+                    appearance_change_textview2.setText("Style " + Integer.toString(current_head_index + 1));
+                    head_view.setBackground(null);
+                    head_view.setImageResource(head_image_id_list[current_head_index]);
+
+                }
             }
         });
 
@@ -140,7 +206,20 @@ public class Character_customize_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //TODO
+                if (current_page_number == 1)
+                {
+                    current_eye_index--;
+
+                    if (current_eye_index < 0)
+                    {
+                        current_eye_index = eye_image_id_list.length - 1;
+                    }
+
+                    appearance_change_textview3.setText("Eye Style " + Integer.toString(current_eye_index + 1));
+                    eye_view.setBackground(null);
+                    eye_view.setImageResource(eye_image_id_list[current_eye_index]);
+
+                }
             }
         });
 
@@ -149,7 +228,20 @@ public class Character_customize_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //TODO
+                    if (current_page_number == 1)
+                    {
+                        current_eye_index++;
+
+                        if (current_eye_index > eye_image_id_list.length - 1)
+                        {
+                            current_eye_index = 0;
+                        }
+
+                        appearance_change_textview3.setText("Eye Style " + Integer.toString(current_eye_index + 1));
+                        eye_view.setBackground(null);
+                        eye_view.setImageResource(eye_image_id_list[current_eye_index]);
+
+                    }
             }
         });
 
@@ -158,7 +250,20 @@ public class Character_customize_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //TODO
+                if (current_page_number == 1)
+                {
+                    current_nose_index--;
+
+                    if (current_nose_index < 0)
+                    {
+                        current_nose_index = hair_image_id_list.length - 1;
+                    }
+
+                    appearance_change_textview4.setText("Nose Style " + Integer.toString(current_nose_index + 1));
+                    nose_view.setBackground(null);
+                    nose_view.setImageResource(nose_image_id_list[current_nose_index]);
+
+                }
             }
         });
 
@@ -167,7 +272,20 @@ public class Character_customize_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //TODO
+                if (current_page_number == 1)
+                {
+                    current_nose_index++;
+
+                    if (current_nose_index > nose_image_id_list.length - 1)
+                    {
+                        current_nose_index = 0;
+                    }
+
+                    appearance_change_textview4.setText("Nose Style " + Integer.toString(current_nose_index + 1));
+                    nose_view.setBackground(null);
+                    nose_view.setImageResource(nose_image_id_list[current_nose_index]);
+
+                }
             }
         });
 
@@ -176,6 +294,7 @@ public class Character_customize_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                current_page_number++;
                 //TODO
             }
         });
@@ -185,6 +304,7 @@ public class Character_customize_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                current_page_number--;
                 //TODO
             }
         });
