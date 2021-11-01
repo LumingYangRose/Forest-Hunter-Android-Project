@@ -40,7 +40,7 @@ public class Character_customize_Activity extends AppCompatActivity {
     private int current_page_number;
     private int current_hair_index;
 
-    private ArrayList<Integer> hair_pic_id_list;
+    private int[] hair_image_id_list;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,12 +58,8 @@ public class Character_customize_Activity extends AppCompatActivity {
         current_hair_index = 0;
         appearance_change_textview1.setText("Style 1");
 
-        hair_pic_id_list = new ArrayList<Integer>();
-        hair_pic_id_list.add(700012);
-        hair_pic_id_list.add(700014);
-        hair_pic_id_list.add(700016);
-        hair_pic_id_list.add(700019);
-        hair_pic_id_list.add(700020);
+        hair_image_id_list = new int[]{R.drawable.hair_1, R.drawable.hair_2, R.drawable.hair_3, R.drawable.hair_4,
+                R.drawable.hair_5, R.drawable.hair_6, R.drawable.hair_7, R.drawable.hair_8};
 
 
         User_name_Edit_Text = findViewById(R.id.User_name_EditText);
@@ -82,8 +78,20 @@ public class Character_customize_Activity extends AppCompatActivity {
         appearance_last_button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (current_page_number == 1)
+                {
+                    current_hair_index--;
 
-                //TODO
+                    if (current_hair_index < 0)
+                    {
+                        current_hair_index = hair_image_id_list.length - 1;
+                    }
+
+                    appearance_change_textview1.setText("Style " + Integer.toString(current_hair_index + 1));
+                    hair_view.setBackground(null);
+                    hair_view.setImageResource(hair_image_id_list[current_hair_index]);
+
+                }
             }
         });
 
@@ -95,8 +103,16 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (current_page_number == 1)
                 {
                     current_hair_index++;
+
+                    if (current_hair_index > hair_image_id_list.length - 1)
+                    {
+                        current_hair_index = 0;
+                    }
+
                     appearance_change_textview1.setText("Style " + Integer.toString(current_hair_index + 1));
-                    hair_view.setImageDrawable(getResources().getDrawable(R.drawable.hair_2));
+                    hair_view.setBackground(null);
+                    hair_view.setImageResource(hair_image_id_list[current_hair_index]);
+
                 }
             }
         });
