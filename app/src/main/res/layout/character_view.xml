@@ -76,10 +76,10 @@
         android:id="@+id/l_foot_wear_view"
         android:layout_width="24dp"
         android:layout_height="11dp"
-        android:background="@drawable/r_foot_wear_1"
+        android:background="@drawable/l_foot_wear_1"
         android:cropToPadding="false"
-        android:scaleX="-1"
         android:scaleType="fitXY"
+        android:scaleX="-1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.909"
@@ -173,10 +173,10 @@
         android:id="@+id/r_thigh_wear_view"
         android:layout_width="23dp"
         android:layout_height="53dp"
-        android:background="@drawable/r_thigh_wear_1"
+        android:background="?attr/dividerHorizontal"
         android:cropToPadding="false"
-        android:scaleX="-1"
         android:scaleType="fitXY"
+        android:scaleX="-1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.874"
@@ -186,7 +186,7 @@
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
-        android:id="@+id/l_thigh_view2"
+        android:id="@+id/l_thigh_view"
         android:layout_width="22dp"
         android:layout_height="58dp"
         android:background="@drawable/l_thigh_1"
@@ -205,16 +205,32 @@
         android:id="@+id/l_thigh_wear_view"
         android:layout_width="22dp"
         android:layout_height="58dp"
-        android:background="@drawable/l_thigh_wear_1"
+        android:background="?attr/dividerHorizontal"
         android:cropToPadding="false"
-        android:scaleX="-1"
         android:scaleType="fitXY"
+        android:scaleX="-1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.56"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/bottom_view"
+        android:layout_width="64dp"
+        android:layout_height="66dp"
+        android:background="@drawable/bottom_wear_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.582"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
@@ -250,7 +266,7 @@
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
-        android:id="@+id/L_arm_view"
+        android:id="@+id/l_arm_view"
         android:layout_width="26dp"
         android:layout_height="50dp"
         android:background="@drawable/l_arm_1"
@@ -266,7 +282,7 @@
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
-        android:id="@+id/l_arm_view"
+        android:id="@+id/l_arm_wear_view"
         android:layout_width="26dp"
         android:layout_height="50dp"
         android:background="@drawable/l_arm_wear_1"
@@ -331,18 +347,18 @@
 
     <ImageView
         android:id="@+id/r_shoulder_wear_view"
-        android:layout_width="29dp"
-        android:layout_height="54dp"
+        android:layout_width="31dp"
+        android:layout_height="53dp"
         android:background="@drawable/r_shoulder_wear_1"
         android:cropToPadding="false"
-        android:scaleX="-1"
         android:scaleType="fitXY"
+        android:scaleX="-1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.843"
+        app:layout_constraintHorizontal_bias="0.838"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.403"
+        app:layout_constraintVertical_bias="0.402"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
@@ -464,10 +480,10 @@
         android:id="@+id/mouth_view"
         android:layout_width="18dp"
         android:layout_height="4dp"
-        android:background="@drawable/mouth_close_1"
+        android:background="@drawable/mouth_1"
         android:cropToPadding="false"
-        android:scaleX="-1"
         android:scaleType="fitXY"
+        android:scaleX="-1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.904"
@@ -479,8 +495,8 @@
     <ImageView
         android:id="@+id/l_eyebrow_view"
         android:layout_width="20dp"
-        android:layout_height="3dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="3dp"
         android:background="@drawable/l_eyebrow_1"
         android:cropToPadding="false"
         android:scaleX="-1"
@@ -511,10 +527,10 @@
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
-        android:id="@+id/R_eyebrow_view"
+        android:id="@+id/r_eyebrow_view"
         android:layout_width="20dp"
-        android:layout_height="3dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="3dp"
         android:background="@drawable/r_eyebrow_1"
         android:cropToPadding="false"
         android:scaleX="-1"
@@ -871,6 +887,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Type Your Name"
+        android:textColor="#292626"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
