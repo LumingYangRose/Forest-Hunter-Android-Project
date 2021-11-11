@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pic_forest_background">
+    android:background="@drawable/pic_forest_background"
+    tools:layout_editor_absoluteX="-190dp"
+    tools:layout_editor_absoluteY="71dp">
 
     <ImageView
         android:id="@+id/heart_view1"
@@ -75,20 +77,577 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.025" />
 
+
     <TextView
         android:id="@+id/Score_title_view"
-        android:layout_width="207dp"
-        android:layout_height="41dp"
+        android:layout_width="165dp"
+        android:layout_height="24dp"
         android:text="Score : 0"
         android:textColor="#FF1744"
-        android:textSize="@dimen/font_size_large"
+        android:textSize="@dimen/font_size_medium"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.011"
+        app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.129"
-        tools:textSize="24sp" />
+        app:layout_constraintVertical_bias="0.104" />
+
+    <ImageView
+        android:id="@+id/l_leg_view"
+        android:layout_width="17dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/l_leg_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.651"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toBottomOf="@+id/chest_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/l_leg_view_wear"
+        android:layout_width="17dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/l_leg_wear_11"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.651"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toBottomOf="@+id/chest_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/l_foot_view"
+        android:layout_width="24dp"
+        android:layout_height="11dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/l_foot_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.728"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/l_foot_view_wear"
+        android:layout_width="24dp"
+        android:layout_height="11dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/l_foot_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.728"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/r_leg_view"
+        android:layout_width="17dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/r_leg_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/l_shoulder_view"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/r_thigh_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/r_leg_view_wear"
+        android:layout_width="17dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/r_leg_wear_11"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/l_shoulder_view"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/r_thigh_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/r_foot_view"
+        android:layout_width="24dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="17dp"
+        android:background="@drawable/r_foot_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/r_leg_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/r_foot_view_wear"
+        android:layout_width="24dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="17dp"
+        android:background="@drawable/r_foot_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/r_leg_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/r_thigh_view"
+        android:layout_width="23dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/r_thigh_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/l_leg_view"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:layout_constraintVertical_bias="0.67"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+
+    <ImageView
+        android:id="@+id/r_thigh_view_wear"
+        android:layout_width="23dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/r_thigh_wear_11"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/l_leg_view"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:layout_constraintVertical_bias="0.67"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/l_thigh_view"
+        android:layout_width="22dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/l_thigh_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/l_leg_view"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.739"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:layout_constraintVertical_bias="0.597"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/l_thigh_view_wear"
+        android:layout_width="22dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/l_thigh_wear_11"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/l_leg_view"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.739"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:layout_constraintVertical_bias="0.597"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/bottom_view_wear"
+        android:layout_width="53dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/bottom_wear_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/l_leg_view"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:layout_constraintVertical_bias="0.683"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/l_shoulder_view"
+        android:layout_width="31dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/l_shoulder_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/l_arm_view"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.884"
+        app:layout_constraintStart_toEndOf="@+id/r_shoulder_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:layout_constraintVertical_bias="0.28"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/l_shoulder_view_wear"
+        android:layout_width="31dp"
+        android:layout_height="53dp"
+        android:background="@drawable/l_shoulder_wear_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/l_arm_view"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:layout_constraintVertical_bias="0.24"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/l_arm_view"
+        android:layout_width="26dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/l_arm_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/l_arm_view_wear"
+        android:layout_width="26dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/l_arm_wear_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/chest_view"
+        android:layout_width="65dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="84dp"
+        android:background="@drawable/chest_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/hair_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/chest_view_wear"
+        android:layout_width="65dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="84dp"
+        android:background="@drawable/body_wear_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/hair_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/r_shoulder_view"
+        android:layout_width="29dp"
+        android:layout_height="54dp"
+        android:background="@drawable/r_shoulder_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/r_arm_view"
+        app:layout_constraintEnd_toEndOf="@+id/chest_view"
+        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toBottomOf="@+id/hair_view"
+        app:layout_constraintVertical_bias="0.088"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/r_shoulder_view_wear"
+        android:layout_width="29dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="13dp"
+        android:background="@drawable/r_shoulder_wear_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/r_arm_view"
+        app:layout_constraintEnd_toEndOf="@+id/chest_view"
+        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toBottomOf="@+id/hair_view"
+        app:layout_constraintVertical_bias="0.088"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/r_arm_view"
+        android:layout_width="28dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/r_arm_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/chest_view"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/r_arm_view_wear"
+        android:layout_width="28dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/r_arm_wear_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/chest_view"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/r_hand_view"
+        android:layout_width="21dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/r_hand_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/r_leg_view"
+        app:layout_constraintEnd_toEndOf="@+id/l_arm_view"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="@+id/r_arm_view"
+        app:layout_constraintTop_toTopOf="@+id/r_arm_view"
+        app:layout_constraintVertical_bias="0.268"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/l_hand_finger_view"
+        android:layout_width="21dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/r_finger_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintStart_toStartOf="@+id/chest_view"
+        app:layout_constraintTop_toTopOf="@+id/l_arm_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/head_view"
+        android:layout_width="83dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/face_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/chest_view"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/hair_view"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/eyes_view"
+        android:layout_width="43dp"
+        android:layout_height="9dp"
+        android:background="@drawable/open_eyes_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/head_view"
+        app:layout_constraintEnd_toEndOf="@+id/head_view"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="@+id/head_view"
+        app:layout_constraintTop_toTopOf="@+id/head_view"
+        app:layout_constraintVertical_bias="0.604"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/mouth_view"
+        android:layout_width="18dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/mouth_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/head_view"
+        app:layout_constraintEnd_toEndOf="@+id/head_view"
+        app:layout_constraintHorizontal_bias="0.738"
+        app:layout_constraintStart_toStartOf="@+id/head_view"
+        app:layout_constraintTop_toTopOf="@+id/head_view"
+        app:layout_constraintVertical_bias="0.802"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+
+    <ImageView
+        android:id="@+id/nose_view"
+        android:layout_width="10dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/nose_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/head_view"
+        app:layout_constraintEnd_toEndOf="@+id/head_view"
+        app:layout_constraintHorizontal_bias="0.771"
+        app:layout_constraintStart_toStartOf="@+id/head_view"
+        app:layout_constraintTop_toTopOf="@+id/head_view"
+        app:layout_constraintVertical_bias="0.704"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/r_eyebrow_view"
+        android:layout_width="20dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/r_eyebrow_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/head_view"
+        app:layout_constraintEnd_toEndOf="@+id/head_view"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="@+id/head_view"
+        app:layout_constraintTop_toTopOf="@+id/head_view"
+        app:layout_constraintVertical_bias="0.505"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/l_eyebrow_view"
+        android:layout_width="20dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/l_eyebrow_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/head_view"
+        app:layout_constraintEnd_toEndOf="@+id/head_view"
+        app:layout_constraintHorizontal_bias="0.968"
+        app:layout_constraintStart_toStartOf="@+id/head_view"
+        app:layout_constraintTop_toTopOf="@+id/head_view"
+        app:layout_constraintVertical_bias="0.488"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+
+    <ImageView
+        android:id="@+id/hair_view"
+        android:layout_width="101dp"
+        android:layout_height="86dp"
+        android:background="@drawable/hair_10"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.378"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/ear_view"
+        android:layout_width="20dp"
+        android:layout_height="27dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/ear_1"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/head_view"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@id/head_view"
+        app:layout_constraintVertical_bias="0.946"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="l_foot_view,r_shoulder_view_wear,r_foot_view,chest_view_wear,bottom_view_wear,r_leg_view_wear,chest_view,l_arm_view,r_arm_view,r_shoulder_view,l_hand_finger_view,l_arm_view_wear,r_thigh_view_wear,l_leg_view,ear_view,l_shoulder_view_wear,r_eyebrow_view,l_eyebrow_view,r_leg_view,l_thigh_view_wear,r_thigh_view,r_arm_view_wear,r_hand_view,r_foot_view_wear,head_view,l_thigh_view,eyes_view,l_foot_view_wear,mouth_view,l_shoulder_view,nose_view,l_leg_view_wear,hair_view" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
