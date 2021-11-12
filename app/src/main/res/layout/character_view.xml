@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/character_customization_view"
     android:background="@drawable/pic_title_image"
     tools:layout_editor_absoluteX="26dp"
     tools:layout_editor_absoluteY="0dp">
@@ -568,7 +569,7 @@
         android:id="@+id/hair_view"
         android:layout_width="101dp"
         android:layout_height="86dp"
-        android:background="@drawable/hair_10"
+        android:background="@drawable/hair_1"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:scaleX="-1"

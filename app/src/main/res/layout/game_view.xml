@@ -12,8 +12,17 @@
         android:id="@+id/background"
         android:layout_width="735dp"
         android:layout_height="430dp"
-        android:scaleType="fitXY"
         android:background="@drawable/pic_forest_background"
+        android:scaleType="fitXY"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/second_background"
+        android:layout_width="735dp"
+        android:layout_height="430dp"
+        android:background="@drawable/pic_forest_background"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="@id/background"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
@@ -622,7 +631,7 @@
         android:id="@+id/hair_view"
         android:layout_width="101dp"
         android:layout_height="86dp"
-        android:background="@drawable/hair_10"
+        android:background="@drawable/hair_1"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:scaleX="-1"

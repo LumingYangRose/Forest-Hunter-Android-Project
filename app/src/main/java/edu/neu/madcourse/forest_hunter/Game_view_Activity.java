@@ -1,6 +1,7 @@
 package edu.neu.madcourse.forest_hunter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -97,14 +98,21 @@ public class Game_view_Activity extends AppCompatActivity {
     boolean is_playing = true;
 
     private ImageView forest_background_view;
+    private ImageView second_forest_background_view;
 
     OnSwipeTouchListener onSwipeTouchListener;
+
+    android.os.Handler customHandler;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_view);
 
         forest_background_view = findViewById(R.id.background);
+        second_forest_background_view = findViewById(R.id.second_background);
+
+        forest_background_view.setX(0);
+        second_forest_background_view.setX(second_forest_background_view.getWidth());
 
         ap = new Appearance();
 
@@ -211,8 +219,31 @@ public class Game_view_Activity extends AppCompatActivity {
 
         oncreate_resize_move_character(moveX, moveY);
 
+        customHandler = new android.os.Handler();
+        customHandler.postDelayed(refresh_view, 0);
+
         onSwipeTouchListener = new OnSwipeTouchListener(this, findViewById(R.id.game_view));
     }
+
+    private Runnable refresh_view = new Runnable()
+    {
+        public void run()
+        {
+            forest_background_view.setX(forest_background_view.getX() - 20);
+            second_forest_background_view.setX(second_forest_background_view.getX() - 20);
+
+            if (forest_background_view.getX() + forest_background_view.getWidth() < 0) {
+                forest_background_view.setX(forest_background_view.getWidth());
+            }
+
+            if (second_forest_background_view.getX() + second_forest_background_view.getWidth() < 0) {
+                second_forest_background_view.setX(second_forest_background_view.getWidth());
+            }
+
+
+            customHandler.postDelayed(this, 50); //repeat timmer
+        }
+    };
 
 
 
@@ -404,23 +435,24 @@ public class Game_view_Activity extends AppCompatActivity {
         }
 
 
-        public class GestureListener extends
-                GestureDetector.SimpleOnGestureListener {
+        public class GestureListener extends GestureDetector.SimpleOnGestureListener {
             private static final int SWIPE_THRESHOLD = 100;
-            private static final int SWIPE_VELOCITY_THRESHOLD = 100;
+            private static final int SWIPE_VELOCITY_THRESHOLD = 80;
+
             @Override
             public boolean onDown(MotionEvent e) {
                 return true;
             }
+
             @Override
-            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            public boolean onFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
                 boolean result = false;
                 try {
-                    float diffY = e2.getY() - e1.getY();
-                    float diffX = e2.getX() - e1.getX();
-                    if (Math.abs(diffX) > Math.abs(diffY)) {
-                        if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                            if (diffX > 0) {
+                    float difference_Y = me2.getY() - me1.getY();
+                    float difference_X = me2.getX() - me1.getX();
+                    if (Math.abs(difference_X) > Math.abs(difference_Y)) {
+                        if (Math.abs(difference_X) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+                            if (difference_X > 0) {
                                 onSwipeRight();
                             } else {
                                 onSwipeLeft();
@@ -428,8 +460,8 @@ public class Game_view_Activity extends AppCompatActivity {
                             result = true;
                         }
                     }
-                    else if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
-                        if (diffY > 0) {
+                    else if (Math.abs(difference_Y) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
+                        if (difference_Y > 0) {
                             onSwipeBottom();
                         } else {
                             onSwipeTop();
@@ -443,45 +475,55 @@ public class Game_view_Activity extends AppCompatActivity {
                 return result;
             }
         }
+
         void onSwipeRight() {
-            Toast.makeText(context, "Swiped Right", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Swiped Right", Toast.LENGTH_SHORT).show();
 
             move_character_x(100);
 
             this.onSwipe.swipeRight();
         }
+
+
         void onSwipeLeft() {
-            Toast.makeText(context, "Swiped Left", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Swiped Left", Toast.LENGTH_SHORT).show();
             move_character_x(-100);
             this.onSwipe.swipeLeft();
         }
+
+
         void onSwipeTop() {
-            Toast.makeText(context, "Swiped Up", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Swiped Up", Toast.LENGTH_SHORT).show();
 
             if(hair_view.getY() > 198)
             {
                 move_character_y(100);
             }
-            Toast.makeText(context, String.valueOf(hair_view.getY()), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, String.valueOf(hair_view.getY()), Toast.LENGTH_SHORT).show();
             this.onSwipe.swipeTop();
         }
-        void onSwipeBottom() {
-            Toast.makeText(context, "Swiped Down", Toast.LENGTH_SHORT).show();
 
-            if(hair_view.getY() <= 698)
+
+        void onSwipeBottom() {
+            //Toast.makeText(context, "Swiped Down", Toast.LENGTH_SHORT).show();
+
+            if(hair_view.getY() < 698)
             {
-            move_character_y(-100);
+                move_character_y(-100);
             }
 
-            Toast.makeText(context, String.valueOf(hair_view.getY()), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, String.valueOf(hair_view.getY()), Toast.LENGTH_SHORT).show();
             this.onSwipe.swipeBottom();
         }
+
+
         interface onSwipeListener {
             void swipeRight();
             void swipeTop();
             void swipeBottom();
             void swipeLeft();
         }
+
         onSwipeListener onSwipe;
     }
 

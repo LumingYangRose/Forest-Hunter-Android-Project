@@ -4,7 +4,7 @@ public class Appearance {
 
     //TODO Step 1 setyo current index to 0 and then add drawable id into image id list
 
-    public static int current_hair_index = 9;
+    public static int current_hair_index = 0;
     public static int current_head_index = 0;
     public static int current_eye_index = 0;
     public static int current_nose_index = 0;

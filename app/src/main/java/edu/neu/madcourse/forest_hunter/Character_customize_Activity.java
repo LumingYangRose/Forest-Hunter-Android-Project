@@ -159,9 +159,6 @@ public class Character_customize_Activity extends AppCompatActivity {
         l_shoulder_view = findViewById(R.id.l_shoulder_view);
 
         chest_view_wear = findViewById(R.id.chest_view_wear);
-        //chest_view_wear.setBackground(null);
-        //chest_view_wear.setImageResource(ap.chest_wear_image_id_list[Appearance.current_chest_wear_index]);
-
         if(current_chest_wear_index != 17)
         {
             chest_view_wear.setBackground(null);
