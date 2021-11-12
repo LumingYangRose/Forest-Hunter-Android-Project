@@ -1,8 +1,15 @@
 package edu.neu.madcourse.forest_hunter;
 
-
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,47 +17,47 @@ import java.util.ArrayList;
 
 public class Game_view_Activity extends AppCompatActivity {
 
-    private ImageView hair_view;
-    private ImageView head_view;
-    private ImageView eye_view;
-    private ImageView nose_view;
-    private ImageView mouth_view;
-    private ImageView l_eyebrow_view;
-    private ImageView r_eyebrow_view;
-    private ImageView ear_view;
-    private ImageView chest_view;
-    private ImageView r_arm_view;
-    private ImageView l_arm_view;
-    private ImageView r_shoulder_view;
-    private ImageView l_shoulder_view;
-    private ImageView r_hand_view;
-    private ImageView l_hand_view;
+    private static ImageView hair_view;
+    private static ImageView head_view;
+    private static ImageView eye_view;
+    private static ImageView nose_view;
+    private static ImageView mouth_view;
+    private static ImageView l_eyebrow_view;
+    private static ImageView r_eyebrow_view;
+    private static ImageView ear_view;
+    private static ImageView chest_view;
+    private static ImageView r_arm_view;
+    private static ImageView l_arm_view;
+    private static ImageView r_shoulder_view;
+    private static ImageView l_shoulder_view;
+    private static ImageView r_hand_view;
+    private static ImageView l_hand_view;
 
-    private ImageView chest_view_wear;
-    private ImageView r_arm_view_wear;
-    private ImageView l_arm_view_wear;
-    private ImageView r_shoulder_view_wear;
-    private ImageView l_shoulder_view_wear;
+    private static ImageView chest_view_wear;
+    private static ImageView r_arm_view_wear;
+    private static ImageView l_arm_view_wear;
+    private static ImageView r_shoulder_view_wear;
+    private static ImageView l_shoulder_view_wear;
 
-    private ImageView r_thigh_view;
-    private ImageView l_thigh_view;
-    private ImageView r_leg_view;
-    private ImageView l_leg_view;
-    private ImageView r_foot_view;
-    private ImageView l_foot_view;
+    private static ImageView r_thigh_view;
+    private static ImageView l_thigh_view;
+    private static ImageView r_leg_view;
+    private static ImageView l_leg_view;
+    private static ImageView r_foot_view;
+    private static ImageView l_foot_view;
 
-    private ImageView r_thigh_view_wear;
-    private ImageView l_thigh_view_wear;
-    private ImageView r_leg_view_wear;
-    private ImageView l_leg_view_wear;
-    private ImageView r_foot_view_wear;
-    private ImageView l_foot_view_wear;
-    private ImageView bottom_view_wear;
+    private static ImageView r_thigh_view_wear;
+    private static ImageView l_thigh_view_wear;
+    private static ImageView r_leg_view_wear;
+    private static ImageView l_leg_view_wear;
+    private static ImageView r_foot_view_wear;
+    private static ImageView l_foot_view_wear;
+    private static ImageView bottom_view_wear;
 
-    public int moveX = 300;
-    public int moveY = 350;  // range from -150 to 350
+    public int moveX = 500;
+    public int moveY = 150;  // range from -150 to 350
 
-    double ratio = 0.4;
+    static double ratio = 0.4;
 
     int head_adjustment = -6;
     int chest_adjustment_y = 135;
@@ -87,9 +94,17 @@ public class Game_view_Activity extends AppCompatActivity {
 
     Appearance ap;
 
+    boolean is_playing = true;
+
+    private ImageView forest_background_view;
+
+    OnSwipeTouchListener onSwipeTouchListener;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_view);
+
+        forest_background_view = findViewById(R.id.background);
 
         ap = new Appearance();
 
@@ -194,11 +209,14 @@ public class Game_view_Activity extends AppCompatActivity {
         bottom_view_wear.setBackground(null);
         bottom_view_wear.setImageResource(ap.bottom_wear_image_id_list[Appearance.current_bottom_wear_index]);
 
-        move_character(moveX, moveY);
+        oncreate_resize_move_character(moveX, moveY);
 
+        onSwipeTouchListener = new OnSwipeTouchListener(this, findViewById(R.id.game_view));
     }
 
-    public void move_character(int moveX, int moveY)
+
+
+    public void oncreate_resize_move_character(int moveX, int moveY)
     {
         ArrayList<ImageView> head_image_view_list = new ArrayList<>();
 
@@ -270,5 +288,201 @@ public class Game_view_Activity extends AppCompatActivity {
         view.setY(y + moveY - adjustment_y);
     }
 
+
+    public static void move_character_x(float new_X)
+    {
+        ArrayList<ImageView> all_image_view_list = new ArrayList<>();
+
+        all_image_view_list.add(hair_view);
+        all_image_view_list.add(head_view);
+        all_image_view_list.add(eye_view);
+        all_image_view_list.add(nose_view);
+        all_image_view_list.add(mouth_view);
+        all_image_view_list.add(ear_view);
+        all_image_view_list.add(l_eyebrow_view);
+        all_image_view_list.add(r_eyebrow_view);
+        all_image_view_list.add(chest_view);
+        all_image_view_list.add(r_arm_view);
+        all_image_view_list.add(l_arm_view);
+        all_image_view_list.add(r_shoulder_view);
+        all_image_view_list.add(l_shoulder_view);
+        all_image_view_list.add(r_hand_view);
+        all_image_view_list.add(l_hand_view);
+
+
+        all_image_view_list.add(r_thigh_view);
+        all_image_view_list.add(l_thigh_view);
+        all_image_view_list.add(r_leg_view);
+        all_image_view_list.add(l_leg_view);
+        all_image_view_list.add(r_foot_view);
+        all_image_view_list.add(l_foot_view);
+
+        all_image_view_list.add(chest_view_wear);
+        all_image_view_list.add(r_arm_view_wear);
+        all_image_view_list.add(l_arm_view_wear);
+        all_image_view_list.add(r_shoulder_view_wear);
+        all_image_view_list.add(l_shoulder_view_wear);
+
+
+        all_image_view_list.add(r_thigh_view_wear);
+        all_image_view_list.add(l_thigh_view_wear);
+        all_image_view_list.add(r_leg_view_wear);
+        all_image_view_list.add(l_leg_view_wear);
+        all_image_view_list.add(r_foot_view_wear);
+        all_image_view_list.add(l_foot_view_wear);
+        all_image_view_list.add(bottom_view_wear);
+
+        for (ImageView iv: all_image_view_list) {
+            float origin_x = iv.getX();
+            iv.setX(origin_x + new_X);
+        }
+
+    }
+
+    public static void move_character_y(float new_Y)
+    {
+        ArrayList<ImageView> all_image_view_list = new ArrayList<>();
+
+        all_image_view_list.add(hair_view);
+        all_image_view_list.add(head_view);
+        all_image_view_list.add(eye_view);
+        all_image_view_list.add(nose_view);
+        all_image_view_list.add(mouth_view);
+        all_image_view_list.add(ear_view);
+        all_image_view_list.add(l_eyebrow_view);
+        all_image_view_list.add(r_eyebrow_view);
+        all_image_view_list.add(chest_view);
+        all_image_view_list.add(r_arm_view);
+        all_image_view_list.add(l_arm_view);
+        all_image_view_list.add(r_shoulder_view);
+        all_image_view_list.add(l_shoulder_view);
+        all_image_view_list.add(r_hand_view);
+        all_image_view_list.add(l_hand_view);
+
+
+        all_image_view_list.add(r_thigh_view);
+        all_image_view_list.add(l_thigh_view);
+        all_image_view_list.add(r_leg_view);
+        all_image_view_list.add(l_leg_view);
+        all_image_view_list.add(r_foot_view);
+        all_image_view_list.add(l_foot_view);
+
+        all_image_view_list.add(chest_view_wear);
+        all_image_view_list.add(r_arm_view_wear);
+        all_image_view_list.add(l_arm_view_wear);
+        all_image_view_list.add(r_shoulder_view_wear);
+        all_image_view_list.add(l_shoulder_view_wear);
+
+
+        all_image_view_list.add(r_thigh_view_wear);
+        all_image_view_list.add(l_thigh_view_wear);
+        all_image_view_list.add(r_leg_view_wear);
+        all_image_view_list.add(l_leg_view_wear);
+        all_image_view_list.add(r_foot_view_wear);
+        all_image_view_list.add(l_foot_view_wear);
+        all_image_view_list.add(bottom_view_wear);
+
+        for (ImageView iv: all_image_view_list) {
+            float origin_y = iv.getY();
+            iv.setY(origin_y - new_Y);
+        }
+
+    }
+
+
+    public static class OnSwipeTouchListener implements View.OnTouchListener {
+        private final GestureDetector gestureDetector;
+        Context context;
+        OnSwipeTouchListener(Context content, View mainView) {
+            gestureDetector = new GestureDetector(content, new GestureListener());
+            mainView.setOnTouchListener(this);
+            context = content;
+        }
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            return gestureDetector.onTouchEvent(event);
+        }
+
+
+        public class GestureListener extends
+                GestureDetector.SimpleOnGestureListener {
+            private static final int SWIPE_THRESHOLD = 100;
+            private static final int SWIPE_VELOCITY_THRESHOLD = 100;
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return true;
+            }
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                boolean result = false;
+                try {
+                    float diffY = e2.getY() - e1.getY();
+                    float diffX = e2.getX() - e1.getX();
+                    if (Math.abs(diffX) > Math.abs(diffY)) {
+                        if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+                            if (diffX > 0) {
+                                onSwipeRight();
+                            } else {
+                                onSwipeLeft();
+                            }
+                            result = true;
+                        }
+                    }
+                    else if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
+                        if (diffY > 0) {
+                            onSwipeBottom();
+                        } else {
+                            onSwipeTop();
+                        }
+                        result = true;
+                    }
+                }
+                catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+                return result;
+            }
+        }
+        void onSwipeRight() {
+            Toast.makeText(context, "Swiped Right", Toast.LENGTH_SHORT).show();
+
+            move_character_x(100);
+
+            this.onSwipe.swipeRight();
+        }
+        void onSwipeLeft() {
+            Toast.makeText(context, "Swiped Left", Toast.LENGTH_SHORT).show();
+            move_character_x(-100);
+            this.onSwipe.swipeLeft();
+        }
+        void onSwipeTop() {
+            Toast.makeText(context, "Swiped Up", Toast.LENGTH_SHORT).show();
+
+            if(hair_view.getY() > 198)
+            {
+                move_character_y(100);
+            }
+            Toast.makeText(context, String.valueOf(hair_view.getY()), Toast.LENGTH_SHORT).show();
+            this.onSwipe.swipeTop();
+        }
+        void onSwipeBottom() {
+            Toast.makeText(context, "Swiped Down", Toast.LENGTH_SHORT).show();
+
+            if(hair_view.getY() <= 698)
+            {
+            move_character_y(-100);
+            }
+
+            Toast.makeText(context, String.valueOf(hair_view.getY()), Toast.LENGTH_SHORT).show();
+            this.onSwipe.swipeBottom();
+        }
+        interface onSwipeListener {
+            void swipeRight();
+            void swipeTop();
+            void swipeBottom();
+            void swipeLeft();
+        }
+        onSwipeListener onSwipe;
+    }
 
 }

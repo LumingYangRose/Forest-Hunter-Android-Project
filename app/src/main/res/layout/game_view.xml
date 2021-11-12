@@ -4,9 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pic_forest_background"
+    android:id="@+id/game_view"
     tools:layout_editor_absoluteX="-190dp"
     tools:layout_editor_absoluteY="71dp">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="735dp"
+        android:layout_height="430dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/pic_forest_background"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
         android:id="@+id/heart_view1"
