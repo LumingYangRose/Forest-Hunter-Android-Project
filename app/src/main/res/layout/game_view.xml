@@ -148,6 +148,34 @@
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
+        android:id="@+id/l_leg_view_run"
+        android:layout_width="17dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/l_leg_1"
+        android:cropToPadding="false"
+        android:rotation="-23"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintTop_toBottomOf="@+id/chest_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
+        tools:layout_editor_absoluteX="104dp" />
+
+    <ImageView
+        android:id="@+id/l_leg_view_wear_run"
+        android:layout_width="17dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/l_leg_wear_11"
+        android:cropToPadding="false"
+        android:rotation="-23"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintTop_toBottomOf="@+id/chest_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
+        tools:layout_editor_absoluteX="104dp" />
+
+    <ImageView
         android:id="@+id/l_foot_view"
         android:layout_width="24dp"
         android:layout_height="11dp"
@@ -177,6 +205,36 @@
         android:scaleX="-1"
         app:layout_constraintEnd_toEndOf="@+id/hair_view"
         app:layout_constraintHorizontal_bias="0.728"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/l_foot_view_run"
+        android:layout_width="24dp"
+        android:layout_height="11dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="132dp"
+        android:background="@drawable/l_foot_1"
+        android:cropToPadding="false"
+        android:rotation="-23"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/l_foot_view_wear_run"
+        android:layout_width="24dp"
+        android:layout_height="11dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="132dp"
+        android:background="@drawable/l_foot_1"
+        android:cropToPadding="false"
+        android:rotation="-23"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
         app:layout_constraintStart_toStartOf="@+id/hair_view"
         app:layout_constraintTop_toTopOf="@+id/chest_view"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
@@ -216,6 +274,34 @@
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
+        android:id="@+id/r_leg_view_run"
+        android:layout_width="17dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/r_leg_1"
+        android:cropToPadding="false"
+        android:rotation="23"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintTop_toTopOf="@+id/r_thigh_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
+        tools:layout_editor_absoluteX="54dp" />
+
+    <ImageView
+        android:id="@+id/r_leg_view_wear_run"
+        android:layout_width="17dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/r_leg_wear_11"
+        android:cropToPadding="false"
+        android:rotation="23"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintTop_toTopOf="@+id/r_thigh_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
+        tools:layout_editor_absoluteX="54dp" />
+
+    <ImageView
         android:id="@+id/r_foot_view"
         android:layout_width="24dp"
         android:layout_height="10dp"
@@ -229,6 +315,36 @@
         app:layout_constraintEnd_toEndOf="@+id/hair_view"
         app:layout_constraintHorizontal_bias="0.431"
         app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/r_leg_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/r_foot_view_run"
+        android:layout_width="24dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="68dp"
+        android:background="@drawable/r_foot_1"
+        android:cropToPadding="false"
+        android:rotation="23"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/r_leg_view"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/r_foot_view_wear_run"
+        android:layout_width="24dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="68dp"
+        android:background="@drawable/r_foot_1"
+        android:cropToPadding="false"
+        android:rotation="23"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
         app:layout_constraintTop_toTopOf="@+id/r_leg_view"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
@@ -287,10 +403,48 @@
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
+        android:id="@+id/r_thigh_view_run"
+        android:layout_width="23dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/r_thigh_1"
+        android:cropToPadding="false"
+        android:rotation="23"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/l_leg_view"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:layout_constraintVertical_bias="0.67"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/r_thigh_view_wear_run"
+        android:layout_width="23dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/r_thigh_wear_1"
+        android:cropToPadding="false"
+        android:rotation="23"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/l_leg_view"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:layout_constraintVertical_bias="0.67"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
         android:id="@+id/l_thigh_view"
         android:layout_width="22dp"
         android:layout_height="58dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="11dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/l_thigh_1"
         android:cropToPadding="false"
@@ -298,10 +452,10 @@
         android:scaleX="-1"
         app:layout_constraintBottom_toBottomOf="@+id/l_leg_view"
         app:layout_constraintEnd_toEndOf="@+id/hair_view"
-        app:layout_constraintHorizontal_bias="0.739"
+        app:layout_constraintHorizontal_bias="0.768"
         app:layout_constraintStart_toStartOf="@+id/hair_view"
         app:layout_constraintTop_toTopOf="@+id/chest_view"
-        app:layout_constraintVertical_bias="0.597"
+        app:layout_constraintVertical_bias="0.619"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
@@ -323,10 +477,49 @@
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
+        android:id="@+id/l_thigh_view_run"
+        android:layout_width="22dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/l_thigh_wear_11"
+        android:cropToPadding="false"
+        android:rotation="-23"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/l_leg_view"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.739"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:layout_constraintVertical_bias="0.597"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
+        android:id="@+id/l_thigh_view_wear_run"
+        android:layout_width="22dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/l_thigh_wear_11"
+        android:cropToPadding="false"
+        android:rotation="-23"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/l_leg_view"
+        app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.739"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
+        app:layout_constraintTop_toTopOf="@+id/chest_view"
+        app:layout_constraintVertical_bias="0.597"
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+
+    <ImageView
         android:id="@+id/bottom_view_wear"
         android:layout_width="53dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/bottom_wear_1"
         android:cropToPadding="false"
         android:scaleType="fitXY"
@@ -451,7 +644,7 @@
         android:id="@+id/r_shoulder_view_wear"
         android:layout_width="29dp"
         android:layout_height="54dp"
-        android:layout_marginEnd="13dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/r_shoulder_wear_1"
         android:cropToPadding="false"
         android:scaleType="fitXY"
@@ -664,7 +857,7 @@
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <androidx.constraintlayout.widget.Group
-        android:id="@+id/group3"
+        android:id="@+id/all_part_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="l_foot_view,r_shoulder_view_wear,r_foot_view,chest_view_wear,bottom_view_wear,r_leg_view_wear,chest_view,l_arm_view,r_arm_view,r_shoulder_view,l_hand_finger_view,l_arm_view_wear,r_thigh_view_wear,l_leg_view,ear_view,l_shoulder_view_wear,r_eyebrow_view,l_eyebrow_view,r_leg_view,l_thigh_view_wear,r_thigh_view,r_arm_view_wear,r_hand_view,r_foot_view_wear,head_view,l_thigh_view,eyes_view,l_foot_view_wear,mouth_view,l_shoulder_view,nose_view,l_leg_view_wear,hair_view" />

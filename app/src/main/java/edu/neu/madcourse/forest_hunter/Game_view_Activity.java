@@ -58,6 +58,23 @@ public class Game_view_Activity extends AppCompatActivity {
     private static ImageView l_foot_view_wear;
     private static ImageView bottom_view_wear;
 
+    private static ImageView l_leg_view_run;
+    private static ImageView l_leg_view_wear_run;
+    private static ImageView l_foot_view_run;
+    private static ImageView l_foot_view_wear_run;
+    private static ImageView l_thigh_view_wear_run;
+    private static ImageView l_thigh_view_run;
+
+    private static ImageView r_leg_view_run;
+    private static ImageView r_leg_view_wear_run;
+    private static ImageView r_foot_view_run;
+    private static ImageView r_foot_view_wear_run;
+    private static ImageView r_thigh_view_wear_run;
+    private static ImageView r_thigh_view_run;
+
+
+    private static int count = 0;
+
     public int moveX = 500;
     public int moveY = 150;  // range from -150 to 350
 
@@ -66,8 +83,8 @@ public class Game_view_Activity extends AppCompatActivity {
     int head_adjustment = -6;
     int chest_adjustment_y = 135;
     int chest_adjustment_x = -7;
-    int ear_adjustment_y = -10;
-    int ear_adjustment_x = 0;
+    int ear_adjustment_y = -8;
+    int ear_adjustment_x = -2;
     int l_arm_adjustment_y = 180;
     int l_arm_adjustment_x = -1;
     int r_arm_adjustment_y = 205;
@@ -76,10 +93,10 @@ public class Game_view_Activity extends AppCompatActivity {
     int l_shoulder_adjustment_x = -5;
     int r_shoulder_adjustment_y = 20;
     int r_shoulder_adjustment_x = -3;
-    int r_hand_adjustment_y = 225;
+    int r_hand_adjustment_y = 215;
     int r_hand_adjustment_x = 2;
-    int l_hand_adjustment_y = 228;
-    int l_hand_adjustment_x = 113;
+    int l_hand_adjustment_y = 227;
+    int l_hand_adjustment_x = 110;
 
     int r_thigh_adjustment_y = 130;
     int r_thigh_adjustment_x = -10;
@@ -91,10 +108,10 @@ public class Game_view_Activity extends AppCompatActivity {
     int l_leg_adjustment_x = -15;
     int r_foot_adjustment_y = 270;
     int r_foot_adjustment_x = -10;
-    int l_foot_adjustment_y = 356;
-    int l_foot_adjustment_x = -15;
-    int bottom_adjustment_x = -4;
-    int bottom_adjustment_y = 143;
+    int l_foot_adjustment_y = 353;
+    int l_foot_adjustment_x = -17;
+    int bottom_adjustment_x = -7;
+    int bottom_adjustment_y = 146;
 
     Appearance ap;
 
@@ -111,6 +128,7 @@ public class Game_view_Activity extends AppCompatActivity {
     OnSwipeTouchListener onSwipeTouchListener;
 
     android.os.Handler Handler;
+    android.os.Handler Handler2;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,8 +144,6 @@ public class Game_view_Activity extends AppCompatActivity {
         screenRatioY = 1080f / screen_height;
 
         forest_background_view = findViewById(R.id.background);
-
-        //forest_background_view.setMaxHeight(screen_width);
         second_forest_background_view = findViewById(R.id.background2);
 
         forest_background_view.setX(0);
@@ -212,10 +228,6 @@ public class Game_view_Activity extends AppCompatActivity {
 
         r_leg_view = findViewById(R.id.r_leg_view);
         l_leg_view = findViewById(R.id.l_leg_view);
-        r_leg_view.setBackground(null);
-        r_leg_view.setImageResource(ap.leg_r_l_wear_image_id_list[Appearance.current_leg_wear_index][0]);
-        l_leg_view.setBackground(null);
-        l_leg_view.setImageResource(ap.leg_r_l_wear_image_id_list[Appearance.current_leg_wear_index][1]);
 
 
         r_foot_view = findViewById(R.id.r_foot_view);
@@ -237,6 +249,53 @@ public class Game_view_Activity extends AppCompatActivity {
         l_leg_view_wear.setBackground(null);
         l_leg_view_wear.setImageResource(ap.leg_r_l_wear_image_id_list[Appearance.current_leg_wear_index][1]);
 
+        // setup imageview for the run image
+        l_leg_view_run =findViewById(R.id.l_leg_view_run);
+        l_thigh_view_run =findViewById(R.id.l_thigh_view_run);
+        l_leg_view_wear_run =findViewById(R.id.l_leg_view_wear_run);
+        l_leg_view_wear_run.setBackground(null);
+        l_leg_view_wear_run.setImageResource(ap.leg_r_l_wear_image_id_list[Appearance.current_leg_wear_index][1]);
+
+        l_thigh_view_wear_run =findViewById(R.id.l_thigh_view_wear_run);
+        l_thigh_view_wear_run.setBackground(null);
+        l_thigh_view_wear_run.setImageResource(ap.thigh_r_l_wear_image_id_list[Appearance.current_thigh_wear_index][1]);
+
+        l_foot_view_run =findViewById(R.id.l_foot_view_run);
+        l_foot_view_wear_run =findViewById(R.id.l_foot_view_wear_run);
+        l_foot_view_wear_run.setBackground(null);
+        l_foot_view_wear_run.setImageResource(ap.foot_r_l_wear_image_id_list[Appearance.current_foot_wear_index][1]);
+
+        l_leg_view_run.setVisibility(View.INVISIBLE);
+        l_thigh_view_run.setVisibility(View.INVISIBLE);
+        l_leg_view_wear_run.setVisibility(View.INVISIBLE);
+        l_thigh_view_wear_run.setVisibility(View.INVISIBLE);
+        l_foot_view_run.setVisibility(View.INVISIBLE);
+        l_foot_view_wear_run.setVisibility(View.INVISIBLE);
+
+        r_leg_view_run =findViewById(R.id.r_leg_view_run);
+        r_thigh_view_run =findViewById(R.id.r_thigh_view_run);
+        r_leg_view_wear_run =findViewById(R.id.r_leg_view_wear_run);
+        r_leg_view_wear_run.setBackground(null);
+        r_leg_view_wear_run.setImageResource(ap.leg_r_l_wear_image_id_list[Appearance.current_leg_wear_index][1]);
+
+        r_thigh_view_wear_run =findViewById(R.id.r_thigh_view_wear_run);
+        r_thigh_view_wear_run.setBackground(null);
+        r_thigh_view_wear_run.setImageResource(ap.thigh_r_l_wear_image_id_list[Appearance.current_thigh_wear_index][1]);
+
+        r_foot_view_run =findViewById(R.id.r_foot_view_run);
+        r_foot_view_wear_run =findViewById(R.id.r_foot_view_wear_run);
+        r_foot_view_wear_run.setBackground(null);
+        r_foot_view_wear_run.setImageResource(ap.foot_r_l_wear_image_id_list[Appearance.current_foot_wear_index][0]);
+
+
+        r_leg_view_run.setVisibility(View.INVISIBLE);
+        r_thigh_view_run.setVisibility(View.INVISIBLE);
+        r_leg_view_wear_run.setVisibility(View.INVISIBLE);
+        r_thigh_view_wear_run.setVisibility(View.INVISIBLE);
+        r_foot_view_run.setVisibility(View.INVISIBLE);
+        r_foot_view_wear_run.setVisibility(View.INVISIBLE);
+
+        //finish the setup of run imageview
 
         r_foot_view_wear = findViewById(R.id.r_foot_view_wear);
         l_foot_view_wear = findViewById(R.id.l_foot_view_wear);
@@ -253,6 +312,9 @@ public class Game_view_Activity extends AppCompatActivity {
 
         Handler = new android.os.Handler();
         Handler.postDelayed(refresh_view, 0);
+
+        Handler2 = new android.os.Handler();
+        Handler2.postDelayed(refresh_character_view, 0);
 
         onSwipeTouchListener = new OnSwipeTouchListener(this, findViewById(R.id.game_view));
     }
@@ -275,8 +337,81 @@ public class Game_view_Activity extends AppCompatActivity {
                 second_forest_background_view.setX(width);
             }
 
-
             Handler.postDelayed(this, 50); //repeat timmer
+        }
+    };
+
+    private Runnable refresh_character_view = new Runnable()
+    {
+        public void run()
+        {
+            if (count == 0)
+            {
+                l_leg_view_run.setVisibility(View.VISIBLE);
+                l_thigh_view_run.setVisibility(View.VISIBLE);
+                l_leg_view_wear_run.setVisibility(View.VISIBLE);
+                l_thigh_view_wear_run.setVisibility(View.VISIBLE);
+                l_foot_view_run.setVisibility(View.VISIBLE);
+                l_foot_view_wear_run.setVisibility(View.VISIBLE);
+
+                r_leg_view_run.setVisibility(View.VISIBLE);
+                r_thigh_view_run.setVisibility(View.VISIBLE);
+                r_leg_view_wear_run.setVisibility(View.VISIBLE);
+                r_thigh_view_wear_run.setVisibility(View.VISIBLE);
+                r_foot_view_run.setVisibility(View.VISIBLE);
+                r_foot_view_wear_run.setVisibility(View.VISIBLE);
+
+                l_leg_view_wear.setVisibility(View.INVISIBLE);
+                l_leg_view.setVisibility(View.INVISIBLE);
+                l_thigh_view_wear.setVisibility(View.INVISIBLE);
+                l_thigh_view.setVisibility(View.INVISIBLE);
+                l_foot_view_wear.setVisibility(View.INVISIBLE);
+                l_foot_view.setVisibility(View.INVISIBLE);
+
+                r_leg_view_wear.setVisibility(View.INVISIBLE);
+                r_leg_view.setVisibility(View.INVISIBLE);
+                r_thigh_view_wear.setVisibility(View.INVISIBLE);
+                r_thigh_view.setVisibility(View.INVISIBLE);
+                r_foot_view_wear.setVisibility(View.INVISIBLE);
+                r_foot_view.setVisibility(View.INVISIBLE);
+
+                count += 1;
+            }
+            else if (count == 1)
+            {
+                l_leg_view_run.setVisibility(View.INVISIBLE);
+                l_thigh_view_run.setVisibility(View.INVISIBLE);
+                l_leg_view_wear_run.setVisibility(View.INVISIBLE);
+                l_thigh_view_wear_run.setVisibility(View.INVISIBLE);
+                l_foot_view_run.setVisibility(View.INVISIBLE);
+                l_foot_view_wear_run.setVisibility(View.INVISIBLE);
+
+                r_leg_view_run.setVisibility(View.INVISIBLE);
+                r_thigh_view_run.setVisibility(View.INVISIBLE);
+                r_leg_view_wear_run.setVisibility(View.INVISIBLE);
+                r_thigh_view_wear_run.setVisibility(View.INVISIBLE);
+                r_foot_view_run.setVisibility(View.INVISIBLE);
+                r_foot_view_wear_run.setVisibility(View.INVISIBLE);
+
+                l_leg_view_wear.setVisibility(View.VISIBLE);
+                l_leg_view.setVisibility(View.VISIBLE);
+                l_thigh_view_wear.setVisibility(View.VISIBLE);
+                l_thigh_view.setVisibility(View.VISIBLE);
+                l_foot_view_wear.setVisibility(View.VISIBLE);
+                l_foot_view.setVisibility(View.VISIBLE);
+
+                r_leg_view_wear.setVisibility(View.VISIBLE);
+                r_leg_view.setVisibility(View.VISIBLE);
+                r_thigh_view_wear.setVisibility(View.VISIBLE);
+                r_thigh_view.setVisibility(View.VISIBLE);
+                r_foot_view_wear.setVisibility(View.VISIBLE);
+                r_foot_view.setVisibility(View.VISIBLE);
+
+                count = 0;
+            }
+
+
+            Handler.postDelayed(this, 300); //repeat timmer
         }
     };
 
@@ -306,6 +441,11 @@ public class Game_view_Activity extends AppCompatActivity {
             iv.setY(y + moveY);
 
         }
+
+        //eyebrow somehow mis-position
+        // this is to correct the location
+        l_eyebrow_view.setY(l_eyebrow_view.getY() - 6);
+        r_eyebrow_view.setY(r_eyebrow_view.getY() - 2);
 
         move_after_resize(ear_view, moveX, moveY, ratio, ear_adjustment_y, ear_adjustment_x);
         move_after_resize(chest_view,moveX, moveY, ratio, chest_adjustment_y, chest_adjustment_x);
@@ -339,6 +479,20 @@ public class Game_view_Activity extends AppCompatActivity {
         move_after_resize(l_foot_view_wear, moveX, moveY, ratio, l_foot_adjustment_y, l_foot_adjustment_x);
         move_after_resize(bottom_view_wear, moveX, moveY, ratio, bottom_adjustment_y, bottom_adjustment_x);
 
+        move_after_resize(l_leg_view_run, moveX, moveY, ratio, l_leg_adjustment_y - 7, l_leg_adjustment_x - 179);
+        move_after_resize(l_leg_view_wear_run, moveX, moveY, ratio, l_leg_adjustment_y -7, l_leg_adjustment_x - 179);
+        move_after_resize(l_thigh_view_run, moveX, moveY, ratio, l_thigh_adjustment_y, l_thigh_adjustment_x);
+        move_after_resize(l_thigh_view_wear_run, moveX, moveY, ratio, l_thigh_adjustment_y, l_thigh_adjustment_x);
+        move_after_resize(l_foot_view_run, moveX, moveY, ratio, l_foot_adjustment_y -3 , l_foot_adjustment_x + 139);
+        move_after_resize(l_foot_view_wear_run, moveX, moveY, ratio, l_foot_adjustment_y - 3, l_foot_adjustment_x + 139);//TODO
+
+
+        move_after_resize(r_leg_view_run, moveX, moveY, ratio, r_leg_adjustment_y - 3, r_leg_adjustment_x - 123);
+        move_after_resize(r_leg_view_wear_run, moveX, moveY, ratio, r_leg_adjustment_y -3, r_leg_adjustment_x - 123);
+        move_after_resize(r_thigh_view_run, moveX, moveY, ratio, r_thigh_adjustment_y, r_thigh_adjustment_x);
+        move_after_resize(r_thigh_view_wear_run, moveX, moveY, ratio, r_thigh_adjustment_y, r_thigh_adjustment_x);
+        move_after_resize(r_foot_view_run, moveX, moveY, ratio, r_foot_adjustment_y -13 , r_foot_adjustment_x - 105);
+        move_after_resize(r_foot_view_wear_run, moveX, moveY, ratio, r_foot_adjustment_y - 13, r_foot_adjustment_x - 105);//TODO
 
     }
 
@@ -398,6 +552,19 @@ public class Game_view_Activity extends AppCompatActivity {
         all_image_view_list.add(l_foot_view_wear);
         all_image_view_list.add(bottom_view_wear);
 
+        all_image_view_list.add(l_leg_view_run);
+        all_image_view_list.add(l_leg_view_wear_run);
+        all_image_view_list.add(l_foot_view_run);
+        all_image_view_list.add(l_foot_view_wear_run);
+        all_image_view_list.add(l_thigh_view_wear_run);
+        all_image_view_list.add(l_thigh_view_run);
+        all_image_view_list.add(r_leg_view_run);
+        all_image_view_list.add(r_leg_view_wear_run);
+        all_image_view_list.add(r_foot_view_run);
+        all_image_view_list.add(r_foot_view_wear_run);
+        all_image_view_list.add(r_thigh_view_wear_run);
+        all_image_view_list.add(r_thigh_view_run);
+
         for (ImageView iv: all_image_view_list) {
             float origin_x = iv.getX();
             iv.setX(origin_x + new_X);
@@ -448,6 +615,19 @@ public class Game_view_Activity extends AppCompatActivity {
         all_image_view_list.add(l_foot_view_wear);
         all_image_view_list.add(bottom_view_wear);
 
+        all_image_view_list.add(l_leg_view_run);
+        all_image_view_list.add(l_leg_view_wear_run);
+        all_image_view_list.add(l_foot_view_run);
+        all_image_view_list.add(l_foot_view_wear_run);
+        all_image_view_list.add(l_thigh_view_wear_run);
+        all_image_view_list.add(l_thigh_view_run);
+        all_image_view_list.add(r_leg_view_run);
+        all_image_view_list.add(r_leg_view_wear_run);
+        all_image_view_list.add(r_foot_view_run);
+        all_image_view_list.add(r_foot_view_wear_run);
+        all_image_view_list.add(r_thigh_view_wear_run);
+        all_image_view_list.add(r_thigh_view_run);
+
         for (ImageView iv: all_image_view_list) {
             float origin_y = iv.getY();
             iv.setY(origin_y - new_Y);
@@ -471,8 +651,8 @@ public class Game_view_Activity extends AppCompatActivity {
 
 
         public class GestureListener extends GestureDetector.SimpleOnGestureListener {
-            private static final int SWIPE_THRESHOLD = 100;
-            private static final int SWIPE_VELOCITY_THRESHOLD = 80;
+            private static final int SWIPE_THRESHOLD = 60;
+            private static final int SWIPE_VELOCITY_THRESHOLD = 60;
 
             @Override
             public boolean onDown(MotionEvent e) {
