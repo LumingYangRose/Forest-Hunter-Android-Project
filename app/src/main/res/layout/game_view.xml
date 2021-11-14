@@ -10,20 +10,23 @@
 
     <ImageView
         android:id="@+id/background"
-        android:layout_width="735dp"
-        android:layout_height="430dp"
+        android:layout_width="736.9dp"
+        android:layout_height="412dp"
         android:background="@drawable/pic_forest_background"
         android:scaleType="fitXY"
-        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-1dp" />
 
     <ImageView
-        android:id="@+id/second_background"
-        android:layout_width="735dp"
-        android:layout_height="430dp"
+        android:id="@+id/background2"
+        android:layout_width="736.9dp"
+        android:layout_height="412dp"
         android:background="@drawable/pic_forest_background"
         android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="@id/background"
-        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <ImageView
         android:id="@+id/heart_view1"

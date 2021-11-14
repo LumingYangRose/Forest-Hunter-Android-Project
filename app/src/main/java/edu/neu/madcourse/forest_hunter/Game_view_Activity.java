@@ -2,13 +2,16 @@ package edu.neu.madcourse.forest_hunter;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -97,22 +100,38 @@ public class Game_view_Activity extends AppCompatActivity {
 
     boolean is_playing = true;
 
+    int screen_width;
+    int screen_height;
+
+    public static float screenRatioX, screenRatioY;
+
     private ImageView forest_background_view;
     private ImageView second_forest_background_view;
 
     OnSwipeTouchListener onSwipeTouchListener;
 
-    android.os.Handler customHandler;
+    android.os.Handler Handler;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_view);
 
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int screen_width = size.x;
+        int screen_height = size.y;
+
+        screenRatioX = 1920f / screen_width;
+        screenRatioY = 1080f / screen_height;
+
         forest_background_view = findViewById(R.id.background);
-        second_forest_background_view = findViewById(R.id.second_background);
+
+        //forest_background_view.setMaxHeight(screen_width);
+        second_forest_background_view = findViewById(R.id.background2);
 
         forest_background_view.setX(0);
-        second_forest_background_view.setX(second_forest_background_view.getWidth());
+        second_forest_background_view.setX(screen_width - 3);
 
         ap = new Appearance();
 
@@ -201,17 +220,30 @@ public class Game_view_Activity extends AppCompatActivity {
 
         r_foot_view = findViewById(R.id.r_foot_view);
         l_foot_view = findViewById(R.id.l_foot_view);
-        r_foot_view.setBackground(null);
-        r_foot_view.setImageResource(ap.foot_r_l_wear_image_id_list[Appearance.current_foot_wear_index][0]);
-        l_foot_view.setBackground(null);
-        l_foot_view.setImageResource(ap.foot_r_l_wear_image_id_list[Appearance.current_foot_wear_index][1]);
 
         r_thigh_view_wear = findViewById(R.id.r_thigh_view_wear);
         l_thigh_view_wear = findViewById(R.id.l_thigh_view_wear);
+        r_thigh_view_wear.setBackground(null);
+        r_thigh_view_wear.setImageResource(ap.thigh_r_l_wear_image_id_list[Appearance.current_thigh_wear_index][0]);
+
+        l_thigh_view_wear.setBackground(null);
+        l_thigh_view_wear.setImageResource(ap.thigh_r_l_wear_image_id_list[Appearance.current_thigh_wear_index][1]);
+
+
         r_leg_view_wear = findViewById(R.id.r_leg_view_wear);
         l_leg_view_wear = findViewById(R.id.l_leg_view_wear);
+        r_leg_view_wear.setBackground(null);
+        r_leg_view_wear.setImageResource(ap.leg_r_l_wear_image_id_list[Appearance.current_leg_wear_index][0]);
+        l_leg_view_wear.setBackground(null);
+        l_leg_view_wear.setImageResource(ap.leg_r_l_wear_image_id_list[Appearance.current_leg_wear_index][1]);
+
+
         r_foot_view_wear = findViewById(R.id.r_foot_view_wear);
         l_foot_view_wear = findViewById(R.id.l_foot_view_wear);
+        r_foot_view_wear.setBackground(null);
+        r_foot_view_wear.setImageResource(ap.foot_r_l_wear_image_id_list[Appearance.current_foot_wear_index][0]);
+        l_foot_view_wear.setBackground(null);
+        l_foot_view_wear.setImageResource(ap.foot_r_l_wear_image_id_list[Appearance.current_foot_wear_index][1]);
 
         bottom_view_wear = findViewById(R.id.bottom_view_wear);
         bottom_view_wear.setBackground(null);
@@ -219,8 +251,8 @@ public class Game_view_Activity extends AppCompatActivity {
 
         oncreate_resize_move_character(moveX, moveY);
 
-        customHandler = new android.os.Handler();
-        customHandler.postDelayed(refresh_view, 0);
+        Handler = new android.os.Handler();
+        Handler.postDelayed(refresh_view, 0);
 
         onSwipeTouchListener = new OnSwipeTouchListener(this, findViewById(R.id.game_view));
     }
@@ -229,19 +261,22 @@ public class Game_view_Activity extends AppCompatActivity {
     {
         public void run()
         {
-            forest_background_view.setX(forest_background_view.getX() - 20);
-            second_forest_background_view.setX(second_forest_background_view.getX() - 20);
+
+            forest_background_view.setX(forest_background_view.getX() - 20 * screenRatioX);
+            second_forest_background_view.setX(second_forest_background_view.getX() - 20 * screenRatioX);
+
+            int width = second_forest_background_view.getWidth();
 
             if (forest_background_view.getX() + forest_background_view.getWidth() < 0) {
-                forest_background_view.setX(forest_background_view.getWidth());
+                forest_background_view.setX(width);
             }
 
             if (second_forest_background_view.getX() + second_forest_background_view.getWidth() < 0) {
-                second_forest_background_view.setX(second_forest_background_view.getWidth());
+                second_forest_background_view.setX(width);
             }
 
 
-            customHandler.postDelayed(this, 50); //repeat timmer
+            Handler.postDelayed(this, 50); //repeat timmer
         }
     };
 
