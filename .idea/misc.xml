@@ -3,7 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/game_view.xml" value="1.0" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/drawable/walking_crocodile.xml" value="0.346782431052094" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/game_view.xml" value="0.25" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/drawable/eye.xml" value="0.3536458333333333" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/drawable/face.xml" value="0.3536458333333333" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/drawable/game_title_border.xml" value="0.3536458333333333" />

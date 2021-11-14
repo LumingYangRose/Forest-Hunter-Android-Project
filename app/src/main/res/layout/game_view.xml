@@ -862,5 +862,14 @@
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="l_foot_view,r_shoulder_view_wear,r_foot_view,chest_view_wear,bottom_view_wear,r_leg_view_wear,chest_view,l_arm_view,r_arm_view,r_shoulder_view,l_hand_finger_view,l_arm_view_wear,r_thigh_view_wear,l_leg_view,ear_view,l_shoulder_view_wear,r_eyebrow_view,l_eyebrow_view,r_leg_view,l_thigh_view_wear,r_thigh_view,r_arm_view_wear,r_hand_view,r_foot_view_wear,head_view,l_thigh_view,eyes_view,l_foot_view_wear,mouth_view,l_shoulder_view,nose_view,l_leg_view_wear,hair_view" />
 
+    <ImageView
+        android:id="@+id/crocodile"
+        android:layout_width="177dp"
+        android:layout_height="150dp"
+        android:scaleX="-1"
+        app:srcCompat="@drawable/crocodile1"
+        tools:layout_editor_absoluteX="215dp"
+        tools:layout_editor_absoluteY="197dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

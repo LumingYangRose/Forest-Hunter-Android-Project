@@ -3,6 +3,7 @@ package edu.neu.madcourse.forest_hunter;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -72,6 +73,7 @@ public class Game_view_Activity extends AppCompatActivity {
     private static ImageView r_thigh_view_wear_run;
     private static ImageView r_thigh_view_run;
 
+    private ImageView crocodile;
 
     private static int count = 0;
 
@@ -148,6 +150,13 @@ public class Game_view_Activity extends AppCompatActivity {
 
         forest_background_view.setX(0);
         second_forest_background_view.setX(screen_width - 3);
+
+        crocodile = findViewById(R.id.crocodile);
+        crocodile.setX(100);
+        crocodile.setY(450);
+        crocodile.setImageResource(R.drawable.walking_crocodile);
+        AnimationDrawable walking_crocodile = (AnimationDrawable) crocodile.getDrawable();
+        walking_crocodile.start();
 
         ap = new Appearance();
 
