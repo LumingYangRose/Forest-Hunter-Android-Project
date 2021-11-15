@@ -338,15 +338,15 @@ public class Game_view_Activity extends AppCompatActivity {
 
             int width = second_forest_background_view.getWidth();
 
-            if (forest_background_view.getX() + forest_background_view.getWidth() < 0) {
+            if (forest_background_view.getX() + forest_background_view.getWidth() <= 5) {
                 forest_background_view.setX(width);
             }
 
-            if (second_forest_background_view.getX() + second_forest_background_view.getWidth() < 0) {
+            if (second_forest_background_view.getX() + second_forest_background_view.getWidth() <= 5) {
                 second_forest_background_view.setX(width);
             }
 
-            Handler.postDelayed(this, 50); //repeat timmer
+            Handler.postDelayed(this, 30); //repeat timmer
         }
     };
 
@@ -420,7 +420,7 @@ public class Game_view_Activity extends AppCompatActivity {
             }
 
 
-            Handler.postDelayed(this, 300); //repeat timmer
+            Handler.postDelayed(this, 100); //repeat timmer
         }
     };
 
@@ -749,6 +749,15 @@ public class Game_view_Activity extends AppCompatActivity {
         }
 
         onSwipeListener onSwipe;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Handler.removeCallbacksAndMessages(null);
+        Handler2.removeCallbacksAndMessages(null);
+
+        super.onBackPressed();
     }
 
 }

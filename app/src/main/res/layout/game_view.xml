@@ -10,7 +10,7 @@
 
     <ImageView
         android:id="@+id/background"
-        android:layout_width="736.9dp"
+        android:layout_width="737.5dp"
         android:layout_height="412dp"
         android:background="@drawable/pic_forest_background"
         android:scaleType="fitXY"
@@ -20,7 +20,7 @@
 
     <ImageView
         android:id="@+id/background2"
-        android:layout_width="736.9dp"
+        android:layout_width="737.5dp"
         android:layout_height="412dp"
         android:background="@drawable/pic_forest_background"
         android:scaleType="fitXY"
