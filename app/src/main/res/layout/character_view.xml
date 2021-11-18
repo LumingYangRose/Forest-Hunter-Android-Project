@@ -614,7 +614,7 @@
         app:srcCompat="@drawable/pic_character_board" />
 
     <TextView
-        android:id="@+id/character_name_view"
+        android:id="@+id/email_address_textview"
         android:layout_width="112dp"
         android:layout_height="36dp"
         android:gravity="center"

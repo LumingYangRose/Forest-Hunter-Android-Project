@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "348899570889",
+    "firebase_url": "https://forest-hunter-default-rtdb.firebaseio.com",
+    "project_id": "forest-hunter",
+    "storage_bucket": "forest-hunter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:348899570889:android:32bdcd7556fad4c0804918",
+        "android_client_info": {
+          "package_name": "edu.neu.madcourse.forest_hunter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "348899570889-h69ve11qvs1jm38vcppp1auav67qh9hd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMQQ9MJxTGqLdTx1avANgvaIutoyaw9qE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "348899570889-h69ve11qvs1jm38vcppp1auav67qh9hd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

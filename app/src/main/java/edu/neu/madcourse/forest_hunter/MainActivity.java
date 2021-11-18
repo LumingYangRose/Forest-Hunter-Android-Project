@@ -1,12 +1,23 @@
 package edu.neu.madcourse.forest_hunter;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // set clicker listener for buttons
         new_game_button = findViewById(R.id.new_game_button);
@@ -78,17 +90,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void activate_game_view_activity()
-    {
-        Intent locator_intent = new Intent(this, Game_view_Activity.class);
-        startActivity(locator_intent);
+    public void activate_game_view_activity() {
+        Intent game_view_intent = new Intent(this, Game_view_Activity.class);
+        startActivity(game_view_intent);
 
     }
 
-    public void activate_character_customize_activity()
-    {
-        Intent locator_intent = new Intent(this, Character_customize_Activity.class);
-        startActivity(locator_intent);
+    public void activate_character_customize_activity() {
+        Intent character_customize_intent = new Intent(this, Character_customize_Activity.class);
+        startActivity(character_customize_intent);
 
     }
 
