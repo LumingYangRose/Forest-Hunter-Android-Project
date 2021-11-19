@@ -1,11 +1,13 @@
 package authentication;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ import java.util.ArrayList;
 
 import edu.neu.madcourse.forest_hunter.Appearance;
 import edu.neu.madcourse.forest_hunter.MainActivity;
+import edu.neu.madcourse.forest_hunter.Music;
 import edu.neu.madcourse.forest_hunter.R;
 import user.User;
 
@@ -34,6 +37,9 @@ public class login_Activity extends AppCompatActivity {
 
     Button signup_button;
     Button login_button;
+
+    ImageButton music_button;
+    Music bgm;
 
     private static String CLIENT_REGISTRATION_TOKEN;
     private DatabaseReference mDatabase;
@@ -89,7 +95,24 @@ public class login_Activity extends AppCompatActivity {
             }
         });
 
+        //Handling Music
+        bgm = new Music(this);
+        bgm.play_music();
+        music_button = findViewById(R.id.change_bgm_button);
+        music_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                bgm.play_next();
+                bgm.stop();
+                bgm.play_music();
+            }
+        });
+
+
+
     }
+
 
     public void login_dialog(View view) {
         final AlertDialog.Builder dialog;
@@ -156,6 +179,7 @@ public class login_Activity extends AppCompatActivity {
         final AlertDialog.Builder dialog;
         final EditText input_username;
         final EditText input_password;
+        final EditText confirm_password;
         final EditText security_question;
         final EditText security_question_answer;
         Button input_cancel_button;
@@ -167,6 +191,7 @@ public class login_Activity extends AppCompatActivity {
 
         input_username = dialog_view.findViewById(R.id.signup_enter_username_input_box);
         input_password = dialog_view.findViewById(R.id.signup_enter_password_input_box);
+        confirm_password = dialog_view.findViewById(R.id.signup_confirm_password_input_box);
 
         input_cancel_button = dialog_view.findViewById(R.id.login_cancel_button);
         input_confirm_button = dialog_view.findViewById(R.id.login_confirm_button);
@@ -197,6 +222,10 @@ public class login_Activity extends AppCompatActivity {
                 {
                     Toast.makeText(login_Activity.this, "Password Cannot be Empty!", Toast.LENGTH_SHORT).show();
                 }
+                else if (confirm_password.getText().toString().equals(""))
+                {
+                    Toast.makeText(login_Activity.this, "Confirm Password Cannot be Empty!", Toast.LENGTH_SHORT).show();
+                }
                 else if (security_question.getText().toString().equals(""))
                 {
                     Toast.makeText(login_Activity.this, "Security Question Cannot be Empty!", Toast.LENGTH_SHORT).show();
@@ -208,10 +237,11 @@ public class login_Activity extends AppCompatActivity {
 
                 String username = input_username.getText().toString();
                 String password = input_password.getText().toString();
+                String password_second_input = confirm_password.getText().toString();
                 String s_question = security_question.getText().toString();
                 String s_question_answer = security_question_answer.getText().toString();
 
-                boolean is_password_valid = validate_password(password);
+                boolean is_password_valid = validate_password_signup(password, password_second_input);
 
                 if (is_password_valid) {
                     is_username_exist(username, password, s_question, s_question_answer);
@@ -291,6 +321,8 @@ public class login_Activity extends AppCompatActivity {
 
                     login_user.friend_list = temp_array_list;
 
+
+                    sleep(2000);
                     activate_main_activity();
                 }
                 else {
@@ -321,6 +353,8 @@ public class login_Activity extends AppCompatActivity {
                     {
                         User user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN);
                         Task signup_user = mDatabase.child("users").child(username).setValue(user);
+                        sleep(1000);
+                        Toast.makeText(login_Activity.this, "Successfully Signed up!", Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
@@ -338,6 +372,57 @@ public class login_Activity extends AppCompatActivity {
 
         });
 
+    }
+
+    public boolean validate_password_signup(String password, String password_confirm)
+    {
+        boolean is_contain_uppercase = false;
+        boolean is_contain_number = false;
+        boolean is_contain_lowercase = false;
+        boolean is_length_valid = false;
+
+        if (password.length() >= 8 || password.length() <= 16)
+        {
+            is_length_valid = true;
+        }
+
+        for (char c: password.toCharArray())
+        {
+            if(Character.isDigit(c))
+            {
+                is_contain_number = true;
+            }
+
+            else if(Character.isLowerCase(c))
+            {
+                is_contain_uppercase = true;
+            }
+
+            else if (Character.isUpperCase(c))
+            {
+                is_contain_lowercase = true;
+            }
+        }
+
+        if (is_contain_uppercase && is_contain_number && is_contain_lowercase && is_length_valid)
+        {
+            if (password.equals(password_confirm))
+            {
+                return true;
+            }
+            else
+            {
+                Toast.makeText(login_Activity.this,  "Two Password inputs do not match!", Toast.LENGTH_LONG).show();
+                return false;
+            }
+
+        }
+        else
+        {
+            String content = "Invalid Password!\nPassword must contains 8- 16 characters and at least one number, one lowercase letter and uppercase letter";
+            Toast.makeText(login_Activity.this,  content, Toast.LENGTH_LONG).show();
+            return false;
+        }
     }
 
     public boolean validate_password(String password)
@@ -386,6 +471,15 @@ public class login_Activity extends AppCompatActivity {
         Intent main_intent = new Intent(this, MainActivity.class);
         startActivity(main_intent);
 
+    }
+
+    public void sleep(int millisecond)
+    {
+        try {
+            Thread.sleep(millisecond);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }
