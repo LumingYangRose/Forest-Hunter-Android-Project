@@ -47,10 +47,19 @@ public class Music {
     {
         if(current_bgm_index < 4) {
             current_bgm_index++;
+            this.stop();
+            this.play_music();
         }
-        else
+        else if (current_bgm_index == 4)
+        {
+            this.stop();
+            current_bgm_index++;
+        }
+        else if(current_bgm_index == 5)
         {
             current_bgm_index = 0;
+            this.stop();
+            this.play_music();
         }
     }
 

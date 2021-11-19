@@ -102,10 +102,7 @@ public class login_Activity extends AppCompatActivity {
         music_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 bgm.play_next();
-                bgm.stop();
-                bgm.play_music();
             }
         });
 
