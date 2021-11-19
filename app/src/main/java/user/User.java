@@ -29,6 +29,8 @@ public class User {
         Character_setting.add(temp);
         this.friend_list = new ArrayList<String>();
         friend_list.add("");//TODO
+        this.security_question = security_question;
+        this.security_answer = security_answer;
     }
 
     public User(String username, String password,  String security_question,String security_answer, String CLIENT_REGISTRATION_TOKEN) {
@@ -42,6 +44,8 @@ public class User {
         Character_setting.add(temp);
         this.friend_list = new ArrayList<String>();
         friend_list.add(""); //TODO
+        this.security_question = security_question;
+        this.security_answer = security_answer;
     }
 
 }

@@ -23,6 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.ArrayList;
+
+import edu.neu.madcourse.forest_hunter.Appearance;
 import edu.neu.madcourse.forest_hunter.MainActivity;
 import edu.neu.madcourse.forest_hunter.R;
 import user.User;
@@ -34,6 +37,8 @@ public class login_Activity extends AppCompatActivity {
 
     private static String CLIENT_REGISTRATION_TOKEN;
     private DatabaseReference mDatabase;
+
+    User login_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,6 +257,40 @@ public class login_Activity extends AppCompatActivity {
                 if(is_user_exist && is_password_correct)
                 {
                     //TODO setup the charater index, score, friend_list and gold from firebase
+                    Appearance.current_hair_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_hair_index").getValue().toString());
+                    Appearance.current_head_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_head_index").getValue().toString());
+                    Appearance.current_eye_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_eye_index").getValue().toString());
+                    Appearance.current_nose_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_nose_index").getValue().toString());
+                    Appearance.current_mouth_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_mouth_index").getValue().toString());
+                    Appearance.current_l_eye_brow_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_l_eye_brow_index").getValue().toString());
+                    Appearance.current_r_eye_brow_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_r_eye_brow_index").getValue().toString());
+                    Appearance.current_ear_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_ear_index").getValue().toString());
+                    Appearance.current_chest_wear_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_chest_wear_index").getValue().toString());
+                    Appearance.current_arm_wear_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_arm_wear_index").getValue().toString());
+                    Appearance.current_shoulder_wear_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_shoulder_wear_index").getValue().toString());
+                    Appearance.current_leg_wear_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_leg_wear_index").getValue().toString());
+                    Appearance.current_thigh_wear_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_thigh_wear_index").getValue().toString());
+                    Appearance.current_bottom_wear_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_bottom_wear_index").getValue().toString());
+                    Appearance.current_foot_wear_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_foot_wear_index").getValue().toString());
+                    Appearance.current_chest_index = Integer.parseInt(snapshot.child(username).child("Character_setting").child("0").child("current_chest_index").getValue().toString());
+
+                    String s_question = snapshot.child(username).child("security_question").getValue().toString();
+                    String s_question_answer = snapshot.child(username).child("security_answer").getValue().toString();
+                    int highest_score =  Integer.parseInt(snapshot.child(username).child("highest_score").getValue().toString());
+                    int num_of_gold = Integer.parseInt(snapshot.child(username).child("num_of_gold").getValue().toString());
+                    login_user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN, highest_score, num_of_gold);
+
+                    ArrayList<String> temp_array_list;
+                    temp_array_list = new ArrayList<String>();
+
+                    if(snapshot.child(username).child("friend_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("friend_list").getChildren()) {
+                            temp_array_list.add(pss.getValue().toString());
+                        }
+                    }
+
+                    login_user.friend_list = temp_array_list;
+
                     activate_main_activity();
                 }
                 else {
