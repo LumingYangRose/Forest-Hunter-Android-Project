@@ -153,30 +153,34 @@
     <ImageView
         android:id="@+id/l_leg_view_run"
         android:layout_width="17dp"
-        android:layout_height="61dp"
+        android:layout_height="51dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/l_leg_1"
         android:cropToPadding="false"
         android:rotation="-23"
         android:scaleType="fitXY"
         android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/l_arm_view"
+        app:layout_constraintHorizontal_bias="0.849"
+        app:layout_constraintStart_toStartOf="@+id/r_shoulder_view_wear"
         app:layout_constraintTop_toBottomOf="@+id/chest_view"
-        app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
-        tools:layout_editor_absoluteX="104dp" />
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
         android:id="@+id/l_leg_view_wear_run"
         android:layout_width="17dp"
-        android:layout_height="61dp"
+        android:layout_height="51dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/l_leg_wear_11"
         android:cropToPadding="false"
         android:rotation="-23"
         android:scaleType="fitXY"
         android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/l_arm_view"
+        app:layout_constraintHorizontal_bias="0.849"
+        app:layout_constraintStart_toStartOf="@+id/r_shoulder_view_wear"
         app:layout_constraintTop_toBottomOf="@+id/chest_view"
-        app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
-        tools:layout_editor_absoluteX="104dp" />
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
         android:id="@+id/l_foot_view"
@@ -217,12 +221,14 @@
         android:layout_width="24dp"
         android:layout_height="11dp"
         android:layout_marginStart="78dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="116dp"
         android:background="@drawable/l_foot_1"
         android:cropToPadding="false"
         android:rotation="-23"
         android:scaleType="fitXY"
         android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/l_hand_finger_view"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/hair_view"
         app:layout_constraintTop_toTopOf="@+id/chest_view"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
@@ -232,12 +238,14 @@
         android:layout_width="24dp"
         android:layout_height="11dp"
         android:layout_marginStart="76dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="116dp"
         android:background="@drawable/l_foot_1"
         android:cropToPadding="false"
         android:rotation="-23"
         android:scaleType="fitXY"
         android:scaleX="-1"
+        app:layout_constraintEnd_toEndOf="@+id/l_hand_finger_view"
+        app:layout_constraintHorizontal_bias="0.285"
         app:layout_constraintStart_toStartOf="@+id/hair_view"
         app:layout_constraintTop_toTopOf="@+id/chest_view"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
@@ -280,29 +288,31 @@
         android:id="@+id/r_leg_view_run"
         android:layout_width="17dp"
         android:layout_height="51dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/r_leg_1"
         android:cropToPadding="false"
         android:rotation="23"
         android:scaleType="fitXY"
         android:scaleX="-1"
+        app:layout_constraintStart_toStartOf="@+id/r_shoulder_view_wear"
         app:layout_constraintTop_toTopOf="@+id/r_thigh_view"
-        app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
-        tools:layout_editor_absoluteX="57dp" />
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
         android:id="@+id/r_leg_view_wear_run"
         android:layout_width="17dp"
         android:layout_height="51dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/r_leg_wear_11"
         android:cropToPadding="false"
         android:rotation="23"
         android:scaleType="fitXY"
         android:scaleX="-1"
+        app:layout_constraintStart_toStartOf="@+id/r_shoulder_view_wear"
         app:layout_constraintTop_toTopOf="@+id/r_thigh_view"
-        app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
-        tools:layout_editor_absoluteX="57dp" />
+        app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
         android:id="@+id/r_foot_view"
@@ -325,14 +335,15 @@
         android:id="@+id/r_foot_view_run"
         android:layout_width="24dp"
         android:layout_height="10dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="68dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/r_foot_1"
         android:cropToPadding="false"
         android:rotation="23"
         android:scaleType="fitXY"
         android:scaleX="-1"
         app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
         app:layout_constraintTop_toTopOf="@+id/r_leg_view"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
@@ -340,14 +351,15 @@
         android:id="@+id/r_foot_view_wear_run"
         android:layout_width="24dp"
         android:layout_height="10dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="68dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/r_foot_1"
         android:cropToPadding="false"
         android:rotation="23"
         android:scaleType="fitXY"
         android:scaleX="-1"
         app:layout_constraintEnd_toEndOf="@+id/hair_view"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="@+id/hair_view"
         app:layout_constraintTop_toTopOf="@+id/r_leg_view"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 

@@ -301,7 +301,7 @@ public class Game_view_Activity extends AppCompatActivity {
         r_leg_view_wear_run.setImageResource(ap.leg_r_l_wear_image_id_list[Appearance.current_leg_wear_index][1]);
 
         r_thigh_view_wear_run =findViewById(R.id.r_thigh_view_wear_run);
-        r_thigh_view_wear_run.setBackground(null);
+       r_thigh_view_wear_run.setBackground(null);
         r_thigh_view_wear_run.setImageResource(ap.thigh_r_l_wear_image_id_list[Appearance.current_thigh_wear_index][1]);
 
         r_foot_view_run =findViewById(R.id.r_foot_view_run);
@@ -351,12 +351,14 @@ public class Game_view_Activity extends AppCompatActivity {
 
             int width = second_forest_background_view.getWidth();
 
-            if (forest_background_view.getX() + forest_background_view.getWidth() <= 0) {
-                forest_background_view.setX(screen_width);
+            if (forest_background_view.getX() + forest_background_view.getWidth() < 0) {
+                forest_background_view.setX(second_forest_background_view.getX() + second_forest_background_view.getLayoutParams().width);
+                //forest_background_view.setX(screen_width);
             }
 
-            if (second_forest_background_view.getX() + second_forest_background_view.getWidth() <= 0) {
-                second_forest_background_view.setX(screen_width);
+            if (second_forest_background_view.getX() + second_forest_background_view.getWidth() < 0) {
+                second_forest_background_view.setX(forest_background_view.getX() + forest_background_view.getLayoutParams().width);
+                //second_forest_background_view.setX(screen_width);
             }
 
             Handler.postDelayed(this, 30); //repeat timmer
@@ -501,20 +503,20 @@ public class Game_view_Activity extends AppCompatActivity {
         move_after_resize(l_foot_view_wear, moveX, moveY, ratio, l_foot_adjustment_y, l_foot_adjustment_x);
         move_after_resize(bottom_view_wear, moveX, moveY, ratio, bottom_adjustment_y, bottom_adjustment_x);
 
-        move_after_resize(l_leg_view_run, moveX, moveY, ratio, l_leg_adjustment_y - 7.00, l_leg_adjustment_x - 179.00);
-        move_after_resize(l_leg_view_wear_run, moveX, moveY, ratio, l_leg_adjustment_y -7.00, l_leg_adjustment_x - 179.00);
+        move_after_resize(l_leg_view_run, moveX, moveY, ratio, l_leg_adjustment_y - 15.00, l_leg_adjustment_x +6.00);
+        move_after_resize(l_leg_view_wear_run, moveX, moveY, ratio, l_leg_adjustment_y -15.00, l_leg_adjustment_x +6.00);
         move_after_resize(l_thigh_view_run, moveX, moveY, ratio, l_thigh_adjustment_y, l_thigh_adjustment_x);
         move_after_resize(l_thigh_view_wear_run, moveX, moveY, ratio, l_thigh_adjustment_y, l_thigh_adjustment_x);
-        move_after_resize(l_foot_view_run, moveX, moveY, ratio, l_foot_adjustment_y -3.00 , l_foot_adjustment_x + 139.00);
-        move_after_resize(l_foot_view_wear_run, moveX, moveY, ratio, l_foot_adjustment_y - 3.00, l_foot_adjustment_x + 139.00);//TODO
+        move_after_resize(l_foot_view_run, moveX, moveY, ratio, l_foot_adjustment_y -45.00 , l_foot_adjustment_x + 138.00);
+        move_after_resize(l_foot_view_wear_run, moveX, moveY, ratio, l_foot_adjustment_y - 45.00, l_foot_adjustment_x + 138.00);//TODO
 
 
-        move_after_resize(r_leg_view_run, moveX, moveY, ratio, r_leg_adjustment_y - 3.00, r_leg_adjustment_x - 125.00);
-        move_after_resize(r_leg_view_wear_run, moveX, moveY, ratio, r_leg_adjustment_y -3.00, r_leg_adjustment_x - 125.00);
+        move_after_resize(r_leg_view_run, moveX, moveY, ratio, r_leg_adjustment_y - 15.00, r_leg_adjustment_x + 20.00);
+        move_after_resize(r_leg_view_wear_run, moveX, moveY, ratio, r_leg_adjustment_y -15.00, r_leg_adjustment_x + 20.00);
         move_after_resize(r_thigh_view_run, moveX, moveY, ratio, r_thigh_adjustment_y, r_thigh_adjustment_x);
         move_after_resize(r_thigh_view_wear_run, moveX, moveY, ratio, r_thigh_adjustment_y, r_thigh_adjustment_x);
-        move_after_resize(r_foot_view_run, moveX, moveY, ratio, r_foot_adjustment_y -13.00 , r_foot_adjustment_x - 105.00);
-        move_after_resize(r_foot_view_wear_run, moveX, moveY, ratio, r_foot_adjustment_y - 13.00, r_foot_adjustment_x - 105.00);//TODO
+        move_after_resize(r_foot_view_run, moveX, moveY, ratio, r_foot_adjustment_y - 24.00 , r_foot_adjustment_x +5.00);
+        move_after_resize(r_foot_view_wear_run, moveX, moveY, ratio, r_foot_adjustment_y - 24.00, r_foot_adjustment_x +5.00);//TODO
 
     }
 
