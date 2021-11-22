@@ -5,28 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/game_view"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true"
     tools:layout_editor_absoluteX="-190dp"
     tools:layout_editor_absoluteY="71dp">
 
+
     <ImageView
         android:id="@+id/background"
-        android:layout_width="737.5dp"
-        android:layout_height="412dp"
+        android:layout_width="731dp"
+        android:layout_height="414dp"
         android:background="@drawable/pic_forest_background"
         android:scaleType="fitXY"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-1dp" />
+        tools:layout_editor_absoluteY="-3dp" />
 
     <ImageView
         android:id="@+id/background2"
-        android:layout_width="737.5dp"
-        android:layout_height="412dp"
+        android:layout_width="731dp"
+        android:layout_height="414dp"
         android:background="@drawable/pic_forest_background"
         android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteY="-3dp" />
 
     <ImageView
         android:id="@+id/heart_view1"
@@ -228,7 +231,7 @@
         android:id="@+id/l_foot_view_wear_run"
         android:layout_width="24dp"
         android:layout_height="11dp"
-        android:layout_marginStart="78dp"
+        android:layout_marginStart="76dp"
         android:layout_marginTop="132dp"
         android:background="@drawable/l_foot_1"
         android:cropToPadding="false"
@@ -285,7 +288,7 @@
         android:scaleX="-1"
         app:layout_constraintTop_toTopOf="@+id/r_thigh_view"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
-        tools:layout_editor_absoluteX="54dp" />
+        tools:layout_editor_absoluteX="57dp" />
 
     <ImageView
         android:id="@+id/r_leg_view_wear_run"
@@ -299,7 +302,7 @@
         android:scaleX="-1"
         app:layout_constraintTop_toTopOf="@+id/r_thigh_view"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
-        tools:layout_editor_absoluteX="54dp" />
+        tools:layout_editor_absoluteX="57dp" />
 
     <ImageView
         android:id="@+id/r_foot_view"
@@ -520,7 +523,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="3dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/bottom_wear_1"
+        android:background="?attr/selectableItemBackground"
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:scaleX="-1"

@@ -1,24 +1,23 @@
 package edu.neu.madcourse.forest_hunter;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+
+import authentication.login_Activity;
 
 public class Game_view_Activity extends AppCompatActivity {
 
@@ -82,38 +81,38 @@ public class Game_view_Activity extends AppCompatActivity {
 
     static double ratio = 0.4;
 
-    int head_adjustment = -6;
-    int chest_adjustment_y = 135;
-    int chest_adjustment_x = -7;
-    int ear_adjustment_y = -8;
-    int ear_adjustment_x = -2;
-    int l_arm_adjustment_y = 180;
-    int l_arm_adjustment_x = -1;
-    int r_arm_adjustment_y = 205;
-    int r_arm_adjustment_x = -3;
-    int l_shoulder_adjustment_y = 155;
-    int l_shoulder_adjustment_x = -5;
-    int r_shoulder_adjustment_y = 20;
-    int r_shoulder_adjustment_x = -3;
-    int r_hand_adjustment_y = 215;
-    int r_hand_adjustment_x = 2;
-    int l_hand_adjustment_y = 227;
-    int l_hand_adjustment_x = 110;
+    double head_adjustment = -6;
+    double chest_adjustment_y = 135;
+    double chest_adjustment_x = -7;
+    double ear_adjustment_y = -8;
+    double ear_adjustment_x = -2;
+    double l_arm_adjustment_y = 180;
+    double l_arm_adjustment_x = -1;
+    double r_arm_adjustment_y = 205;
+    double r_arm_adjustment_x = -3;
+    double l_shoulder_adjustment_y = 155;
+    double l_shoulder_adjustment_x = -5;
+    double r_shoulder_adjustment_y = 20;
+    double r_shoulder_adjustment_x = -3;
+    double r_hand_adjustment_y = 215;
+    double r_hand_adjustment_x = 2;
+    double l_hand_adjustment_y = 227;
+    double l_hand_adjustment_x = 110;
 
-    int r_thigh_adjustment_y = 130;
-    int r_thigh_adjustment_x = -10;
-    int l_thigh_adjustment_y = 130;
-    int l_thigh_adjustment_x = -20;
-    int r_leg_adjustment_y = 195;
-    int r_leg_adjustment_x = -10;
-    int l_leg_adjustment_y = 140;
-    int l_leg_adjustment_x = -15;
-    int r_foot_adjustment_y = 270;
-    int r_foot_adjustment_x = -10;
-    int l_foot_adjustment_y = 353;
-    int l_foot_adjustment_x = -17;
-    int bottom_adjustment_x = -7;
-    int bottom_adjustment_y = 146;
+    double r_thigh_adjustment_y = 130;
+    double r_thigh_adjustment_x = -10;
+    double l_thigh_adjustment_y = 130;
+    double l_thigh_adjustment_x = -20;
+    double r_leg_adjustment_y = 195;
+    double r_leg_adjustment_x = -10;
+    double l_leg_adjustment_y = 140;
+    double l_leg_adjustment_x = -15;
+    double r_foot_adjustment_y = 270;
+    double r_foot_adjustment_x = -10;
+    double l_foot_adjustment_y = 353;
+    double l_foot_adjustment_x = -17;
+    double bottom_adjustment_x = -7;
+    double bottom_adjustment_y = 146;
 
     Appearance ap;
 
@@ -132,6 +131,8 @@ public class Game_view_Activity extends AppCompatActivity {
     android.os.Handler Handler;
     android.os.Handler Handler2;
 
+    static double dpi_ratio;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_view);
@@ -139,17 +140,29 @@ public class Game_view_Activity extends AppCompatActivity {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int screen_width = size.x;
-        int screen_height = size.y;
+        screen_width = size.x;
+        screen_height = size.y;
 
-        screenRatioX = 1920f / screen_width;
-        screenRatioY = 1080f / screen_height;
+        float float_w = screen_width;
+        float float_h = screen_height;
+
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        int dpi = (int)(metrics.density * 160f);
+
+        dpi_ratio = dpi/440.00;
+
+        Toast.makeText(this, String.valueOf(dpi_ratio), Toast.LENGTH_SHORT).show();
+
+        screenRatioX = float_w / screen_width;
+        screenRatioY = float_h / screen_height;
 
         forest_background_view = findViewById(R.id.background);
         second_forest_background_view = findViewById(R.id.background2);
 
         forest_background_view.setX(0);
-        second_forest_background_view.setX(screen_width - 3);
+        forest_background_view.getLayoutParams().width = screen_width;
+        second_forest_background_view.getLayoutParams().width = screen_width;
+        second_forest_background_view.setX(screen_width);
 
         crocodile = findViewById(R.id.crocodile);
         crocodile.setX(100);
@@ -338,12 +351,12 @@ public class Game_view_Activity extends AppCompatActivity {
 
             int width = second_forest_background_view.getWidth();
 
-            if (forest_background_view.getX() + forest_background_view.getWidth() <= 5) {
-                forest_background_view.setX(width);
+            if (forest_background_view.getX() + forest_background_view.getWidth() <= 0) {
+                forest_background_view.setX(screen_width);
             }
 
-            if (second_forest_background_view.getX() + second_forest_background_view.getWidth() <= 5) {
-                second_forest_background_view.setX(width);
+            if (second_forest_background_view.getX() + second_forest_background_view.getWidth() <= 0) {
+                second_forest_background_view.setX(screen_width);
             }
 
             Handler.postDelayed(this, 30); //repeat timmer
@@ -446,7 +459,7 @@ public class Game_view_Activity extends AppCompatActivity {
             int x = (int) iv.getX();
             int y = (int) iv.getY();
 
-            iv.setX(x + moveX - head_adjustment);
+            iv.setX(x + moveX - (float)head_adjustment);
             iv.setY(y + moveY);
 
         }
@@ -488,33 +501,33 @@ public class Game_view_Activity extends AppCompatActivity {
         move_after_resize(l_foot_view_wear, moveX, moveY, ratio, l_foot_adjustment_y, l_foot_adjustment_x);
         move_after_resize(bottom_view_wear, moveX, moveY, ratio, bottom_adjustment_y, bottom_adjustment_x);
 
-        move_after_resize(l_leg_view_run, moveX, moveY, ratio, l_leg_adjustment_y - 7, l_leg_adjustment_x - 179);
-        move_after_resize(l_leg_view_wear_run, moveX, moveY, ratio, l_leg_adjustment_y -7, l_leg_adjustment_x - 179);
+        move_after_resize(l_leg_view_run, moveX, moveY, ratio, l_leg_adjustment_y - 7.00, l_leg_adjustment_x - 179.00);
+        move_after_resize(l_leg_view_wear_run, moveX, moveY, ratio, l_leg_adjustment_y -7.00, l_leg_adjustment_x - 179.00);
         move_after_resize(l_thigh_view_run, moveX, moveY, ratio, l_thigh_adjustment_y, l_thigh_adjustment_x);
         move_after_resize(l_thigh_view_wear_run, moveX, moveY, ratio, l_thigh_adjustment_y, l_thigh_adjustment_x);
-        move_after_resize(l_foot_view_run, moveX, moveY, ratio, l_foot_adjustment_y -3 , l_foot_adjustment_x + 139);
-        move_after_resize(l_foot_view_wear_run, moveX, moveY, ratio, l_foot_adjustment_y - 3, l_foot_adjustment_x + 139);//TODO
+        move_after_resize(l_foot_view_run, moveX, moveY, ratio, l_foot_adjustment_y -3.00 , l_foot_adjustment_x + 139.00);
+        move_after_resize(l_foot_view_wear_run, moveX, moveY, ratio, l_foot_adjustment_y - 3.00, l_foot_adjustment_x + 139.00);//TODO
 
 
-        move_after_resize(r_leg_view_run, moveX, moveY, ratio, r_leg_adjustment_y - 3, r_leg_adjustment_x - 123);
-        move_after_resize(r_leg_view_wear_run, moveX, moveY, ratio, r_leg_adjustment_y -3, r_leg_adjustment_x - 123);
+        move_after_resize(r_leg_view_run, moveX, moveY, ratio, r_leg_adjustment_y - 3.00, r_leg_adjustment_x - 125.00);
+        move_after_resize(r_leg_view_wear_run, moveX, moveY, ratio, r_leg_adjustment_y -3.00, r_leg_adjustment_x - 125.00);
         move_after_resize(r_thigh_view_run, moveX, moveY, ratio, r_thigh_adjustment_y, r_thigh_adjustment_x);
         move_after_resize(r_thigh_view_wear_run, moveX, moveY, ratio, r_thigh_adjustment_y, r_thigh_adjustment_x);
-        move_after_resize(r_foot_view_run, moveX, moveY, ratio, r_foot_adjustment_y -13 , r_foot_adjustment_x - 105);
-        move_after_resize(r_foot_view_wear_run, moveX, moveY, ratio, r_foot_adjustment_y - 13, r_foot_adjustment_x - 105);//TODO
+        move_after_resize(r_foot_view_run, moveX, moveY, ratio, r_foot_adjustment_y -13.00 , r_foot_adjustment_x - 105.00);
+        move_after_resize(r_foot_view_wear_run, moveX, moveY, ratio, r_foot_adjustment_y - 13.00, r_foot_adjustment_x - 105.00);//TODO
 
     }
 
-    public void move_after_resize(ImageView view, int moveX, int moveY, double ratio, int adjustment_y, int adjustment_x)
+    public void move_after_resize(ImageView view, int moveX, int moveY, double ratio, double adjustment_y, double adjustment_x)
     {
         view.getLayoutParams().width = (int) (view.getLayoutParams().width * ratio);
         view.getLayoutParams().height = (int) (view.getLayoutParams().height * ratio);
 
-        int x = (int) view.getX();
-        int y = (int) view.getY();
+        float x = view.getX();
+        float y = view.getY();
 
-        view.setX(x + moveX - adjustment_x);
-        view.setY(y + moveY - adjustment_y);
+        view.setX((float) (x + moveX - adjustment_x * dpi_ratio));
+        view.setY((float) (y + moveY - adjustment_y * dpi_ratio));
     }
 
 

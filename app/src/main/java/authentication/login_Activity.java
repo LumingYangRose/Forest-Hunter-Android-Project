@@ -319,7 +319,7 @@ public class login_Activity extends AppCompatActivity {
                     login_user.friend_list = temp_array_list;
 
 
-                    sleep(2000);
+                    sleep(500);
                     activate_main_activity();
                 }
                 else {
