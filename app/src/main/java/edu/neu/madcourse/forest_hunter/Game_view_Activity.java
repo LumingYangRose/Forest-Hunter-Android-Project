@@ -715,6 +715,15 @@ public class Game_view_Activity extends AppCompatActivity {
             }
         }
 
+        interface onSwipeListener {
+            void swipeRight();
+            void swipeTop();
+            void swipeBottom();
+            void swipeLeft();
+        }
+
+        onSwipeListener onSwipe;
+
         void onSwipeRight() {
             //Toast.makeText(context, "Swiped Right", Toast.LENGTH_SHORT).show();
 
@@ -754,16 +763,6 @@ public class Game_view_Activity extends AppCompatActivity {
             //Toast.makeText(context, String.valueOf(hair_view.getY()), Toast.LENGTH_SHORT).show();
             this.onSwipe.swipeBottom();
         }
-
-
-        interface onSwipeListener {
-            void swipeRight();
-            void swipeTop();
-            void swipeBottom();
-            void swipeLeft();
-        }
-
-        onSwipeListener onSwipe;
     }
 
 
