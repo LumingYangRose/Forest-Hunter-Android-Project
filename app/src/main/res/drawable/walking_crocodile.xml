@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/crocodile1"
+        android:duration="100"/>
+    <item android:drawable="@drawable/crocodile2"
+        android:duration="100"/>
+    <item android:drawable="@drawable/crocodile3"
+        android:duration="100"/>
+    <item android:drawable="@drawable/crocodile4"
+        android:duration="100"/>
+    <item android:drawable="@drawable/crocodile5"
+        android:duration="100"/>
+    <item android:drawable="@drawable/crocodile6"
+        android:duration="100"/>
+    <item android:drawable="@drawable/crocodile7"
+        android:duration="100"/>
+    <item android:drawable="@drawable/crocodile8"
+        android:duration="100"/>
+    <item android:drawable="@drawable/crocodile9"
+        android:duration="100"/>
+    <item android:drawable="@drawable/crocodile10"
+        android:duration="100"/>
+    <item android:drawable="@drawable/crocodile11"
+        android:duration="100"/>
+    <item android:drawable="@drawable/crocodile12"
+        android:duration="100"/>
+    <item android:drawable="@drawable/crocodile13"
+        android:duration="100"/>
+    <item android:drawable="@drawable/crocodile14"
+        android:duration="100"/>
+    <item android:drawable="@drawable/crocodile15"
+        android:duration="100"/>
+
+</animation-list>

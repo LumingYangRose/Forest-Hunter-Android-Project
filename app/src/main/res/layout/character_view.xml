@@ -17,12 +17,12 @@
         android:background="@drawable/shadow"
         android:cropToPadding="false"
         android:scaleX="-1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.901"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.72"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/appearance_confirm_button"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/head_view"
+        app:layout_constraintVertical_bias="0.835"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
@@ -573,12 +573,12 @@
         android:cropToPadding="false"
         android:scaleType="fitXY"
         android:scaleX="-1"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.912"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.132"
+        app:layout_constraintHorizontal_bias="0.57"
+        app:layout_constraintStart_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/User_name_EditText"
+        app:layout_constraintVertical_bias="0.139"
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark" />
 
     <ImageView
@@ -601,20 +601,20 @@
 
     <ImageView
         android:id="@+id/character_customize_board_view"
-        android:layout_width="483dp"
-        android:layout_height="330dp"
+        android:layout_width="487dp"
+        android:layout_height="337dp"
         android:background="@null"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.347"
+        app:layout_constraintVertical_bias="0.493"
         app:srcCompat="@drawable/pic_character_board" />
 
     <TextView
-        android:id="@+id/character_name_view"
+        android:id="@+id/email_address_textview"
         android:layout_width="112dp"
         android:layout_height="36dp"
         android:gravity="center"
@@ -622,28 +622,28 @@
         android:textColor="#151414"
         android:textSize="20sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.155"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.188"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/character_last_page_button"
-        android:layout_width="65dp"
-        android:layout_height="55dp"
+        android:layout_width="59dp"
+        android:layout_height="48dp"
         android:background="@null"
         android:backgroundTint="#00BFA5"
         android:contentDescription="button for change to last page of the character customize board"
         android:scaleType="fitCenter"
         android:scaleX="-1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.901"
+        app:layout_constraintVertical_bias="0.996"
         app:srcCompat="@drawable/pic_next_page_logo" />
 
     <TextView
@@ -656,12 +656,12 @@
         android:textColor="#151414"
         android:textSize="16sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.768" />
+        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.842" />
 
     <ImageButton
         android:id="@+id/appearance_next_button3"
@@ -670,12 +670,12 @@
         android:background="@null"
         android:contentDescription="button for change to next appearance setting 3"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.597"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.578"
+        app:layout_constraintBottom_toTopOf="@+id/appearance_next_button4"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.921"
         app:srcCompat="@drawable/pic_next_button" />
 
     <ImageButton
@@ -686,27 +686,27 @@
         android:contentDescription="button for change to last appearance setting 2"
         android:scaleType="fitCenter"
         android:scaleX="-1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.29"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.379"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.376"
         app:srcCompat="@drawable/pic_next_button" />
 
     <ImageButton
         android:id="@+id/character_next_page_button"
-        android:layout_width="65dp"
-        android:layout_height="55dp"
+        android:layout_width="59dp"
+        android:layout_height="48dp"
         android:background="@null"
         android:contentDescription="button for change to next page of the character customize board"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.66"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.915"
+        app:layout_constraintVertical_bias="0.996"
         app:srcCompat="@drawable/pic_next_page_logo" />
 
     <ImageButton
@@ -732,12 +732,12 @@
         android:contentDescription="button for change to last appearance setting 3"
         android:scaleType="fitCenter"
         android:scaleX="-1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.29"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.578"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.606"
         app:srcCompat="@drawable/pic_next_button" />
 
     <ImageButton
@@ -747,12 +747,12 @@
         android:background="@null"
         android:contentDescription="button for change to next appearance setting 4"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.597"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.825"
         app:srcCompat="@drawable/pic_next_button" />
 
     <TextView
@@ -764,12 +764,12 @@
         android:textColor="#151414"
         android:textSize="16sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.574" />
+        app:layout_constraintBottom_toTopOf="@+id/appearance_change_textview4"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.908" />
 
     <ImageButton
         android:id="@+id/appearance_last_button1"
@@ -779,12 +779,12 @@
         android:contentDescription="button for change to last appearance setting 1"
         android:scaleType="fitCenter"
         android:scaleX="-1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.29"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.149"
         app:srcCompat="@drawable/pic_next_button" />
 
     <TextView
@@ -797,12 +797,12 @@
         android:textColor="#151414"
         android:textSize="16sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.204" />
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.15" />
 
     <TextView
         android:id="@+id/appearance_change_textview4"
@@ -813,12 +813,12 @@
         android:textColor="#151414"
         android:textSize="16sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.752" />
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.837" />
 
     <TextView
         android:id="@+id/selection_title_textview2"
@@ -830,12 +830,12 @@
         android:textColor="#151414"
         android:textSize="16sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.389" />
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.374" />
 
     <ImageButton
         android:id="@+id/appearance_next_button1"
@@ -844,12 +844,12 @@
         android:background="@null"
         android:contentDescription="button for change to next appearance setting 1"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.597"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.146"
         app:srcCompat="@drawable/pic_next_button" />
 
     <TextView
@@ -861,12 +861,12 @@
         android:textColor="#151414"
         android:textSize="16sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.197" />
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.155" />
 
     <TextView
         android:id="@+id/appearance_change_textview2"
@@ -877,12 +877,12 @@
         android:textColor="#151414"
         android:textSize="16sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.384" />
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.382" />
 
     <TextView
         android:id="@+id/selection_title_textview3"
@@ -894,12 +894,12 @@
         android:textColor="#151414"
         android:textSize="16sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.577" />
+        app:layout_constraintBottom_toTopOf="@+id/selection_title_textview4"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.862" />
 
     <ImageButton
         android:id="@+id/appearance_next_button2"
@@ -908,18 +908,18 @@
         android:background="@null"
         android:contentDescription="button for change to next appearance setting 2"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.597"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.387"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.383"
         app:srcCompat="@drawable/pic_next_button" />
 
     <EditText
         android:id="@+id/User_name_EditText"
-        android:layout_width="179dp"
-        android:layout_height="34dp"
+        android:layout_width="186dp"
+        android:layout_height="36dp"
         android:background="@color/white"
         android:ems="10"
         android:inputType="textPersonName"
@@ -927,11 +927,11 @@
         android:textColor="#292626"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.376"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.066" />
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.612"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/appearance_last_button4"
@@ -941,12 +941,12 @@
         android:contentDescription="button for change to last appearance setting 4"
         android:scaleType="fitCenter"
         android:scaleX="-1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.29"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.846"
         app:srcCompat="@drawable/pic_next_button" />
 
 
