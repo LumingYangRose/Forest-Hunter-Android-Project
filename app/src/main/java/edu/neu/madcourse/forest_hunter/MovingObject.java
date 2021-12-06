@@ -25,10 +25,10 @@ public class MovingObject extends MapObject {
         return speed;
     }
 
-    public void drawImage(int id) {
+    public void drawImage() {
         this.posx += vx;
         this.posy += vy;
         img.setBackground(null);
-        img.setImageResource(id);
+        //img.setImageResource(id);
     }
 }

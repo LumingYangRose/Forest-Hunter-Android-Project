@@ -4,17 +4,20 @@ import android.content.Context;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.security.interfaces.DSAPrivateKey;
 import java.util.ArrayList;
 
 import authentication.login_Activity;
@@ -72,9 +75,23 @@ public class Game_view_Activity extends AppCompatActivity {
     private static ImageView r_thigh_view_wear_run;
     private static ImageView r_thigh_view_run;
 
-    private ImageView crocodile;
+    private static ImageView crocodile;
+
+    private ImageView hearts_view1;
+    private ImageView hearts_view2;
+    private ImageView hearts_view3;
+    private ImageView swipe_up;
+    private ImageView swipe_down;
+    private ImageView tap_screen;
+    private TextView tutorial_info;
+    private static ArrayList<ImageView> all_image_view_list;
+    private ArrayList<ImageView> boulder_list;
+    private ArrayList<ImageView> cliff_list;
+    private ArrayList<ImageView> food_list;
 
     private static int count = 0;
+    private int time;
+    private ArrayList<ImageView> hearts;
 
     public int moveX = 500;
     public int moveY = 150;  // range from -150 to 350
@@ -117,6 +134,14 @@ public class Game_view_Activity extends AppCompatActivity {
     Appearance ap;
 
     boolean is_playing = true;
+    boolean invincible;
+    public boolean jumped;
+
+    int score;
+    int lives;
+    int invincible_countdown;
+    public int jump_countdown;
+    TextView score_view;
 
     int screen_width;
     int screen_height;
@@ -126,16 +151,44 @@ public class Game_view_Activity extends AppCompatActivity {
     private ImageView forest_background_view;
     private ImageView second_forest_background_view;
 
-    OnSwipeTouchListener onSwipeTouchListener;
+    OnSwipeTouchListener onSwipeTouchListener1;
+    OnSwipeTouchListener onSwipeTouchListener2;
 
     android.os.Handler Handler;
     android.os.Handler Handler2;
+    android.os.Handler Handler3;
 
     static double dpi_ratio;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_view);
+
+        time = 0;
+        lives = 3;
+        score = 0;
+        invincible = false;
+        jumped = false;
+        jump_countdown = 0;
+        invincible_countdown = 0;
+        score_view = findViewById(R.id.Score_title_view);
+
+        swipe_up = findViewById(R.id.swipe_up);
+        swipe_down = findViewById(R.id.swipe_down);
+        tap_screen = findViewById(R.id.tap_jump);
+        swipe_up.setVisibility(View.INVISIBLE);
+        swipe_down.setVisibility(View.INVISIBLE);
+        tap_screen.setVisibility(View.INVISIBLE);
+        tutorial_info = findViewById(R.id.tutorial);
+        tutorial_info.setVisibility(View.INVISIBLE);
+        swipe_up.setX(960);
+        swipe_up.setY(240);
+        swipe_down.setX(960);
+        swipe_down.setY(640);
+        tap_screen.setX(960);
+        tap_screen.setY(440);
+        tutorial_info.setX(1280);
+        tutorial_info.setY(440);
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -163,6 +216,23 @@ public class Game_view_Activity extends AppCompatActivity {
         forest_background_view.getLayoutParams().width = screen_width;
         second_forest_background_view.getLayoutParams().width = screen_width;
         second_forest_background_view.setX(screen_width);
+
+        boulder_list = new ArrayList<>();
+        cliff_list = new ArrayList<>();
+        food_list = new ArrayList<>();
+        all_image_view_list = new ArrayList<>();
+
+        hearts_view1 = findViewById(R.id.heart_view1);
+        hearts_view2 = findViewById(R.id.heart_view2);
+        hearts_view3 = findViewById(R.id.heart_view3);
+        hearts = new ArrayList<>();
+        hearts.add(hearts_view1);
+        hearts.add(hearts_view2);
+        hearts.add(hearts_view3);
+
+        setUpMovingObjects();
+        setUpCliffs();
+        setUpFood();
 
         crocodile = findViewById(R.id.crocodile);
         crocodile.setX(100);
@@ -330,6 +400,56 @@ public class Game_view_Activity extends AppCompatActivity {
         bottom_view_wear.setBackground(null);
         bottom_view_wear.setImageResource(ap.bottom_wear_image_id_list[Appearance.current_bottom_wear_index]);
 
+        all_image_view_list.add(hair_view);
+        all_image_view_list.add(head_view);
+        all_image_view_list.add(eye_view);
+        all_image_view_list.add(nose_view);
+        all_image_view_list.add(mouth_view);
+        all_image_view_list.add(ear_view);
+        all_image_view_list.add(l_eyebrow_view);
+        all_image_view_list.add(r_eyebrow_view);
+        all_image_view_list.add(chest_view);
+        all_image_view_list.add(r_arm_view);
+        all_image_view_list.add(l_arm_view);
+        all_image_view_list.add(r_shoulder_view);
+        all_image_view_list.add(l_shoulder_view);
+        all_image_view_list.add(r_hand_view);
+        all_image_view_list.add(l_hand_view);
+
+        all_image_view_list.add(r_thigh_view);
+        all_image_view_list.add(l_thigh_view);
+        all_image_view_list.add(r_leg_view);
+        all_image_view_list.add(l_leg_view);
+        all_image_view_list.add(r_foot_view);
+        all_image_view_list.add(l_foot_view);
+
+        all_image_view_list.add(chest_view_wear);
+        all_image_view_list.add(r_arm_view_wear);
+        all_image_view_list.add(l_arm_view_wear);
+        all_image_view_list.add(r_shoulder_view_wear);
+        all_image_view_list.add(l_shoulder_view_wear);
+
+        all_image_view_list.add(r_thigh_view_wear);
+        all_image_view_list.add(l_thigh_view_wear);
+        all_image_view_list.add(r_leg_view_wear);
+        all_image_view_list.add(l_leg_view_wear);
+        all_image_view_list.add(r_foot_view_wear);
+        all_image_view_list.add(l_foot_view_wear);
+        all_image_view_list.add(bottom_view_wear);
+
+        all_image_view_list.add(l_leg_view_run);
+        all_image_view_list.add(l_leg_view_wear_run);
+        all_image_view_list.add(l_foot_view_run);
+        all_image_view_list.add(l_foot_view_wear_run);
+        all_image_view_list.add(l_thigh_view_wear_run);
+        all_image_view_list.add(l_thigh_view_run);
+        all_image_view_list.add(r_leg_view_run);
+        all_image_view_list.add(r_leg_view_wear_run);
+        all_image_view_list.add(r_foot_view_run);
+        all_image_view_list.add(r_foot_view_wear_run);
+        all_image_view_list.add(r_thigh_view_wear_run);
+        all_image_view_list.add(r_thigh_view_run);
+
         oncreate_resize_move_character(moveX, moveY);
 
         Handler = new android.os.Handler();
@@ -338,14 +458,44 @@ public class Game_view_Activity extends AppCompatActivity {
         Handler2 = new android.os.Handler();
         Handler2.postDelayed(refresh_character_view, 0);
 
-        onSwipeTouchListener = new OnSwipeTouchListener(this, findViewById(R.id.game_view));
+        Handler3 = new android.os.Handler();
+        Handler3.postDelayed(game_play, 0);
+
+        // onSwipeTouchListener1 = new OnSwipeTouchListener(this, findViewById(R.id.background));
+        findViewById(R.id.game_view).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (jump_countdown<=0 && !jumped) {
+                    jumped = true;
+                    jump_countdown = 35;
+                }
+            }
+        });
+        findViewById(R.id.game_view).setOnTouchListener(new OnSwipeTouchListener() {
+            @Override
+            public boolean onSwipeTop() {
+                if(hair_view.getY() > 348 && !jumped)
+                {
+                    move_character_y(200);
+                }
+                return true;
+            }
+
+            @Override
+            public boolean onSwipeBottom() {
+                if(hair_view.getY() < 648 && !jumped)
+                {
+                    move_character_y(-200);
+                }
+                return true;
+            }
+        });
     }
 
     private Runnable refresh_view = new Runnable()
     {
         public void run()
         {
-
             forest_background_view.setX(forest_background_view.getX() - 20 * screenRatioX);
             second_forest_background_view.setX(second_forest_background_view.getX() - 20 * screenRatioX);
 
@@ -362,6 +512,62 @@ public class Game_view_Activity extends AppCompatActivity {
             }
 
             Handler.postDelayed(this, 30); //repeat timmer
+        }
+    };
+
+    private Runnable game_play = new Runnable()
+    {
+        public void run()
+        {
+            setUpTutorial(time);
+            setUpStage1(time);
+
+            for (ImageView iv: boulder_list) {
+                if ((Math.abs(iv.getX()-chest_view.getX()) <= 100)
+                        && (Math.abs(iv.getY()-chest_view.getY()) <= 100)) {
+                    if (lives>0 && !invincible) {
+                        hearts.get(lives - 1).setVisibility(View.INVISIBLE);
+                        lives--;
+                        invincible = true;
+                        invincible_countdown = 20;
+                    }
+                }
+            }
+            for (ImageView cliff: cliff_list) {
+                if (Math.abs(cliff.getX()-chest_view.getX()) <= 100) {
+                    if (lives>0 && !invincible && !jumped) {
+                        hearts.get(lives-1).setVisibility(View.INVISIBLE);
+                        lives--;
+                        invincible = true;
+                        invincible_countdown = 20;
+                    }
+                }
+            }
+            for (ImageView food: food_list) {
+                if (food.getVisibility()==View.VISIBLE && Math.abs(food.getX()-chest_view.getX())<=100
+                        && Math.abs(food.getY()-chest_view.getY())<=100) {
+                    score += 100;
+                    score_view.setText("Score: " + score);
+                    food.setVisibility(View.INVISIBLE);
+                }
+            }
+            characterJump(jump_countdown);
+            getHit(invincible_countdown);
+            if (invincible_countdown>0) {
+                invincible_countdown--;
+            } else {
+                invincible = false;
+            }
+            if (jump_countdown>5) {
+                jump_countdown--;
+            } else if (jump_countdown<=5 && jump_countdown>0) {
+                jumped = false;
+                jump_countdown--;
+            }
+            time ++;
+
+            Handler.postDelayed(this, 30);
+
         }
     };
 
@@ -401,7 +607,7 @@ public class Game_view_Activity extends AppCompatActivity {
 
                 count += 1;
             }
-            else if (count == 1)
+            else if (count == 1 && !jumped)
             {
                 l_leg_view_run.setVisibility(View.INVISIBLE);
                 l_thigh_view_run.setVisibility(View.INVISIBLE);
@@ -532,156 +738,57 @@ public class Game_view_Activity extends AppCompatActivity {
         view.setY((float) (y + moveY - adjustment_y * dpi_ratio));
     }
 
-
     public static void move_character_x(float new_X)
     {
-        ArrayList<ImageView> all_image_view_list = new ArrayList<>();
-
-        all_image_view_list.add(hair_view);
-        all_image_view_list.add(head_view);
-        all_image_view_list.add(eye_view);
-        all_image_view_list.add(nose_view);
-        all_image_view_list.add(mouth_view);
-        all_image_view_list.add(ear_view);
-        all_image_view_list.add(l_eyebrow_view);
-        all_image_view_list.add(r_eyebrow_view);
-        all_image_view_list.add(chest_view);
-        all_image_view_list.add(r_arm_view);
-        all_image_view_list.add(l_arm_view);
-        all_image_view_list.add(r_shoulder_view);
-        all_image_view_list.add(l_shoulder_view);
-        all_image_view_list.add(r_hand_view);
-        all_image_view_list.add(l_hand_view);
-
-
-        all_image_view_list.add(r_thigh_view);
-        all_image_view_list.add(l_thigh_view);
-        all_image_view_list.add(r_leg_view);
-        all_image_view_list.add(l_leg_view);
-        all_image_view_list.add(r_foot_view);
-        all_image_view_list.add(l_foot_view);
-
-        all_image_view_list.add(chest_view_wear);
-        all_image_view_list.add(r_arm_view_wear);
-        all_image_view_list.add(l_arm_view_wear);
-        all_image_view_list.add(r_shoulder_view_wear);
-        all_image_view_list.add(l_shoulder_view_wear);
-
-
-        all_image_view_list.add(r_thigh_view_wear);
-        all_image_view_list.add(l_thigh_view_wear);
-        all_image_view_list.add(r_leg_view_wear);
-        all_image_view_list.add(l_leg_view_wear);
-        all_image_view_list.add(r_foot_view_wear);
-        all_image_view_list.add(l_foot_view_wear);
-        all_image_view_list.add(bottom_view_wear);
-
-        all_image_view_list.add(l_leg_view_run);
-        all_image_view_list.add(l_leg_view_wear_run);
-        all_image_view_list.add(l_foot_view_run);
-        all_image_view_list.add(l_foot_view_wear_run);
-        all_image_view_list.add(l_thigh_view_wear_run);
-        all_image_view_list.add(l_thigh_view_run);
-        all_image_view_list.add(r_leg_view_run);
-        all_image_view_list.add(r_leg_view_wear_run);
-        all_image_view_list.add(r_foot_view_run);
-        all_image_view_list.add(r_foot_view_wear_run);
-        all_image_view_list.add(r_thigh_view_wear_run);
-        all_image_view_list.add(r_thigh_view_run);
-
         for (ImageView iv: all_image_view_list) {
             float origin_x = iv.getX();
             iv.setX(origin_x + new_X);
         }
-
+        float croc_x = crocodile.getX();
+        crocodile.setX(croc_x + new_X);
     }
 
     public static void move_character_y(float new_Y)
     {
-        ArrayList<ImageView> all_image_view_list = new ArrayList<>();
-
-        all_image_view_list.add(hair_view);
-        all_image_view_list.add(head_view);
-        all_image_view_list.add(eye_view);
-        all_image_view_list.add(nose_view);
-        all_image_view_list.add(mouth_view);
-        all_image_view_list.add(ear_view);
-        all_image_view_list.add(l_eyebrow_view);
-        all_image_view_list.add(r_eyebrow_view);
-        all_image_view_list.add(chest_view);
-        all_image_view_list.add(r_arm_view);
-        all_image_view_list.add(l_arm_view);
-        all_image_view_list.add(r_shoulder_view);
-        all_image_view_list.add(l_shoulder_view);
-        all_image_view_list.add(r_hand_view);
-        all_image_view_list.add(l_hand_view);
-
-
-        all_image_view_list.add(r_thigh_view);
-        all_image_view_list.add(l_thigh_view);
-        all_image_view_list.add(r_leg_view);
-        all_image_view_list.add(l_leg_view);
-        all_image_view_list.add(r_foot_view);
-        all_image_view_list.add(l_foot_view);
-
-        all_image_view_list.add(chest_view_wear);
-        all_image_view_list.add(r_arm_view_wear);
-        all_image_view_list.add(l_arm_view_wear);
-        all_image_view_list.add(r_shoulder_view_wear);
-        all_image_view_list.add(l_shoulder_view_wear);
-
-
-        all_image_view_list.add(r_thigh_view_wear);
-        all_image_view_list.add(l_thigh_view_wear);
-        all_image_view_list.add(r_leg_view_wear);
-        all_image_view_list.add(l_leg_view_wear);
-        all_image_view_list.add(r_foot_view_wear);
-        all_image_view_list.add(l_foot_view_wear);
-        all_image_view_list.add(bottom_view_wear);
-
-        all_image_view_list.add(l_leg_view_run);
-        all_image_view_list.add(l_leg_view_wear_run);
-        all_image_view_list.add(l_foot_view_run);
-        all_image_view_list.add(l_foot_view_wear_run);
-        all_image_view_list.add(l_thigh_view_wear_run);
-        all_image_view_list.add(l_thigh_view_run);
-        all_image_view_list.add(r_leg_view_run);
-        all_image_view_list.add(r_leg_view_wear_run);
-        all_image_view_list.add(r_foot_view_run);
-        all_image_view_list.add(r_foot_view_wear_run);
-        all_image_view_list.add(r_thigh_view_wear_run);
-        all_image_view_list.add(r_thigh_view_run);
-
         for (ImageView iv: all_image_view_list) {
             float origin_y = iv.getY();
             iv.setY(origin_y - new_Y);
         }
-
+        float croc_y = crocodile.getY();
+        crocodile.setY(croc_y - new_Y);
     }
 
+    public static void characterJump(int jump_countdown) {
+        if (jump_countdown>20) {
+            move_character_y(8.00f);
+        } else if (jump_countdown>5 && jump_countdown<=20) {
+            move_character_y(-8.00f);
+        }
+    }
+
+    public static void getHit(int invincible_countdown) {
+        if (invincible_countdown>0 && invincible_countdown%2 == 0) {
+            for (ImageView iv: all_image_view_list) {
+                iv.setVisibility(View.INVISIBLE);
+            }
+        } else if (invincible_countdown>0 && invincible_countdown%2 == 1) {
+            for (ImageView iv: all_image_view_list) {
+                iv.setVisibility(View.VISIBLE);
+            }
+        }
+    }
 
     public static class OnSwipeTouchListener implements View.OnTouchListener {
-        private final GestureDetector gestureDetector;
-        Context context;
-        OnSwipeTouchListener(Context content, View mainView) {
-            gestureDetector = new GestureDetector(content, new GestureListener());
-            mainView.setOnTouchListener(this);
-            context = content;
-        }
+        private final GestureDetector gestureDetector = new GestureDetector(new GestureListener());
+
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             return gestureDetector.onTouchEvent(event);
         }
 
-
         public class GestureListener extends GestureDetector.SimpleOnGestureListener {
             private static final int SWIPE_THRESHOLD = 60;
             private static final int SWIPE_VELOCITY_THRESHOLD = 60;
-
-            @Override
-            public boolean onDown(MotionEvent e) {
-                return true;
-            }
 
             @Override
             public boolean onFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
@@ -692,20 +799,18 @@ public class Game_view_Activity extends AppCompatActivity {
                     if (Math.abs(difference_X) > Math.abs(difference_Y)) {
                         if (Math.abs(difference_X) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
                             if (difference_X > 0) {
-                                onSwipeRight();
+                                result = onSwipeRight();
                             } else {
-                                onSwipeLeft();
+                                result = onSwipeLeft();
                             }
-                            result = true;
                         }
                     }
                     else if (Math.abs(difference_Y) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
                         if (difference_Y > 0) {
-                            onSwipeBottom();
+                            result = onSwipeBottom();
                         } else {
-                            onSwipeTop();
+                            result = onSwipeTop();
                         }
-                        result = true;
                     }
                 }
                 catch (Exception exception) {
@@ -715,63 +820,157 @@ public class Game_view_Activity extends AppCompatActivity {
             }
         }
 
-        interface onSwipeListener {
-            void swipeRight();
-            void swipeTop();
-            void swipeBottom();
-            void swipeLeft();
-        }
+        public boolean onSwipeRight() {
 
-        onSwipeListener onSwipe;
-
-        void onSwipeRight() {
-            //Toast.makeText(context, "Swiped Right", Toast.LENGTH_SHORT).show();
-
-            move_character_x(100);
-
-            this.onSwipe.swipeRight();
+            return false;
         }
 
 
-        void onSwipeLeft() {
-            //Toast.makeText(context, "Swiped Left", Toast.LENGTH_SHORT).show();
-            move_character_x(-100);
-            this.onSwipe.swipeLeft();
+        public boolean onSwipeLeft() {
+
+            return false;
         }
 
 
-        void onSwipeTop() {
-            //Toast.makeText(context, "Swiped Up", Toast.LENGTH_SHORT).show();
+        public boolean onSwipeTop() {
 
-            if(hair_view.getY() > 198)
-            {
-                move_character_y(100);
-            }
-            //Toast.makeText(context, String.valueOf(hair_view.getY()), Toast.LENGTH_SHORT).show();
-            this.onSwipe.swipeTop();
+            return false;
         }
 
 
-        void onSwipeBottom() {
-            //Toast.makeText(context, "Swiped Down", Toast.LENGTH_SHORT).show();
+        public boolean onSwipeBottom() {
 
-            if(hair_view.getY() < 698)
-            {
-                move_character_y(-100);
-            }
-
-            //Toast.makeText(context, String.valueOf(hair_view.getY()), Toast.LENGTH_SHORT).show();
-            this.onSwipe.swipeBottom();
+            return false;
         }
     }
-
 
     @Override
     public void onBackPressed() {
         Handler.removeCallbacksAndMessages(null);
         Handler2.removeCallbacksAndMessages(null);
+        Handler3.removeCallbacksAndMessages(null);
 
         super.onBackPressed();
+    }
+
+    public void setUpMovingObjects() {
+        ImageView boulder1 = findViewById(R.id.boulder_view);
+        ImageView boulder2 = findViewById(R.id.boulder_view2);
+        ImageView boulder3 = findViewById(R.id.boulder_view3);
+        ImageView boulder4 = findViewById(R.id.boulder_view4);
+        ImageView boulder5 = findViewById(R.id.boulder_view5);
+        ImageView boulder6 = findViewById(R.id.boulder_view6);
+        boulder1.setY((int)(screen_height*0.74-400));
+        boulder2.setY((int)(screen_height*0.74-400));
+        boulder3.setY((int)(screen_height*0.74-200));
+        boulder4.setY((int)(screen_height*0.74-200));
+        boulder5.setY((int)(screen_height*0.74));
+        boulder6.setY((int)(screen_height*0.74));
+        boulder_list.add(boulder1);
+        boulder_list.add(boulder2);
+        boulder_list.add(boulder3);
+        boulder_list.add(boulder4);
+        boulder_list.add(boulder5);
+        boulder_list.add(boulder6);
+        for (ImageView iv: boulder_list) {
+            iv.setX(screen_width + 100*screenRatioX);
+            iv.setImageResource(R.drawable.body_crouched);
+            iv.getLayoutParams().width = 200;
+            iv.getLayoutParams().height = 200;
+        }
+    }
+
+    public void setUpCliffs() {
+        ImageView cliff1 = findViewById(R.id.cliff_view);
+        ImageView cliff2 = findViewById(R.id.cliff_view2);
+        ImageView cliff3 = findViewById(R.id.cliff_view3);
+        ImageView cliff4 = findViewById(R.id.cliff_view4);
+        ImageView cliff5 = findViewById(R.id.cliff_view5);
+        cliff_list.add(cliff1);
+        cliff_list.add(cliff2);
+        cliff_list.add(cliff3);
+        cliff_list.add(cliff4);
+        cliff_list.add(cliff5);
+        for (ImageView iv: cliff_list) {
+            iv.setX(screen_width + 100*screenRatioX);
+            iv.setY(300);
+            iv.setImageResource(R.drawable.water_river);
+            iv.getLayoutParams().width = 200;
+            iv.getLayoutParams().height = 800;
+        }
+    }
+
+    public void setUpFood() {
+        ImageView food1 = findViewById(R.id.food_view1);
+        ImageView food2 = findViewById(R.id.food_view2);
+        ImageView food3 = findViewById(R.id.food_view3);
+        ImageView food4 = findViewById(R.id.food_view4);
+        ImageView food5 = findViewById(R.id.food_view5);
+        food1.setY((int)(screen_height*0.74-400));
+        food2.setY((int)(screen_height*0.74-400));
+        food3.setY((int)(screen_height*0.74-200));
+        food4.setY((int)(screen_height*0.74-200));
+        food5.setY((int)(screen_height*0.74));
+        food_list.add(food1);
+        food_list.add(food2);
+        food_list.add(food3);
+        food_list.add(food4);
+        food_list.add(food5);
+        for (ImageView food: food_list) {
+            food.setX(screen_width + 100*screenRatioX);
+            food.setImageResource(R.drawable.r_weapon_banana);
+            food.getLayoutParams().width = 200;
+            food.getLayoutParams().height = 200;
+        }
+    }
+
+    public void setUpTutorial(int time) {
+        if (time==5) {
+            swipe_down.setVisibility(View.VISIBLE);
+            swipe_up.setVisibility(View.VISIBLE);
+            tutorial_info.setVisibility(View.VISIBLE);
+        }
+        if (time==80) {
+            swipe_down.setVisibility(View.INVISIBLE);
+            swipe_up.setVisibility(View.INVISIBLE);
+            tap_screen.setVisibility(View.VISIBLE);
+            tutorial_info.setText("Tap screen to Jump");
+        }
+        if (time==160) {
+            tap_screen.setVisibility(View.INVISIBLE);
+            tutorial_info.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setUpStage1(int time) {
+        if (time >= 200) {
+            boulder_list.get(0).setX(boulder_list.get(0).getX() - 20 * screenRatioX);
+        }
+        if (time >= 220) {
+            boulder_list.get(2).setX(boulder_list.get(2).getX() - 20 * screenRatioX);
+        }
+        if (time >= 220 && time < 340) {
+            food_list.get(4).setX(food_list.get(4).getX() - 20 * screenRatioX);
+        }
+        if (time >= 260) {
+            boulder_list.get(5).setX(boulder_list.get(5).getX() - 20 * screenRatioX);
+        }
+        if (time >= 300) {
+            cliff_list.get(0).setX(cliff_list.get(0).getX() - 20 * screenRatioX);
+        }
+        if (time >= 380) {
+            food_list.get(0).setX(food_list.get(0).getX() - 20 * screenRatioX);
+        }
+        if (time >= 380) {
+            food_list.get(2).setX(food_list.get(2).getX() - 20 * screenRatioX);
+        }
+        if (time >= 380) {
+            if (time == 380) {
+                food_list.get(4).setX(screen_width + 100*screenRatioX);
+                food_list.get(4).setVisibility(View.VISIBLE);
+            }
+            food_list.get(4).setX(food_list.get(4).getX() - 20 * screenRatioX);
+        }
     }
 
 }

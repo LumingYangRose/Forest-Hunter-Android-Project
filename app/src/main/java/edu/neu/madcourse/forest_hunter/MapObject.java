@@ -39,6 +39,10 @@ public class MapObject {
         return dist;
     }
 
+    public ImageView getView() {
+        return img;
+    }
+
     public void drawImage(int id) {
         img.setBackground(null);
         img.setImageResource(id);

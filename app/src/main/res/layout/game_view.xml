@@ -117,6 +117,152 @@
         app:layout_constraintVertical_bias="0.104" />
 
     <ImageView
+        android:id="@+id/swipe_up"
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        tools:layout_editor_absoluteX="300dp"
+        tools:layout_editor_absoluteY="100dp"
+        app:srcCompat="@drawable/up_brown" />
+
+    <TextView
+        android:id="@+id/tutorial"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        app:layout_editor_absoluteX="420dp"
+        app:layout_editor_absoluteY="200dp"
+        android:text="Swipe to move Up or Down"
+        android:textSize="32sp"
+        android:textStyle="bold|italic"
+        android:textColor="#000000"/>
+    <ImageView
+        android:id="@+id/swipe_down"
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        tools:layout_editor_absoluteX="300dp"
+        tools:layout_editor_absoluteY="300dp"
+        app:srcCompat="@drawable/down_brown" />
+
+    <ImageView
+        android:id="@+id/tap_jump"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        tools:layout_editor_absoluteX="300dp"
+        tools:layout_editor_absoluteY="200dp"
+        app:srcCompat="@drawable/tap_screen"/>
+
+    <ImageView
+        android:id="@+id/cliff_view"
+        android:layout_width="20dp"
+        android:layout_height="300dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="100dp" />
+
+    <ImageView
+        android:id="@+id/cliff_view2"
+        android:layout_width="20dp"
+        android:layout_height="300dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="100dp" />
+
+    <ImageView
+        android:id="@+id/cliff_view3"
+        android:layout_width="20dp"
+        android:layout_height="300dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="100dp" />
+
+    <ImageView
+        android:id="@+id/cliff_view4"
+        android:layout_width="20dp"
+        android:layout_height="300dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="100dp" />
+
+    <ImageView
+        android:id="@+id/cliff_view5"
+        android:layout_width="20dp"
+        android:layout_height="300dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="100dp" />
+
+    <ImageView
+        android:id="@+id/boulder_view"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/boulder_view2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/boulder_view3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/boulder_view4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/boulder_view5"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/boulder_view6"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/food_view5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/food_view1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/food_view2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/food_view3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/food_view4"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
         android:id="@+id/l_leg_view"
         android:layout_width="17dp"
         android:layout_height="61dp"
