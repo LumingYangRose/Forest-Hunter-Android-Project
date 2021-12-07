@@ -45,6 +45,7 @@ public class login_Activity extends AppCompatActivity {
 
     User login_user;
     String user_Security_answer = "";
+    String nickname = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -320,6 +321,50 @@ public class login_Activity extends AppCompatActivity {
     }
 
 
+    public void enter_nickname_dialog(String username) {
+        final AlertDialog.Builder dialog;
+        final EditText input_nickname;
+        Button input_cancel_button;
+        Button input_confirm_button;
+        final AlertDialog alert_dialog;
+
+        dialog = new AlertDialog.Builder(login_Activity.this);
+        View dialog_view = getLayoutInflater().inflate(R.layout.enter_nickname_page, null);
+
+        input_nickname = dialog_view.findViewById(R.id.enter_nickname_input_box);
+        input_cancel_button = dialog_view.findViewById(R.id.enter_nickname_cancel_button);
+        input_confirm_button = dialog_view.findViewById(R.id.enter_nickname_confirm_button);
+
+
+        dialog.setView(dialog_view);
+        alert_dialog = dialog.create();
+
+        alert_dialog.setCanceledOnTouchOutside(false);
+
+        input_cancel_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                alert_dialog.dismiss();
+            }
+        });
+
+        input_confirm_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                nickname = input_nickname.getText().toString();
+                alert_dialog.dismiss();
+
+                }
+        }
+        );
+
+
+        alert_dialog.show();
+    }
+
+
     public void login_dialog(View view) {
         final AlertDialog.Builder dialog;
         final EditText input_username;
@@ -512,9 +557,18 @@ public class login_Activity extends AppCompatActivity {
 
                     String s_question = snapshot.child(username).child("security_question").getValue().toString();
                     String s_question_answer = snapshot.child(username).child("security_answer").getValue().toString();
-                    int highest_score =  Integer.parseInt(snapshot.child(username).child("highest_score").getValue().toString());
+
+                    String fb_nickname = snapshot.child(username).child("nickname").getValue().toString();
+                    ArrayList<String> temp_highest_score_list = new ArrayList<>();
                     int num_of_gold = Integer.parseInt(snapshot.child(username).child("num_of_gold").getValue().toString());
-                    login_user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN, highest_score, num_of_gold);
+                    login_user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN, temp_highest_score_list, num_of_gold);
+
+                    if (fb_nickname.equals("") && !nickname.equals("")){
+                        login_user.nickname = nickname;
+                    }
+                    else {
+                        login_user.nickname = fb_nickname;
+                    }
 
                     ArrayList<String> temp_array_list;
                     temp_array_list = new ArrayList<String>();
@@ -524,8 +578,17 @@ public class login_Activity extends AppCompatActivity {
                             temp_array_list.add(pss.getValue().toString());
                         }
                     }
-
                     login_user.friend_list = temp_array_list;
+
+                    if(snapshot.child(username).child("highest_score_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("highest_score_list").getChildren()) {
+                            temp_highest_score_list.add(pss.getValue().toString());
+                        }
+                    }
+
+                    login_user.highest_score_list = temp_highest_score_list;
+
+                    Task signup_user = mDatabase.child("users").child(username).setValue(login_user);
 
 
                     sleep(500);
@@ -548,22 +611,21 @@ public class login_Activity extends AppCompatActivity {
     }
 
     public void is_username_exist(String username, String password, String s_question, String s_question_answer) {
+
+        enter_nickname_dialog(username);
+
         DatabaseReference user_database = mDatabase.child("users");
         user_database.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if (!username.equals("") )
-                {
-                    if (!snapshot.child(username).exists())
-                    {
+                if (!username.equals("") ) {
+                    if (!snapshot.child(username).exists()) {
                         User user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN);
                         Task signup_user = mDatabase.child("users").child(username).setValue(user);
                         sleep(1000);
                         Toast.makeText(login_Activity.this, "Successfully Signed up!", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(login_Activity.this, "This Username already exist, Please use another one", Toast.LENGTH_SHORT).show();
                     }
                 }

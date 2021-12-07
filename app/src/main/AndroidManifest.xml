@@ -38,6 +38,11 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="landscape"/>
         <activity
+            android:name="Friend_list_and_scoreboard.Friends"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="landscape"/>
+        <activity
                 android:name="authentication.login_Activity"
                 android:exported="true"
                 android:theme="@style/Theme.AppCompat.NoActionBar"

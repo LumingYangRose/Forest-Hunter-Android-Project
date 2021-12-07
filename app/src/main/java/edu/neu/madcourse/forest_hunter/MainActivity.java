@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import Friend_list_and_scoreboard.Friends;
 import authentication.login_Activity;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     Button exit_game_button;
     ImageButton store_button;
     ImageButton setting_button;
+    ImageButton friend_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,11 +94,26 @@ public class MainActivity extends AppCompatActivity {
                 //TODO
             }
         });
+
+        friend_button = findViewById(R.id.friend_button);
+        friend_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                activate_friends_view_activity();
+            }
+        });
     }
 
     public void activate_game_view_activity() {
         Intent game_view_intent = new Intent(this, Game_view_Activity.class);
         startActivity(game_view_intent);
+
+    }
+
+    public void activate_friends_view_activity() {
+        Intent friends_view_intent = new Intent(this, Friends.class);
+        startActivity(friends_view_intent);
 
     }
 
