@@ -1,6 +1,7 @@
 package edu.neu.madcourse.forest_hunter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.security.interfaces.DSAPrivateKey;
@@ -481,6 +483,7 @@ public class Game_view_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 paused = true;
+                pauseMenu(view);
             }
         });
 
@@ -513,6 +516,50 @@ public class Game_view_Activity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public void pauseMenu(View view) {
+        Button resume_game;
+        Button go_to_settings;
+        Button exit_to_main;
+        final AlertDialog.Builder dialog;
+        final AlertDialog in_game_dialog;
+
+        dialog = new AlertDialog.Builder(Game_view_Activity.this);
+        View dialog_view = getLayoutInflater().inflate(R.layout.pause_menu, null);
+
+        resume_game = dialog_view.findViewById(R.id.resume_game);
+        go_to_settings = dialog_view.findViewById(R.id.in_game_settings);
+        exit_to_main = dialog_view.findViewById(R.id.exit_to_main);
+
+        dialog.setView(dialog_view);
+        in_game_dialog = dialog.create();
+        in_game_dialog.setCanceledOnTouchOutside(false);
+
+        exit_to_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent main_menu_intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(main_menu_intent);
+            }
+        });
+
+        go_to_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TO DO
+            }
+        });
+
+        resume_game.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                paused = false;
+                in_game_dialog.dismiss();
+            }
+        });
+
+        in_game_dialog.show();
     }
 
     private Runnable refresh_view = new Runnable()
@@ -550,7 +597,7 @@ public class Game_view_Activity extends AppCompatActivity {
 
             for (ImageView iv: boulder_list) {
                 if ((Math.abs(iv.getX()-chest_view.getX()) <= 100)
-                        && (Math.abs(iv.getY()-chest_view.getY()) <= 100)) {
+                        && (Math.abs(iv.getY()-chest_view.getY()) <= 80)) {
                     if (lives>0 && !invincible) {
                         hearts.get(lives - 1).setVisibility(View.INVISIBLE);
                         lives--;
@@ -802,9 +849,9 @@ public class Game_view_Activity extends AppCompatActivity {
 
     public static void characterJump(int jump_countdown) {
         if (jump_countdown>15) {
-            move_character_y(10.00f);
+            move_character_y(6.00f);
         } else if (jump_countdown>3 && jump_countdown<=15) {
-            move_character_y(-10.00f);
+            move_character_y(-6.00f);
         }
     }
 
@@ -1550,6 +1597,16 @@ public class Game_view_Activity extends AppCompatActivity {
         if (time == SET_ONE_LENGTH + 200 && !paused
         ) {
             paused = true;
+        }
+    }
+
+    public void setUpStage2(int time) {
+        if (time >= 1880) {
+            if (time == 1880) {
+                food_list.get(2).setX(screen_width + 100*screenRatioX);
+                food_list.get(2).setVisibility(View.VISIBLE);
+            }
+            food_list.get(2).setX(food_list.get(2).getX() - 20 * screenRatioX);
         }
     }
 }

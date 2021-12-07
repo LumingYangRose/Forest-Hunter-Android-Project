@@ -1,7 +1,6 @@
 package authentication;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,11 +24,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-import java.util.ArrayList;
-
 import edu.neu.madcourse.forest_hunter.Appearance;
 import edu.neu.madcourse.forest_hunter.MainActivity;
 import edu.neu.madcourse.forest_hunter.Music;
+
+import java.util.ArrayList;
 import edu.neu.madcourse.forest_hunter.R;
 import user.User;
 
