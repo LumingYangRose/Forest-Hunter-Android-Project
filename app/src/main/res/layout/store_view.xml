@@ -192,4 +192,21 @@
         android:layout_marginBottom="10dp"
         app:srcCompat="@drawable/coin3" />
 
+    <TextView
+        android:id="@+id/coins"
+        android:layout_width="300dp"
+        android:layout_height="62dp"
+        android:layout_below="@+id/forest_store"
+        android:layout_alignBottom="@+id/store_board_view"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="213dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginBottom="258dp"
+        android:layout_toEndOf="@+id/imageView5"
+        android:text="Your Coins:"
+        android:textColor="#151414"
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
+
 </RelativeLayout>

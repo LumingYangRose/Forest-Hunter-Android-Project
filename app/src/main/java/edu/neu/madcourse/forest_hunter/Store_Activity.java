@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -16,24 +17,28 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import user.Login_User;
+
 public class Store_Activity extends AppCompatActivity {
     ImageButton return_main_activity;
-    Button recharge_500;
-    Button recharge_1000;
-    Button recharge_2000;
+    Button recharge_10k;
+    Button recharge_60k;
+    Button recharge_250k;
     private String username;
     private DatabaseReference reference;
+    private TextView coins;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_view);
-        username = getIntent().getStringExtra("username");
+        username = Login_User.current_User.username;
         reference = FirebaseDatabase.getInstance().getReference();
         return_main_activity = findViewById(R.id.return_main_activity);
-        recharge_500 = findViewById(R.id.recharge_10k);
-        recharge_1000 = findViewById(R.id.recharge_60k);
-        recharge_2000 = findViewById(R.id.recharge_250k);
+        recharge_10k = findViewById(R.id.recharge_10k);
+        recharge_60k = findViewById(R.id.recharge_60k);
+        recharge_250k = findViewById(R.id.recharge_250k);
+        coins = findViewById(R.id.coins);
 
         return_main_activity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,15 +47,29 @@ public class Store_Activity extends AppCompatActivity {
             }
         });
 
+        reference.child("users").child(username).child("num_of_gold").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int value = snapshot.getValue(Integer.class);
+                coins.setText("Your Coins :" + value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
         //todo   Click to recharge gold coins
-        recharge_500.setOnClickListener(new View.OnClickListener() {
+        recharge_10k.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 reference.child("users").child(username).child("num_of_gold").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         int value = snapshot.getValue(Integer.class);
-                        value = value + 500;
+                        value = value + 10000;
                         reference.child("users").child(username).child("num_of_gold").setValue(value);
                         showMyDialog();
                     }
@@ -63,14 +82,14 @@ public class Store_Activity extends AppCompatActivity {
             }
         });
 
-        recharge_1000.setOnClickListener(new View.OnClickListener() {
+        recharge_60k.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 reference.child("users").child(username).child("num_of_gold").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         int value = snapshot.getValue(Integer.class);
-                        value = value + 100;
+                        value = value + 60000;
                         reference.child("users").child(username).child("num_of_gold").setValue(value);
                         showMyDialog();
                     }
@@ -83,14 +102,14 @@ public class Store_Activity extends AppCompatActivity {
             }
         });
 
-        recharge_2000.setOnClickListener(new View.OnClickListener() {
+        recharge_250k.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 reference.child("users").child(username).child("num_of_gold").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         int value = snapshot.getValue(Integer.class);
-                        value = value + 2000;
+                        value = value + 250000;
                         reference.child("users").child(username).child("num_of_gold").setValue(value);
                         showMyDialog();
                     }
