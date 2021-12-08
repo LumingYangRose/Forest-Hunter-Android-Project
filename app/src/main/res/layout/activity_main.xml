@@ -128,4 +128,19 @@
         app:layout_constraintVertical_bias="0.607"
         app:srcCompat="@drawable/friend_logo" />
 
+    <ImageButton
+        android:id="@+id/score_board_button"
+        android:layout_width="67dp"
+        android:layout_height="73dp"
+        android:background="@null"
+        android:contentDescription="Score board button"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.966"
+        app:srcCompat="@drawable/scoreboard_logo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -175,8 +175,6 @@ public class login_Activity extends AppCompatActivity {
                                 Toast.makeText(login_Activity.this, "This Username does not exist!", Toast.LENGTH_SHORT).show();
                             }
                         }
-
-
                     }
 
                     @Override
@@ -353,17 +351,6 @@ public class login_Activity extends AppCompatActivity {
         alert_dialog = dialog.create();
 
         alert_dialog.setCanceledOnTouchOutside(false);
-
-        /*
-        input_cancel_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                alert_dialog.dismiss();
-            }
-        });
-        */
-
 
         input_confirm_button.setOnClickListener(new View.OnClickListener() {
             @Override

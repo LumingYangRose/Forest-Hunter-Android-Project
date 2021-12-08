@@ -31,9 +31,9 @@ public class Store_Activity extends AppCompatActivity {
         username = getIntent().getStringExtra("username");
         reference = FirebaseDatabase.getInstance().getReference();
         return_main_activity = findViewById(R.id.return_main_activity);
-        recharge_500 = findViewById(R.id.recharge_500);
-        recharge_1000 = findViewById(R.id.recharge_1000);
-        recharge_2000 = findViewById(R.id.recharge_2000);
+        recharge_500 = findViewById(R.id.recharge_10k);
+        recharge_1000 = findViewById(R.id.recharge_60k);
+        recharge_2000 = findViewById(R.id.recharge_250k);
 
         return_main_activity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,8 +125,7 @@ public class Store_Activity extends AppCompatActivity {
     }
 
     public void activate_return_main_activity() {
-        Intent game_view_intent = new Intent(this, MainActivity.class);
-        startActivity(game_view_intent);
+        finish();
     }
 
 }

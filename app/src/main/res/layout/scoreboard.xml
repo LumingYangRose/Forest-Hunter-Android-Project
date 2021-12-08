@@ -17,13 +17,54 @@
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             app:srcCompat="@drawable/score_board_title_img" />
 
-        <ImageView
-            android:id="@+id/imageView"
+        <TextView
+            android:id="@+id/top_1_player"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/score_board_itemcard" />
+            android:layout_height="70dp"
+            android:background="@drawable/score_board_card"
+            android:gravity="center"
+            android:text="1st"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/top_2_player"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/score_board_card"
+            android:gravity="center"
+            android:text="2nd"
+            android:textSize="22sp"/>
+
+        <TextView
+            android:id="@+id/top_3_player"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/score_board_card"
+            android:gravity="center"
+            android:text="3rd"
+            android:textSize="22sp"/>
+
+        <TextView
+            android:id="@+id/top_4_player"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:background="@drawable/score_board_card"
+            android:gravity="center"
+            android:text="4st"
+            android:textSize="22sp"/>
+
+        <TextView
+            android:id="@+id/top_5_player"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/score_board_card"
+            android:gravity="center"
+            android:text="5nd"
+            android:textSize="22sp"/>
+
 
         <Button
             android:id="@+id/change_stage_scoreboard"
