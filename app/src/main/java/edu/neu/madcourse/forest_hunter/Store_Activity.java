@@ -125,8 +125,7 @@ public class Store_Activity extends AppCompatActivity {
     }
 
     public void activate_return_main_activity() {
-        Intent game_view_intent = new Intent(this, MainActivity.class);
-        startActivity(game_view_intent);
+        finish();
     }
 
 }

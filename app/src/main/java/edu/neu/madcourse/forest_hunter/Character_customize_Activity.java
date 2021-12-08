@@ -160,8 +160,7 @@ public class Character_customize_Activity extends AppCompatActivity {
         l_shoulder_view = findViewById(R.id.l_shoulder_view);
 
         chest_view_wear = findViewById(R.id.chest_view_wear);
-        if(current_chest_wear_index != 17)
-        {
+        if (current_chest_wear_index != 17) {
             chest_view_wear.setBackground(null);
             chest_view_wear.setImageResource(ap.chest_wear_image_id_list[Appearance.current_chest_wear_index]);
 
@@ -248,8 +247,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 1:
                         current_hair_index--;
 
-                        if (current_hair_index < 0)
-                        {
+                        if (current_hair_index < 0) {
                             current_hair_index = ap.hair_image_id_list.length - 1;
                         }
 
@@ -264,8 +262,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 2:
                         current_mouth_index--;
 
-                        if (current_mouth_index < 0)
-                        {
+                        if (current_mouth_index < 0) {
                             current_mouth_index = ap.mouth_image_id_list.length - 1;
                         }
 
@@ -279,8 +276,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 3:
                         current_chest_wear_index--;
 
-                        if (current_chest_wear_index < 0)
-                        {
+                        if (current_chest_wear_index < 0) {
                             current_chest_wear_index = ap.chest_wear_image_id_list.length - 1;
                         }
 
@@ -294,8 +290,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 4:
                         current_thigh_wear_index--;
 
-                        if (current_thigh_wear_index < 0)
-                        {
+                        if (current_thigh_wear_index < 0) {
                             current_thigh_wear_index = ap.thigh_r_l_wear_image_id_list.length - 1;
                         }
 
@@ -321,8 +316,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 1:
                         current_hair_index++;
 
-                        if (current_hair_index > ap.hair_image_id_list.length - 1)
-                        {
+                        if (current_hair_index > ap.hair_image_id_list.length - 1) {
                             current_hair_index = 0;
                         }
 
@@ -337,8 +331,7 @@ public class Character_customize_Activity extends AppCompatActivity {
 
                         current_mouth_index++;
 
-                        if (current_mouth_index > ap.mouth_image_id_list.length - 1)
-                        {
+                        if (current_mouth_index > ap.mouth_image_id_list.length - 1) {
                             current_mouth_index = 0;
                         }
 
@@ -351,8 +344,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 3:
                         current_chest_wear_index++;
 
-                        if (current_chest_wear_index > ap.chest_wear_image_id_list.length - 1)
-                        {
+                        if (current_chest_wear_index > ap.chest_wear_image_id_list.length - 1) {
                             current_chest_wear_index = 0;
                         }
 
@@ -366,8 +358,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 4:
                         current_thigh_wear_index++;
 
-                        if (current_thigh_wear_index > ap.thigh_r_l_wear_image_id_list.length - 1)
-                        {
+                        if (current_thigh_wear_index > ap.thigh_r_l_wear_image_id_list.length - 1) {
                             current_thigh_wear_index = 0;
                         }
 
@@ -394,8 +385,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 1:
                         current_head_index--;
 
-                        if (current_head_index < 0)
-                        {
+                        if (current_head_index < 0) {
                             current_head_index = ap.head_image_id_list.length - 1;
                         }
 
@@ -408,8 +398,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 2:
                         current_l_eye_brow_index--;
 
-                        if (current_l_eye_brow_index < 0)
-                        {
+                        if (current_l_eye_brow_index < 0) {
                             current_l_eye_brow_index = ap.l_eye_brow_image_id_list.length - 1;
                         }
 
@@ -422,8 +411,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 3:
                         current_shoulder_wear_index--;
 
-                        if (current_shoulder_wear_index < 0)
-                        {
+                        if (current_shoulder_wear_index < 0) {
                             current_shoulder_wear_index = ap.shoulder_r_l_wear_image_id_list.length - 1;
                         }
 
@@ -440,8 +428,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 4:
                         current_leg_wear_index--;
 
-                        if (current_leg_wear_index < 0)
-                        {
+                        if (current_leg_wear_index < 0) {
                             current_leg_wear_index = ap.leg_r_l_wear_image_id_list.length - 1;
                         }
 
@@ -468,8 +455,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 1:
                         current_head_index++;
 
-                        if (current_head_index > ap.head_image_id_list.length - 1)
-                        {
+                        if (current_head_index > ap.head_image_id_list.length - 1) {
                             current_head_index = 0;
                         }
 
@@ -483,8 +469,7 @@ public class Character_customize_Activity extends AppCompatActivity {
 
                         current_l_eye_brow_index++;
 
-                        if (current_l_eye_brow_index > ap.l_eye_brow_image_id_list.length - 1)
-                        {
+                        if (current_l_eye_brow_index > ap.l_eye_brow_image_id_list.length - 1) {
                             current_l_eye_brow_index = 0;
                         }
 
@@ -497,8 +482,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 3:
                         current_shoulder_wear_index++;
 
-                        if (current_shoulder_wear_index > ap.shoulder_r_l_wear_image_id_list.length - 1)
-                        {
+                        if (current_shoulder_wear_index > ap.shoulder_r_l_wear_image_id_list.length - 1) {
                             current_shoulder_wear_index = 0;
                         }
 
@@ -515,8 +499,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 4:
                         current_leg_wear_index++;
 
-                        if (current_leg_wear_index > ap.leg_r_l_wear_image_id_list.length - 1)
-                        {
+                        if (current_leg_wear_index > ap.leg_r_l_wear_image_id_list.length - 1) {
                             current_leg_wear_index = 0;
                         }
 
@@ -543,8 +526,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 1:
                         current_eye_index--;
 
-                        if (current_eye_index < 0)
-                        {
+                        if (current_eye_index < 0) {
                             current_eye_index = ap.eye_image_id_list.length - 1;
                         }
 
@@ -557,8 +539,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 2:
                         current_r_eye_brow_index--;
 
-                        if (current_r_eye_brow_index < 0)
-                        {
+                        if (current_r_eye_brow_index < 0) {
                             current_r_eye_brow_index = ap.r_eye_brow_image_id_list.length - 1;
                         }
 
@@ -571,8 +552,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 3:
                         current_arm_wear_index--;
 
-                        if (current_arm_wear_index < 0)
-                        {
+                        if (current_arm_wear_index < 0) {
                             current_arm_wear_index = ap.arm_r_l_wear_image_id_list.length - 1;
                         }
 
@@ -589,8 +569,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 4:
                         current_foot_wear_index--;
 
-                        if (current_foot_wear_index < 0)
-                        {
+                        if (current_foot_wear_index < 0) {
                             current_foot_wear_index = ap.foot_r_l_wear_image_id_list.length - 1;
                         }
 
@@ -617,8 +596,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 1:
                         current_eye_index++;
 
-                        if (current_eye_index > ap.eye_image_id_list.length - 1)
-                        {
+                        if (current_eye_index > ap.eye_image_id_list.length - 1) {
                             current_eye_index = 0;
                         }
 
@@ -632,8 +610,7 @@ public class Character_customize_Activity extends AppCompatActivity {
 
                         current_r_eye_brow_index++;
 
-                        if (current_r_eye_brow_index > ap.r_eye_brow_image_id_list.length - 1)
-                        {
+                        if (current_r_eye_brow_index > ap.r_eye_brow_image_id_list.length - 1) {
                             current_r_eye_brow_index = 0;
                         }
 
@@ -646,8 +623,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 3:
                         current_arm_wear_index++;
 
-                        if (current_arm_wear_index > ap.arm_r_l_wear_image_id_list.length - 1)
-                        {
+                        if (current_arm_wear_index > ap.arm_r_l_wear_image_id_list.length - 1) {
                             current_arm_wear_index = 0;
                         }
 
@@ -664,8 +640,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 4:
                         current_foot_wear_index++;
 
-                        if (current_foot_wear_index > ap.foot_r_l_wear_image_id_list.length - 1)
-                        {
+                        if (current_foot_wear_index > ap.foot_r_l_wear_image_id_list.length - 1) {
                             current_foot_wear_index = 0;
                         }
 
@@ -692,8 +667,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 1:
                         current_nose_index--;
 
-                        if (current_nose_index < 0)
-                        {
+                        if (current_nose_index < 0) {
                             current_nose_index = ap.nose_image_id_list.length - 1;
                         }
 
@@ -706,8 +680,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 2:
                         current_ear_index--;
 
-                        if (current_ear_index < 0)
-                        {
+                        if (current_ear_index < 0) {
                             current_ear_index = ap.ear_image_id_list.length - 1;
                         }
 
@@ -720,8 +693,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 3:
                         current_bottom_wear_index--;
 
-                        if (current_bottom_wear_index < 0)
-                        {
+                        if (current_bottom_wear_index < 0) {
                             current_bottom_wear_index = ap.bottom_wear_image_id_list.length - 1;
                         }
 
@@ -735,8 +707,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 4:
                         current_chest_index--;
 
-                        if (current_chest_index < 0)
-                        {
+                        if (current_chest_index < 0) {
                             current_chest_index = ap.chest_image_id_list.length - 1;
                         }
 
@@ -744,8 +715,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                         chest_view.setBackground(null);
                         chest_view.setImageResource(ap.chest_image_id_list[current_chest_index]);
 
-                        if (current_chest_wear_index != 17)
-                        {
+                        if (current_chest_wear_index != 17) {
                             chest_view_wear.setBackground(null);
                             chest_view_wear.setImageResource(ap.chest_wear_image_id_list[Appearance.current_chest_wear_index]);
                         }
@@ -767,8 +737,7 @@ public class Character_customize_Activity extends AppCompatActivity {
 
                         current_nose_index++;
 
-                        if (current_nose_index > ap.nose_image_id_list.length - 1)
-                        {
+                        if (current_nose_index > ap.nose_image_id_list.length - 1) {
                             current_nose_index = 0;
                         }
 
@@ -782,8 +751,7 @@ public class Character_customize_Activity extends AppCompatActivity {
 
                         current_ear_index++;
 
-                        if (current_ear_index > ap.ear_image_id_list.length - 1)
-                        {
+                        if (current_ear_index > ap.ear_image_id_list.length - 1) {
                             current_ear_index = 0;
                         }
 
@@ -796,8 +764,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 3:
                         current_bottom_wear_index++;
 
-                        if (current_bottom_wear_index > ap.bottom_wear_image_id_list.length - 1)
-                        {
+                        if (current_bottom_wear_index > ap.bottom_wear_image_id_list.length - 1) {
                             current_bottom_wear_index = 0;
                         }
 
@@ -811,8 +778,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 4:
                         current_chest_index++;
 
-                        if (current_chest_index > ap.chest_image_id_list.length - 1)
-                        {
+                        if (current_chest_index > ap.chest_image_id_list.length - 1) {
                             current_chest_index = 0;
                         }
 
@@ -820,8 +786,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                         chest_view.setBackground(null);
                         chest_view.setImageResource(ap.chest_image_id_list[current_chest_index]);
 
-                        if (current_chest_wear_index != 17)
-                        {
+                        if (current_chest_wear_index != 17) {
                             chest_view_wear.setBackground(null);
                             chest_view_wear.setImageResource(ap.chest_wear_image_id_list[Appearance.current_chest_wear_index]);
                         }
@@ -841,8 +806,7 @@ public class Character_customize_Activity extends AppCompatActivity {
 
                 current_page_number++;
 
-                if (current_page_number > 4)
-                {
+                if (current_page_number > 4) {
                     current_page_number = 1;
                 }
 
@@ -887,8 +851,7 @@ public class Character_customize_Activity extends AppCompatActivity {
 
                 current_page_number--;
 
-                if (current_page_number < 1)
-                {
+                if (current_page_number < 1) {
                     current_page_number = 4;
                 }
 
@@ -926,23 +889,15 @@ public class Character_customize_Activity extends AppCompatActivity {
             }
         });
 
-        appearance_confirm_button  = findViewById(R.id.appearance_confirm_button);
+        appearance_confirm_button = findViewById(R.id.appearance_confirm_button);
         appearance_confirm_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activate_MainActivity();
+                finish();
             }
         });
 
 
     }
-
-    public void activate_MainActivity()
-    {
-        Intent main_intent = new Intent(this, MainActivity.class);
-        startActivity(main_intent);
-
-    }
-
 
 }
