@@ -28,13 +28,18 @@
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/top_1_player"
+            android:id="@+id/music_1_button"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/score_board_card"
             android:gravity="center"
             android:text="1st"
             android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/extra_space"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/top_2_player"
@@ -46,6 +51,11 @@
             android:textSize="22sp" />
 
         <TextView
+            android:id="@+id/extra_space2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
             android:id="@+id/top_3_player"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -53,6 +63,11 @@
             android:gravity="center"
             android:text="3rd"
             android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/extra_space3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/top_4_player"
@@ -64,6 +79,11 @@
             android:textSize="22sp" />
 
         <TextView
+            android:id="@+id/extra_space4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
             android:id="@+id/top_5_player"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -72,6 +92,11 @@
             android:text="5nd"
             android:textSize="22sp" />
 
+
+        <TextView
+            android:id="@+id/extra_space5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/change_stage_scoreboard"
@@ -82,6 +107,11 @@
             android:text=""
             android:textColor="@color/white"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/extra_space6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/scoreboard_confirm_button"

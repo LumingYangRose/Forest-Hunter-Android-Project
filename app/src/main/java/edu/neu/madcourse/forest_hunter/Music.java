@@ -43,6 +43,22 @@ public class Music {
         music_player.start();
     }
 
+    public void play_music(int index)
+    {
+
+        if (music_player == null)
+        {
+            music_player = MediaPlayer.create(activity, bgm_list.get(index));
+            music_player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    music_player.start();
+                }
+            });
+        }
+        music_player.start();
+    }
+
     public void play_next()
     {
         if(current_bgm_index < 4) {

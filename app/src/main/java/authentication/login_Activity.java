@@ -120,9 +120,6 @@ public class login_Activity extends AppCompatActivity {
                 bgm.play_next();
             }
         });
-
-
-
     }
 
     public void forget_password_enter_username_dialog(View view) {
@@ -774,6 +771,7 @@ public class login_Activity extends AppCompatActivity {
 
     public void activate_main_activity() {
         Intent main_intent = new Intent(this, MainActivity.class);
+        bgm.stop_Player();
         startActivity(main_intent);
 
     }

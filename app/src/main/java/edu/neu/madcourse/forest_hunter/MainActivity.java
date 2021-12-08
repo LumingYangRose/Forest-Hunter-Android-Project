@@ -5,28 +5,21 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 
 import Friend_list_and_scoreboard.Friends;
 import authentication.login_Activity;
@@ -42,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton friend_button;
     ImageButton scoreboard_button;
     int num_of_player;
+    Music bgm;
 
     private DatabaseReference mDatabase;
     ArrayList<Integer> stage_1_highest_score_list = new ArrayList<Integer>();
@@ -58,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
     TextView top_4_player_card;
     TextView top_5_player_card;
     ImageView stage_name;
+
+    ImageButton music_1_button;
+    ImageButton music_2_button;
+    ImageButton music_3_button;
+    ImageButton music_4_button;
+    ImageButton music_5_button;
+    ImageButton no_music_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //TODO
+                setting_dialog(view);
             }
         });
 
@@ -168,6 +169,11 @@ public class MainActivity extends AppCompatActivity {
                 scoreboard_dialog(view);
             }
         });
+
+        //Handling Music
+        bgm = new Music(this);
+        bgm.play_music(0);
+
     }
 
     public void activate_game_view_activity() {
@@ -205,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         dialog = new AlertDialog.Builder(MainActivity.this);
         View dialog_view = getLayoutInflater().inflate(R.layout.scoreboard, null);
 
-        top_1_player_card = dialog_view.findViewById(R.id.top_1_player);
+        top_1_player_card = dialog_view.findViewById(R.id.music_1_button);
         top_2_player_card = dialog_view.findViewById(R.id.top_2_player);
         top_3_player_card = dialog_view.findViewById(R.id.top_3_player);
         top_4_player_card = dialog_view.findViewById(R.id.top_4_player);
@@ -250,6 +256,95 @@ public class MainActivity extends AppCompatActivity {
                     stage_name.setImageResource(R.drawable.crazy_crocodile_text);
                 }
 
+            }
+        });
+
+        alert_dialog.show();
+    }
+
+    public void setting_dialog(View view) {
+
+        final AlertDialog.Builder dialog;
+        Button cancel_button;
+        Button confirm_button;
+        final AlertDialog alert_dialog;
+
+        dialog = new AlertDialog.Builder(MainActivity.this);
+        View dialog_view = getLayoutInflater().inflate(R.layout.setting_view, null);
+
+        music_1_button = dialog_view.findViewById(R.id.music_1_button);
+        music_2_button = dialog_view.findViewById(R.id.music_2_button);
+        music_3_button = dialog_view.findViewById(R.id.music_3_button);
+        music_4_button = dialog_view.findViewById(R.id.music_4_button);
+        music_5_button = dialog_view.findViewById(R.id.music_5_button);
+        no_music_button = dialog_view.findViewById(R.id.no_music_button);
+        confirm_button = dialog_view.findViewById(R.id.setting_confirm_button);
+
+
+        dialog.setView(dialog_view);
+        alert_dialog = dialog.create();
+
+        alert_dialog.setCanceledOnTouchOutside(false);
+
+
+        confirm_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alert_dialog.dismiss();
+            }
+        });
+
+
+        music_1_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                bgm.stop();
+                bgm.play_music(0);
+            }
+        });
+
+        music_2_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                bgm.stop();
+                bgm.play_music(1);
+            }
+        });
+
+        music_3_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                bgm.stop();
+                bgm.play_music(2);
+            }
+        });
+
+        music_4_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                bgm.stop();
+                bgm.play_music(3);
+            }
+        });
+
+        music_5_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                bgm.stop();
+                bgm.play_music(4);
+            }
+        });
+
+        no_music_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                bgm.stop();
             }
         });
 
