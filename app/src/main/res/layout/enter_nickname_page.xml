@@ -42,15 +42,6 @@
             android:textColor="@color/white"
             android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/enter_nickname_cancel_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#00E676"
-            android:text="CANCEL"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
-
     </LinearLayout>
 
 </ScrollView>

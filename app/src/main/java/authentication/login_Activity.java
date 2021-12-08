@@ -26,10 +26,12 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 
+import Friend_list_and_scoreboard.Friends;
 import edu.neu.madcourse.forest_hunter.Appearance;
 import edu.neu.madcourse.forest_hunter.MainActivity;
 import edu.neu.madcourse.forest_hunter.Music;
 import edu.neu.madcourse.forest_hunter.R;
+import user.Login_User;
 import user.User;
 
 public class login_Activity extends AppCompatActivity {
@@ -324,7 +326,7 @@ public class login_Activity extends AppCompatActivity {
     public void enter_nickname_dialog(String username) {
         final AlertDialog.Builder dialog;
         final EditText input_nickname;
-        Button input_cancel_button;
+        //Button input_cancel_button;
         Button input_confirm_button;
         final AlertDialog alert_dialog;
 
@@ -332,7 +334,7 @@ public class login_Activity extends AppCompatActivity {
         View dialog_view = getLayoutInflater().inflate(R.layout.enter_nickname_page, null);
 
         input_nickname = dialog_view.findViewById(R.id.enter_nickname_input_box);
-        input_cancel_button = dialog_view.findViewById(R.id.enter_nickname_cancel_button);
+        //input_cancel_button = dialog_view.findViewById(R.id.enter_nickname_cancel_button);
         input_confirm_button = dialog_view.findViewById(R.id.enter_nickname_confirm_button);
 
 
@@ -341,6 +343,7 @@ public class login_Activity extends AppCompatActivity {
 
         alert_dialog.setCanceledOnTouchOutside(false);
 
+        /*
         input_cancel_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -348,13 +351,46 @@ public class login_Activity extends AppCompatActivity {
                 alert_dialog.dismiss();
             }
         });
+        */
+
 
         input_confirm_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 nickname = input_nickname.getText().toString();
-                alert_dialog.dismiss();
+
+                DatabaseReference user_database = mDatabase.child("users");
+                user_database.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        boolean find_nickname = false;
+                        for (DataSnapshot pss : snapshot.getChildren()) {
+                            if (pss.child("nickname").exists()) {
+                                String temp_nickname = pss.child("nickname").getValue().toString();
+
+                                if (temp_nickname.equals(nickname)) {
+                                    find_nickname = true;
+                                    Toast.makeText(login_Activity.this, "This Nickname already exists, please use another one", Toast.LENGTH_SHORT).show();
+                                    nickname = "";
+                                }
+                            }
+                        }
+
+                        if (find_nickname == false)
+                        {
+                            alert_dialog.dismiss();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+
+                });
 
                 }
         }
@@ -588,8 +624,11 @@ public class login_Activity extends AppCompatActivity {
 
                     login_user.highest_score_list = temp_highest_score_list;
 
-                    Task signup_user = mDatabase.child("users").child(username).setValue(login_user);
+                    Task update_user = mDatabase.child("users").child(username).setValue(login_user);
 
+                    // Save user info to local memory
+                    Login_User.current_User = login_user;
+                    Log.v(Login_User.current_User.username, "test!!!!");
 
                     sleep(500);
                     activate_main_activity();
