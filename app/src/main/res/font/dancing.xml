@@ -3,5 +3,5 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="800"
-        android:font="@font/DancingScript" />
+        android:font="@font/dancingscript" />
 </font-family>
