@@ -4,128 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background= "@drawable/pic_title_image"
+    android:visibility="visible"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/new_game_button"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:alpha="0.8"
-        android:backgroundTint="#00E676"
-        android:text="New Game"
-        android:textColor="#2C2626"
-        android:textSize="18sp"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_menu_title"
-        app:layout_constraintVertical_bias="0.166" />
+        app:layout_constraintHorizontal_bias="0.23"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04" />
 
     <Button
-        android:id="@+id/select_stage_button"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:backgroundTint="#00E676"
-        android:text="Select Stage"
-        android:textColor="#1A1818"
-        android:textSize="18sp"
-        android:alpha="0.8"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/About_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="60dp"
+        android:text="About"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_game_button"
-        app:layout_constraintVertical_bias="0.066" />
+        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/Character_customization_button"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:backgroundTint="#00E676"
-        android:text="Character Edit"
-        android:textColor="#252222"
-        android:textSize="18sp"
-        android:alpha="0.8"
+        android:id="@+id/clicky_clicky_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clicky Clicky"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_stage_button"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.175" />
 
     <Button
-        android:id="@+id/exit_game_button"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:backgroundTint="#00E676"
-        android:text="Exit"
-        android:textColor="#111010"
-        android:textSize="18sp"
-        android:alpha="0.8"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Character_customization_button"
-        app:layout_constraintVertical_bias="0.098" />
-
-    <ImageView
-        android:id="@+id/main_menu_title"
-        android:layout_width="443dp"
-        android:layout_height="59dp"
+        android:id="@+id/Link_Collector_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Link Collector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.047"
-        app:srcCompat="@drawable/pic_main_menu_title" />
+        app:layout_constraintTop_toBottomOf="@+id/clicky_clicky_button"
+        app:layout_constraintVertical_bias="0.071" />
 
-    <ImageButton
-        android:id="@+id/setting_button"
-        android:layout_width="75dp"
-        android:layout_height="73dp"
-        android:background="@null"
-        android:scaleType="fitCenter"
-        android:contentDescription="game setting button"
+    <Button
+        android:id="@+id/Locator_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Locator"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.969"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.982"
-        app:srcCompat="@drawable/setting_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/Link_Collector_button"
+        app:layout_constraintVertical_bias="0.084" />
 
-    <ImageButton
-        android:id="@+id/store_button"
-        android:layout_width="68dp"
-        android:layout_height="68dp"
-        android:background="@null"
-        android:scaleType="fitCenter"
-        android:contentDescription="game store button"
-        app:layout_constraintBottom_toTopOf="@+id/setting_button"
+    <Button
+        android:id="@+id/web_service_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Web Service for Weather "
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.959"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95"
-        app:srcCompat="@drawable/store_logo" />
-
-    <ImageButton
-        android:id="@+id/friend_button"
-        android:layout_width="62dp"
-        android:layout_height="68dp"
-        android:background="@null"
-        android:contentDescription="game store button"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/setting_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.959"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.607"
-        app:srcCompat="@drawable/friend_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/Locator_button"
+        app:layout_constraintVertical_bias="0.09" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
