@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
     ImageButton music_5_button;
     ImageButton no_music_button;
 
+    ImageButton select_stage1_button;
+    ImageButton select_stage2_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //TODO
+                select_stage_dialog(view);
             }
         });
 
@@ -198,6 +201,60 @@ public class MainActivity extends AppCompatActivity {
         Intent activate_store_intent = new Intent(this, Store_Activity.class);
         activate_store_intent.putExtra("username", getIntent().getStringExtra("username"));
         startActivity(activate_store_intent);
+    }
+
+    public void select_stage_dialog(View view) {
+
+        final AlertDialog.Builder dialog;
+        Button cancel_button;
+        Button confirm_button;
+        final AlertDialog alert_dialog;
+
+        dialog = new AlertDialog.Builder(MainActivity.this);
+        View dialog_view = getLayoutInflater().inflate(R.layout.select_stage_view, null);
+
+        confirm_button = dialog_view.findViewById(R.id.select_stage_confirm_button);
+        cancel_button = dialog_view.findViewById(R.id.select_stage_cancel_button);
+        select_stage1_button = dialog_view.findViewById(R.id.select_stage1_button);
+        select_stage2_button = dialog_view.findViewById(R.id.select_stage2_button);
+
+
+        dialog.setView(dialog_view);
+        alert_dialog = dialog.create();
+
+        alert_dialog.setCanceledOnTouchOutside(false);
+
+        select_stage1_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stage.current_stage_index = 0;
+                Toast.makeText(MainActivity.this, "You have selected Stage 1 Crazy Crocodile!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        select_stage2_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stage.current_stage_index = 1;
+                Toast.makeText(MainActivity.this, "You have selected Stage 2 Mad Lion!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        confirm_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alert_dialog.dismiss();
+            }
+        });
+
+        cancel_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alert_dialog.dismiss();
+            }
+        });
+
+        alert_dialog.show();
     }
 
     public void scoreboard_dialog(View view) {
