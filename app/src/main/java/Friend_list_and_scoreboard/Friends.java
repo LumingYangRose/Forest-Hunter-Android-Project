@@ -54,6 +54,7 @@ public class Friends extends AppCompatActivity {
     TextView friend_stage_1_score_view;
     TextView friend_stage_2_score_view;
     ImageButton Search_friend_button;
+    ImageButton go_back_button;
 
     private int current_hair_index = Appearance.current_hair_index;
     private int current_head_index = Appearance.current_head_index;
@@ -131,6 +132,15 @@ public class Friends extends AppCompatActivity {
             public void onClick(View view) {
 
                 search_friend_dialog();
+            }
+        });
+
+        go_back_button = findViewById(R.id.friend_go_back_button);
+        go_back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
             }
         });
 
@@ -337,7 +347,8 @@ public class Friends extends AppCompatActivity {
                                         Login_User.current_User.friend_list.add(search_nick_username);
                                         Task update_user = mDatabase.child("users").child(Login_User.current_User.username).setValue(Login_User.current_User);
                                         find_friend_nickname = true;
-                                        Toast.makeText(Friends.this, "Successfully add " + search_nick_username + " to your friend list", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Friends.this, "Successfully add " + search_nick_username + " to your friend list.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Friends.this, "Please enter this page again to check your new friend", Toast.LENGTH_SHORT).show();
 
                                     } else {
                                         find_friend_nickname = true;

@@ -18,7 +18,7 @@
         android:cropToPadding="false"
         android:scaleX="-1"
         app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
-        app:layout_constraintEnd_toEndOf="@+id/appearance_confirm_button"
+        app:layout_constraintEnd_toEndOf="@+id/friend_go_back_button"
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toEndOf="@+id/character_customize_board_view"
         app:layout_constraintTop_toTopOf="@+id/head_view"
@@ -710,7 +710,7 @@
         app:srcCompat="@drawable/pic_next_page_logo" />
 
     <ImageButton
-        android:id="@+id/appearance_confirm_button"
+        android:id="@+id/friend_go_back_button"
         android:layout_width="64dp"
         android:layout_height="58dp"
         android:background="@null"
