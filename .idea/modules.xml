@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NUMAD21Fa_ZuochengWang.iml" filepath="$PROJECT_DIR$/.idea/modules/NUMAD21Fa_ZuochengWang.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/NUMAD21Fa_ZuochengWang.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/NUMAD21Fa_ZuochengWang.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Forest_Hunter.iml" filepath="$PROJECT_DIR$/.idea/modules/Forest_Hunter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Forest_Hunter.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Forest_Hunter.app.iml" />
     </modules>
   </component>
 </project>

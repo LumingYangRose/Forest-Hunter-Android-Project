@@ -1,6 +1,0 @@
-a. My Name: Zuocheng Wang
-
-b. Github Name: wangzuocheng
-
-c. link to my Github repository: 
-https://github.ccs.neu.edu/wangzuocheng/CS5520_Assignment.git

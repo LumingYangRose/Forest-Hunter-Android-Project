@@ -38,6 +38,7 @@ public class login_Activity extends AppCompatActivity {
 
     Button signup_button;
     Button login_button;
+    Button exit_button;
 
     ImageButton music_button;
     Music bgm;
@@ -95,6 +96,16 @@ public class login_Activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 login_dialog(view);
+            }
+        });
+
+        exit_button = (Button) findViewById(R.id.exit_button);
+        exit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveTaskToBack(true);
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
             }
         });
 

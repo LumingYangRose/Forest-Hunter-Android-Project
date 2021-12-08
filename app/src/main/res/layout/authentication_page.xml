@@ -7,6 +7,20 @@
     android:background= "@drawable/pic_title_image"
     tools:ignore="ExtraText">
 
+    <Button
+        android:id="@+id/exit_button"
+        android:layout_width="159dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="16dp"
+        android:alpha="0.8"
+        android:backgroundTint="#00E676"
+        android:text="Exit"
+        android:textColor="#2C2626"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ImageView
         android:id="@+id/main_menu_title"
         android:layout_width="470dp"
@@ -23,7 +37,7 @@
         android:id="@+id/signup_button"
         android:layout_width="159dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="96dp"
         android:alpha="0.8"
         android:backgroundTint="#00E676"
         android:text="Sign up"
@@ -31,14 +45,14 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.748"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="159dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="96dp"
         android:alpha="0.8"
         android:backgroundTint="#00E676"
         android:text="Login"
@@ -46,7 +60,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.255"
+        app:layout_constraintHorizontal_bias="0.253"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton

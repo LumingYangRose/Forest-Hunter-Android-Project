@@ -618,7 +618,7 @@
         android:layout_width="64dp"
         android:layout_height="58dp"
         android:background="@null"
-        android:contentDescription="button for change to next page of the character customize board"
+        android:contentDescription="button for go back to main screen"
         android:scaleType="fitCenter"
         android:scaleX="-1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -750,6 +750,7 @@
         android:background="@drawable/pic_character_board"
         android:backgroundTint="#A4E07E"
         android:spinnerMode="dropdown"
+        android:fontFamily="@font/dancingscript"
         android:text="Select your Friend"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
@@ -762,36 +763,36 @@
 
     <TextView
         android:id="@+id/friend_nickname_title"
-        android:layout_width="165dp"
-        android:layout_height="53dp"
+        android:layout_width="197dp"
+        android:layout_height="57dp"
         android:fontFamily="@font/dancingscript"
-        android:textStyle="bold"
         android:text="Hunter  Name:"
         android:textColor="#F90909"
-        android:textSize="24sp"
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
         app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
-        app:layout_constraintHorizontal_bias="0.26"
+        app:layout_constraintHorizontal_bias="0.13"
         app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
         app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintVertical_bias="0.305" />
 
     <TextView
         android:id="@+id/friend_nickname"
-        android:layout_width="171dp"
-        android:layout_height="42dp"
+        android:layout_width="183dp"
+        android:layout_height="58dp"
         android:fontFamily="@font/dancingscript"
-        android:textStyle="bold"
         android:gravity="center"
         android:text="Name"
         android:textColor="#F90909"
-        android:textSize="24sp"
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
         app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
-        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintHorizontal_bias="0.921"
         app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
         app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
-        app:layout_constraintVertical_bias="0.356" />
+        app:layout_constraintVertical_bias="0.289" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

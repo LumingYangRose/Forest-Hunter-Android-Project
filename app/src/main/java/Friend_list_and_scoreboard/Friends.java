@@ -340,6 +340,7 @@ public class Friends extends AppCompatActivity {
                                         Toast.makeText(Friends.this, "Successfully add " + search_nick_username + " to your friend list", Toast.LENGTH_SHORT).show();
 
                                     } else {
+                                        find_friend_nickname = true;
                                         Toast.makeText(Friends.this, search_nick_username + " is already in your friend list", Toast.LENGTH_SHORT).show();
                                     }
                                 }

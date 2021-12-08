@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Button new_game_button;
     Button select_stage_button;
     Button Character_customization_button;
-    Button exit_game_button;
+    Button logout_button;
     ImageButton store_button;
     ImageButton setting_button;
     ImageButton friend_button;
@@ -68,12 +68,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        exit_game_button = findViewById(R.id.exit_game_button);
-        exit_game_button.setOnClickListener(new View.OnClickListener() {
+        logout_button = findViewById(R.id.logout_button);
+        logout_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                //TODO
+                try{
+                    Intent intent = new Intent(MainActivity.this, login_Activity.class);
+                    startActivity(intent);
+                } finally {
+                    finish();
+                }
             }
         });
 
@@ -82,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //TODO
+                activate_store_activity();
             }
         });
 
@@ -121,6 +126,12 @@ public class MainActivity extends AppCompatActivity {
         Intent character_customize_intent = new Intent(this, Character_customize_Activity.class);
         startActivity(character_customize_intent);
 
+    }
+
+    public void activate_store_activity() {
+        Intent activate_store_intent = new Intent(this, Store_Activity.class);
+        activate_store_intent.putExtra("username", getIntent().getStringExtra("username"));
+        startActivity(activate_store_intent);
     }
 
 }
