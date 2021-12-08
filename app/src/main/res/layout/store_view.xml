@@ -11,9 +11,13 @@
 
     <ImageView
         android:id="@+id/store_board_view"
-        android:layout_width="483dp"
+        android:layout_width="550dp"
         android:layout_height="403dp"
-        android:layout_centerInParent="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="-1dp"
         android:background="@null"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/pic_character_board" />
@@ -22,7 +26,8 @@
         android:id="@+id/forest_store"
         android:layout_width="270dp"
         android:layout_height="56dp"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="207dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/forest_store_title"
         android:textColor="#151414"
@@ -34,8 +39,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/forest_store"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="130dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -64,8 +70,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_500"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="130dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -93,8 +100,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_1000"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="129dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -120,18 +128,48 @@
 
     <ImageButton
         android:id="@+id/return_main_activity"
-        android:layout_width="78dp"
-        android:layout_height="78dp"
+        android:layout_width="105dp"
+        android:layout_height="104dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="59dp"
-        android:layout_marginTop="307dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="302dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="5dp"
         android:layout_toEndOf="@+id/store_board_view"
         android:background="@null"
         android:scaleX="-1"
         app:srcCompat="@drawable/pic_next_button" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="83dp"
+        android:layout_height="66dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="206dp"
+        app:srcCompat="@drawable/coin1" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="84dp"
+        android:layout_height="79dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="295dp"
+        app:srcCompat="@drawable/coin2" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="71dp"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="78dp"
+        android:layout_marginBottom="224dp"
+        app:srcCompat="@drawable/coin3" />
 
 </RelativeLayout>
