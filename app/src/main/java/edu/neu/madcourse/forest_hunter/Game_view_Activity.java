@@ -1,6 +1,9 @@
 package edu.neu.madcourse.forest_hunter;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
@@ -9,6 +12,7 @@ import android.provider.ContactsContract;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -18,8 +22,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import java.security.interfaces.DSAPrivateKey;
 import java.util.ArrayList;
@@ -96,7 +102,7 @@ public class Game_view_Activity extends AppCompatActivity {
     private ArrayList<ImageView> cliff_list;
     private ArrayList<ImageView> food_list;
 
-    private static int count = 0;
+    int count;
     private int time;
     private ArrayList<ImageView> hearts;
     private ProgressBar progress_bar;
@@ -177,6 +183,7 @@ public class Game_view_Activity extends AppCompatActivity {
         time = 0;
         lives = 3;
         score = 0;
+        count = 0;
         paused = false;
         invincible = false;
         jumped = false;
@@ -562,6 +569,43 @@ public class Game_view_Activity extends AppCompatActivity {
         in_game_dialog.show();
     }
 
+    public static class MyDialogFragment extends DialogFragment {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            View dialog_view = getLayoutInflater().inflate(R.layout.game_lose, null);
+
+            Button retry_game = dialog_view.findViewById(R.id.try_again);
+            Button exit_to_main = dialog_view.findViewById(R.id.exit_to_main_menu);
+
+            builder.setView(dialog_view);
+            retry_game.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dismiss();
+                    paused = false;
+                    //getActivity().recreate();
+                    Intent intent = new Intent(getContext(), Game_view_Activity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+            });
+
+            exit_to_main.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent main_menu_intent = new Intent(getContext(), MainActivity.class);
+                    startActivity(main_menu_intent);
+                }
+            });
+
+            return builder.create();
+        }
+    }
+
     private Runnable refresh_view = new Runnable()
     {
         public void run()
@@ -583,7 +627,7 @@ public class Game_view_Activity extends AppCompatActivity {
                 }
             }
 
-            Handler.postDelayed(this, 30); //repeat timmer
+            Handler.postDelayed(this, 30); //repeat timer
         }
     };
 
@@ -601,6 +645,11 @@ public class Game_view_Activity extends AppCompatActivity {
                     if (lives>0 && !invincible) {
                         hearts.get(lives - 1).setVisibility(View.INVISIBLE);
                         lives--;
+                        if (lives <= 0) {
+                            paused = true;
+                            DialogFragment newFragment = new MyDialogFragment();
+                            newFragment.show(getSupportFragmentManager(), "MyDialogFragment");
+                        }
                         invincible = true;
                         invincible_countdown = 20;
                     }
@@ -611,6 +660,11 @@ public class Game_view_Activity extends AppCompatActivity {
                     if (lives>0 && !invincible && !jumped) {
                         hearts.get(lives-1).setVisibility(View.INVISIBLE);
                         lives--;
+                        if (lives <= 0) {
+                            paused = true;
+                            DialogFragment newFragment = new MyDialogFragment();
+                            newFragment.show(getSupportFragmentManager(), "MyDialogFragment");
+                        }
                         invincible = true;
                         invincible_countdown = 20;
                     }
@@ -655,7 +709,7 @@ public class Game_view_Activity extends AppCompatActivity {
                 crocodile.setVisibility(View.INVISIBLE);
             }
 
-            Handler.postDelayed(this, 30);
+            Handler3.postDelayed(this, 30);
 
         }
     };
@@ -729,8 +783,7 @@ public class Game_view_Activity extends AppCompatActivity {
                 count = 0;
             }
 
-
-            Handler.postDelayed(this, 100); //repeat timmer
+            Handler2.postDelayed(this, 60); //repeat timer
         }
     };
 
