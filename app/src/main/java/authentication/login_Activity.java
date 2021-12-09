@@ -26,16 +26,19 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 
+import Friend_list_and_scoreboard.Friends;
 import edu.neu.madcourse.forest_hunter.Appearance;
 import edu.neu.madcourse.forest_hunter.MainActivity;
 import edu.neu.madcourse.forest_hunter.Music;
 import edu.neu.madcourse.forest_hunter.R;
+import user.Login_User;
 import user.User;
 
 public class login_Activity extends AppCompatActivity {
 
     Button signup_button;
     Button login_button;
+    Button exit_button;
 
     ImageButton music_button;
     Music bgm;
@@ -45,6 +48,7 @@ public class login_Activity extends AppCompatActivity {
 
     User login_user;
     String user_Security_answer = "";
+    String nickname = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +96,16 @@ public class login_Activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 login_dialog(view);
+            }
+        });
+
+        exit_button = (Button) findViewById(R.id.exit_button);
+        exit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveTaskToBack(true);
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
             }
         });
 
@@ -161,8 +175,6 @@ public class login_Activity extends AppCompatActivity {
                                 Toast.makeText(login_Activity.this, "This Username does not exist!", Toast.LENGTH_SHORT).show();
                             }
                         }
-
-
                     }
 
                     @Override
@@ -315,6 +327,73 @@ public class login_Activity extends AppCompatActivity {
 
             }
         });
+
+        alert_dialog.show();
+    }
+
+
+    public void enter_nickname_dialog(String username) {
+        final AlertDialog.Builder dialog;
+        final EditText input_nickname;
+        //Button input_cancel_button;
+        Button input_confirm_button;
+        final AlertDialog alert_dialog;
+
+        dialog = new AlertDialog.Builder(login_Activity.this);
+        View dialog_view = getLayoutInflater().inflate(R.layout.enter_nickname_page, null);
+
+        input_nickname = dialog_view.findViewById(R.id.enter_nickname_input_box);
+        //input_cancel_button = dialog_view.findViewById(R.id.enter_nickname_cancel_button);
+        input_confirm_button = dialog_view.findViewById(R.id.enter_nickname_confirm_button);
+
+
+        dialog.setView(dialog_view);
+        alert_dialog = dialog.create();
+
+        alert_dialog.setCanceledOnTouchOutside(false);
+
+        input_confirm_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                nickname = input_nickname.getText().toString();
+
+                DatabaseReference user_database = mDatabase.child("users");
+                user_database.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        boolean find_nickname = false;
+                        for (DataSnapshot pss : snapshot.getChildren()) {
+                            if (pss.child("nickname").exists()) {
+                                String temp_nickname = pss.child("nickname").getValue().toString();
+
+                                if (temp_nickname.equals(nickname)) {
+                                    find_nickname = true;
+                                    Toast.makeText(login_Activity.this, "This Nickname already exists, please use another one", Toast.LENGTH_SHORT).show();
+                                    nickname = "";
+                                }
+                            }
+                        }
+
+                        if (find_nickname == false)
+                        {
+                            alert_dialog.dismiss();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+
+                });
+
+                }
+        }
+        );
+
 
         alert_dialog.show();
     }
@@ -512,9 +591,18 @@ public class login_Activity extends AppCompatActivity {
 
                     String s_question = snapshot.child(username).child("security_question").getValue().toString();
                     String s_question_answer = snapshot.child(username).child("security_answer").getValue().toString();
-                    int highest_score =  Integer.parseInt(snapshot.child(username).child("highest_score").getValue().toString());
+
+                    String fb_nickname = snapshot.child(username).child("nickname").getValue().toString();
+                    ArrayList<String> temp_highest_score_list = new ArrayList<>();
                     int num_of_gold = Integer.parseInt(snapshot.child(username).child("num_of_gold").getValue().toString());
-                    login_user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN, highest_score, num_of_gold);
+                    login_user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN, temp_highest_score_list, num_of_gold);
+
+                    if (fb_nickname.equals("") && !nickname.equals("")){
+                        login_user.nickname = nickname;
+                    }
+                    else {
+                        login_user.nickname = fb_nickname;
+                    }
 
                     ArrayList<String> temp_array_list;
                     temp_array_list = new ArrayList<String>();
@@ -524,9 +612,21 @@ public class login_Activity extends AppCompatActivity {
                             temp_array_list.add(pss.getValue().toString());
                         }
                     }
-
                     login_user.friend_list = temp_array_list;
 
+                    if(snapshot.child(username).child("highest_score_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("highest_score_list").getChildren()) {
+                            temp_highest_score_list.add(pss.getValue().toString());
+                        }
+                    }
+
+                    login_user.highest_score_list = temp_highest_score_list;
+
+                    Task update_user = mDatabase.child("users").child(username).setValue(login_user);
+
+                    // Save user info to local memory
+                    Login_User.current_User = login_user;
+                    Log.v(Login_User.current_User.username, "test!!!!");
 
                     sleep(500);
                     activate_main_activity();
@@ -548,22 +648,21 @@ public class login_Activity extends AppCompatActivity {
     }
 
     public void is_username_exist(String username, String password, String s_question, String s_question_answer) {
+
+        enter_nickname_dialog(username);
+
         DatabaseReference user_database = mDatabase.child("users");
         user_database.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if (!username.equals("") )
-                {
-                    if (!snapshot.child(username).exists())
-                    {
+                if (!username.equals("") ) {
+                    if (!snapshot.child(username).exists()) {
                         User user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN);
                         Task signup_user = mDatabase.child("users").child(username).setValue(user);
                         sleep(1000);
                         Toast.makeText(login_Activity.this, "Successfully Signed up!", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(login_Activity.this, "This Username already exist, Please use another one", Toast.LENGTH_SHORT).show();
                     }
                 }

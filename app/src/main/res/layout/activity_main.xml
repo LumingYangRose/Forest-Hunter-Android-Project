@@ -56,11 +56,11 @@
         app:layout_constraintVertical_bias="0.067" />
 
     <Button
-        android:id="@+id/exit_game_button"
+        android:id="@+id/logout_button"
         android:layout_width="200dp"
         android:layout_height="48dp"
         android:backgroundTint="#00E676"
-        android:text="Exit"
+        android:text="Log Out"
         android:textColor="#111010"
         android:textSize="18sp"
         android:alpha="0.8"
@@ -112,5 +112,35 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.95"
         app:srcCompat="@drawable/store_logo" />
+
+    <ImageButton
+        android:id="@+id/friend_button"
+        android:layout_width="62dp"
+        android:layout_height="68dp"
+        android:background="@null"
+        android:contentDescription="game store button"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/setting_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.959"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.607"
+        app:srcCompat="@drawable/friend_logo" />
+
+    <ImageButton
+        android:id="@+id/score_board_button"
+        android:layout_width="67dp"
+        android:layout_height="73dp"
+        android:background="@null"
+        android:contentDescription="Score board button"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.966"
+        app:srcCompat="@drawable/scoreboard_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

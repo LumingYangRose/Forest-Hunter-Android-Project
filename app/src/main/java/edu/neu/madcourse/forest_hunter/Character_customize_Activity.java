@@ -930,19 +930,21 @@ public class Character_customize_Activity extends AppCompatActivity {
         appearance_confirm_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activate_MainActivity();
+                finish();
             }
         });
 
 
     }
 
+    /*
     public void activate_MainActivity()
     {
         Intent main_intent = new Intent(this, MainActivity.class);
         startActivity(main_intent);
 
     }
+    */
 
 
 }

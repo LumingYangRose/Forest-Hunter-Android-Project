@@ -614,7 +614,7 @@
         app:srcCompat="@drawable/pic_character_board" />
 
     <TextView
-        android:id="@+id/email_address_textview"
+        android:id="@+id/edit_name_textview"
         android:layout_width="112dp"
         android:layout_height="36dp"
         android:gravity="center"
@@ -928,10 +928,10 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
-        app:layout_constraintHorizontal_bias="0.612"
+        app:layout_constraintHorizontal_bias="0.611"
         app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
         app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.009" />
 
     <ImageButton
         android:id="@+id/appearance_last_button4"
