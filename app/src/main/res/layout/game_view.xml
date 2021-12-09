@@ -8,7 +8,8 @@
     android:layout_centerVertical="true"
     android:layout_centerHorizontal="true"
     tools:layout_editor_absoluteX="-190dp"
-    tools:layout_editor_absoluteY="71dp">
+    tools:layout_editor_absoluteY="71dp"
+    tools:context=".Game_view_Activity">
 
 
     <ImageView
@@ -134,6 +135,18 @@
         android:textSize="32sp"
         android:textStyle="bold|italic"
         android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/hunting_info"
+        android:layout_width="480dp"
+        android:layout_height="160dp"
+        app:layout_editor_absoluteX="160dp"
+        app:layout_editor_absoluteY="120dp"
+        android:text="Hunting Info"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
+
     <ImageView
         android:id="@+id/swipe_down"
         android:layout_width="80dp"
@@ -228,6 +241,27 @@
         tools:layout_editor_absoluteY="300dp" />
 
     <ImageView
+        android:id="@+id/boulder_view7"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/boulder_view8"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/boulder_view9"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
         android:id="@+id/food_view5"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -257,6 +291,34 @@
 
     <ImageView
         android:id="@+id/food_view4"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/food_view6"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/food_view9"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/food_view7"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/food_view8"
         android:layout_width="60dp"
         android:layout_height="60dp"
         tools:layout_editor_absoluteX="750dp"
@@ -1029,6 +1091,15 @@
         android:layout_height="150dp"
         android:scaleX="-1"
         app:srcCompat="@drawable/crocodile1"
+        tools:layout_editor_absoluteX="215dp"
+        tools:layout_editor_absoluteY="197dp" />
+
+    <ImageView
+        android:id="@+id/lion"
+        android:layout_width="177dp"
+        android:layout_height="150dp"
+        android:scaleX="-1"
+        app:srcCompat="@drawable/__lion_run_000"
         tools:layout_editor_absoluteX="215dp"
         tools:layout_editor_absoluteY="197dp" />
 

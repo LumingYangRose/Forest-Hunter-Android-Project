@@ -25,7 +25,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="50dp"
             app:srcCompat="@drawable/crocodile_static" />
 
         <ImageButton
@@ -48,7 +48,7 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="50dp"
             app:srcCompat="@drawable/lion_static" />
 
         <ImageButton
@@ -77,11 +77,6 @@
             android:text="Confirm"
             android:textColor="@color/white"
             android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/space7"
-            android:layout_width="match_parent"
-            android:layout_height="15dp" />
 
         <Button
             android:id="@+id/select_stage_cancel_button"

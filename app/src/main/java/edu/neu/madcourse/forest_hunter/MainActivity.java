@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 
 import Friend_list_and_scoreboard.Friends;
 import authentication.login_Activity;
+import user.Login_User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     ImageButton friend_button;
     ImageButton scoreboard_button;
     int num_of_player;
-    Music bgm;
 
     private DatabaseReference mDatabase;
     ArrayList<Integer> stage_1_highest_score_list = new ArrayList<Integer>();
@@ -118,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         Character_customization_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Task update_user = mDatabase.child("users").child(Login_User.current_User.username).setValue(Login_User.current_User);
                 activate_character_customize_activity();
             }
         });
@@ -173,10 +175,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Handling Music
-        bgm = new Music(this);
-        bgm.play_music(0);
-
+        if(Music_controller.bgm == null) {
+            Music_controller.bgm = new Music(this);
+        }
+        Music_controller.bgm.play_music(Music_controller.bgm.current_bgm_index);
     }
 
     public void activate_game_view_activity() {
@@ -356,8 +358,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                bgm.stop();
-                bgm.play_music(0);
+                Music_controller.bgm.stop();
+                Music_controller.bgm.play_music(0);
+                Music_controller.bgm.current_bgm_index = 0;
             }
         });
 
@@ -365,8 +368,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                bgm.stop();
-                bgm.play_music(1);
+                Music_controller.bgm.stop();
+                Music_controller.bgm.play_music(1);
+                Music_controller.bgm.current_bgm_index = 1;
             }
         });
 
@@ -374,8 +378,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                bgm.stop();
-                bgm.play_music(2);
+                Music_controller.bgm.stop();
+                Music_controller.bgm.play_music(2);
+                Music_controller.bgm.current_bgm_index = 2;
             }
         });
 
@@ -383,8 +388,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                bgm.stop();
-                bgm.play_music(3);
+                Music_controller.bgm.stop();
+                Music_controller.bgm.play_music(3);
+                Music_controller.bgm.current_bgm_index = 3;
             }
         });
 
@@ -392,8 +398,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                bgm.stop();
-                bgm.play_music(4);
+                Music_controller.bgm.stop();
+                Music_controller.bgm.play_music(4);
+                Music_controller.bgm.current_bgm_index = 4;
             }
         });
 
@@ -401,7 +408,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                bgm.stop();
+                Music_controller.bgm.stop();
+                Music_controller.bgm.current_bgm_index = 0;
             }
         });
 
@@ -559,7 +567,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(num_card == 5)
         {
-            Log.v("test", "test!!!!!!!!");
+
             top_1_player_card.setText("No.1  " + stage_2_nickname_list.get(0) + " " + stage_2_top_score_list.get(0) );
             top_2_player_card.setText("No.2  " + stage_2_nickname_list.get(1) + " " + stage_2_top_score_list.get(1) );
             top_3_player_card.setText("No.3  " + stage_2_nickname_list.get(2) + " " + stage_2_top_score_list.get(2) );
@@ -567,5 +575,11 @@ public class MainActivity extends AppCompatActivity {
             top_5_player_card.setText("No.5  " + stage_2_nickname_list.get(4) + " " + stage_2_top_score_list.get(3) );
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Task update_user = mDatabase.child("users").child(Login_User.current_User.username).setValue(Login_User.current_User);
+        super.onBackPressed();
     }
 }

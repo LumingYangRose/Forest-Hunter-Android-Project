@@ -27,6 +27,7 @@ public class Store_Activity extends AppCompatActivity {
     private String username;
     private DatabaseReference reference;
     private TextView coins;
+    int value;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class Store_Activity extends AppCompatActivity {
         reference.child("users").child(username).child("num_of_gold").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int value = snapshot.getValue(Integer.class);
+                value = snapshot.getValue(Integer.class);
                 coins.setText("Your Coins :" + value);
             }
 
@@ -68,8 +69,9 @@ public class Store_Activity extends AppCompatActivity {
                 reference.child("users").child(username).child("num_of_gold").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        int value = snapshot.getValue(Integer.class);
-                        value = value + 10000;
+                        value = snapshot.getValue(Integer.class);
+                        value = value + 1000;
+                        coins.setText("Your Coins :" + value);
                         reference.child("users").child(username).child("num_of_gold").setValue(value);
                         showMyDialog();
                     }
@@ -88,8 +90,9 @@ public class Store_Activity extends AppCompatActivity {
                 reference.child("users").child(username).child("num_of_gold").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        int value = snapshot.getValue(Integer.class);
-                        value = value + 60000;
+                        value = snapshot.getValue(Integer.class);
+                        value = value + 6000;
+                        coins.setText("Your Coins :" + value);
                         reference.child("users").child(username).child("num_of_gold").setValue(value);
                         showMyDialog();
                     }
@@ -108,8 +111,9 @@ public class Store_Activity extends AppCompatActivity {
                 reference.child("users").child(username).child("num_of_gold").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        int value = snapshot.getValue(Integer.class);
-                        value = value + 250000;
+                        value = snapshot.getValue(Integer.class);
+                        value = value + 25000;
+                        coins.setText("Your Coins :" + value);
                         reference.child("users").child(username).child("num_of_gold").setValue(value);
                         showMyDialog();
                     }
