@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import java.security.interfaces.DSAPrivateKey;
 import java.util.ArrayList;
@@ -179,13 +180,10 @@ public class Game_view_Activity extends AppCompatActivity {
 
     static double dpi_ratio;
 
-    DialogFragment newFragment;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_view);
-
-        newFragment = new MyDialogFragment();
 
         if (stage.current_stage_index == 0)
         {
@@ -193,7 +191,7 @@ public class Game_view_Activity extends AppCompatActivity {
         }
         else
         {
-            speed_index= 28;
+            speed_index= 25;
         }
 
         time = 0;
@@ -600,6 +598,7 @@ public class Game_view_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent main_menu_intent = new Intent(getApplicationContext(), MainActivity.class);
+                finish();
                 startActivity(main_menu_intent);
             }
         });
@@ -640,9 +639,10 @@ public class Game_view_Activity extends AppCompatActivity {
                 public void onClick(View view) {
                     dismiss();
                     paused = false;
-                    //getActivity().recreate();
+                    getActivity().finish();
+                    getActivity().recreate();
                     Intent intent = new Intent(getContext(), Game_view_Activity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
             });
@@ -651,6 +651,7 @@ public class Game_view_Activity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Music_controller.bgm.stop();
+                    getActivity().finish();
                     Intent main_menu_intent = new Intent(getContext(), MainActivity.class);
                     startActivity(main_menu_intent);
                 }
@@ -709,8 +710,8 @@ public class Game_view_Activity extends AppCompatActivity {
                         lives--;
                         if (lives <= 0) {
                             paused = true;
-                            DialogFragment newFragment = new MyDialogFragment();
-                            newFragment.show(getSupportFragmentManager(), "MyDialogFragment");
+                            MyDialogFragment newFragment = new MyDialogFragment();
+                            newFragment.show(getSupportFragmentManager(), "fragment tag");
                         }
                         invincible = true;
                         invincible_countdown = 20;
@@ -725,7 +726,12 @@ public class Game_view_Activity extends AppCompatActivity {
                         if (lives <= 0) {
                             paused = true;
                             //DialogFragment newFragment = new MyDialogFragment();
-                            newFragment.show(getSupportFragmentManager(), "MyDialogFragment");
+                            MyDialogFragment newFragment = new MyDialogFragment();
+                            try {
+                                newFragment.show(getSupportFragmentManager(), "fragment tag");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                         invincible = true;
                         invincible_countdown = 20;
@@ -1057,6 +1063,14 @@ public class Game_view_Activity extends AppCompatActivity {
         Handler3.removeCallbacksAndMessages(null);
 
         super.onBackPressed();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Handler.removeCallbacks(refresh_view);
+        Handler2.removeCallbacks(refresh_character_view);
+        Handler3.removeCallbacks(game_play);
     }
 
     public void setUpMovingObjects() {
@@ -2198,117 +2212,117 @@ public class Game_view_Activity extends AppCompatActivity {
                 food_list.get(7).setX(screen_width + 100*screenRatioX);
                 food_list.get(7).setVisibility(View.VISIBLE);
             }
-            food_list.get(7).setX(food_list.get(7).getX() - speed_index * screenRatioX);
+            food_list.get(7).setX(food_list.get(7).getX() - 20 * screenRatioX);
         }
         if (time >= 1620 && time < 1760 && !paused) {
             if (time == 1620) {
                 food_list.get(5).setX(screen_width + 100*screenRatioX);
                 food_list.get(5).setVisibility(View.VISIBLE);
             }
-            food_list.get(5).setX(food_list.get(5).getX() - speed_index * screenRatioX);
+            food_list.get(5).setX(food_list.get(5).getX() - 20 * screenRatioX);
         }
         if (time >= 1660 && time < 1800 && !paused) {
             if (time == 1660) {
                 cliff_list.get(3).setX(screen_width + 100*screenRatioX);
             }
-            cliff_list.get(3).setX(cliff_list.get(3).getX() - speed_index * screenRatioX);
+            cliff_list.get(3).setX(cliff_list.get(3).getX() - 20 * screenRatioX);
         }
         if (time >= 1680 && time < 1820 && !paused) {
             if (time == 1680) {
                 boulder_list.get(1).setX(screen_width + 100*screenRatioX);
             }
-            boulder_list.get(1).setX(boulder_list.get(1).getX() - speed_index * screenRatioX);
+            boulder_list.get(1).setX(boulder_list.get(1).getX() - 20 * screenRatioX);
         }
         if (time >= 1700 && time < 1840 && !paused) {
             if (time == 1700) {
                 boulder_list.get(7).setX(screen_width + 100*screenRatioX);
             }
-            boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
+            boulder_list.get(7).setX(boulder_list.get(7).getX() - 20 * screenRatioX);
         }
         if (time >= 1720 && time < 1860 && !paused) {
             if (time == 1720) {
                 boulder_list.get(8).setX(screen_width + 100*screenRatioX);
             }
-            boulder_list.get(8).setX(boulder_list.get(8).getX() - speed_index * screenRatioX);
+            boulder_list.get(8).setX(boulder_list.get(8).getX() - 20 * screenRatioX);
         }
         if (time >= 1740 && time < 1880 && !paused) {
             if (time == 1740) {
                 cliff_list.get(4).setX(screen_width + 100*screenRatioX);
             }
-            cliff_list.get(4).setX(cliff_list.get(4).getX() - speed_index * screenRatioX);
+            cliff_list.get(4).setX(cliff_list.get(4).getX() - 20 * screenRatioX);
         }
         if (time >= 1760 && time < 1900 && !paused) {
             if (time == 1760) {
                 food_list.get(0).setX(screen_width + 100*screenRatioX);
                 food_list.get(0).setVisibility(View.VISIBLE);
             }
-            food_list.get(0).setX(food_list.get(0).getX() - speed_index * screenRatioX);
+            food_list.get(0).setX(food_list.get(0).getX() - 20 * screenRatioX);
         }
         if (time >= 1780 && time < 1920 && !paused) {
             if (time == 1780) {
                 boulder_list.get(0).setX(screen_width + 100*screenRatioX);
             }
-            boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
+            boulder_list.get(0).setX(boulder_list.get(0).getX() - 20 * screenRatioX);
         }
         if (time >= 1800 && time < 1940 && !paused) {
             if (time == 1800) {
                 boulder_list.get(2).setX(screen_width + 100*screenRatioX);
             }
-            boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
+            boulder_list.get(2).setX(boulder_list.get(2).getX() - 20 * screenRatioX);
         }
         if (time >= 1820 && time < 1960 && !paused) {
             if (time == 1820) {
                 boulder_list.get(4).setX(screen_width + 100*screenRatioX);
             }
-            boulder_list.get(4).setX(boulder_list.get(4).getX() - speed_index * screenRatioX);
+            boulder_list.get(4).setX(boulder_list.get(4).getX() - 20 * screenRatioX);
         }
         if (time >= 1840 && time < 1980 && !paused) {
             if (time == 1840) {
                 cliff_list.get(0).setX(screen_width + 100*screenRatioX);
             }
-            cliff_list.get(0).setX(cliff_list.get(0).getX() - speed_index * screenRatioX);
+            cliff_list.get(0).setX(cliff_list.get(0).getX() - 20 * screenRatioX);
         }
         if (time >= 1880) {
             if (time == 1880) {
                 food_list.get(6).setX(screen_width + 100*screenRatioX);
                 food_list.get(6).setVisibility(View.VISIBLE);
             }
-            food_list.get(6).setX(food_list.get(6).getX() - speed_index * screenRatioX);
+            food_list.get(6).setX(food_list.get(6).getX() - 20 * screenRatioX);
         }
         if (time >= 1880) {
             if (time == 1880) {
                 food_list.get(2).setX(screen_width + 100*screenRatioX);
                 food_list.get(2).setVisibility(View.VISIBLE);
             }
-            food_list.get(2).setX(food_list.get(2).getX() - speed_index * screenRatioX);
+            food_list.get(2).setX(food_list.get(2).getX() - 20 * screenRatioX);
         }
         if (time >= 1880) {
             if (time == 1880) {
                 food_list.get(8).setX(screen_width + 100*screenRatioX);
                 food_list.get(8).setVisibility(View.VISIBLE);
             }
-            food_list.get(8).setX(food_list.get(8).getX() - speed_index * screenRatioX);
+            food_list.get(8).setX(food_list.get(8).getX() - 20 * screenRatioX);
         }
         if (time >= 1920) {
             if (time == 1920) {
                 food_list.get(1).setX(screen_width + 100*screenRatioX);
                 food_list.get(1).setVisibility(View.VISIBLE);
             }
-            food_list.get(1).setX(food_list.get(1).getX() - speed_index * screenRatioX);
+            food_list.get(1).setX(food_list.get(1).getX() - 20 * screenRatioX);
         }
         if (time >= 1920) {
             if (time == 1920) {
                 food_list.get(3).setX(screen_width + 100*screenRatioX);
                 food_list.get(3).setVisibility(View.VISIBLE);
             }
-            food_list.get(3).setX(food_list.get(3).getX() - speed_index * screenRatioX);
+            food_list.get(3).setX(food_list.get(3).getX() - 20 * screenRatioX);
         }
         if (time >= 1920) {
             if (time == 1920) {
                 food_list.get(4).setX(screen_width + 100*screenRatioX);
                 food_list.get(4).setVisibility(View.VISIBLE);
             }
-            food_list.get(4).setX(food_list.get(4).getX() - speed_index * screenRatioX);
+            food_list.get(4).setX(food_list.get(4).getX() - 20 * screenRatioX);
         }
         if (time == SET_ONE_LENGTH + 200 && !paused
         ) {
