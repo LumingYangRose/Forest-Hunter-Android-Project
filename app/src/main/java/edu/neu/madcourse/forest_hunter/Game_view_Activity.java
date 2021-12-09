@@ -245,6 +245,15 @@ public class Game_view_Activity extends AppCompatActivity {
 
         dpi_ratio = dpi/440.00;
 
+        tutorial_info.setX((float) (1280 * dpi_ratio));
+        hunting_info.setX((float) (720 * dpi_ratio));
+        swipe_up.setX((float) (960* dpi_ratio));
+        swipe_up.setY((float) (240* dpi_ratio));
+        swipe_down.setX((float) (960* dpi_ratio));
+        swipe_down.setY((float) (640* dpi_ratio));
+        tap_screen.setX((float) (960* dpi_ratio));
+        tap_screen.setY((float) (440* dpi_ratio));
+
         screenRatioX = float_w / screen_width;
         screenRatioY = float_h / screen_height;
 
