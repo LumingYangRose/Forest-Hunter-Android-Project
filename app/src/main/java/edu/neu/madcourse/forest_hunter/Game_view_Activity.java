@@ -228,8 +228,8 @@ public class Game_view_Activity extends AppCompatActivity {
         bullet_view.getLayoutParams().width = 80;
         bullet_view.getLayoutParams().height = 80;
 
-        bullet_view.setX(0);
-        bullet_view.setY(450);
+        bullet_view.setX(500);
+        bullet_view.setY(600);
 
         boulder_list = new ArrayList<>();
         gorilla_list = new ArrayList<>();
@@ -542,7 +542,7 @@ public class Game_view_Activity extends AppCompatActivity {
             bullet_view.setX(bullet_view.getX() + 20 * screenRatioX);
 
             if (bullet_view.getX() >= screen_width) {
-                bullet_view.setX(moveX);
+                bullet_view.setX(moveX+50);
 //                bullet_view.setY(moveY - 100);
 //                bullet_view.setVisibility(View.INVISIBLE);
             }
@@ -579,6 +579,16 @@ public class Game_view_Activity extends AppCompatActivity {
                         invincible_countdown = 20;
                     }
                 }
+
+                if ((Math.abs(iv.getX()-bullet_view.getX()) <= 100)
+                        && (Math.abs(iv.getY()-bullet_view.getY()) <= 100)) {
+                    if (lives>0) {
+                        iv.setVisibility(View.INVISIBLE);
+                        score += 250;
+                        score_view.setText("Score: " + score);
+                    }
+                }
+
             }
             for (ImageView cliff: cliff_list) {
                 if (Math.abs(cliff.getX()-chest_view.getX()) <= 100) {
@@ -921,11 +931,11 @@ public class Game_view_Activity extends AppCompatActivity {
         boulder5.setY((int)(screen_height*0.74));
         boulder6.setY((int)(screen_height*0.74));
         boulder_list.add(boulder1);
-        boulder_list.add(boulder2);
-        boulder_list.add(boulder3);
-        boulder_list.add(boulder4);
-        boulder_list.add(boulder5);
-        boulder_list.add(boulder6);
+//        boulder_list.add(boulder2);
+//        boulder_list.add(boulder3);
+//        boulder_list.add(boulder4);
+//        boulder_list.add(boulder5);
+//        boulder_list.add(boulder6);
         for (ImageView iv: boulder_list) {
             iv.setX(screen_width + 100*screenRatioX);
             iv.setImageResource(R.drawable.body_crouched);
@@ -960,8 +970,8 @@ public class Game_view_Activity extends AppCompatActivity {
         for (ImageView iv: gorilla_list) {
             iv.setX(screen_width + 100*screenRatioX);
             iv.setImageResource(R.drawable.__gorilla_brown_walk_standing_011);
-            iv.getLayoutParams().width = 500;
-            iv.getLayoutParams().height = 500;
+            iv.getLayoutParams().width = 200;
+            iv.getLayoutParams().height = 200;
         }
     }
 
@@ -1028,21 +1038,21 @@ public class Game_view_Activity extends AppCompatActivity {
     }
 
     public void setUpStage1(int time) {
-        if (time >= 100) {
+        if (time >= 200) {
             gorilla_list.get(0).setX(gorilla_list.get(0).getX() - 20 * screenRatioX);
         }
 
-        if (time >= 220) {
-            gorilla_list.get(1).setX(gorilla_list.get(1).getX() - 20 * screenRatioX);
-        }
+//        if (time >= 220) {
+//            gorilla_list.get(1).setX(gorilla_list.get(1).getX() - 20 * screenRatioX);
+//        }
 
         if (time >= 200) {
             boulder_list.get(0).setX(boulder_list.get(0).getX() - 20 * screenRatioX);
         }
 
-        if (time >= 220) {
-            boulder_list.get(2).setX(boulder_list.get(2).getX() - 20 * screenRatioX);
-        }
+//        if (time >= 220) {
+//            boulder_list.get(2).setX(boulder_list.get(2).getX() - 20 * screenRatioX);
+//        }
 
         if (time >= 220 && time < 340) {
             food_list.get(4).setX(food_list.get(4).getX() - 20 * screenRatioX);
@@ -1050,9 +1060,9 @@ public class Game_view_Activity extends AppCompatActivity {
 //        if (time >= 220 && time < 340) {
 //            gorilla_list.get(2).setX(gorilla_list.get(2).getX() - 20 * screenRatioX);
 //        }
-        if (time >= 260) {
-            boulder_list.get(5).setX(boulder_list.get(5).getX() - 20 * screenRatioX);
-        }
+//        if (time >= 260) {
+//            boulder_list.get(5).setX(boulder_list.get(5).getX() - 20 * screenRatioX);
+//        }
         if (time >= 300) {
             cliff_list.get(0).setX(cliff_list.get(0).getX() - 20 * screenRatioX);
         }
