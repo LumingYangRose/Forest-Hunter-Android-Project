@@ -163,7 +163,7 @@ public class Game_view_Activity extends AppCompatActivity {
     int screen_width;
     int screen_height;
 
-    int speed_index = 25;
+    int speed_index = 20;
 
     public static float screenRatioX, screenRatioY;
 
@@ -193,7 +193,7 @@ public class Game_view_Activity extends AppCompatActivity {
         }
         else
         {
-            speed_index= 30;
+            speed_index= 28;
         }
 
         time = 0;
@@ -993,8 +993,8 @@ public class Game_view_Activity extends AppCompatActivity {
         }
 
         public class GestureListener extends GestureDetector.SimpleOnGestureListener {
-            private static final int SWIPE_THRESHOLD = 60;
-            private static final int SWIPE_VELOCITY_THRESHOLD = 60;
+            private static final int SWIPE_THRESHOLD = 40;
+            private static final int SWIPE_VELOCITY_THRESHOLD = 40;
 
             @Override
             public boolean onFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
@@ -1809,8 +1809,8 @@ public class Game_view_Activity extends AppCompatActivity {
             }
             food_list.get(4).setX(food_list.get(4).getX() - speed_index * screenRatioX);
         }
-        if (time >= 440 && time < 600 && !paused) {
-            cliff_list.get(4).setX(cliff_list.get(1).getX() - speed_index * screenRatioX);
+        if (time >= 430 && time < 600 && !paused) {
+            cliff_list.get(4).setX(cliff_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 500 && time < 640 && !paused) {
             boulder_list.get(1).setX(boulder_list.get(1).getX() - speed_index * screenRatioX);
@@ -1827,7 +1827,7 @@ public class Game_view_Activity extends AppCompatActivity {
         if (time >= 540 && time < 680 && !paused) {
             boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);
         }
-        if (time >= 580 && time < 720 && !paused) {
+        if (time >= 550 && time < 690 && !paused) {
             cliff_list.get(2).setX(cliff_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 620 && time < 760 && !paused) {
@@ -1872,7 +1872,7 @@ public class Game_view_Activity extends AppCompatActivity {
             cliff_list.get(4).setX(cliff_list.get(4).getX() - speed_index * screenRatioX);
         }
 
-        if (time >= 760 && time < 900 && !paused) {
+        if (time >= 750 && time < 900 && !paused) {
             cliff_list.get(4).setX(cliff_list.get(4).getX() - speed_index * screenRatioX);
         } //Added
         if (time >= 760 && time < 900 && !paused) {
@@ -2129,12 +2129,7 @@ public class Game_view_Activity extends AppCompatActivity {
             }
             cliff_list.get(1).setX(cliff_list.get(1).getX() - speed_index * screenRatioX);
         }
-        if (time >= 1420 && time < 1580 && !paused) {
-            if (time == 1420) {
-                boulder_list.get(7).setX(screen_width + 100*screenRatioX);
-            }
-            boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
-        }
+
         if (time >= 1470 && time < 1600 && !paused) {
             if (time == 1470) {
                 boulder_list.get(1).setX(screen_width + 100*screenRatioX);
@@ -2154,26 +2149,26 @@ public class Game_view_Activity extends AppCompatActivity {
             }
             food_list.get(6).setX(food_list.get(6).getX() - speed_index * screenRatioX);
         }
-        if (time >= 1480 && time < 1620 && !paused) {
-            if (time == 1480) {
+        if (time >= 1500 && time < 1620 && !paused) {
+            if (time == 1500) {
                 boulder_list.get(2).setX(screen_width + 100*screenRatioX);
             }
             boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
         }
-        if (time >= 1500 && time < 1640 && !paused) {
-            if (time == 1500) {
+        if (time >= 1520 && time < 1680 && !paused) {
+            if (time == 1520) {
                 boulder_list.get(6).setX(screen_width + 100*screenRatioX);
             }
             boulder_list.get(6).setX(boulder_list.get(6).getX() - speed_index * screenRatioX);
         }
-        if (time >= 1500 && time < 1640 && !paused) {
-            if (time == 1500) {
+        if (time >= 1520 && time < 1680 && !paused) {
+            if (time == 1520) {
                 boulder_list.get(5).setX(screen_width + 100*screenRatioX);
             }
             boulder_list.get(5).setX(boulder_list.get(5).getX() - speed_index * screenRatioX);
         }
-        if (time >= 1520 && time < 1660 && !paused) {
-            if (time == 1520) {
+        if (time >= 1540 && time < 1700 && !paused) {
+            if (time == 1540) {
                 boulder_list.get(3).setX(screen_width + 100*screenRatioX);
             }
             boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);
