@@ -94,8 +94,8 @@ public class login_Activity extends AppCompatActivity {
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 login_dialog(view);
+
             }
         });
 
@@ -433,10 +433,15 @@ public class login_Activity extends AppCompatActivity {
                 String username = input_username.getText().toString();
                 String password = input_password.getText().toString();
 
-                boolean is_password_valid = validate_password(password);
+//                only for test
+//                boolean is_password_valid = validate_password(password);
+                boolean is_password_valid = true;
+
 
                 if (is_password_valid) {
-                    authentication(username, password);
+//                    authentication(username, password);
+                    authentication("123", "12121212Ly!");
+
                 }
 
                 alert_dialog.dismiss();
