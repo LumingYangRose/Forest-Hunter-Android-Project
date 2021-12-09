@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/setting_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pic_title_image"
+    android:orientation="vertical"
+    android:padding="14dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/setting_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/select_game_music" />
+
+
+        <ImageButton
+            android:id="@+id/music_1_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#E84848"
+            android:gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/music_1_text"
+            android:text="1st music"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <ImageButton
+            android:id="@+id/music_2_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#E4A548"
+            android:gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/music_2_text"
+            android:text="2nd music"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/space2"
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <ImageButton
+            android:id="@+id/music_3_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#E1D45E"
+            android:gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/music_3_text"
+            android:text="3rd music"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/space3"
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <ImageButton
+            android:id="@+id/music_4_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#2C46DA"
+            android:gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/music_4_text"
+            android:text="4st music"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/space4"
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <ImageButton
+            android:id="@+id/music_5_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#6622DF"
+            android:gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/music_5_text"
+            android:text="5nd music"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/space5"
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <ImageButton
+            android:id="@+id/no_music_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#E5E3E8"
+            android:gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/no_music"
+            android:text="5nd music"
+            android:textSize="22sp" />
+
+
+        <TextView
+            android:id="@+id/space1"
+            android:layout_width="match_parent"
+            android:layout_height="29dp" />
+
+
+        <Button
+            android:id="@+id/setting_confirm_button"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:backgroundTint="#00E676"
+            android:text="Confirm"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+</ScrollView>

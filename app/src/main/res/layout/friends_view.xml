@@ -18,7 +18,7 @@
         android:cropToPadding="false"
         android:scaleX="-1"
         app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
-        app:layout_constraintEnd_toEndOf="@+id/appearance_confirm_button"
+        app:layout_constraintEnd_toEndOf="@+id/friend_go_back_button"
         app:layout_constraintHorizontal_bias="0.578"
         app:layout_constraintStart_toEndOf="@+id/character_customize_board_view"
         app:layout_constraintTop_toTopOf="@+id/head_view"
@@ -614,7 +614,7 @@
         app:srcCompat="@drawable/pic_character_board" />
 
     <ImageButton
-        android:id="@+id/appearance_confirm_button"
+        android:id="@+id/friend_go_back_button"
         android:layout_width="64dp"
         android:layout_height="58dp"
         android:background="@null"
@@ -631,17 +631,17 @@
 
     <ImageButton
         android:id="@+id/search_friend_button"
-        android:layout_width="57dp"
+        android:layout_width="53dp"
         android:layout_height="51dp"
         android:background="@null"
         android:contentDescription="button for change to next page of the character customize board"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
         app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
         app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
-        app:layout_constraintVertical_bias="0.034"
+        app:layout_constraintVertical_bias="0.038"
         app:srcCompat="@drawable/search_logo" />
 
     <TextView
@@ -662,8 +662,8 @@
 
     <TextView
         android:id="@+id/stage_1_best_score_title"
-        android:layout_width="203dp"
-        android:layout_height="67dp"
+        android:layout_width="120dp"
+        android:layout_height="57dp"
         android:ems="10"
         android:gravity="center"
         android:text="Crazy Crocodile Best Score:"
@@ -672,10 +672,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
         app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
-        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintHorizontal_bias="0.443"
         app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
         app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
-        app:layout_constraintVertical_bias="0.665" />
+        app:layout_constraintVertical_bias="0.668" />
 
     <TextView
         android:id="@+id/stage_1_best_score"
@@ -713,8 +713,8 @@
 
     <TextView
         android:id="@+id/stage_2_best_score_title"
-        android:layout_width="202dp"
-        android:layout_height="63dp"
+        android:layout_width="120dp"
+        android:layout_height="52dp"
         android:ems="10"
         android:gravity="center"
         android:text="Mad Lion Best Score:"
@@ -723,10 +723,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
         app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
-        app:layout_constraintHorizontal_bias="0.262"
+        app:layout_constraintHorizontal_bias="0.443"
         app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
         app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
-        app:layout_constraintVertical_bias="0.972" />
+        app:layout_constraintVertical_bias="0.961" />
 
     <Spinner
         android:id="@+id/nothing"
@@ -745,12 +745,12 @@
 
     <Spinner
         android:id="@+id/friend_spinner"
-        android:layout_width="252dp"
-        android:layout_height="40dp"
+        android:layout_width="247dp"
+        android:layout_height="36dp"
         android:background="@drawable/pic_character_board"
         android:backgroundTint="#A4E07E"
-        android:spinnerMode="dropdown"
         android:fontFamily="@font/dancingscript"
+        android:spinnerMode="dropdown"
         android:text="Select your Friend"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
@@ -763,36 +763,59 @@
 
     <TextView
         android:id="@+id/friend_nickname_title"
-        android:layout_width="197dp"
-        android:layout_height="57dp"
-        android:fontFamily="@font/dancingscript"
+        android:layout_width="167dp"
+        android:layout_height="29dp"
         android:text="Hunter  Name:"
-        android:textColor="#F90909"
-        android:textSize="34sp"
+        android:textColor="#151111"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
         app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
-        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintHorizontal_bias="0.114"
         app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
         app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
-        app:layout_constraintVertical_bias="0.305" />
+        app:layout_constraintVertical_bias="0.33" />
 
     <TextView
         android:id="@+id/friend_nickname"
-        android:layout_width="183dp"
-        android:layout_height="58dp"
+        android:layout_width="178dp"
+        android:layout_height="36dp"
         android:fontFamily="@font/dancingscript"
         android:gravity="center"
         android:text="Name"
-        android:textColor="#F90909"
-        android:textSize="34sp"
+        android:textColor="#000000"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
         app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
-        app:layout_constraintHorizontal_bias="0.921"
+        app:layout_constraintHorizontal_bias="0.836"
         app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
         app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
-        app:layout_constraintVertical_bias="0.289" />
+        app:layout_constraintVertical_bias="0.32" />
+
+    <ImageView
+        android:id="@+id/imageView_friend_crocodile"
+        android:layout_width="77dp"
+        android:layout_height="65dp"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.66"
+        app:srcCompat="@drawable/crocodile_static" />
+
+    <ImageView
+        android:id="@+id/imageView_friend_lion"
+        android:layout_width="77dp"
+        android:layout_height="65dp"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.981"
+        app:srcCompat="@drawable/lion_static" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
