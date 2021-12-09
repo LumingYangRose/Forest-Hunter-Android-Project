@@ -24,18 +24,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.ArrayList;
+
+import Friend_list_and_scoreboard.Friends;
 import edu.neu.madcourse.forest_hunter.Appearance;
 import edu.neu.madcourse.forest_hunter.MainActivity;
 import edu.neu.madcourse.forest_hunter.Music;
-
-import java.util.ArrayList;
 import edu.neu.madcourse.forest_hunter.R;
+import user.Login_User;
 import user.User;
 
 public class login_Activity extends AppCompatActivity {
 
     Button signup_button;
     Button login_button;
+    Button exit_button;
 
     ImageButton music_button;
     Music bgm;
@@ -44,6 +47,8 @@ public class login_Activity extends AppCompatActivity {
     private DatabaseReference mDatabase;
 
     User login_user;
+    String user_Security_answer = "";
+    String nickname = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +99,17 @@ public class login_Activity extends AppCompatActivity {
             }
         });
 
+        exit_button = (Button) findViewById(R.id.exit_button);
+        exit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveTaskToBack(true);
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
+            }
+        });
+
+
         //Handling Music
         bgm = new Music(this);
         bgm.play_music();
@@ -104,9 +120,279 @@ public class login_Activity extends AppCompatActivity {
                 bgm.play_next();
             }
         });
+    }
+
+    public void forget_password_enter_username_dialog(View view) {
+        final AlertDialog.Builder dialog;
+        final EditText input_username;
+        Button input_cancel_button;
+        Button input_confirm_button;
+        final AlertDialog alert_dialog;
+
+        dialog = new AlertDialog.Builder(login_Activity.this);
+        View dialog_view = getLayoutInflater().inflate(R.layout.enter_username_page, null);
+
+        input_username = dialog_view.findViewById(R.id.forget_password_enter_username_input_box);
+        input_cancel_button = dialog_view.findViewById(R.id.forget_password_enter_username_cancel_button);
+        input_confirm_button = dialog_view.findViewById(R.id.forget_password_enter_username_confirm_button);
 
 
+        dialog.setView(dialog_view);
+        alert_dialog = dialog.create();
 
+        alert_dialog.setCanceledOnTouchOutside(false);
+
+        input_cancel_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alert_dialog.dismiss();
+            }
+        });
+
+        input_confirm_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String username = input_username.getText().toString();
+
+                // check if the username exists
+                DatabaseReference user_database = mDatabase.child("users");
+                user_database.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        if (!username.equals("") )
+                        {
+                            if (snapshot.child(username).exists())
+                            {
+                                String security_question = snapshot.child(username).child("security_question").getValue().toString();
+                                Answer_security_question_dialog(view, username, security_question);
+                            }
+                            else
+                            {
+                                Toast.makeText(login_Activity.this, "This Username does not exist!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+
+                });
+
+                alert_dialog.dismiss();
+
+            }
+        });
+
+
+        alert_dialog.show();
+    }
+
+    public void Answer_security_question_dialog(View view, String username, String security_question) {
+        final AlertDialog.Builder dialog;
+        final TextView show_security_question;
+        final EditText security_question_answer;
+        Button input_cancel_button;
+        Button input_confirm_button;
+        final AlertDialog alert_dialog;
+
+        dialog = new AlertDialog.Builder(login_Activity.this);
+        View dialog_view = getLayoutInflater().inflate(R.layout.answer_security_question, null);
+
+        input_cancel_button = dialog_view.findViewById(R.id.security_Q_cancel_button);
+        input_confirm_button = dialog_view.findViewById(R.id.security_Q_confirm_button);
+        show_security_question =  dialog_view.findViewById(R.id.Security_Q_title);
+        show_security_question.setText(security_question);
+        security_question_answer =  dialog_view.findViewById(R.id.security_Q_enter_security_answer_input_box);
+
+        dialog.setView(dialog_view);
+        alert_dialog = dialog.create();
+
+        alert_dialog.setCanceledOnTouchOutside(false);
+
+        input_cancel_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alert_dialog.dismiss();
+            }
+        });
+
+        input_confirm_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                user_Security_answer = security_question_answer.getText().toString();
+
+                if (user_Security_answer.equals(""))
+                {
+                    Toast.makeText(login_Activity.this, "Answer to Security Question Cannot be Empty!", Toast.LENGTH_SHORT).show();
+                }
+
+                is_security_answer_correct(username, user_Security_answer);
+
+                alert_dialog.dismiss();
+
+            }
+        });
+
+        alert_dialog.show();
+    }
+
+    public void is_security_answer_correct(String username, String user_Security_answer)
+    {
+        DatabaseReference user_database = mDatabase.child("users");
+        user_database.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (!user_Security_answer.equals("") )
+                {
+                    if (snapshot.child(username).child("security_answer").getValue().toString().equals(user_Security_answer))
+                    {
+                        Toast.makeText(login_Activity.this, "The Answer is correct", Toast.LENGTH_SHORT).show();
+                        show_password_dialog(username);
+
+                    }
+                    else
+                    {
+                        Toast.makeText(login_Activity.this, "The Answer is incorrect, Please try again!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+    }
+
+    public void show_password_dialog(String username) {
+        final AlertDialog.Builder dialog;
+        final TextView show_password;
+        Button input_confirm_button;
+        final AlertDialog alert_dialog;
+
+        dialog = new AlertDialog.Builder(login_Activity.this);
+        View dialog_view = getLayoutInflater().inflate(R.layout.show_password, null);
+
+        show_password = dialog_view.findViewById(R.id.show_password_password);
+        input_confirm_button = dialog_view.findViewById(R.id.show_password_confirm_button);
+
+
+        dialog.setView(dialog_view);
+        alert_dialog = dialog.create();
+
+        alert_dialog.setCanceledOnTouchOutside(false);
+
+        // check if the username exists
+        DatabaseReference user_database = mDatabase.child("users");
+        user_database.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (!username.equals("") )
+                {
+                    if (snapshot.child(username).exists())
+                    {
+                        String password = snapshot.child(username).child("password").getValue().toString();
+                        show_password.setText(password);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+
+
+        input_confirm_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                alert_dialog.dismiss();
+
+            }
+        });
+
+        alert_dialog.show();
+    }
+
+
+    public void enter_nickname_dialog(String username) {
+        final AlertDialog.Builder dialog;
+        final EditText input_nickname;
+        //Button input_cancel_button;
+        Button input_confirm_button;
+        final AlertDialog alert_dialog;
+
+        dialog = new AlertDialog.Builder(login_Activity.this);
+        View dialog_view = getLayoutInflater().inflate(R.layout.enter_nickname_page, null);
+
+        input_nickname = dialog_view.findViewById(R.id.enter_nickname_input_box);
+        //input_cancel_button = dialog_view.findViewById(R.id.enter_nickname_cancel_button);
+        input_confirm_button = dialog_view.findViewById(R.id.enter_nickname_confirm_button);
+
+
+        dialog.setView(dialog_view);
+        alert_dialog = dialog.create();
+
+        alert_dialog.setCanceledOnTouchOutside(false);
+
+        input_confirm_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                nickname = input_nickname.getText().toString();
+
+                DatabaseReference user_database = mDatabase.child("users");
+                user_database.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        boolean find_nickname = false;
+                        for (DataSnapshot pss : snapshot.getChildren()) {
+                            if (pss.child("nickname").exists()) {
+                                String temp_nickname = pss.child("nickname").getValue().toString();
+
+                                if (temp_nickname.equals(nickname)) {
+                                    find_nickname = true;
+                                    Toast.makeText(login_Activity.this, "This Nickname already exists, please use another one", Toast.LENGTH_SHORT).show();
+                                    nickname = "";
+                                }
+                            }
+                        }
+
+                        if (find_nickname == false)
+                        {
+                            alert_dialog.dismiss();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+
+                });
+
+                }
+        }
+        );
+
+
+        alert_dialog.show();
     }
 
 
@@ -125,8 +411,8 @@ public class login_Activity extends AppCompatActivity {
         input_username = dialog_view.findViewById(R.id.signup_enter_username_input_box);
         input_password = dialog_view.findViewById(R.id.signup_enter_password_input_box);
 
-        input_cancel_button = dialog_view.findViewById(R.id.login_cancel_button);
-        input_confirm_button = dialog_view.findViewById(R.id.login_confirm_button);
+        input_cancel_button = dialog_view.findViewById(R.id.security_Q_cancel_button);
+        input_confirm_button = dialog_view.findViewById(R.id.show_password_confirm_button);
         forget_password =  dialog_view.findViewById(R.id.forget_password_button);
 
         dialog.setView(dialog_view);
@@ -161,8 +447,7 @@ public class login_Activity extends AppCompatActivity {
         forget_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = input_username.getText().toString();
-                String password = input_password.getText().toString();
+                forget_password_enter_username_dialog(view);
                 alert_dialog.dismiss();
             }
 
@@ -170,6 +455,7 @@ public class login_Activity extends AppCompatActivity {
 
         alert_dialog.show();
     }
+
 
     public void signup_dialog(View view) {
         final AlertDialog.Builder dialog;
@@ -189,10 +475,10 @@ public class login_Activity extends AppCompatActivity {
         input_password = dialog_view.findViewById(R.id.signup_enter_password_input_box);
         confirm_password = dialog_view.findViewById(R.id.signup_confirm_password_input_box);
 
-        input_cancel_button = dialog_view.findViewById(R.id.login_cancel_button);
-        input_confirm_button = dialog_view.findViewById(R.id.login_confirm_button);
+        input_cancel_button = dialog_view.findViewById(R.id.security_Q_cancel_button);
+        input_confirm_button = dialog_view.findViewById(R.id.show_password_confirm_button);
         security_question =  dialog_view.findViewById(R.id.signup_enter_security_question_input_box);
-        security_question_answer =  dialog_view.findViewById(R.id.signup_enter_security_answer_input_box);
+        security_question_answer =  dialog_view.findViewById(R.id.security_Q_enter_security_answer_input_box);
 
         dialog.setView(dialog_view);
         alert_dialog = dialog.create();
@@ -302,9 +588,18 @@ public class login_Activity extends AppCompatActivity {
 
                     String s_question = snapshot.child(username).child("security_question").getValue().toString();
                     String s_question_answer = snapshot.child(username).child("security_answer").getValue().toString();
-                    int highest_score =  Integer.parseInt(snapshot.child(username).child("highest_score").getValue().toString());
+
+                    String fb_nickname = snapshot.child(username).child("nickname").getValue().toString();
+                    ArrayList<String> temp_highest_score_list = new ArrayList<>();
                     int num_of_gold = Integer.parseInt(snapshot.child(username).child("num_of_gold").getValue().toString());
-                    login_user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN, highest_score, num_of_gold);
+                    login_user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN, temp_highest_score_list, num_of_gold);
+
+                    if (fb_nickname.equals("") && !nickname.equals("")){
+                        login_user.nickname = nickname;
+                    }
+                    else {
+                        login_user.nickname = fb_nickname;
+                    }
 
                     ArrayList<String> temp_array_list;
                     temp_array_list = new ArrayList<String>();
@@ -314,9 +609,21 @@ public class login_Activity extends AppCompatActivity {
                             temp_array_list.add(pss.getValue().toString());
                         }
                     }
-
                     login_user.friend_list = temp_array_list;
 
+                    if(snapshot.child(username).child("highest_score_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("highest_score_list").getChildren()) {
+                            temp_highest_score_list.add(pss.getValue().toString());
+                        }
+                    }
+
+                    login_user.highest_score_list = temp_highest_score_list;
+
+                    Task update_user = mDatabase.child("users").child(username).setValue(login_user);
+
+                    // Save user info to local memory
+                    Login_User.current_User = login_user;
+                    Log.v(Login_User.current_User.username, "test!!!!");
 
                     sleep(500);
                     activate_main_activity();
@@ -338,22 +645,21 @@ public class login_Activity extends AppCompatActivity {
     }
 
     public void is_username_exist(String username, String password, String s_question, String s_question_answer) {
+
+        enter_nickname_dialog(username);
+
         DatabaseReference user_database = mDatabase.child("users");
         user_database.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if (!username.equals("") )
-                {
-                    if (!snapshot.child(username).exists())
-                    {
+                if (!username.equals("") ) {
+                    if (!snapshot.child(username).exists()) {
                         User user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN);
                         Task signup_user = mDatabase.child("users").child(username).setValue(user);
                         sleep(1000);
                         Toast.makeText(login_Activity.this, "Successfully Signed up!", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(login_Activity.this, "This Username already exist, Please use another one", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -465,6 +771,7 @@ public class login_Activity extends AppCompatActivity {
 
     public void activate_main_activity() {
         Intent main_intent = new Intent(this, MainActivity.class);
+        bgm.stop_Player();
         startActivity(main_intent);
 
     }
@@ -477,5 +784,6 @@ public class login_Activity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
 
 }

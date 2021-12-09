@@ -3,15 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/Forest Test/Forest-Hunter-Android-Project/app/src/main/res/layout/store_view.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/drawable/walking_crocodile.xml" value="0.346782431052094" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/font/dancing.xml" value="0.33055555555555555" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout-sw1920dp/game_lose.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout-sw1920dp/game_view.xml" value="0.18125" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout-sw1920dp/search_friend_enter_nickname_page.xml" value="0.5" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/activity_main.xml" value="0.30462962962962964" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/authentication_page.xml" value="0.22" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/character_view.xml" value="0.33" />
-        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/game_view.xml" value="2.0" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/coinsuc.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/enter_nickname_page.xml" value="0.2962962962962963" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/enter_username_page.xml" value="0.2962962962962963" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/forget_password.xml" value="0.2962962962962963" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/friends_view.xml" value="0.5" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/game_view.xml" value="0.33" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/login.xml" value="0.5" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/login_signup.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/signup.xml" value="0.5" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/scoreboard.xml" value="0.2962962962962963" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/search_friend_enter_nickname.xml" value="0.16111111111111112" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/select_stage_view.xml" value="0.2962962962962963" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/setting_view.xml" value="0.2962962962962963" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/show_password.xml" value="0.2962962962962963" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/signup.xml" value="0.25" />
+        <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest-Hunter-Android-Project/app/src/main/res/layout/store_view.xml" value="0.2962962962962963" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/drawable/eye.xml" value="0.3536458333333333" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/drawable/face.xml" value="0.3536458333333333" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/drawable/game_title_border.xml" value="0.3536458333333333" />
@@ -20,6 +35,13 @@
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/layout/character_view.xml" value="0.75" />
         <entry key="..\:/Users/wangz/AndroidStudioProjects/CS5520/Forest_Hunter/app/src/main/res/layout/game_view.xml" value="0.4567901234567901" />
+        <entry key="..\:/Users/wangz/Forest-Hunter-Android-Project/app/src/main/res/layout/character_view.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/wangz/Forest-Hunter-Android-Project/app/src/main/res/layout/friends_view.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/wangz/Forest-Hunter-Android-Project/app/src/main/res/layout/scoreboard.xml" value="0.22" />
+        <entry key="..\:/Users/wangz/Forest-Hunter-Android-Project/app/src/main/res/layout/search_friend_enter_nickname.xml" value="0.1" />
+        <entry key="..\:/Users/wangz/Forest-Hunter-Android-Project/app/src/main/res/layout/select_stage_view.xml" value="0.3211845102505695" />
+        <entry key="..\:/Users/wangz/Forest-Hunter-Android-Project/app/src/main/res/layout/setting_view.xml" value="0.2759295499021526" />
+        <entry key="..\:/Users/wangz/Forest-Hunter-Android-Project/app/src/main/res/layout/signup.xml" value="0.16530797101449277" />
       </map>
     </option>
   </component>

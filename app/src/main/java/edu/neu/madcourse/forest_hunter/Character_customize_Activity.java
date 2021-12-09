@@ -1,19 +1,24 @@
 package edu.neu.madcourse.forest_hunter;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.RotateAnimation;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import user.Login_User;
+import user.User;
 
 public class Character_customize_Activity extends AppCompatActivity {
 
@@ -98,6 +103,14 @@ public class Character_customize_Activity extends AppCompatActivity {
     private ImageView l_foot_view_wear;
 
     Appearance ap;
+    private ImageView appearance_change_textview1_lock;
+    private ImageView appearance_change_textview1_lock1;
+    private ImageView appearance_change_textview2_lock;
+    private ImageView appearance_change_textview3_lock;
+    private ImageView appearance_change_textview4_lock;
+    private User value;
+    private int price = 200;
+    private DatabaseReference reference;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,8 +173,7 @@ public class Character_customize_Activity extends AppCompatActivity {
         l_shoulder_view = findViewById(R.id.l_shoulder_view);
 
         chest_view_wear = findViewById(R.id.chest_view_wear);
-        if(current_chest_wear_index != 17)
-        {
+        if (current_chest_wear_index != 17) {
             chest_view_wear.setBackground(null);
             chest_view_wear.setImageResource(ap.chest_wear_image_id_list[Appearance.current_chest_wear_index]);
 
@@ -238,6 +250,32 @@ public class Character_customize_Activity extends AppCompatActivity {
         appearance_change_textview3 = findViewById(R.id.appearance_change_textview3);
         appearance_change_textview4 = findViewById(R.id.appearance_change_textview4);
 
+        appearance_change_textview1_lock1 = findViewById(R.id.appearance_change_textview1_lock);
+        appearance_change_textview2_lock = findViewById(R.id.appearance_change_textview2_lock);
+        appearance_change_textview3_lock = findViewById(R.id.appearance_change_textview3_lock);
+        appearance_change_textview4_lock = findViewById(R.id.appearance_change_textview4_lock);
+
+        appearance_change_textview1_lock1.setVisibility(View.GONE);
+        appearance_change_textview2_lock.setVisibility(View.GONE);
+        appearance_change_textview3_lock.setVisibility(View.GONE);
+        appearance_change_textview4_lock.setVisibility(View.GONE);
+
+        reference = FirebaseDatabase.getInstance().getReference();
+        reference.child("users").child(Login_User.current_User.username).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                value = snapshot.getValue(User.class);
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
         //TODO STEP 3 set the switch case for the page
         appearance_last_button1 = findViewById(R.id.appearance_last_button1);
         appearance_last_button1.setOnClickListener(new View.OnClickListener() {
@@ -246,10 +284,10 @@ public class Character_customize_Activity extends AppCompatActivity {
 
                 switch (current_page_number) {
                     case 1:
+
                         current_hair_index--;
 
-                        if (current_hair_index < 0)
-                        {
+                        if (current_hair_index < 0) {
                             current_hair_index = ap.hair_image_id_list.length - 1;
                         }
 
@@ -257,15 +295,32 @@ public class Character_customize_Activity extends AppCompatActivity {
                         hair_view.setBackground(null);
                         hair_view.setImageResource(ap.hair_image_id_list[current_hair_index]);
 
-                        Appearance.current_hair_index = current_hair_index;
-
+                        //Appearance.current_hair_index = current_hair_index;
+                        if (value.current_hair_index_list.contains(current_hair_index)) {
+                            appearance_change_textview1_lock1.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview1_lock1.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview1_lock1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_hair_index_list.add(current_hair_index);
+                                    appearance_change_textview1_lock1.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_hair_index_list").setValue(value.current_hair_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 2:
                         current_mouth_index--;
 
-                        if (current_mouth_index < 0)
-                        {
+                        if (current_mouth_index < 0) {
                             current_mouth_index = ap.mouth_image_id_list.length - 1;
                         }
 
@@ -273,14 +328,36 @@ public class Character_customize_Activity extends AppCompatActivity {
                         mouth_view.setBackground(null);
                         mouth_view.setImageResource(ap.hair_image_id_list[current_mouth_index]);
 
-                        Appearance.current_mouth_index = current_mouth_index;
+                        //Appearance.current_mouth_index = current_mouth_index;
+
+
+                        if (value.current_mouth_index_list.contains(current_mouth_index)) {
+                            appearance_change_textview1_lock1.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview1_lock1.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview1_lock1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_mouth_index_list.add(current_mouth_index);
+                                    appearance_change_textview1_lock1.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_mouth_index_list").setValue(value.current_mouth_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+
                         break;
 
                     case 3:
                         current_chest_wear_index--;
 
-                        if (current_chest_wear_index < 0)
-                        {
+                        if (current_chest_wear_index < 0) {
                             current_chest_wear_index = ap.chest_wear_image_id_list.length - 1;
                         }
 
@@ -288,14 +365,34 @@ public class Character_customize_Activity extends AppCompatActivity {
                         chest_view_wear.setBackground(null);
                         chest_view_wear.setImageResource(ap.chest_wear_image_id_list[current_chest_wear_index]);
 
-                        Appearance.current_chest_wear_index = current_chest_wear_index;
+                        //Appearance.current_chest_wear_index = current_chest_wear_index;
+
+                        if (value.current_chest_wear_index_list.contains(current_chest_wear_index)) {
+                            appearance_change_textview1_lock1.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview1_lock1.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview1_lock1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_chest_wear_index_list.add(current_chest_wear_index);
+                                    appearance_change_textview1_lock1.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_mouth_index_list").setValue(value.current_chest_wear_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
                         break;
 
                     case 4:
                         current_thigh_wear_index--;
 
-                        if (current_thigh_wear_index < 0)
-                        {
+                        if (current_thigh_wear_index < 0) {
                             current_thigh_wear_index = ap.thigh_r_l_wear_image_id_list.length - 1;
                         }
 
@@ -306,7 +403,27 @@ public class Character_customize_Activity extends AppCompatActivity {
                         l_thigh_view_wear.setBackground(null);
                         l_thigh_view_wear.setImageResource(ap.thigh_r_l_wear_image_id_list[current_thigh_wear_index][1]);
 
-                        Appearance.current_thigh_wear_index = current_thigh_wear_index;
+                        //Appearance.current_thigh_wear_index = current_thigh_wear_index;
+                        if (value.current_thigh_wear_index_list.contains(current_thigh_wear_index)) {
+                            appearance_change_textview1_lock1.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview1_lock1.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview1_lock1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_thigh_wear_index_list.add(current_thigh_wear_index);
+                                    appearance_change_textview1_lock1.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_mouth_index_list").setValue(value.current_thigh_wear_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
                         break;
                 }
             }
@@ -321,15 +438,36 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 1:
                         current_hair_index++;
 
-                        if (current_hair_index > ap.hair_image_id_list.length - 1)
-                        {
+                        if (current_hair_index > ap.hair_image_id_list.length - 1) {
                             current_hair_index = 0;
                         }
 
                         appearance_change_textview1.setText("Style " + Integer.toString(current_hair_index + 1));
                         hair_view.setBackground(null);
                         hair_view.setImageResource(ap.hair_image_id_list[current_hair_index]);
-                        Appearance.current_hair_index = current_hair_index;
+                        //Appearance.current_hair_index = current_hair_index;
+
+
+                        if (value.current_hair_index_list.contains(current_hair_index)) {
+                            appearance_change_textview1_lock1.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview1_lock1.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview1_lock1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_hair_index_list.add(current_hair_index);
+                                    appearance_change_textview1_lock1.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_hair_index_list").setValue(value.current_hair_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
 
                         break;
 
@@ -337,22 +475,41 @@ public class Character_customize_Activity extends AppCompatActivity {
 
                         current_mouth_index++;
 
-                        if (current_mouth_index > ap.mouth_image_id_list.length - 1)
-                        {
+                        if (current_mouth_index > ap.mouth_image_id_list.length - 1) {
                             current_mouth_index = 0;
                         }
 
                         appearance_change_textview1.setText("Style " + Integer.toString(current_mouth_index + 1));
                         mouth_view.setBackground(null);
                         mouth_view.setImageResource(ap.mouth_image_id_list[current_mouth_index]);
-                        Appearance.current_mouth_index = current_mouth_index;
+                        //Appearance.current_mouth_index = current_mouth_index;
+
+                        if (value.current_mouth_index_list.contains(current_mouth_index)) {
+                            appearance_change_textview1_lock1.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview1_lock1.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview1_lock1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_mouth_index_list.add(current_mouth_index);
+                                    appearance_change_textview1_lock1.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_mouth_index_list").setValue(value.current_mouth_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
                         break;
 
                     case 3:
                         current_chest_wear_index++;
 
-                        if (current_chest_wear_index > ap.chest_wear_image_id_list.length - 1)
-                        {
+                        if (current_chest_wear_index > ap.chest_wear_image_id_list.length - 1) {
                             current_chest_wear_index = 0;
                         }
 
@@ -360,14 +517,34 @@ public class Character_customize_Activity extends AppCompatActivity {
                         chest_view_wear.setBackground(null);
                         chest_view_wear.setImageResource(ap.chest_wear_image_id_list[current_chest_wear_index]);
 
-                        Appearance.current_chest_wear_index = current_chest_wear_index;
+                        //Appearance.current_chest_wear_index = current_chest_wear_index;
+
+                        if (value.current_chest_wear_index_list.contains(current_chest_wear_index)) {
+                            appearance_change_textview1_lock1.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview1_lock1.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview1_lock1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_chest_wear_index_list.add(current_chest_wear_index);
+                                    appearance_change_textview1_lock1.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_mouth_index_list").setValue(value.current_chest_wear_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
                         break;
 
                     case 4:
                         current_thigh_wear_index++;
 
-                        if (current_thigh_wear_index > ap.thigh_r_l_wear_image_id_list.length - 1)
-                        {
+                        if (current_thigh_wear_index > ap.thigh_r_l_wear_image_id_list.length - 1) {
                             current_thigh_wear_index = 0;
                         }
 
@@ -378,7 +555,27 @@ public class Character_customize_Activity extends AppCompatActivity {
                         l_thigh_view_wear.setBackground(null);
                         l_thigh_view_wear.setImageResource(ap.thigh_r_l_wear_image_id_list[current_thigh_wear_index][1]);
 
-                        Appearance.current_thigh_wear_index = current_thigh_wear_index;
+                        //Appearance.current_thigh_wear_index = current_thigh_wear_index;
+
+                        if (value.current_thigh_wear_index_list.contains(current_thigh_wear_index)) {
+                            appearance_change_textview1_lock1.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview1_lock1.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview1_lock1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_thigh_wear_index_list.add(current_thigh_wear_index);
+                                    appearance_change_textview1_lock1.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_mouth_index_list").setValue(value.current_thigh_wear_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                 }
@@ -394,36 +591,75 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 1:
                         current_head_index--;
 
-                        if (current_head_index < 0)
-                        {
+                        if (current_head_index < 0) {
                             current_head_index = ap.head_image_id_list.length - 1;
                         }
 
                         appearance_change_textview2.setText("Style " + Integer.toString(current_head_index + 1));
                         head_view.setBackground(null);
                         head_view.setImageResource(ap.head_image_id_list[current_head_index]);
-                        Appearance.current_head_index = current_head_index;
+                        //Appearance.current_head_index = current_head_index;
+
+                        if (value.current_head_index_list.contains(current_head_index)) {
+                            appearance_change_textview2_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview2_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview2_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_head_index_list.add(current_head_index);
+                                    appearance_change_textview2_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_head_index_list").setValue(value.current_head_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
                         break;
 
                     case 2:
                         current_l_eye_brow_index--;
 
-                        if (current_l_eye_brow_index < 0)
-                        {
+                        if (current_l_eye_brow_index < 0) {
                             current_l_eye_brow_index = ap.l_eye_brow_image_id_list.length - 1;
                         }
 
                         appearance_change_textview2.setText("Style " + Integer.toString(current_l_eye_brow_index + 1));
                         l_eyebrow_view.setBackground(null);
                         l_eyebrow_view.setImageResource(ap.l_eye_brow_image_id_list[current_l_eye_brow_index]);
-                        Appearance.current_l_eye_brow_index = current_l_eye_brow_index;
+                        //Appearance.current_l_eye_brow_index = current_l_eye_brow_index;
+
+
+                        if (value.current_l_eye_brow_index_list.contains(current_l_eye_brow_index)) {
+                            appearance_change_textview2_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview2_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview2_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_l_eye_brow_index_list.add(current_l_eye_brow_index);
+                                    appearance_change_textview2_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_l_eye_brow_index_list").setValue(value.current_l_eye_brow_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 3:
                         current_shoulder_wear_index--;
 
-                        if (current_shoulder_wear_index < 0)
-                        {
+                        if (current_shoulder_wear_index < 0) {
                             current_shoulder_wear_index = ap.shoulder_r_l_wear_image_id_list.length - 1;
                         }
 
@@ -434,14 +670,32 @@ public class Character_customize_Activity extends AppCompatActivity {
                         l_shoulder_view_wear.setBackground(null);
                         l_shoulder_view_wear.setImageResource(ap.shoulder_r_l_wear_image_id_list[current_shoulder_wear_index][1]);
 
-                        Appearance.current_shoulder_wear_index = current_shoulder_wear_index;
+                        //Appearance.current_shoulder_wear_index = current_shoulder_wear_index;
+                        if (value.current_shoulder_wear_index_list.contains(current_shoulder_wear_index)) {
+                            appearance_change_textview2_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview2_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview2_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_shoulder_wear_index_list.add(current_shoulder_wear_index);
+                                    appearance_change_textview2_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_shoulder_wear_index_list").setValue(value.current_shoulder_wear_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 4:
                         current_leg_wear_index--;
 
-                        if (current_leg_wear_index < 0)
-                        {
+                        if (current_leg_wear_index < 0) {
                             current_leg_wear_index = ap.leg_r_l_wear_image_id_list.length - 1;
                         }
 
@@ -452,7 +706,27 @@ public class Character_customize_Activity extends AppCompatActivity {
                         l_leg_view_wear.setBackground(null);
                         l_leg_view_wear.setImageResource(ap.leg_r_l_wear_image_id_list[current_leg_wear_index][1]);
 
-                        Appearance.current_leg_wear_index = current_leg_wear_index;
+                        //Appearance.current_leg_wear_index = current_leg_wear_index;
+
+                        if (value.current_leg_wear_index_list.contains(current_leg_wear_index)) {
+                            appearance_change_textview2_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview2_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview2_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_leg_wear_index_list.add(current_leg_wear_index);
+                                    appearance_change_textview2_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_leg_wear_index_list").setValue(value.current_leg_wear_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                 }
@@ -468,37 +742,72 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 1:
                         current_head_index++;
 
-                        if (current_head_index > ap.head_image_id_list.length - 1)
-                        {
+                        if (current_head_index > ap.head_image_id_list.length - 1) {
                             current_head_index = 0;
                         }
 
                         appearance_change_textview2.setText("Style " + Integer.toString(current_head_index + 1));
                         head_view.setBackground(null);
                         head_view.setImageResource(ap.head_image_id_list[current_head_index]);
-                        Appearance.current_head_index = current_head_index;
+                        //Appearance.current_head_index = current_head_index;
+                        if (value.current_head_index_list.contains(current_head_index)) {
+                            appearance_change_textview2_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview2_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview2_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_head_index_list.add(current_head_index);
+                                    appearance_change_textview2_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_head_index_list").setValue(value.current_head_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 2:
 
                         current_l_eye_brow_index++;
 
-                        if (current_l_eye_brow_index > ap.l_eye_brow_image_id_list.length - 1)
-                        {
+                        if (current_l_eye_brow_index > ap.l_eye_brow_image_id_list.length - 1) {
                             current_l_eye_brow_index = 0;
                         }
 
                         appearance_change_textview2.setText("Style " + Integer.toString(current_l_eye_brow_index + 1));
                         l_eyebrow_view.setBackground(null);
                         l_eyebrow_view.setImageResource(ap.l_eye_brow_image_id_list[current_l_eye_brow_index]);
-                        Appearance.current_l_eye_brow_index = current_l_eye_brow_index;
+                        //Appearance.current_l_eye_brow_index = current_l_eye_brow_index;
+                        if (value.current_l_eye_brow_index_list.contains(current_l_eye_brow_index)) {
+                            appearance_change_textview2_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview2_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview2_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_l_eye_brow_index_list.add(current_l_eye_brow_index);
+                                    appearance_change_textview2_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_l_eye_brow_index_list").setValue(value.current_l_eye_brow_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 3:
                         current_shoulder_wear_index++;
 
-                        if (current_shoulder_wear_index > ap.shoulder_r_l_wear_image_id_list.length - 1)
-                        {
+                        if (current_shoulder_wear_index > ap.shoulder_r_l_wear_image_id_list.length - 1) {
                             current_shoulder_wear_index = 0;
                         }
 
@@ -509,14 +818,32 @@ public class Character_customize_Activity extends AppCompatActivity {
                         l_shoulder_view_wear.setBackground(null);
                         l_shoulder_view_wear.setImageResource(ap.shoulder_r_l_wear_image_id_list[current_shoulder_wear_index][1]);
 
-                        Appearance.current_shoulder_wear_index = current_shoulder_wear_index;
+                        //Appearance.current_shoulder_wear_index = current_shoulder_wear_index;
+                        if (value.current_shoulder_wear_index_list.contains(current_shoulder_wear_index)) {
+                            appearance_change_textview2_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview2_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview2_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_shoulder_wear_index_list.add(current_shoulder_wear_index);
+                                    appearance_change_textview2_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_shoulder_wear_index_list").setValue(value.current_shoulder_wear_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 4:
                         current_leg_wear_index++;
 
-                        if (current_leg_wear_index > ap.leg_r_l_wear_image_id_list.length - 1)
-                        {
+                        if (current_leg_wear_index > ap.leg_r_l_wear_image_id_list.length - 1) {
                             current_leg_wear_index = 0;
                         }
 
@@ -527,7 +854,26 @@ public class Character_customize_Activity extends AppCompatActivity {
                         l_leg_view_wear.setBackground(null);
                         l_leg_view_wear.setImageResource(ap.leg_r_l_wear_image_id_list[current_leg_wear_index][1]);
 
-                        Appearance.current_leg_wear_index = current_leg_wear_index;
+                        //Appearance.current_leg_wear_index = current_leg_wear_index;
+                        if (value.current_leg_wear_index_list.contains(current_leg_wear_index)) {
+                            appearance_change_textview2_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview2_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview2_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_leg_wear_index_list.add(current_leg_wear_index);
+                                    appearance_change_textview2_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_leg_wear_index_list").setValue(value.current_leg_wear_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                 }
@@ -543,36 +889,73 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 1:
                         current_eye_index--;
 
-                        if (current_eye_index < 0)
-                        {
+                        if (current_eye_index < 0) {
                             current_eye_index = ap.eye_image_id_list.length - 1;
                         }
 
                         appearance_change_textview3.setText("Style " + Integer.toString(current_eye_index + 1));
                         eye_view.setBackground(null);
                         eye_view.setImageResource(ap.eye_image_id_list[current_eye_index]);
-                        Appearance.current_eye_index = current_eye_index;
+                        //Appearance.current_eye_index = current_eye_index;
+                        if (value.current_eye_index_list.contains(current_eye_index)) {
+                            appearance_change_textview3_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview3_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview3_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_eye_index_list.add(current_eye_index);
+                                    appearance_change_textview3_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_eye_index_list")
+                                            .setValue(value.current_eye_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 2:
                         current_r_eye_brow_index--;
 
-                        if (current_r_eye_brow_index < 0)
-                        {
+                        if (current_r_eye_brow_index < 0) {
                             current_r_eye_brow_index = ap.r_eye_brow_image_id_list.length - 1;
                         }
 
                         appearance_change_textview3.setText("Style " + Integer.toString(current_r_eye_brow_index + 1));
                         r_eyebrow_view.setBackground(null);
                         r_eyebrow_view.setImageResource(ap.r_eye_brow_image_id_list[current_r_eye_brow_index]);
-                        Appearance.current_r_eye_brow_index = current_r_eye_brow_index;
+                        //Appearance.current_r_eye_brow_index = current_r_eye_brow_index;
+                        if (value.current_r_eye_brow_index_list.contains(current_r_eye_brow_index)) {
+                            appearance_change_textview3_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview3_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview3_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_r_eye_brow_index_list.add(current_r_eye_brow_index);
+                                    appearance_change_textview3_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_r_eye_brow_index_list")
+                                            .setValue(value.current_r_eye_brow_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 3:
                         current_arm_wear_index--;
 
-                        if (current_arm_wear_index < 0)
-                        {
+                        if (current_arm_wear_index < 0) {
                             current_arm_wear_index = ap.arm_r_l_wear_image_id_list.length - 1;
                         }
 
@@ -583,14 +966,33 @@ public class Character_customize_Activity extends AppCompatActivity {
                         l_arm_view_wear.setBackground(null);
                         l_arm_view_wear.setImageResource(ap.arm_r_l_wear_image_id_list[current_arm_wear_index][1]);
 
-                        Appearance.current_arm_wear_index = current_arm_wear_index;
+                        //Appearance.current_arm_wear_index = current_arm_wear_index;
+                        if (value.current_arm_wear_index_list.contains(current_arm_wear_index)) {
+                            appearance_change_textview3_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview3_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview3_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_arm_wear_index_list.add(current_arm_wear_index);
+                                    appearance_change_textview3_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_arm_wear_index_list")
+                                            .setValue(value.current_arm_wear_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 4:
                         current_foot_wear_index--;
 
-                        if (current_foot_wear_index < 0)
-                        {
+                        if (current_foot_wear_index < 0) {
                             current_foot_wear_index = ap.foot_r_l_wear_image_id_list.length - 1;
                         }
 
@@ -601,7 +1003,27 @@ public class Character_customize_Activity extends AppCompatActivity {
                         l_foot_view_wear.setBackground(null);
                         l_foot_view_wear.setImageResource(ap.foot_r_l_wear_image_id_list[current_foot_wear_index][1]);
 
-                        Appearance.current_foot_wear_index = current_foot_wear_index;
+                        //Appearance.current_foot_wear_index = current_foot_wear_index;
+                        if (value.current_foot_wear_list.contains(current_foot_wear_index)) {
+                            appearance_change_textview3_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview3_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview3_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_foot_wear_list.add(current_foot_wear_index);
+                                    appearance_change_textview3_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_foot_wear_list")
+                                            .setValue(value.current_foot_wear_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                 }
@@ -617,37 +1039,74 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 1:
                         current_eye_index++;
 
-                        if (current_eye_index > ap.eye_image_id_list.length - 1)
-                        {
+                        if (current_eye_index > ap.eye_image_id_list.length - 1) {
                             current_eye_index = 0;
                         }
 
                         appearance_change_textview3.setText("Style " + Integer.toString(current_eye_index + 1));
                         eye_view.setBackground(null);
                         eye_view.setImageResource(ap.eye_image_id_list[current_eye_index]);
-                        Appearance.current_eye_index = current_eye_index;
+                        //Appearance.current_eye_index = current_eye_index;
+                        if (value.current_eye_index_list.contains(current_eye_index)) {
+                            appearance_change_textview3_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview3_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview3_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_eye_index_list.add(current_eye_index);
+                                    appearance_change_textview3_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_eye_index_list")
+                                            .setValue(value.current_eye_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 2:
 
                         current_r_eye_brow_index++;
 
-                        if (current_r_eye_brow_index > ap.r_eye_brow_image_id_list.length - 1)
-                        {
+                        if (current_r_eye_brow_index > ap.r_eye_brow_image_id_list.length - 1) {
                             current_r_eye_brow_index = 0;
                         }
 
                         appearance_change_textview3.setText("Style " + Integer.toString(current_r_eye_brow_index + 1));
                         r_eyebrow_view.setBackground(null);
                         r_eyebrow_view.setImageResource(ap.r_eye_brow_image_id_list[current_r_eye_brow_index]);
-                        Appearance.current_r_eye_brow_index = current_r_eye_brow_index;
+                        //Appearance.current_r_eye_brow_index = current_r_eye_brow_index;
+                        if (value.current_r_eye_brow_index_list.contains(current_r_eye_brow_index)) {
+                            appearance_change_textview3_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview3_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview3_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_r_eye_brow_index_list.add(current_r_eye_brow_index);
+                                    appearance_change_textview3_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_r_eye_brow_index_list")
+                                            .setValue(value.current_r_eye_brow_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 3:
                         current_arm_wear_index++;
 
-                        if (current_arm_wear_index > ap.arm_r_l_wear_image_id_list.length - 1)
-                        {
+                        if (current_arm_wear_index > ap.arm_r_l_wear_image_id_list.length - 1) {
                             current_arm_wear_index = 0;
                         }
 
@@ -658,14 +1117,33 @@ public class Character_customize_Activity extends AppCompatActivity {
                         l_arm_view_wear.setBackground(null);
                         l_arm_view_wear.setImageResource(ap.arm_r_l_wear_image_id_list[current_arm_wear_index][1]);
 
-                        Appearance.current_arm_wear_index = current_arm_wear_index;
+                        //Appearance.current_arm_wear_index = current_arm_wear_index;
+                        if (value.current_arm_wear_index_list.contains(current_arm_wear_index)) {
+                            appearance_change_textview3_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview3_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview3_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_arm_wear_index_list.add(current_arm_wear_index);
+                                    appearance_change_textview3_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_arm_wear_index_list")
+                                            .setValue(value.current_arm_wear_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 4:
                         current_foot_wear_index++;
 
-                        if (current_foot_wear_index > ap.foot_r_l_wear_image_id_list.length - 1)
-                        {
+                        if (current_foot_wear_index > ap.foot_r_l_wear_image_id_list.length - 1) {
                             current_foot_wear_index = 0;
                         }
 
@@ -676,7 +1154,27 @@ public class Character_customize_Activity extends AppCompatActivity {
                         l_foot_view_wear.setBackground(null);
                         l_foot_view_wear.setImageResource(ap.foot_r_l_wear_image_id_list[current_foot_wear_index][1]);
 
-                        Appearance.current_foot_wear_index = current_foot_wear_index;
+                        //Appearance.current_foot_wear_index = current_foot_wear_index;
+                        if (value.current_foot_wear_list.contains(current_foot_wear_index)) {
+                            appearance_change_textview3_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview3_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview3_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_foot_wear_list.add(current_foot_wear_index);
+                                    appearance_change_textview3_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_foot_wear_list")
+                                            .setValue(value.current_foot_wear_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                 }
@@ -692,36 +1190,73 @@ public class Character_customize_Activity extends AppCompatActivity {
                     case 1:
                         current_nose_index--;
 
-                        if (current_nose_index < 0)
-                        {
+                        if (current_nose_index < 0) {
                             current_nose_index = ap.nose_image_id_list.length - 1;
                         }
 
                         appearance_change_textview4.setText("Style " + Integer.toString(current_nose_index + 1));
                         nose_view.setBackground(null);
                         nose_view.setImageResource(ap.nose_image_id_list[current_nose_index]);
-                        Appearance.current_nose_index = current_nose_index;
+                        //Appearance.current_nose_index = current_nose_index;
+                        if (value.current_nose_index_list.contains(current_nose_index)) {
+                            appearance_change_textview4_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview4_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview4_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_nose_index_list.add(current_nose_index);
+                                    appearance_change_textview4_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_nose_index_list")
+                                            .setValue(value.current_nose_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 2:
                         current_ear_index--;
 
-                        if (current_ear_index < 0)
-                        {
+                        if (current_ear_index < 0) {
                             current_ear_index = ap.ear_image_id_list.length - 1;
                         }
 
                         appearance_change_textview4.setText("Style " + Integer.toString(current_ear_index + 1));
                         ear_view.setBackground(null);
                         ear_view.setImageResource(ap.ear_image_id_list[current_ear_index]);
-                        Appearance.current_ear_index = current_ear_index;
+                        //Appearance.current_ear_index = current_ear_index;
+                        if (value.current_ear_index_list.contains(current_ear_index)) {
+                            appearance_change_textview4_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview4_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview4_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_ear_index_list.add(current_ear_index);
+                                    appearance_change_textview4_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_ear_index_list")
+                                            .setValue(value.current_ear_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 3:
                         current_bottom_wear_index--;
 
-                        if (current_bottom_wear_index < 0)
-                        {
+                        if (current_bottom_wear_index < 0) {
                             current_bottom_wear_index = ap.bottom_wear_image_id_list.length - 1;
                         }
 
@@ -729,14 +1264,33 @@ public class Character_customize_Activity extends AppCompatActivity {
                         bottom_view_wear.setBackground(null);
                         bottom_view_wear.setImageResource(ap.bottom_wear_image_id_list[current_bottom_wear_index]);
 
-                        Appearance.current_bottom_wear_index = current_bottom_wear_index;
+                        //Appearance.current_bottom_wear_index = current_bottom_wear_index;
+                        if (value.current_bottom_wear_list.contains(current_bottom_wear_index)) {
+                            appearance_change_textview4_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview4_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview4_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_bottom_wear_list.add(current_bottom_wear_index);
+                                    appearance_change_textview4_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_bottom_wear_list")
+                                            .setValue(value.current_bottom_wear_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 4:
                         current_chest_index--;
 
-                        if (current_chest_index < 0)
-                        {
+                        if (current_chest_index < 0) {
                             current_chest_index = ap.chest_image_id_list.length - 1;
                         }
 
@@ -744,13 +1298,32 @@ public class Character_customize_Activity extends AppCompatActivity {
                         chest_view.setBackground(null);
                         chest_view.setImageResource(ap.chest_image_id_list[current_chest_index]);
 
-                        if (current_chest_wear_index != 17)
-                        {
+                        if (current_chest_wear_index != 17) {
                             chest_view_wear.setBackground(null);
                             chest_view_wear.setImageResource(ap.chest_wear_image_id_list[Appearance.current_chest_wear_index]);
                         }
 
-                        Appearance.current_chest_index = current_chest_index;
+                        //Appearance.current_chest_index = current_chest_index;
+                        if (value.current_chest_list.contains(current_chest_index)) {
+                            appearance_change_textview4_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview4_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview4_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_chest_list.add(current_chest_index);
+                                    appearance_change_textview4_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_chest_list")
+                                            .setValue(value.current_chest_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                 }
@@ -767,37 +1340,74 @@ public class Character_customize_Activity extends AppCompatActivity {
 
                         current_nose_index++;
 
-                        if (current_nose_index > ap.nose_image_id_list.length - 1)
-                        {
+                        if (current_nose_index > ap.nose_image_id_list.length - 1) {
                             current_nose_index = 0;
                         }
 
                         appearance_change_textview4.setText("Style " + Integer.toString(current_nose_index + 1));
                         nose_view.setBackground(null);
                         nose_view.setImageResource(ap.nose_image_id_list[current_nose_index]);
-                        Appearance.current_nose_index = current_nose_index;
+                        //Appearance.current_nose_index = current_nose_index;
+                        if (value.current_nose_index_list.contains(current_nose_index)) {
+                            appearance_change_textview4_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview4_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview4_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_nose_index_list.add(current_nose_index);
+                                    appearance_change_textview4_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_nose_index_list")
+                                            .setValue(value.current_nose_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 2:
 
                         current_ear_index++;
 
-                        if (current_ear_index > ap.ear_image_id_list.length - 1)
-                        {
+                        if (current_ear_index > ap.ear_image_id_list.length - 1) {
                             current_ear_index = 0;
                         }
 
                         appearance_change_textview4.setText("Style " + Integer.toString(current_ear_index + 1));
                         ear_view.setBackground(null);
                         ear_view.setImageResource(ap.ear_image_id_list[current_ear_index]);
-                        Appearance.current_ear_index = current_ear_index;
+                        //Appearance.current_ear_index = current_ear_index;
+                        if (value.current_ear_index_list.contains(current_ear_index)) {
+                            appearance_change_textview4_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview4_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview4_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_ear_index_list.add(current_ear_index);
+                                    appearance_change_textview4_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_ear_index_list")
+                                            .setValue(value.current_ear_index_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 3:
                         current_bottom_wear_index++;
 
-                        if (current_bottom_wear_index > ap.bottom_wear_image_id_list.length - 1)
-                        {
+                        if (current_bottom_wear_index > ap.bottom_wear_image_id_list.length - 1) {
                             current_bottom_wear_index = 0;
                         }
 
@@ -805,14 +1415,33 @@ public class Character_customize_Activity extends AppCompatActivity {
                         bottom_view_wear.setBackground(null);
                         bottom_view_wear.setImageResource(ap.bottom_wear_image_id_list[current_bottom_wear_index]);
 
-                        Appearance.current_bottom_wear_index = current_bottom_wear_index;
+                        //Appearance.current_bottom_wear_index = current_bottom_wear_index;
+                        if (value.current_bottom_wear_list.contains(current_bottom_wear_index)) {
+                            appearance_change_textview4_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview4_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview4_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_bottom_wear_list.add(current_bottom_wear_index);
+                                    appearance_change_textview4_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_bottom_wear_list")
+                                            .setValue(value.current_bottom_wear_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                     case 4:
                         current_chest_index++;
 
-                        if (current_chest_index > ap.chest_image_id_list.length - 1)
-                        {
+                        if (current_chest_index > ap.chest_image_id_list.length - 1) {
                             current_chest_index = 0;
                         }
 
@@ -820,14 +1449,33 @@ public class Character_customize_Activity extends AppCompatActivity {
                         chest_view.setBackground(null);
                         chest_view.setImageResource(ap.chest_image_id_list[current_chest_index]);
 
-                        if (current_chest_wear_index != 17)
-                        {
+                        if (current_chest_wear_index != 17) {
                             chest_view_wear.setBackground(null);
                             chest_view_wear.setImageResource(ap.chest_wear_image_id_list[Appearance.current_chest_wear_index]);
                         }
 
 
-                        Appearance.current_chest_index = current_chest_index;
+                        //Appearance.current_chest_index = current_chest_index;
+                        if (value.current_chest_list.contains(current_chest_index)) {
+                            appearance_change_textview4_lock.setVisibility(View.GONE);
+                        } else {
+                            appearance_change_textview4_lock.setVisibility(View.VISIBLE);
+                        }
+                        appearance_change_textview4_lock.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (value.num_of_gold >= price) {
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    value.current_chest_list.add(current_chest_index);
+                                    appearance_change_textview4_lock.setVisibility(View.GONE);
+                                    reference.child("users").child(Login_User.current_User.username).child("current_chest_list")
+                                            .setValue(value.current_chest_list);
+                                    Toast.makeText(Character_customize_Activity.this, "purchase succeeds", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Character_customize_Activity.this, "Gold coin underpayment", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         break;
 
                 }
@@ -841,8 +1489,7 @@ public class Character_customize_Activity extends AppCompatActivity {
 
                 current_page_number++;
 
-                if (current_page_number > 4)
-                {
+                if (current_page_number > 4) {
                     current_page_number = 1;
                 }
 
@@ -887,8 +1534,7 @@ public class Character_customize_Activity extends AppCompatActivity {
 
                 current_page_number--;
 
-                if (current_page_number < 1)
-                {
+                if (current_page_number < 1) {
                     current_page_number = 4;
                 }
 
@@ -926,23 +1572,233 @@ public class Character_customize_Activity extends AppCompatActivity {
             }
         });
 
-        appearance_confirm_button  = findViewById(R.id.appearance_confirm_button);
+        appearance_confirm_button = findViewById(R.id.friend_go_back_button);
         appearance_confirm_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activate_MainActivity();
+                finish();
+                boolean all_items_owned_1;
+                boolean all_items_owned_2;
+                boolean all_items_owned_3;
+                boolean all_items_owned_4;
+                boolean all_items_owned_5;
+                boolean all_items_owned_6;
+                boolean all_items_owned_7;
+                boolean all_items_owned_8;
+                boolean all_items_owned_9;
+                boolean all_items_owned_10;
+                boolean all_items_owned_11;
+                boolean all_items_owned_12;
+                boolean all_items_owned_13;
+                boolean all_items_owned_14;
+                boolean all_items_owned_15;
+                boolean all_items_owned_16;
+
+                if (value.current_hair_index_list.contains(current_hair_index))
+                {
+                    all_items_owned_1 = true;
+                }
+                else
+                {
+                    all_items_owned_1 = false;
+                }
+                if (value.current_head_index_list.contains(current_head_index))
+                {
+                    all_items_owned_2 = true;
+                }
+                else
+                {
+                    all_items_owned_2 = false;
+                }
+                if (value.current_eye_index_list.contains(current_eye_index))
+                {
+                    all_items_owned_3 = true;
+                }
+                else
+                {
+                    all_items_owned_3 = false;
+                }
+
+                if (value.current_nose_index_list.contains(current_nose_index))
+                {
+                    all_items_owned_4 = true;
+                }
+                else
+                {
+                    all_items_owned_4 = false;
+                }
+
+                if (value.current_mouth_index_list.contains(current_mouth_index))
+                {
+                    all_items_owned_5 = true;
+                }
+                else
+                {
+                    all_items_owned_5 = false;
+                }
+                if (value.current_l_eye_brow_index_list.contains(current_l_eye_brow_index))
+                {
+                    all_items_owned_6 = true;
+                }
+                else
+                {
+                    all_items_owned_6 = false;
+                }
+                if (value.current_r_eye_brow_index_list.contains(current_r_eye_brow_index))
+                {
+                    all_items_owned_7 = true;
+                }
+                else
+                {
+                    all_items_owned_7 = false;
+                }
+                if (value.current_ear_index_list.contains(current_ear_index))
+                {
+                    all_items_owned_8 = true;
+                }
+                else
+                {
+                    all_items_owned_8 = false;
+                }
+                if (value.current_chest_wear_index_list.contains(current_chest_wear_index))
+                {
+                    all_items_owned_9 = true;
+                }
+                else
+                {
+                    all_items_owned_9 = false;
+                }
+                if (value.current_arm_wear_index_list.contains(current_arm_wear_index))
+                {
+                    all_items_owned_10 = true;
+                }
+                else
+                {
+                    all_items_owned_10 = false;
+                }
+                if (value.current_shoulder_wear_index_list.contains(current_shoulder_wear_index))
+                {
+                    all_items_owned_11 = true;
+                }
+                else
+                {
+                    all_items_owned_11 = false;
+                }
+                if (value.current_leg_wear_index_list.contains(current_leg_wear_index))
+                {
+                    all_items_owned_12 = true;
+                }
+                else
+                {
+                    all_items_owned_12 = false;
+                }
+                if (value.current_thigh_wear_index_list.contains(current_thigh_wear_index))
+                {
+                    all_items_owned_13 = true;
+                }
+                else
+                {
+                    all_items_owned_13 = false;
+                }
+                if (value.current_bottom_wear_list.contains(current_bottom_wear_index))
+                {
+
+                    all_items_owned_14 = true;
+                }
+                else
+                {
+                    all_items_owned_14 = false;
+                }
+                if (value.current_foot_wear_list.contains(current_foot_wear_index))
+                {
+
+                    all_items_owned_15 = true;
+                }
+                else
+                {
+                    all_items_owned_15 = false;
+                }
+                if (value.current_chest_list.contains(current_chest_index))
+                {
+                    all_items_owned_16 = true;
+                }
+                else
+                {
+                    all_items_owned_16 = false;
+                }
+
+
+                if (all_items_owned_1 == true
+                        && all_items_owned_2 == true
+                        && all_items_owned_3 == true
+                        && all_items_owned_4 == true
+                        && all_items_owned_5 == true
+                        && all_items_owned_6 == true
+                        && all_items_owned_7 == true
+                        && all_items_owned_8 == true
+                        && all_items_owned_9 == true
+                        && all_items_owned_10 == true
+                        && all_items_owned_11 == true
+                        && all_items_owned_12 == true
+                        && all_items_owned_13 == true
+                        && all_items_owned_14 == true
+                        && all_items_owned_15 == true
+                        && all_items_owned_16 == true)
+                {
+                    Appearance.current_hair_index = current_hair_index;
+                    Appearance.current_head_index = current_head_index;
+                    Appearance.current_eye_index = current_eye_index;
+                    Appearance.current_nose_index = current_nose_index;
+                    Appearance.current_mouth_index = current_mouth_index;
+                    Appearance.current_l_eye_brow_index = current_l_eye_brow_index;
+                    Appearance.current_r_eye_brow_index = current_r_eye_brow_index;
+                    Appearance.current_ear_index = current_ear_index;
+                    Appearance.current_chest_wear_index = current_chest_wear_index;
+                    Appearance.current_arm_wear_index = current_arm_wear_index;
+                    Appearance.current_shoulder_wear_index = current_shoulder_wear_index;
+                    Appearance.current_leg_wear_index = current_leg_wear_index;
+                    Appearance.current_thigh_wear_index = current_thigh_wear_index;
+                    Appearance.current_bottom_wear_index = current_bottom_wear_index;
+                    Appearance.current_foot_wear_index = current_foot_wear_index;
+                    Appearance.current_chest_index = current_chest_index;
+
+                    value.Character_setting.get(0).current_hair_index = Appearance.current_hair_index;
+                    value.Character_setting.get(0).current_head_index = Appearance.current_head_index;
+                    value.Character_setting.get(0).current_eye_index = Appearance.current_eye_index;
+                    value.Character_setting.get(0).current_nose_index = Appearance.current_nose_index;
+                    value.Character_setting.get(0).current_mouth_index = Appearance.current_mouth_index;
+                    value.Character_setting.get(0).current_l_eye_brow_index = Appearance.current_l_eye_brow_index;
+                    value.Character_setting.get(0).current_r_eye_brow_index = Appearance.current_r_eye_brow_index;
+                    value.Character_setting.get(0).current_ear_index = Appearance.current_ear_index;
+                    value.Character_setting.get(0).current_chest_wear_index = Appearance.current_chest_wear_index;
+                    value.Character_setting.get(0).current_arm_wear_index = Appearance.current_arm_wear_index;
+                    value.Character_setting.get(0).current_shoulder_wear_index = Appearance.current_shoulder_wear_index;
+                    value.Character_setting.get(0).current_leg_wear_index = Appearance.current_leg_wear_index;
+                    value.Character_setting.get(0).current_thigh_wear_index = Appearance.current_thigh_wear_index;
+                    value.Character_setting.get(0).current_bottom_wear_index = Appearance.current_bottom_wear_index;
+                    value.Character_setting.get(0).current_foot_wear_index = Appearance.current_foot_wear_index;
+                    value.Character_setting.get(0).current_chest_index = Appearance.current_chest_index;
+                    reference.child("users").child(Login_User.current_User.username).setValue(value);
+                    Toast.makeText(Character_customize_Activity.this, "save successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Character_customize_Activity.this, "Saving Failed! Please buy before saving, you don't own at least one of the selected item.", Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
 
 
     }
 
+    /*
     public void activate_MainActivity()
     {
         Intent main_intent = new Intent(this, MainActivity.class);
         startActivity(main_intent);
 
     }
+    */
 
 
 }

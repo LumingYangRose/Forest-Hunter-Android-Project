@@ -54,7 +54,7 @@
         android:textSize="16sp" />
 
     <Button
-        android:id="@+id/login_confirm_button"
+        android:id="@+id/show_password_confirm_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#00E676"
@@ -63,7 +63,7 @@
         android:textSize="14sp" />
 
     <Button
-        android:id="@+id/login_cancel_button"
+        android:id="@+id/security_Q_cancel_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#00E676"
@@ -76,6 +76,7 @@
         android:layout_width="192dp"
         android:layout_height="wrap_content"
         android:text="Forget your password?"
+        android:clickable="true"
         android:textColor="@color/black"
         android:textSize="14sp" />
     </LinearLayout>

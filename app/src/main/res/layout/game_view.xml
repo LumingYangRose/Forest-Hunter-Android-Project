@@ -1094,5 +1094,14 @@
         tools:layout_editor_absoluteX="215dp"
         tools:layout_editor_absoluteY="197dp" />
 
+    <ImageView
+        android:id="@+id/lion"
+        android:layout_width="177dp"
+        android:layout_height="150dp"
+        android:scaleX="-1"
+        app:srcCompat="@drawable/__lion_run_000"
+        tools:layout_editor_absoluteX="215dp"
+        tools:layout_editor_absoluteY="197dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
