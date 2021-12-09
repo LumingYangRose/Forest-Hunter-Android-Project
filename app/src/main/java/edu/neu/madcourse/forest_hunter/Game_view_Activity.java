@@ -647,7 +647,7 @@ public class Game_view_Activity extends AppCompatActivity {
                         lives--;
                         if (lives <= 0) {
                             paused = true;
-                            DialogFragment newFragment = new MyDialogFragment();
+                            MyDialogFragment newFragment = new MyDialogFragment();
                             newFragment.show(getSupportFragmentManager(), "MyDialogFragment");
                         }
                         invincible = true;
@@ -662,7 +662,7 @@ public class Game_view_Activity extends AppCompatActivity {
                         lives--;
                         if (lives <= 0) {
                             paused = true;
-                            DialogFragment newFragment = new MyDialogFragment();
+                            MyDialogFragment newFragment = new MyDialogFragment();
                             newFragment.show(getSupportFragmentManager(), "MyDialogFragment");
                         }
                         invincible = true;
