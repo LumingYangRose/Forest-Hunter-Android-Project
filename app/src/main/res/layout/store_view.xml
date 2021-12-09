@@ -126,7 +126,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dancingscript"
-            android:text="25000  GOLD  COINS"
+            android:text="15000  GOLD  COINS"
             android:textColor="#FBC02D"
             android:textSize="24sp"
             android:textStyle="bold|italic" />

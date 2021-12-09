@@ -112,7 +112,7 @@ public class Store_Activity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         value = snapshot.getValue(Integer.class);
-                        value = value + 25000;
+                        value = value + 15000;
                         coins.setText("Your Coins :" + value);
                         reference.child("users").child(username).child("num_of_gold").setValue(value);
                         showMyDialog();

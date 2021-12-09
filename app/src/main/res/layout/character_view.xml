@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/character_customization_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/character_customization_view"
     android:background="@drawable/pic_title_image"
     tools:layout_editor_absoluteX="26dp"
     tools:layout_editor_absoluteY="0dp">
@@ -771,6 +771,22 @@
         app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
         app:layout_constraintVertical_bias="0.908" />
 
+    <ImageView
+        android:id="@+id/appearance_change_textview3_lock"
+        android:layout_width="119dp"
+        android:layout_height="47dp"
+        android:gravity="center"
+        android:src="@mipmap/icon_lock"
+        android:textColor="#151414"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/appearance_change_textview4"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.908" />
+
     <ImageButton
         android:id="@+id/appearance_last_button1"
         android:layout_width="50dp"
@@ -810,6 +826,22 @@
         android:layout_height="47dp"
         android:gravity="center"
         android:text="change view 4"
+        android:textColor="#151414"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.837" />
+
+    <ImageView
+        android:id="@+id/appearance_change_textview4_lock"
+        android:layout_width="119dp"
+        android:layout_height="47dp"
+        android:gravity="center"
+        android:src="@mipmap/icon_lock"
         android:textColor="#151414"
         android:textSize="16sp"
         android:textStyle="bold|italic"
@@ -868,12 +900,44 @@
         app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
         app:layout_constraintVertical_bias="0.155" />
 
+    <ImageView
+        android:id="@+id/appearance_change_textview1_lock"
+        android:layout_width="119dp"
+        android:layout_height="47dp"
+        android:gravity="center"
+        android:src="@mipmap/icon_lock"
+        android:textColor="#151414"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.155" />
+
     <TextView
         android:id="@+id/appearance_change_textview2"
         android:layout_width="119dp"
         android:layout_height="47dp"
         android:gravity="center"
         android:text="change view 2"
+        android:textColor="#151414"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.382" />
+
+    <ImageView
+        android:id="@+id/appearance_change_textview2_lock"
+        android:layout_width="119dp"
+        android:layout_height="47dp"
+        android:gravity="center"
+        android:src="@mipmap/icon_lock"
         android:textColor="#151414"
         android:textSize="16sp"
         android:textStyle="bold|italic"
