@@ -263,23 +263,8 @@ public class Character_customize_Activity extends AppCompatActivity {
 
         value = Login_User.current_User;
 
-        /*
+
         reference = FirebaseDatabase.getInstance().getReference();
-        reference.child("users").child(Login_User.current_User.username).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                value = snapshot.getValue(User.class);
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        */
-
 
         //TODO STEP 3 set the switch case for the page
         appearance_last_button1 = findViewById(R.id.appearance_last_button1);

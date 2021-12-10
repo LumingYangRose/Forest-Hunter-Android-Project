@@ -787,6 +787,7 @@ public class Game_view_Activity extends AppCompatActivity {
                 playerEscape();
             }
             if (time == SET_ONE_LENGTH+20) {
+                lion.setVisibility(View.INVISIBLE);
                 crocodile.setVisibility(View.INVISIBLE);
             }
 
