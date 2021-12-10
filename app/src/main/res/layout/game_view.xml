@@ -136,17 +136,6 @@
         android:textStyle="bold|italic"
         android:textColor="#000000"/>
 
-    <TextView
-        android:id="@+id/hunting_info"
-        android:layout_width="480dp"
-        android:layout_height="160dp"
-        app:layout_editor_absoluteX="160dp"
-        app:layout_editor_absoluteY="120dp"
-        android:text="Hunting Info"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:textColor="#000000"/>
-
     <ImageView
         android:id="@+id/swipe_down"
         android:layout_width="80dp"
@@ -1102,6 +1091,19 @@
         app:srcCompat="@drawable/__lion_run_000"
         tools:layout_editor_absoluteX="215dp"
         tools:layout_editor_absoluteY="197dp" />
+
+    <TextView
+        android:id="@+id/hunting_info"
+        android:layout_width="480dp"
+        android:layout_height="160dp"
+        android:text="Hunting Info"
+        android:textColor="#000000"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_editor_absoluteX="160dp"
+        app:layout_editor_absoluteY="120dp"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="120dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
