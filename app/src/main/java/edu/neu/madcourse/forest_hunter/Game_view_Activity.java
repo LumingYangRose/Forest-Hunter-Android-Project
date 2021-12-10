@@ -162,7 +162,7 @@ public class Game_view_Activity extends AppCompatActivity {
     public static boolean paused;
     private static boolean jumped;
 
-    int score;
+    private static int score;
     int lives;
     int invincible_countdown;
     public int jump_countdown;
@@ -627,6 +627,11 @@ public class Game_view_Activity extends AppCompatActivity {
         });
 
         in_game_dialog.show();
+    }
+
+    public int get_score()
+    {
+        return score;
     }
 
     public static class MyDialogFragment extends DialogFragment {

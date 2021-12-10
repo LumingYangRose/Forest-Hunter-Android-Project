@@ -261,8 +261,11 @@ public class Character_customize_Activity extends AppCompatActivity {
         appearance_change_textview3_lock.setVisibility(View.GONE);
         appearance_change_textview4_lock.setVisibility(View.GONE);
 
+        value = Login_User.current_User;
+
+        /*
         reference = FirebaseDatabase.getInstance().getReference();
-        reference.child("users").child(Login_User.current_User.username).addValueEventListener(new ValueEventListener() {
+        reference.child("users").child(Login_User.current_User.username).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 value = snapshot.getValue(User.class);
@@ -275,6 +278,7 @@ public class Character_customize_Activity extends AppCompatActivity {
 
             }
         });
+        */
 
 
         //TODO STEP 3 set the switch case for the page
@@ -1798,6 +1802,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                     value.Character_setting.get(0).current_foot_wear_index = Appearance.current_foot_wear_index;
                     value.Character_setting.get(0).current_chest_index = Appearance.current_chest_index;
                     reference.child("users").child(Login_User.current_User.username).setValue(value);
+                    Login_User.current_User = value;
                     Toast.makeText(Character_customize_Activity.this, "save successfully", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(Character_customize_Activity.this, "Saving Failed! Please buy before saving, you don't own at least one of the selected item.", Toast.LENGTH_SHORT).show();
