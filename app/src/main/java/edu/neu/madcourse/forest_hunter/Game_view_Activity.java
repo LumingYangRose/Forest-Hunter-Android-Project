@@ -973,6 +973,17 @@ public class Game_view_Activity extends AppCompatActivity {
         ImageView gorilla6 = findViewById(R.id.gorilla_view6);
 
         gorilla1.setY((int)(screen_height*0.74-300));
+
+//        上：
+        gorilla1.setY((int)(screen_height*0.74-400));
+        gorilla1.setY((int)(screen_height*0.74-400));
+//        中
+        gorilla1.setY((int)(screen_height*0.74-200));
+        gorilla1.setY((int)(screen_height*0.74-200));
+//        下
+        gorilla1.setY((int)(screen_height*0.74));
+        gorilla1.setY((int)(screen_height*0.74));
+
         gorilla2.setY((int)(screen_height*0.74-100));
         gorilla3.setY((int)(screen_height*0.74-400));
         gorilla4.setY((int)(screen_height*0.74-200));
