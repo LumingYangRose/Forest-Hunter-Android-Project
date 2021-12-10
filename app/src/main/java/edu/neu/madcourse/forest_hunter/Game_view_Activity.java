@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -148,6 +149,13 @@ public class Game_view_Activity extends AppCompatActivity {
     double bottom_adjustment_y = 146;
 
     Appearance ap;
+
+    ImageButton music_1_button;
+    ImageButton music_2_button;
+    ImageButton music_3_button;
+    ImageButton music_4_button;
+    ImageButton music_5_button;
+    ImageButton no_music_button;
 
     boolean is_playing = true;
     boolean invincible;
@@ -606,7 +614,7 @@ public class Game_view_Activity extends AppCompatActivity {
         go_to_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TO DO
+                setting_dialog(view);
             }
         });
 
@@ -1794,7 +1802,6 @@ public class Game_view_Activity extends AppCompatActivity {
         if (time >= 300 && time < 440 && !paused) {
             boulder_list.get(5).setX(boulder_list.get(5).getX() - speed_index * screenRatioX);
         }
-        /*
         if (time >= 340 && time < 480 && !paused) {
             cliff_list.get(1).setX(cliff_list.get(1).getX() - speed_index * screenRatioX);
         }
@@ -1889,13 +1896,13 @@ public class Game_view_Activity extends AppCompatActivity {
         if (time >= 700 && time < 840 && !paused) {
             cliff_list.get(3).setX(cliff_list.get(3).getX() - speed_index * screenRatioX);
         }
+        if (time >= 720 && time < 860 && !paused) {
+            food_list.get(8).setX(food_list.get(8).getX() - speed_index * screenRatioX);
+        }
         if (time >= 740 && time < 880 && !paused) {
             cliff_list.get(4).setX(cliff_list.get(4).getX() - speed_index * screenRatioX);
         }
 
-        if (time >= 750 && time < 900 && !paused) {
-            cliff_list.get(4).setX(cliff_list.get(4).getX() - speed_index * screenRatioX);
-        } //Added
         if (time >= 760 && time < 900 && !paused) {
             boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
         } //Added
@@ -1920,6 +1927,10 @@ public class Game_view_Activity extends AppCompatActivity {
                 food_list.get(4).setVisibility(View.VISIBLE);
             }
             food_list.get(4).setX(food_list.get(4).getX() - speed_index * screenRatioX);
+        }
+
+        if (time >= 800 && time < 940 && !paused) {
+            cliff_list.get(2).setX(cliff_list.get(2).getX() - speed_index * screenRatioX);
         }
 
         if (time >= 820 && time < 960 && !paused) {
@@ -1960,6 +1971,14 @@ public class Game_view_Activity extends AppCompatActivity {
             }
             boulder_list.get(4).setX(boulder_list.get(4).getX() - speed_index * screenRatioX);
         }
+        //TODO
+        if (time >= 880 && time < 1020 && !paused) {
+            if (time == 880) {
+                boulder_list.get(3).setX(screen_width + 100*screenRatioX);
+            }
+            boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);
+        }
+
         if (time >= 900 && time < 1040 && !paused) {
             if (time == 900) {
                 cliff_list.get(0).setX(screen_width + 100*screenRatioX);
@@ -2049,12 +2068,43 @@ public class Game_view_Activity extends AppCompatActivity {
             }
             food_list.get(6).setX(food_list.get(6).getX() - speed_index * screenRatioX);
         }
-        if (time >= 1160 && time < 1300 && !paused) {
-            if (time == 1160) {
+        //TODO
+        if (time >= 1130 && time < 1270 && !paused) {
+            if (time == 1130) {
+                cliff_list.get(0).setX(screen_width + 100*screenRatioX);
+            }
+            cliff_list.get(0).setX(cliff_list.get(0).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 1140 && time < 1280 && !paused) {
+            if (time == 1140) {
+                food_list.get(2).setX(screen_width + 100*screenRatioX);
+                food_list.get(2).setVisibility(View.VISIBLE);
+            }
+            food_list.get(2).setX(food_list.get(2).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 1165 && time < 1300 && !paused) {
+            if (time == 1165) {
                 cliff_list.get(2).setX(screen_width + 100*screenRatioX);
             }
             cliff_list.get(2).setX(cliff_list.get(2).getX() - speed_index * screenRatioX);
         }
+
+        //TODO
+        if (time >= 1180 && time < 1320 && !paused) {
+            if (time == 1180) {
+                food_list.get(3).setX(screen_width + 100*screenRatioX);
+                food_list.get(3).setVisibility(View.VISIBLE);
+            }
+            food_list.get(3).setX(food_list.get(3).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 1180 && time < 1320 && !paused) {
+            if (time == 1180) {
+                food_list.get(0).setX(screen_width + 100*screenRatioX);
+                food_list.get(0).setVisibility(View.VISIBLE);
+            }
+            food_list.get(0).setX(food_list.get(0).getX() - speed_index * screenRatioX);
+        }
+
         if (time >= 1200 && time < 1340 && !paused) {
             if (time == 1200) {
                 boulder_list.get(7).setX(screen_width + 100*screenRatioX);
@@ -2215,7 +2265,13 @@ public class Game_view_Activity extends AppCompatActivity {
                 boulder_list.get(3).setX(screen_width + 100*screenRatioX);
             }
             boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);
-        }//Added
+        }//TODO
+        if (time >= 1580 && time < 1720 && !paused) {
+            if (time == 1580) {
+                boulder_list.get(8).setX(screen_width + 100*screenRatioX);
+            }
+            boulder_list.get(8).setX(boulder_list.get(8).getX() - speed_index * screenRatioX);
+        }
 
         if (time >= 1600 && time < 1740 && !paused) {
             if (time == 1600) {
@@ -2345,6 +2401,101 @@ public class Game_view_Activity extends AppCompatActivity {
         ) {
             paused = true;
         }
-        */
+
+    }
+
+    public void setting_dialog(View view) {
+
+        final AlertDialog.Builder dialog;
+        Button cancel_button;
+        Button confirm_button;
+        final AlertDialog alert_dialog;
+
+        dialog = new AlertDialog.Builder(Game_view_Activity.this);
+        View dialog_view = getLayoutInflater().inflate(R.layout.setting_view, null);
+
+        music_1_button = dialog_view.findViewById(R.id.music_1_button);
+        music_2_button = dialog_view.findViewById(R.id.music_2_button);
+        music_3_button = dialog_view.findViewById(R.id.music_3_button);
+        music_4_button = dialog_view.findViewById(R.id.music_4_button);
+        music_5_button = dialog_view.findViewById(R.id.music_5_button);
+        no_music_button = dialog_view.findViewById(R.id.no_music_button);
+        confirm_button = dialog_view.findViewById(R.id.setting_confirm_button);
+
+
+        dialog.setView(dialog_view);
+        alert_dialog = dialog.create();
+
+        alert_dialog.setCanceledOnTouchOutside(false);
+
+
+        confirm_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alert_dialog.dismiss();
+            }
+        });
+
+
+        music_1_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Music_controller.bgm.stop();
+                Music_controller.bgm.play_music(0);
+                Music_controller.bgm.current_bgm_index = 0;
+            }
+        });
+
+        music_2_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Music_controller.bgm.stop();
+                Music_controller.bgm.play_music(1);
+                Music_controller.bgm.current_bgm_index = 1;
+            }
+        });
+
+        music_3_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Music_controller.bgm.stop();
+                Music_controller.bgm.play_music(2);
+                Music_controller.bgm.current_bgm_index = 2;
+            }
+        });
+
+        music_4_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Music_controller.bgm.stop();
+                Music_controller.bgm.play_music(3);
+                Music_controller.bgm.current_bgm_index = 3;
+            }
+        });
+
+        music_5_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Music_controller.bgm.stop();
+                Music_controller.bgm.play_music(4);
+                Music_controller.bgm.current_bgm_index = 4;
+            }
+        });
+
+        no_music_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Music_controller.bgm.stop();
+                Music_controller.bgm.current_bgm_index = 0;
+            }
+        });
+
+        alert_dialog.show();
     }
 }

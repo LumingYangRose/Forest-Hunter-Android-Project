@@ -125,7 +125,7 @@
         app:layout_constraintHorizontal_bias="0.959"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.607"
+        app:layout_constraintVertical_bias="0.621"
         app:srcCompat="@drawable/friend_logo" />
 
     <ImageButton

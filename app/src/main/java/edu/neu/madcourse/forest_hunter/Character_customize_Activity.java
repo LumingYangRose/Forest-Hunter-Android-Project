@@ -1,6 +1,7 @@
 package edu.neu.madcourse.forest_hunter;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -1597,14 +1598,17 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_hair_index_list.contains(current_hair_index))
                 {
                     all_items_owned_1 = true;
+                    Log.i("test1","test1");
                 }
                 else
                 {
                     all_items_owned_1 = false;
+                    Log.i("test1!!!!!","test1!!!!");
                 }
                 if (value.current_head_index_list.contains(current_head_index))
                 {
                     all_items_owned_2 = true;
+                    Log.i("test2","test2");
                 }
                 else
                 {
@@ -1613,6 +1617,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_eye_index_list.contains(current_eye_index))
                 {
                     all_items_owned_3 = true;
+                    Log.i("test3","test3");
                 }
                 else
                 {
@@ -1622,6 +1627,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_nose_index_list.contains(current_nose_index))
                 {
                     all_items_owned_4 = true;
+                    Log.i("test4","test4");
                 }
                 else
                 {
@@ -1631,6 +1637,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_mouth_index_list.contains(current_mouth_index))
                 {
                     all_items_owned_5 = true;
+                    Log.i("test5","test5");
                 }
                 else
                 {
@@ -1639,6 +1646,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_l_eye_brow_index_list.contains(current_l_eye_brow_index))
                 {
                     all_items_owned_6 = true;
+                    Log.i("test6","test6");
                 }
                 else
                 {
@@ -1647,6 +1655,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_r_eye_brow_index_list.contains(current_r_eye_brow_index))
                 {
                     all_items_owned_7 = true;
+                    Log.i("test7","test7");
                 }
                 else
                 {
@@ -1655,6 +1664,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_ear_index_list.contains(current_ear_index))
                 {
                     all_items_owned_8 = true;
+                    Log.i("test8","test8");
                 }
                 else
                 {
@@ -1663,6 +1673,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_chest_wear_index_list.contains(current_chest_wear_index))
                 {
                     all_items_owned_9 = true;
+                    Log.i("test9","test9");
                 }
                 else
                 {
@@ -1671,14 +1682,17 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_arm_wear_index_list.contains(current_arm_wear_index))
                 {
                     all_items_owned_10 = true;
+                    Log.i("test10","test10");
                 }
                 else
                 {
                     all_items_owned_10 = false;
+                    Log.i("test10","test10");
                 }
                 if (value.current_shoulder_wear_index_list.contains(current_shoulder_wear_index))
                 {
                     all_items_owned_11 = true;
+                    Log.i("test11","test11");
                 }
                 else
                 {
@@ -1687,6 +1701,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_leg_wear_index_list.contains(current_leg_wear_index))
                 {
                     all_items_owned_12 = true;
+                    Log.i("test12","test12");
                 }
                 else
                 {
@@ -1695,6 +1710,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_thigh_wear_index_list.contains(current_thigh_wear_index))
                 {
                     all_items_owned_13 = true;
+                    Log.i("test13","test13");
                 }
                 else
                 {
@@ -1704,6 +1720,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                 {
 
                     all_items_owned_14 = true;
+                    Log.i("test14","test14");
                 }
                 else
                 {
@@ -1713,6 +1730,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                 {
 
                     all_items_owned_15 = true;
+                    Log.i("test15","test15");
                 }
                 else
                 {
@@ -1721,6 +1739,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_chest_list.contains(current_chest_index))
                 {
                     all_items_owned_16 = true;
+                    Log.i("test16","test16");
                 }
                 else
                 {
