@@ -44,7 +44,7 @@ public class login_Activity extends AppCompatActivity {
     ImageButton music_button;
     Music bgm;
 
-    private static String CLIENT_REGISTRATION_TOKEN;
+    public static String CLIENT_REGISTRATION_TOKEN;
     private DatabaseReference mDatabase;
 
     User login_user;
@@ -755,6 +755,7 @@ public class login_Activity extends AppCompatActivity {
 
 
                     login_user.highest_score_list = temp_highest_score_list;
+                    login_user.CLIENT_REGISTRATION_TOKEN = CLIENT_REGISTRATION_TOKEN;
                     Task update_user = mDatabase.child("users").child(username).setValue(login_user);
 
                     // Save user info to local memory
