@@ -617,6 +617,8 @@ public class login_Activity extends AppCompatActivity {
                         }
                     }
 
+                    //TODO
+
                     login_user.highest_score_list = temp_highest_score_list;
 
                     Task update_user = mDatabase.child("users").child(username).setValue(login_user);

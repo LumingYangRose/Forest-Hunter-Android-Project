@@ -172,7 +172,7 @@ public class Game_view_Activity extends AppCompatActivity {
     int screen_width;
     int screen_height;
 
-    int speed_index = 20;
+    int speed_index = 22;
 
     public static float screenRatioX, screenRatioY;
 
@@ -195,7 +195,7 @@ public class Game_view_Activity extends AppCompatActivity {
 
         if (stage.current_stage_index == 0)
         {
-            speed_index= 20;
+            speed_index= 22;
         }
         else
         {
