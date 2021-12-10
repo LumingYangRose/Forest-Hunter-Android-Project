@@ -629,6 +629,22 @@
         app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
         app:layout_constraintVertical_bias="0.0" />
 
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="112dp"
+        android:layout_height="36dp"
+        android:gravity="center"
+        android:text="Name"
+        android:textColor="#151414"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="@+id/character_customize_board_view"
+        app:layout_constraintTop_toTopOf="@+id/character_customize_board_view"
+        app:layout_constraintVertical_bias="0.003" />
+
     <ImageButton
         android:id="@+id/character_last_page_button"
         android:layout_width="59dp"
@@ -984,10 +1000,9 @@
         android:id="@+id/User_name_EditText"
         android:layout_width="186dp"
         android:layout_height="36dp"
-        android:background="@color/white"
+        android:background="@color/fui_transparent"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Type Your Name"
         android:textColor="#292626"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -68,7 +68,7 @@ public class login_Activity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<String> task) {
                 if (!task.isSuccessful()) {
-                    Toast.makeText(login_Activity.this, "Something is wrong!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(login_Activity.this, "Please Check your Network!", Toast.LENGTH_SHORT).show();
                 } else {
                     if (CLIENT_REGISTRATION_TOKEN == null) {
                         CLIENT_REGISTRATION_TOKEN = task.getResult();
@@ -617,6 +617,8 @@ public class login_Activity extends AppCompatActivity {
                         }
                     }
 
+                    //TODO
+
                     login_user.highest_score_list = temp_highest_score_list;
 
                     Task update_user = mDatabase.child("users").child(username).setValue(login_user);
@@ -772,6 +774,7 @@ public class login_Activity extends AppCompatActivity {
     public void activate_main_activity() {
         Intent main_intent = new Intent(this, MainActivity.class);
         bgm.stop_Player();
+        Toast.makeText(login_Activity.this, "Successfully Login", Toast.LENGTH_SHORT).show();
         startActivity(main_intent);
 
     }

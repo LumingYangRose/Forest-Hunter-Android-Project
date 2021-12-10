@@ -70,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toast.makeText(MainActivity.this, "Successfully Login", Toast.LENGTH_SHORT).show();
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference user_database = mDatabase.child("users");
         user_database.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {

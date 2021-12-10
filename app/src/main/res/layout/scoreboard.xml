@@ -33,7 +33,7 @@
             android:layout_height="60dp"
             android:background="@drawable/score_board_card"
             android:gravity="center"
-            android:text="1st"
+            android:text="1st:   n/a"
             android:textSize="22sp" />
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_height="60dp"
             android:background="@drawable/score_board_card"
             android:gravity="center"
-            android:text="2nd"
+            android:text="2nd:  n/a"
             android:textSize="22sp" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:layout_height="60dp"
             android:background="@drawable/score_board_card"
             android:gravity="center"
-            android:text="3rd"
+            android:text="3rd:  n/a"
             android:textSize="22sp" />
 
         <TextView
@@ -75,7 +75,7 @@
             android:layout_height="60dp"
             android:background="@drawable/score_board_card"
             android:gravity="center"
-            android:text="4st"
+            android:text="4st: n/a"
             android:textSize="22sp" />
 
         <TextView
@@ -89,7 +89,7 @@
             android:layout_height="60dp"
             android:background="@drawable/score_board_card"
             android:gravity="center"
-            android:text="5nd"
+            android:text="5nd:  n/a"
             android:textSize="22sp" />
 
 
@@ -103,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:backgroundTint="#EE8B26"
-            android:fontFamily="@font/dancingscript"
+            android:textStyle="bold|italic"
             android:text=""
             android:textColor="@color/white"
             android:textSize="20sp" />
@@ -118,7 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:backgroundTint="#EE8B26"
-            android:fontFamily="@font/dancingscript"
+            android:textStyle="bold|italic"
             android:text="Got it!"
             android:textColor="@color/white"
             android:textSize="20sp" />

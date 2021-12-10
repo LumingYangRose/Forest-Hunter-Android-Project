@@ -17,8 +17,8 @@
             android:layout_width="600dp"
             android:layout_height="100dp"
             android:layout_marginBottom="40dp"
+            android:background="@drawable/lose_text"
             android:gravity="center"
-            android:text="Sorry... \n You LOST..."
             android:textColor="@color/black"
             android:textSize="42sp"
             android:textStyle="bold|italic" />

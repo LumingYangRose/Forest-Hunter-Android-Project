@@ -1,6 +1,7 @@
 package edu.neu.madcourse.forest_hunter;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -109,8 +110,9 @@ public class Character_customize_Activity extends AppCompatActivity {
     private ImageView appearance_change_textview3_lock;
     private ImageView appearance_change_textview4_lock;
     private User value;
-    private int price = 200;
+    private int price = 500;
     private DatabaseReference reference;
+    private TextView name;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,7 +123,8 @@ public class Character_customize_Activity extends AppCompatActivity {
         appearance_change_textview3 = findViewById(R.id.appearance_change_textview3);
         appearance_change_textview4 = findViewById(R.id.appearance_change_textview4);
 
-
+        name = findViewById(R.id.name);
+        name.setText(Login_User.current_User.nickname);
         ap = new Appearance();
 
         hair_view = findViewById(R.id.hair_view);
@@ -260,21 +263,10 @@ public class Character_customize_Activity extends AppCompatActivity {
         appearance_change_textview3_lock.setVisibility(View.GONE);
         appearance_change_textview4_lock.setVisibility(View.GONE);
 
+        value = Login_User.current_User;
+
+
         reference = FirebaseDatabase.getInstance().getReference();
-        reference.child("users").child(Login_User.current_User.username).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                value = snapshot.getValue(User.class);
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
 
         //TODO STEP 3 set the switch case for the page
         appearance_last_button1 = findViewById(R.id.appearance_last_button1);
@@ -1597,14 +1589,21 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_hair_index_list.contains(current_hair_index))
                 {
                     all_items_owned_1 = true;
+                    Log.i("test1","test1");
+                    Appearance.current_hair_index = current_hair_index;
+                    value.Character_setting.get(0).current_hair_index = Appearance.current_hair_index;
                 }
                 else
                 {
                     all_items_owned_1 = false;
+                    Log.i("test1!!!!!","test1!!!!");
                 }
                 if (value.current_head_index_list.contains(current_head_index))
                 {
                     all_items_owned_2 = true;
+                    Log.i("test2","test2");
+                    Appearance.current_head_index = current_head_index;
+                    value.Character_setting.get(0).current_head_index = Appearance.current_head_index;
                 }
                 else
                 {
@@ -1613,6 +1612,7 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_eye_index_list.contains(current_eye_index))
                 {
                     all_items_owned_3 = true;
+                    Log.i("test3","test3");
                 }
                 else
                 {
@@ -1622,6 +1622,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_nose_index_list.contains(current_nose_index))
                 {
                     all_items_owned_4 = true;
+                    Log.i("test4","test4");
+                    Appearance.current_nose_index = current_nose_index;
+                    value.Character_setting.get(0).current_nose_index = Appearance.current_nose_index;
                 }
                 else
                 {
@@ -1631,6 +1634,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_mouth_index_list.contains(current_mouth_index))
                 {
                     all_items_owned_5 = true;
+                    Log.i("test5","test5");
+                    Appearance.current_mouth_index = current_mouth_index;
+                    value.Character_setting.get(0).current_mouth_index = Appearance.current_mouth_index;
                 }
                 else
                 {
@@ -1639,6 +1645,10 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_l_eye_brow_index_list.contains(current_l_eye_brow_index))
                 {
                     all_items_owned_6 = true;
+                    Log.i("test6","test6");
+                    Appearance.current_l_eye_brow_index = current_l_eye_brow_index;
+                    value.Character_setting.get(0).current_l_eye_brow_index = Appearance.current_l_eye_brow_index;
+
                 }
                 else
                 {
@@ -1647,6 +1657,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_r_eye_brow_index_list.contains(current_r_eye_brow_index))
                 {
                     all_items_owned_7 = true;
+                    Log.i("test7","test7");
+                    Appearance.current_r_eye_brow_index = current_r_eye_brow_index;
+                    value.Character_setting.get(0).current_r_eye_brow_index = Appearance.current_r_eye_brow_index;
                 }
                 else
                 {
@@ -1655,6 +1668,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_ear_index_list.contains(current_ear_index))
                 {
                     all_items_owned_8 = true;
+                    Log.i("test8","test8");
+                    Appearance.current_ear_index = current_ear_index;
+                    value.Character_setting.get(0).current_ear_index = Appearance.current_ear_index;
                 }
                 else
                 {
@@ -1663,6 +1679,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_chest_wear_index_list.contains(current_chest_wear_index))
                 {
                     all_items_owned_9 = true;
+                    Log.i("test9","test9");
+                    Appearance.current_chest_wear_index = current_chest_wear_index;
+                    value.Character_setting.get(0).current_chest_wear_index = Appearance.current_chest_wear_index;
                 }
                 else
                 {
@@ -1671,14 +1690,22 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_arm_wear_index_list.contains(current_arm_wear_index))
                 {
                     all_items_owned_10 = true;
+                    Log.i("test10","test10");
+                    Appearance.current_arm_wear_index = current_arm_wear_index;
+                    value.Character_setting.get(0).current_arm_wear_index = Appearance.current_arm_wear_index;
+
                 }
                 else
                 {
                     all_items_owned_10 = false;
+                    Log.i("test10","test10");
                 }
                 if (value.current_shoulder_wear_index_list.contains(current_shoulder_wear_index))
                 {
                     all_items_owned_11 = true;
+                    Log.i("test11","test11");
+                    Appearance.current_shoulder_wear_index = current_shoulder_wear_index;
+                    value.Character_setting.get(0).current_shoulder_wear_index = Appearance.current_shoulder_wear_index;
                 }
                 else
                 {
@@ -1687,6 +1714,10 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_leg_wear_index_list.contains(current_leg_wear_index))
                 {
                     all_items_owned_12 = true;
+                    Log.i("test12","test12");
+                    Appearance.current_leg_wear_index = current_leg_wear_index;
+                    value.Character_setting.get(0).current_leg_wear_index = Appearance.current_leg_wear_index;
+
                 }
                 else
                 {
@@ -1695,6 +1726,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_thigh_wear_index_list.contains(current_thigh_wear_index))
                 {
                     all_items_owned_13 = true;
+                    Log.i("test13","test13");
+                    Appearance.current_thigh_wear_index = current_thigh_wear_index;
+                    value.Character_setting.get(0).current_thigh_wear_index = Appearance.current_thigh_wear_index;
                 }
                 else
                 {
@@ -1704,6 +1738,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                 {
 
                     all_items_owned_14 = true;
+                    Log.i("test14","test14");
+                    Appearance.current_bottom_wear_index = current_bottom_wear_index;
+                    value.Character_setting.get(0).current_foot_wear_index = Appearance.current_foot_wear_index;
                 }
                 else
                 {
@@ -1713,6 +1750,10 @@ public class Character_customize_Activity extends AppCompatActivity {
                 {
 
                     all_items_owned_15 = true;
+                    Log.i("test15","test15");
+                    Appearance.current_foot_wear_index = current_foot_wear_index;
+                    value.Character_setting.get(0).current_foot_wear_index = Appearance.current_foot_wear_index;
+
                 }
                 else
                 {
@@ -1721,11 +1762,17 @@ public class Character_customize_Activity extends AppCompatActivity {
                 if (value.current_chest_list.contains(current_chest_index))
                 {
                     all_items_owned_16 = true;
+                    Log.i("test16","test16");
+                    Appearance.current_chest_index = current_chest_index;
+                    value.Character_setting.get(0).current_chest_index = Appearance.current_chest_index;
                 }
                 else
                 {
                     all_items_owned_16 = false;
                 }
+
+                reference.child("users").child(Login_User.current_User.username).setValue(value);
+                Login_User.current_User = value;
 
 
                 if (all_items_owned_1 == true
@@ -1745,44 +1792,11 @@ public class Character_customize_Activity extends AppCompatActivity {
                         && all_items_owned_15 == true
                         && all_items_owned_16 == true)
                 {
-                    Appearance.current_hair_index = current_hair_index;
-                    Appearance.current_head_index = current_head_index;
-                    Appearance.current_eye_index = current_eye_index;
-                    Appearance.current_nose_index = current_nose_index;
-                    Appearance.current_mouth_index = current_mouth_index;
-                    Appearance.current_l_eye_brow_index = current_l_eye_brow_index;
-                    Appearance.current_r_eye_brow_index = current_r_eye_brow_index;
-                    Appearance.current_ear_index = current_ear_index;
-                    Appearance.current_chest_wear_index = current_chest_wear_index;
-                    Appearance.current_arm_wear_index = current_arm_wear_index;
-                    Appearance.current_shoulder_wear_index = current_shoulder_wear_index;
-                    Appearance.current_leg_wear_index = current_leg_wear_index;
-                    Appearance.current_thigh_wear_index = current_thigh_wear_index;
-                    Appearance.current_bottom_wear_index = current_bottom_wear_index;
-                    Appearance.current_foot_wear_index = current_foot_wear_index;
-                    Appearance.current_chest_index = current_chest_index;
-
-                    value.Character_setting.get(0).current_hair_index = Appearance.current_hair_index;
-                    value.Character_setting.get(0).current_head_index = Appearance.current_head_index;
-                    value.Character_setting.get(0).current_eye_index = Appearance.current_eye_index;
-                    value.Character_setting.get(0).current_nose_index = Appearance.current_nose_index;
-                    value.Character_setting.get(0).current_mouth_index = Appearance.current_mouth_index;
-                    value.Character_setting.get(0).current_l_eye_brow_index = Appearance.current_l_eye_brow_index;
-                    value.Character_setting.get(0).current_r_eye_brow_index = Appearance.current_r_eye_brow_index;
-                    value.Character_setting.get(0).current_ear_index = Appearance.current_ear_index;
-                    value.Character_setting.get(0).current_chest_wear_index = Appearance.current_chest_wear_index;
-                    value.Character_setting.get(0).current_arm_wear_index = Appearance.current_arm_wear_index;
-                    value.Character_setting.get(0).current_shoulder_wear_index = Appearance.current_shoulder_wear_index;
-                    value.Character_setting.get(0).current_leg_wear_index = Appearance.current_leg_wear_index;
-                    value.Character_setting.get(0).current_thigh_wear_index = Appearance.current_thigh_wear_index;
-                    value.Character_setting.get(0).current_bottom_wear_index = Appearance.current_bottom_wear_index;
-                    value.Character_setting.get(0).current_foot_wear_index = Appearance.current_foot_wear_index;
-                    value.Character_setting.get(0).current_chest_index = Appearance.current_chest_index;
-                    reference.child("users").child(Login_User.current_User.username).setValue(value);
                     Toast.makeText(Character_customize_Activity.this, "save successfully", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(Character_customize_Activity.this, "Saving Failed! Please buy before saving, you don't own at least one of the selected item.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Character_customize_Activity.this, "You don't own at least one of the selected item.", Toast.LENGTH_SHORT).show();
                 }
+
 
 
             }

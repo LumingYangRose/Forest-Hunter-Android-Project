@@ -174,7 +174,7 @@ public class Friends extends AppCompatActivity {
 
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
-
+                        update_based_on_nickname(target_nick_username);
                     }
                 });
             }
