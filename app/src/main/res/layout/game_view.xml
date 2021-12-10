@@ -143,6 +143,14 @@
         app:srcCompat="@drawable/down_brown" />
 
     <ImageView
+        android:id="@+id/swipe_right"
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        tools:layout_editor_absoluteX="300dp"
+        tools:layout_editor_absoluteY="300dp"
+        app:srcCompat="@drawable/right_arrow" />
+
+    <ImageView
         android:id="@+id/tap_jump"
         android:layout_width="80dp"
         android:layout_height="80dp"

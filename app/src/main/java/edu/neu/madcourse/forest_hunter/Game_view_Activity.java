@@ -82,6 +82,7 @@ public class Game_view_Activity extends AppCompatActivity {
     private ImageView hearts_view3;
     private ImageView swipe_up;
     private ImageView swipe_down;
+    private ImageView swipe_right;
     private ImageView tap_screen;
     private TextView tutorial_info;
     private static ArrayList<ImageView> all_image_view_list;
@@ -142,6 +143,7 @@ public class Game_view_Activity extends AppCompatActivity {
     int lives;
     int invincible_countdown;
     public int jump_countdown;
+    int shoot_countdown;
     TextView score_view;
 
     int screen_width;
@@ -176,13 +178,16 @@ public class Game_view_Activity extends AppCompatActivity {
         jumped = false;
         jump_countdown = 0;
         invincible_countdown = 0;
+        shoot_countdown = 0;
         score_view = findViewById(R.id.Score_title_view);
 
         swipe_up = findViewById(R.id.swipe_up);
         swipe_down = findViewById(R.id.swipe_down);
+        swipe_right = findViewById(R.id.swipe_right);
         tap_screen = findViewById(R.id.tap_jump);
         swipe_up.setVisibility(View.INVISIBLE);
         swipe_down.setVisibility(View.INVISIBLE);
+        swipe_right.setVisibility(View.INVISIBLE);
         tap_screen.setVisibility(View.INVISIBLE);
         tutorial_info = findViewById(R.id.tutorial);
         tutorial_info.setVisibility(View.INVISIBLE);
@@ -192,6 +197,8 @@ public class Game_view_Activity extends AppCompatActivity {
         swipe_down.setY(640);
         tap_screen.setX(960);
         tap_screen.setY(440);
+        swipe_right.setX(960);
+        swipe_right.setY(440);
         tutorial_info.setX(1280);
         tutorial_info.setY(440);
 
@@ -230,6 +237,7 @@ public class Game_view_Activity extends AppCompatActivity {
 
         bullet_view.setX(500);
         bullet_view.setY(600);
+        bullet_view.setVisibility(View.INVISIBLE);
 
         boulder_list = new ArrayList<>();
         gorilla_list = new ArrayList<>();
@@ -509,6 +517,13 @@ public class Game_view_Activity extends AppCompatActivity {
                 }
                 return true;
             }
+
+            @Override
+            public boolean onSwipeRight() {
+                bullet_view.setVisibility(View.VISIBLE);
+                shoot_countdown = 35;
+                return true;
+            }
         });
     }
 
@@ -572,7 +587,7 @@ public class Game_view_Activity extends AppCompatActivity {
             for (ImageView iv: gorilla_list) {
                 if ((Math.abs(iv.getX()-chest_view.getX()) <= 100)
                         && (Math.abs(iv.getY()-chest_view.getY()) <= 100)) {
-                    if (lives>0 && !invincible) {
+                    if (lives>0 && iv.getVisibility() == View.VISIBLE) {
                         hearts.get(lives - 1).setVisibility(View.INVISIBLE);
                         lives--;
                         invincible = true;
@@ -582,7 +597,7 @@ public class Game_view_Activity extends AppCompatActivity {
 
                 if ((Math.abs(iv.getX()-bullet_view.getX()) <= 100)
                         && (Math.abs(iv.getY()-bullet_view.getY()) <= 100)) {
-                    if (lives>0) {
+                    if (lives>0 && bullet_view.getVisibility() != View.INVISIBLE) {
                         iv.setVisibility(View.INVISIBLE);
                         score += 250;
                         score_view.setText("Score: " + score);
@@ -620,6 +635,11 @@ public class Game_view_Activity extends AppCompatActivity {
             } else if (jump_countdown<=5 && jump_countdown>0) {
                 jumped = false;
                 jump_countdown--;
+            }
+            if (shoot_countdown > 0) {
+                shoot_countdown--;
+            } else {
+                bullet_view.setVisibility(View.INVISIBLE);
             }
             time ++;
 
@@ -931,11 +951,11 @@ public class Game_view_Activity extends AppCompatActivity {
         boulder5.setY((int)(screen_height*0.74));
         boulder6.setY((int)(screen_height*0.74));
         boulder_list.add(boulder1);
-//        boulder_list.add(boulder2);
-//        boulder_list.add(boulder3);
-//        boulder_list.add(boulder4);
-//        boulder_list.add(boulder5);
-//        boulder_list.add(boulder6);
+        boulder_list.add(boulder2);
+        boulder_list.add(boulder3);
+        boulder_list.add(boulder4);
+        boulder_list.add(boulder5);
+        boulder_list.add(boulder6);
         for (ImageView iv: boulder_list) {
             iv.setX(screen_width + 100*screenRatioX);
             iv.setImageResource(R.drawable.body_crouched);
@@ -952,9 +972,9 @@ public class Game_view_Activity extends AppCompatActivity {
         ImageView gorilla5 = findViewById(R.id.gorilla_view5);
         ImageView gorilla6 = findViewById(R.id.gorilla_view6);
 
-        gorilla1.setY((int)(screen_height*0.74-200));
-        gorilla2.setY((int)(screen_height*0.74-200));
-        gorilla3.setY((int)(screen_height*0.74-200));
+        gorilla1.setY((int)(screen_height*0.74-300));
+        gorilla2.setY((int)(screen_height*0.74-100));
+        gorilla3.setY((int)(screen_height*0.74-400));
         gorilla4.setY((int)(screen_height*0.74-200));
         gorilla5.setY((int)(screen_height*0.74));
         gorilla6.setY((int)(screen_height*0.74));
@@ -966,10 +986,12 @@ public class Game_view_Activity extends AppCompatActivity {
         gorilla_list.add(gorilla5);
         gorilla_list.add(gorilla6);
 
+        System.out.println(gorilla_list.size());
 
         for (ImageView iv: gorilla_list) {
             iv.setX(screen_width + 100*screenRatioX);
-            iv.setImageResource(R.drawable.__gorilla_brown_walk_standing_011);
+            iv.setImageResource(R.drawable.gorilla);
+//            iv.setImageResource(R.drawable.__gorilla_brown_walk_standing_011);
             iv.getLayoutParams().width = 200;
             iv.getLayoutParams().height = 200;
         }
@@ -1025,14 +1047,19 @@ public class Game_view_Activity extends AppCompatActivity {
             swipe_up.setVisibility(View.VISIBLE);
             tutorial_info.setVisibility(View.VISIBLE);
         }
-        if (time==80) {
+        if (time==40) {
             swipe_down.setVisibility(View.INVISIBLE);
             swipe_up.setVisibility(View.INVISIBLE);
             tap_screen.setVisibility(View.VISIBLE);
             tutorial_info.setText("Tap screen to Jump");
         }
-        if (time==160) {
+        if (time == 80) {
             tap_screen.setVisibility(View.INVISIBLE);
+            swipe_right.setVisibility(View.VISIBLE);
+            tutorial_info.setText("Swipe right to hunt");
+        }
+        if (time==120) {
+            swipe_right.setVisibility(View.INVISIBLE);
             tutorial_info.setVisibility(View.INVISIBLE);
         }
     }
@@ -1042,17 +1069,29 @@ public class Game_view_Activity extends AppCompatActivity {
             gorilla_list.get(0).setX(gorilla_list.get(0).getX() - 20 * screenRatioX);
         }
 
-//        if (time >= 220) {
-//            gorilla_list.get(1).setX(gorilla_list.get(1).getX() - 20 * screenRatioX);
-//        }
+        if (time >= 220) {
+            gorilla_list.get(1).setX(gorilla_list.get(1).getX() - 20 * screenRatioX);
+        }
 
         if (time >= 200) {
             boulder_list.get(0).setX(boulder_list.get(0).getX() - 20 * screenRatioX);
         }
 
-//        if (time >= 220) {
-//            boulder_list.get(2).setX(boulder_list.get(2).getX() - 20 * screenRatioX);
-//        }
+        if (time >= 220) {
+            gorilla_list.get(4).setX(gorilla_list.get(4).getX() - 20 * screenRatioX);
+        }
+
+        if (time >= 250) {
+            gorilla_list.get(2).setX(gorilla_list.get(2).getX() - 20 * screenRatioX);
+        }
+
+        if (time >= 220) {
+            boulder_list.get(2).setX(boulder_list.get(2).getX() - 20 * screenRatioX);
+        }
+
+        if (time >= 3000) {
+            gorilla_list.get(3).setX(gorilla_list.get(3).getX() - 20 * screenRatioX);
+        }
 
         if (time >= 220 && time < 340) {
             food_list.get(4).setX(food_list.get(4).getX() - 20 * screenRatioX);
