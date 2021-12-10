@@ -148,12 +148,12 @@
         android:layout_height="74dp"
         android:layout_alignTop="@+id/store_board_view"
         android:layout_alignBottom="@+id/store_board_view"
-        android:layout_marginStart="65dp"
+        android:layout_marginStart="55dp"
         android:layout_marginTop="278dp"
         android:layout_marginBottom="24dp"
         android:layout_toEndOf="@+id/store_board_view"
         android:background="@null"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         android:scaleX="-1"
         app:srcCompat="@drawable/pic_next_button" />
 
