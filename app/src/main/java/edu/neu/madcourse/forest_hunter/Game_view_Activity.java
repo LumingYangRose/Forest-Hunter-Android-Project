@@ -7,6 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.DisplayMetrics;
@@ -161,9 +165,15 @@ public class Game_view_Activity extends AppCompatActivity {
     boolean invincible;
     public static boolean paused;
     private static boolean jumped;
+    private SensorManager sm;
+    private Sensor shake_sensor;
+    private float acelVal,acelLast,shake;
 
     private static int score;
     int lives;
+    boolean revival;
+    int revival_countdown;
+    TextView revival_info;
     int invincible_countdown;
     public int jump_countdown;
     TextView score_view;
@@ -185,6 +195,7 @@ public class Game_view_Activity extends AppCompatActivity {
     android.os.Handler Handler;
     android.os.Handler Handler2;
     android.os.Handler Handler3;
+    android.os.Handler countdownHandler;
 
     static double dpi_ratio;
 
@@ -204,17 +215,28 @@ public class Game_view_Activity extends AppCompatActivity {
 
         time = 0;
         lives = 3;
+        revival = true;
+        revival_countdown = 10;
+        revival_info = findViewById(R.id.revival_count);
+        revival_info.setVisibility(View.INVISIBLE);
+        revival_info.setX(640);
+        revival_info.setY(320);
         score = 0;
         count = 0;
         paused = false;
         invincible = false;
         jumped = false;
         jump_countdown = 0;
+
         invincible_countdown = 0;
         pause_button = findViewById(R.id.game_menu_button);
         score_view = findViewById(R.id.Score_title_view);
         progress_bar = findViewById(R.id.game_progress);
         progress_bar.setProgress(0);
+
+        sm=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        shake_sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sm.registerListener(sensorListener,shake_sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
         swipe_up = findViewById(R.id.swipe_up);
         swipe_down = findViewById(R.id.swipe_down);
@@ -723,8 +745,17 @@ public class Game_view_Activity extends AppCompatActivity {
                         lives--;
                         if (lives <= 0) {
                             paused = true;
-                            MyDialogFragment newFragment = new MyDialogFragment();
-                            newFragment.show(getSupportFragmentManager(), "fragment tag");
+                            if (!revival) {
+                                MyDialogFragment newFragment = new MyDialogFragment();
+                                try {
+                                    newFragment.show(getSupportFragmentManager(), "fragment tag");
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                countdownHandler = new android.os.Handler();
+                                countdownHandler.postDelayed(revivalCountdown, 0);
+                            }
                         }
                         invincible = true;
                         invincible_countdown = 20;
@@ -738,12 +769,16 @@ public class Game_view_Activity extends AppCompatActivity {
                         lives--;
                         if (lives <= 0) {
                             paused = true;
-                            //DialogFragment newFragment = new MyDialogFragment();
-                            MyDialogFragment newFragment = new MyDialogFragment();
-                            try {
-                                newFragment.show(getSupportFragmentManager(), "fragment tag");
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                            if (!revival) {
+                                MyDialogFragment newFragment = new MyDialogFragment();
+                                try {
+                                    newFragment.show(getSupportFragmentManager(), "fragment tag");
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                countdownHandler = new android.os.Handler();
+                                countdownHandler.postDelayed(revivalCountdown, 0);
                             }
                         }
                         invincible = true;
@@ -762,7 +797,9 @@ public class Game_view_Activity extends AppCompatActivity {
             characterJump(jump_countdown);
             getHit(invincible_countdown);
             if (invincible_countdown>0) {
-                invincible_countdown--;
+                if (!paused) {
+                    invincible_countdown--;
+                }
             } else {
                 invincible = false;
             }
@@ -869,7 +906,52 @@ public class Game_view_Activity extends AppCompatActivity {
         }
     };
 
+    private Runnable revivalCountdown = new Runnable()
+    {
+        public void run()
+        {
+            if (revival_countdown > 0 && revival) {
+                revival_info.setText("SHAKE IT to get back to the game!\n" + revival_countdown + "s");
+                revival_countdown--;
+                revival_info.setVisibility(View.VISIBLE);
+            } else if (revival_countdown <= 0 && revival) {
+                revival_info.setVisibility(View.INVISIBLE);
+                MyDialogFragment newFragment = new MyDialogFragment();
+                try {
+                    newFragment.show(getSupportFragmentManager(), "fragment tag");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (revival_countdown > 0 && !revival) {
+                paused = false;
+                revival_info.setVisibility(View.INVISIBLE);
+            }
+            countdownHandler.postDelayed(this, 1000); //repeat timer
+        }
+    };
 
+    private final SensorEventListener sensorListener = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            float x =event.values[0];
+            float y =event.values[1];
+            float z =event.values[2];
+            acelLast = acelVal;
+            acelVal=(float) Math.sqrt((double) (x*x)+(y*y)+(z*z));
+            shake = acelVal - acelLast;
+
+            if(shake>8){
+                if (lives <= 0 && paused && revival) {
+                    revival = false;
+                    lives = 1;
+                    hearts.get(0).setVisibility(View.VISIBLE);
+                }
+            }
+        }
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        }
+    };
 
     public void oncreate_resize_move_character(int moveX, int moveY)
     {
@@ -1075,6 +1157,7 @@ public class Game_view_Activity extends AppCompatActivity {
         Handler.removeCallbacksAndMessages(null);
         Handler2.removeCallbacksAndMessages(null);
         Handler3.removeCallbacksAndMessages(null);
+        countdownHandler.removeCallbacksAndMessages(null);
 
         super.onBackPressed();
     }
@@ -1085,6 +1168,7 @@ public class Game_view_Activity extends AppCompatActivity {
         Handler.removeCallbacks(refresh_view);
         Handler2.removeCallbacks(refresh_character_view);
         Handler3.removeCallbacks(game_play);
+        countdownHandler.removeCallbacks(revivalCountdown);
     }
 
     public void setUpMovingObjects() {
