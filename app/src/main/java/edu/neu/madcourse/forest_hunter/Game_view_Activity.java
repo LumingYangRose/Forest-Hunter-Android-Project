@@ -911,7 +911,7 @@ public class Game_view_Activity extends AppCompatActivity {
         public void run()
         {
             if (revival_countdown > 0 && revival) {
-                revival_info.setText("SHAKE IT to get back to the game!\n" + revival_countdown + "s");
+                revival_info.setText("SHAKE IT to get extra life!\n" + revival_countdown + "s");
                 revival_countdown--;
                 revival_info.setVisibility(View.VISIBLE);
             } else if (revival_countdown <= 0 && revival) {
