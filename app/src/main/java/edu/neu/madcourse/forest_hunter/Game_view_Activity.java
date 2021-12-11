@@ -716,13 +716,13 @@ public class Game_view_Activity extends AppCompatActivity {
         {
             if(stage.current_stage_index == 0) {
                 setUpTutorial(time);
-                //setUpStage1(time);
+                setUpStage1(time);
                 setUpProgressBar(time);
             }
             else if (stage.current_stage_index == 1)
             {
                 setUpTutorial(time);
-                //setUpStage2(time);
+                setUpStage2(time);
                 setUpProgressBar(time);
             }
 
