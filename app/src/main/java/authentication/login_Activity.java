@@ -64,10 +64,14 @@ public class login_Activity extends AppCompatActivity {
                 .setApiKey("AIzaSyAMQQ9MJxTGqLdTx1avANgvaIutoyaw9qE")
                 .build();
 
-        if(FirebaseApp.getApps(this).isEmpty())
-        {
+        try {
             FirebaseApp.initializeApp(this, options, "edu.neu.madcourse.forest_hunter");
         }
+        catch(Exception err)
+        {
+            Log.i("already exists", "handling error");
+        }
+
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
@@ -768,6 +772,7 @@ public class login_Activity extends AppCompatActivity {
 
                     sleep(500);
                     activate_main_activity();
+                    finish();
                 }
                 else {
                     String content = "Username and password do not match or Username does not exist";
@@ -797,6 +802,8 @@ public class login_Activity extends AppCompatActivity {
                 if (!username.equals("") ) {
                     if (!snapshot.child(username).exists()) {
                         User user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN);
+                        user.highest_score_list.set(0, "0");
+                        user.highest_score_list.set(1, "0");
                         Task signup_user = mDatabase.child("users").child(username).setValue(user);
                         sleep(1000);
                     } else {

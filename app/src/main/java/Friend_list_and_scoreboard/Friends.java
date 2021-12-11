@@ -128,7 +128,7 @@ public class Friends extends AppCompatActivity {
         friend_nickname_view = findViewById(R.id.friend_nickname);
         friend_nickname_view.setText(current_user_nickname);
 
-        target_nick_username = current_user_name;
+        target_nick_username = current_user_nickname;
         friend_nickname_view.setText(target_nick_username);
 
         friend_stage_1_score_view = findViewById(R.id.stage_1_best_score);
@@ -526,6 +526,7 @@ public class Friends extends AppCompatActivity {
             jNotification.put("title", self_username + "just added you to his friend list");
             jNotification.put("body", "you want to add " +self_username + " as you friend? you can review his/her character.");
             jNotification.put("sound", "default");
+            jNotification.put("badge", "1");
             jNotification.put("click_action", "OPEN_ACTIVITY_1");
 
 
