@@ -763,6 +763,7 @@ public class login_Activity extends AppCompatActivity {
 
                     login_user.highest_score_list = temp_highest_score_list;
                     login_user.CLIENT_REGISTRATION_TOKEN = CLIENT_REGISTRATION_TOKEN;
+                    sleep(100);
                     Task update_user = mDatabase.child("users").child(username).setValue(login_user);
 
                     // Save user info to local memory
@@ -803,11 +804,7 @@ public class login_Activity extends AppCompatActivity {
                         User user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN);
                         user.highest_score_list.set(0, "0");
                         user.highest_score_list.set(1, "0");
-                        try {
-                            Thread.sleep(200);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        sleep(100);
                         Task signup_user = mDatabase.child("users").child(username).setValue(user);
                         sleep(1000);
                     } else {
