@@ -5,9 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.AudioManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -180,7 +178,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void activate_game_view_activity() {
-        Intent game_view_intent = new Intent(this, Game_view_Activity.class);
+
+//        only for test:
+//        Intent game_view_intent = new Intent(this, Game_view_Activity.class);
+//        startActivity(game_view_intent);
+
+        Intent game_view_intent = new Intent(this, Hunting.class);
         startActivity(game_view_intent);
 
     }

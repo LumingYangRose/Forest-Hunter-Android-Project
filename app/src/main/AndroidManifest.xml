@@ -33,6 +33,11 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="landscape"/>
         <activity
+            android:name=".Hunting"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="landscape"/>
+        <activity
             android:name=".Store_Activity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar"
