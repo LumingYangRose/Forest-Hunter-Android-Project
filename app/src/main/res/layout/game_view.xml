@@ -152,6 +152,18 @@
         tools:layout_editor_absoluteY="200dp"
         app:srcCompat="@drawable/tap_screen"/>
 
+    <TextView
+        android:id="@+id/revival_count"
+        android:layout_width="360dp"
+        android:layout_height="200dp"
+        app:layout_editor_absoluteX="200dp"
+        app:layout_editor_absoluteY="120dp"
+        android:text="Countdown"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textStyle="bold|italic"
+        android:textColor="#F44336"/>
+
     <ImageView
         android:id="@+id/cliff_view"
         android:layout_width="20dp"

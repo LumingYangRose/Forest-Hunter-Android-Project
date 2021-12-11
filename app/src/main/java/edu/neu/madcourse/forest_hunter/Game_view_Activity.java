@@ -7,6 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.DisplayMetrics;
@@ -161,9 +165,15 @@ public class Game_view_Activity extends AppCompatActivity {
     boolean invincible;
     public static boolean paused;
     private static boolean jumped;
+    private SensorManager sm;
+    private Sensor shake_sensor;
+    private float acelVal,acelLast,shake;
 
     private static int score;
     int lives;
+    boolean revival;
+    int revival_countdown;
+    TextView revival_info;
     int invincible_countdown;
     public int jump_countdown;
     TextView score_view;
@@ -185,6 +195,7 @@ public class Game_view_Activity extends AppCompatActivity {
     android.os.Handler Handler;
     android.os.Handler Handler2;
     android.os.Handler Handler3;
+    android.os.Handler countdownHandler;
 
     static double dpi_ratio;
 
@@ -204,17 +215,28 @@ public class Game_view_Activity extends AppCompatActivity {
 
         time = 0;
         lives = 3;
+        revival = true;
+        revival_countdown = 10;
+        revival_info = findViewById(R.id.revival_count);
+        revival_info.setVisibility(View.INVISIBLE);
+        revival_info.setX(640);
+        revival_info.setY(320);
         score = 0;
         count = 0;
         paused = false;
         invincible = false;
         jumped = false;
         jump_countdown = 0;
+
         invincible_countdown = 0;
         pause_button = findViewById(R.id.game_menu_button);
         score_view = findViewById(R.id.Score_title_view);
         progress_bar = findViewById(R.id.game_progress);
         progress_bar.setProgress(0);
+
+        sm=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        shake_sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sm.registerListener(sensorListener,shake_sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
         swipe_up = findViewById(R.id.swipe_up);
         swipe_down = findViewById(R.id.swipe_down);
@@ -566,18 +588,18 @@ public class Game_view_Activity extends AppCompatActivity {
         findViewById(R.id.game_view).setOnTouchListener(new OnSwipeTouchListener() {
             @Override
             public boolean onSwipeTop() {
-                if(hair_view.getY() > 348 && !jumped)
+                if(hair_view.getY() > 348*dpi_ratio && !jumped)
                 {
-                    move_character_y(200);
+                    move_character_y((int)(200*dpi_ratio));
                 }
                 return true;
             }
 
             @Override
             public boolean onSwipeBottom() {
-                if(hair_view.getY() < 648 && !jumped)
+                if(hair_view.getY() < 648*dpi_ratio && !jumped)
                 {
-                    move_character_y(-200);
+                    move_character_y((int)(-200*dpi_ratio));
                 }
                 return true;
             }
@@ -716,15 +738,24 @@ public class Game_view_Activity extends AppCompatActivity {
             }
 
             for (ImageView iv: boulder_list) {
-                if ((Math.abs(iv.getX()-chest_view.getX()) <= 100)
-                        && (Math.abs(iv.getY()-chest_view.getY()) <= 80)) {
+                if ((Math.abs(iv.getX()-chest_view.getX()) <= 100*dpi_ratio)
+                        && (Math.abs(iv.getY()-chest_view.getY()) <= 80*dpi_ratio)) {
                     if (lives>0 && !invincible) {
                         hearts.get(lives - 1).setVisibility(View.INVISIBLE);
                         lives--;
                         if (lives <= 0) {
                             paused = true;
-                            MyDialogFragment newFragment = new MyDialogFragment();
-                            newFragment.show(getSupportFragmentManager(), "fragment tag");
+                            if (!revival) {
+                                MyDialogFragment newFragment = new MyDialogFragment();
+                                try {
+                                    newFragment.show(getSupportFragmentManager(), "fragment tag");
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                countdownHandler = new android.os.Handler();
+                                countdownHandler.postDelayed(revivalCountdown, 0);
+                            }
                         }
                         invincible = true;
                         invincible_countdown = 20;
@@ -732,18 +763,22 @@ public class Game_view_Activity extends AppCompatActivity {
                 }
             }
             for (ImageView cliff: cliff_list) {
-                if (Math.abs(cliff.getX()-chest_view.getX()) <= 100) {
+                if (Math.abs(cliff.getX()-chest_view.getX()) <= 100*dpi_ratio) {
                     if (lives>0 && !invincible && !jumped) {
                         hearts.get(lives-1).setVisibility(View.INVISIBLE);
                         lives--;
                         if (lives <= 0) {
                             paused = true;
-                            //DialogFragment newFragment = new MyDialogFragment();
-                            MyDialogFragment newFragment = new MyDialogFragment();
-                            try {
-                                newFragment.show(getSupportFragmentManager(), "fragment tag");
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                            if (!revival) {
+                                MyDialogFragment newFragment = new MyDialogFragment();
+                                try {
+                                    newFragment.show(getSupportFragmentManager(), "fragment tag");
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                countdownHandler = new android.os.Handler();
+                                countdownHandler.postDelayed(revivalCountdown, 0);
                             }
                         }
                         invincible = true;
@@ -752,8 +787,8 @@ public class Game_view_Activity extends AppCompatActivity {
                 }
             }
             for (ImageView food: food_list) {
-                if (food.getVisibility()==View.VISIBLE && Math.abs(food.getX()-chest_view.getX())<=100
-                        && Math.abs(food.getY()-chest_view.getY())<=100 && !jumped) {
+                if (food.getVisibility()==View.VISIBLE && Math.abs(food.getX()-chest_view.getX())<=100*dpi_ratio
+                        && Math.abs(food.getY()-chest_view.getY())<=100*dpi_ratio && !jumped) {
                     score += 100;
                     score_view.setText("Score: " + score);
                     food.setVisibility(View.INVISIBLE);
@@ -762,7 +797,9 @@ public class Game_view_Activity extends AppCompatActivity {
             characterJump(jump_countdown);
             getHit(invincible_countdown);
             if (invincible_countdown>0) {
-                invincible_countdown--;
+                if (!paused) {
+                    invincible_countdown--;
+                }
             } else {
                 invincible = false;
             }
@@ -869,7 +906,52 @@ public class Game_view_Activity extends AppCompatActivity {
         }
     };
 
+    private Runnable revivalCountdown = new Runnable()
+    {
+        public void run()
+        {
+            if (revival_countdown > 0 && revival) {
+                revival_info.setText("SHAKE IT to get extra life!\n" + revival_countdown + "s");
+                revival_countdown--;
+                revival_info.setVisibility(View.VISIBLE);
+            } else if (revival_countdown <= 0 && revival) {
+                revival_info.setVisibility(View.INVISIBLE);
+                MyDialogFragment newFragment = new MyDialogFragment();
+                try {
+                    newFragment.show(getSupportFragmentManager(), "fragment tag");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (revival_countdown > 0 && !revival) {
+                paused = false;
+                revival_info.setVisibility(View.INVISIBLE);
+            }
+            countdownHandler.postDelayed(this, 1000); //repeat timer
+        }
+    };
 
+    private final SensorEventListener sensorListener = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            float x =event.values[0];
+            float y =event.values[1];
+            float z =event.values[2];
+            acelLast = acelVal;
+            acelVal=(float) Math.sqrt((double) (x*x)+(y*y)+(z*z));
+            shake = acelVal - acelLast;
+
+            if(shake>8){
+                if (lives <= 0 && paused && revival) {
+                    revival = false;
+                    lives = 1;
+                    hearts.get(0).setVisibility(View.VISIBLE);
+                }
+            }
+        }
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        }
+    };
 
     public void oncreate_resize_move_character(int moveX, int moveY)
     {
@@ -986,9 +1068,9 @@ public class Game_view_Activity extends AppCompatActivity {
 
     public static void characterJump(int jump_countdown) {
         if (jump_countdown>15) {
-            move_character_y(6.00f);
+            move_character_y((float)(6*dpi_ratio));
         } else if (jump_countdown>3 && jump_countdown<=15) {
-            move_character_y(-6.00f);
+            move_character_y((float)(-6*dpi_ratio));
         }
     }
 
@@ -1075,6 +1157,7 @@ public class Game_view_Activity extends AppCompatActivity {
         Handler.removeCallbacksAndMessages(null);
         Handler2.removeCallbacksAndMessages(null);
         Handler3.removeCallbacksAndMessages(null);
+        countdownHandler.removeCallbacksAndMessages(null);
 
         super.onBackPressed();
     }
@@ -1085,6 +1168,7 @@ public class Game_view_Activity extends AppCompatActivity {
         Handler.removeCallbacks(refresh_view);
         Handler2.removeCallbacks(refresh_character_view);
         Handler3.removeCallbacks(game_play);
+        countdownHandler.removeCallbacks(revivalCountdown);
     }
 
     public void setUpMovingObjects() {
@@ -1097,15 +1181,15 @@ public class Game_view_Activity extends AppCompatActivity {
         ImageView boulder7 = findViewById(R.id.boulder_view7);
         ImageView boulder8 = findViewById(R.id.boulder_view8);
         ImageView boulder9 = findViewById(R.id.boulder_view9);
-        boulder1.setY((int)(screen_height*0.74-400));
-        boulder2.setY((int)(screen_height*0.74-400));
-        boulder3.setY((int)(screen_height*0.74-200));
-        boulder4.setY((int)(screen_height*0.74-200));
-        boulder5.setY((int)(screen_height*0.74));
-        boulder6.setY((int)(screen_height*0.74));
-        boulder7.setY((int)(screen_height*0.74-400));
-        boulder8.setY((int)(screen_height*0.74-200));
-        boulder9.setY((int)(screen_height*0.74));
+        boulder1.setY((int)(screen_height*0.72-400*dpi_ratio));
+        boulder2.setY((int)(screen_height*0.72-400*dpi_ratio));
+        boulder3.setY((int)(screen_height*0.72-200*dpi_ratio));
+        boulder4.setY((int)(screen_height*0.72-200*dpi_ratio));
+        boulder5.setY((int)(screen_height*0.72));
+        boulder6.setY((int)(screen_height*0.72));
+        boulder7.setY((int)(screen_height*0.72-400*dpi_ratio));
+        boulder8.setY((int)(screen_height*0.72-200*dpi_ratio));
+        boulder9.setY((int)(screen_height*0.72));
         boulder_list.add(boulder1);
         boulder_list.add(boulder2);
         boulder_list.add(boulder3);
@@ -1136,10 +1220,10 @@ public class Game_view_Activity extends AppCompatActivity {
         cliff_list.add(cliff5);
         for (ImageView iv: cliff_list) {
             iv.setX(screen_width + 100*screenRatioX);
-            iv.setY(280);
+            iv.setY((float)(280*dpi_ratio));
             iv.setImageResource(R.drawable.water_river);
-            iv.getLayoutParams().width = 220;
-            iv.getLayoutParams().height = 800;
+            iv.getLayoutParams().width = (int)(220*dpi_ratio);
+            iv.getLayoutParams().height = (int)(800*dpi_ratio);
         }
     }
 
@@ -1153,14 +1237,14 @@ public class Game_view_Activity extends AppCompatActivity {
         ImageView food7 = findViewById(R.id.food_view7);
         ImageView food8 = findViewById(R.id.food_view8);
         ImageView food9 = findViewById(R.id.food_view9);
-        food1.setY((int)(screen_height*0.74-400));
-        food2.setY((int)(screen_height*0.74-400));
-        food3.setY((int)(screen_height*0.74-200));
-        food4.setY((int)(screen_height*0.74-200));
+        food1.setY((int)(screen_height*0.74-400*dpi_ratio));
+        food2.setY((int)(screen_height*0.74-400*dpi_ratio));
+        food3.setY((int)(screen_height*0.74-200*dpi_ratio));
+        food4.setY((int)(screen_height*0.74-200*dpi_ratio));
         food5.setY((int)(screen_height*0.74));
         food6.setY((int)(screen_height*0.74));
-        food7.setY((int)(screen_height*0.74-400));
-        food8.setY((int)(screen_height*0.74-200));
+        food7.setY((int)(screen_height*0.74-400*dpi_ratio));
+        food8.setY((int)(screen_height*0.74-200*dpi_ratio));
         food9.setY((int)(screen_height*0.74));
         food_list.add(food1);
         food_list.add(food2);
@@ -1750,6 +1834,7 @@ public class Game_view_Activity extends AppCompatActivity {
         if (time >= 150 && time < 290 && !paused) {
             boulder_list.get(6).setX(boulder_list.get(6).getX() - speed_index * screenRatioX);
         } //Added
+
 
         if (time >= 150 && time < 290 && !paused) {
             boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);

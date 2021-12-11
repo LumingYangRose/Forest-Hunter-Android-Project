@@ -116,7 +116,7 @@ public class MessagingService extends FirebaseMessagingService {
         notification = builder.setContentTitle(remoteMessage.getNotification().getTitle())
                 .setStyle(big_picture_notification)
                 .setLargeIcon(title_bitmap)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.pic_main_menu_title)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
                 .build();
