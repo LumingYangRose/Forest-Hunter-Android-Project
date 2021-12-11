@@ -767,7 +767,7 @@ public class login_Activity extends AppCompatActivity {
 
                     // Save user info to local memory
                     Login_User.current_User = login_user;
-                    Log.v(Login_User.current_User.username, "test!!!!");
+                    Log.v(CLIENT_REGISTRATION_TOKEN, "test!!!!");
 
                     sleep(500);
                     activate_main_activity();
