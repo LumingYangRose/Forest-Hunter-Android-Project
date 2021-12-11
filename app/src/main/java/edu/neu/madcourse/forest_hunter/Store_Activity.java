@@ -72,6 +72,7 @@ public class Store_Activity extends AppCompatActivity {
                         value = snapshot.getValue(Integer.class);
                         value = value + 1000;
                         coins.setText("Your Coins :" + value);
+                        Login_User.current_User.num_of_gold = value;
                         reference.child("users").child(username).child("num_of_gold").setValue(value);
                         showMyDialog();
                     }
@@ -93,6 +94,7 @@ public class Store_Activity extends AppCompatActivity {
                         value = snapshot.getValue(Integer.class);
                         value = value + 6000;
                         coins.setText("Your Coins :" + value);
+                        Login_User.current_User.num_of_gold = value;
                         reference.child("users").child(username).child("num_of_gold").setValue(value);
                         showMyDialog();
                     }
@@ -114,6 +116,7 @@ public class Store_Activity extends AppCompatActivity {
                         value = snapshot.getValue(Integer.class);
                         value = value + 15000;
                         coins.setText("Your Coins :" + value);
+                        Login_User.current_User.num_of_gold = value;
                         reference.child("users").child(username).child("num_of_gold").setValue(value);
                         showMyDialog();
                     }

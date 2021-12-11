@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/game_view"
+    android:id="@+id/hunting_view"
     android:layout_centerVertical="true"
     android:layout_centerHorizontal="true"
     tools:layout_editor_absoluteX="-190dp"
     tools:layout_editor_absoluteY="71dp"
-    tools:context=".Game_view_Activity">
+    tools:context=".Hunting2"
+    >
 
 
     <ImageView
@@ -32,43 +33,6 @@
         app:srcCompat="@android:drawable/divider_horizontal_dim_dark"
         tools:layout_editor_absoluteY="-3dp" />
 
-    <ImageView
-        android:id="@+id/heart_view1"
-        android:layout_width="30dp"
-        android:layout_height="29dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.008"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028"
-        app:srcCompat="@drawable/pic_heart" />
-
-    <ImageView
-        android:id="@+id/heart_view2"
-        android:layout_width="30dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/heart_view1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029"
-        app:srcCompat="@drawable/pic_heart" />
-
-    <ImageView
-        android:id="@+id/heart_view3"
-        android:layout_width="30dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.003"
-        app:layout_constraintStart_toEndOf="@+id/heart_view2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029"
-        app:srcCompat="@drawable/pic_heart" />
 
     <ProgressBar
         android:id="@+id/game_progress"
@@ -117,13 +81,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.104" />
 
-    <ImageView
-        android:id="@+id/swipe_up"
-        android:layout_width="80dp"
-        android:layout_height="90dp"
-        tools:layout_editor_absoluteX="300dp"
-        tools:layout_editor_absoluteY="100dp"
-        app:srcCompat="@drawable/up_brown" />
+
 
     <TextView
         android:id="@+id/tutorial"
@@ -137,6 +95,14 @@
         android:textColor="#000000"/>
 
     <ImageView
+        android:id="@+id/swipe_up"
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        tools:layout_editor_absoluteX="300dp"
+        tools:layout_editor_absoluteY="100dp"
+        app:srcCompat="@drawable/up_brown" />
+
+    <ImageView
         android:id="@+id/swipe_down"
         android:layout_width="80dp"
         android:layout_height="90dp"
@@ -145,197 +111,63 @@
         app:srcCompat="@drawable/down_brown" />
 
     <ImageView
-        android:id="@+id/tap_jump"
+        android:id="@+id/swipe_right"
         android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_height="90dp"
         tools:layout_editor_absoluteX="300dp"
-        tools:layout_editor_absoluteY="200dp"
-        app:srcCompat="@drawable/tap_screen"/>
+        tools:layout_editor_absoluteY="300dp"
+        app:srcCompat="@drawable/right_arrow" />
 
-    <TextView
-        android:id="@+id/revival_count"
-        android:layout_width="360dp"
-        android:layout_height="200dp"
-        app:layout_editor_absoluteX="200dp"
-        app:layout_editor_absoluteY="120dp"
-        android:text="Countdown"
-        android:textAlignment="center"
-        android:textSize="40sp"
-        android:textStyle="bold|italic"
-        android:textColor="#F44336"/>
 
     <ImageView
-        android:id="@+id/cliff_view"
+        android:id="@+id/gorilla_view"
         android:layout_width="20dp"
-        android:layout_height="300dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="100dp" />
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="800dp"
+        tools:layout_editor_absoluteY="350dp" />
 
     <ImageView
-        android:id="@+id/cliff_view2"
-        android:layout_width="20dp"
-        android:layout_height="300dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="100dp" />
-
-    <ImageView
-        android:id="@+id/cliff_view3"
-        android:layout_width="20dp"
-        android:layout_height="300dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="100dp" />
-
-    <ImageView
-        android:id="@+id/cliff_view4"
-        android:layout_width="20dp"
-        android:layout_height="300dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="100dp" />
-
-    <ImageView
-        android:id="@+id/cliff_view5"
-        android:layout_width="20dp"
-        android:layout_height="300dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="100dp" />
-
-    <TextView
-        android:id="@+id/revival_count"
-        android:layout_width="360dp"
-        android:layout_height="200dp"
-        app:layout_editor_absoluteX="200dp"
-        app:layout_editor_absoluteY="120dp"
-        android:text="Countdown"
-        android:textAlignment="center"
-        android:textSize="40sp"
-        android:textStyle="bold|italic"
-        android:textColor="#F44336"/>
-
-    <ImageView
-        android:id="@+id/boulder_view"
+        android:id="@+id/gorilla_view2"
         android:layout_width="20dp"
         android:layout_height="20dp"
         tools:layout_editor_absoluteX="750dp"
         tools:layout_editor_absoluteY="300dp" />
 
     <ImageView
-        android:id="@+id/boulder_view2"
+        android:id="@+id/gorilla_view3"
         android:layout_width="20dp"
         android:layout_height="20dp"
         tools:layout_editor_absoluteX="750dp"
         tools:layout_editor_absoluteY="300dp" />
 
     <ImageView
-        android:id="@+id/boulder_view3"
+        android:id="@+id/gorilla_view4"
         android:layout_width="20dp"
         android:layout_height="20dp"
         tools:layout_editor_absoluteX="750dp"
         tools:layout_editor_absoluteY="300dp" />
 
     <ImageView
-        android:id="@+id/boulder_view4"
+        android:id="@+id/gorilla_view5"
         android:layout_width="20dp"
         android:layout_height="20dp"
         tools:layout_editor_absoluteX="750dp"
         tools:layout_editor_absoluteY="300dp" />
 
     <ImageView
-        android:id="@+id/boulder_view5"
+        android:id="@+id/gorilla_view6"
         android:layout_width="20dp"
         android:layout_height="20dp"
         tools:layout_editor_absoluteX="750dp"
         tools:layout_editor_absoluteY="300dp" />
 
     <ImageView
-        android:id="@+id/boulder_view6"
+        android:id="@+id/sword_view"
         android:layout_width="20dp"
         android:layout_height="20dp"
         tools:layout_editor_absoluteX="750dp"
         tools:layout_editor_absoluteY="300dp" />
 
-    <ImageView
-        android:id="@+id/boulder_view7"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="300dp" />
-
-    <ImageView
-        android:id="@+id/boulder_view8"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="300dp" />
-
-    <ImageView
-        android:id="@+id/boulder_view9"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="300dp" />
-
-    <ImageView
-        android:id="@+id/food_view5"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="300dp" />
-
-    <ImageView
-        android:id="@+id/food_view1"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="300dp" />
-
-    <ImageView
-        android:id="@+id/food_view2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="300dp" />
-
-    <ImageView
-        android:id="@+id/food_view3"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="300dp" />
-
-    <ImageView
-        android:id="@+id/food_view4"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="300dp" />
-
-    <ImageView
-        android:id="@+id/food_view6"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="300dp" />
-
-    <ImageView
-        android:id="@+id/food_view9"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="300dp" />
-
-    <ImageView
-        android:id="@+id/food_view7"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="300dp" />
-
-    <ImageView
-        android:id="@+id/food_view8"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        tools:layout_editor_absoluteX="750dp"
-        tools:layout_editor_absoluteY="300dp" />
 
     <ImageView
         android:id="@+id/l_leg_view"
@@ -1098,23 +930,9 @@
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="l_foot_view,r_shoulder_view_wear,r_foot_view,chest_view_wear,bottom_view_wear,r_leg_view_wear,chest_view,l_arm_view,r_arm_view,r_shoulder_view,l_hand_finger_view,l_arm_view_wear,r_thigh_view_wear,l_leg_view,ear_view,l_shoulder_view_wear,r_eyebrow_view,l_eyebrow_view,r_leg_view,l_thigh_view_wear,r_thigh_view,r_arm_view_wear,r_hand_view,r_foot_view_wear,head_view,l_thigh_view,eyes_view,l_foot_view_wear,mouth_view,l_shoulder_view,nose_view,l_leg_view_wear,hair_view" />
 
-    <ImageView
-        android:id="@+id/crocodile"
-        android:layout_width="177dp"
-        android:layout_height="150dp"
-        android:scaleX="-1"
-        app:srcCompat="@drawable/crocodile1"
-        tools:layout_editor_absoluteX="215dp"
-        tools:layout_editor_absoluteY="197dp" />
 
-    <ImageView
-        android:id="@+id/lion"
-        android:layout_width="177dp"
-        android:layout_height="150dp"
-        android:scaleX="-1"
-        app:srcCompat="@drawable/__lion_run_000"
-        tools:layout_editor_absoluteX="215dp"
-        tools:layout_editor_absoluteY="197dp" />
+
+
 
     <TextView
         android:id="@+id/hunting_info"
@@ -1126,7 +944,7 @@
         android:textStyle="bold|italic"
         app:layout_editor_absoluteX="160dp"
         app:layout_editor_absoluteY="120dp"
-        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteX="160dp"
         tools:layout_editor_absoluteY="120dp" />
 
 

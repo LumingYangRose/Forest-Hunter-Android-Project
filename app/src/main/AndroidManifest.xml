@@ -14,6 +14,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PRIVILEGE_PHONE_STATE"/>
+    <uses-feature android:name="android.hardware.sensor.accelerometer"
+        android:required="true"/>
 
     <application
         android:allowBackup="true"
@@ -48,6 +50,11 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="landscape"/>
         <activity
+            android:name=".Hunting"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="landscape"/>
+        <activity
                 android:name="authentication.login_Activity"
                 android:exported="true"
                 android:theme="@style/Theme.AppCompat.NoActionBar"
@@ -66,6 +73,23 @@
             </intent-filter>
         </service>
 
+        <service
+            android:name="message.MessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="Friend_list_and_scoreboard.Friends"
+            android:exported="false" >
+
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <receiver
             android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
             android:exported="true"
@@ -74,6 +98,14 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </receiver>
+
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="Forest_hunter" />
 
     </application>
 </manifest>

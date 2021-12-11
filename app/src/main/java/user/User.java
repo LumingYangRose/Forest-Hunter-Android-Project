@@ -141,8 +141,8 @@ public class User {
         this.password = password;
         this.friend_list = new ArrayList<String>();
         this.highest_score_list = new ArrayList<String>();
-        this.highest_score_list.add("");
-        this.highest_score_list.add("");
+        this.highest_score_list.add("0");
+        this.highest_score_list.add("0");
         this.num_of_gold = 0;
         this.CLIENT_REGISTRATION_TOKEN = CLIENT_REGISTRATION_TOKEN;
         this.Character_setting = new ArrayList<Character_sets>();

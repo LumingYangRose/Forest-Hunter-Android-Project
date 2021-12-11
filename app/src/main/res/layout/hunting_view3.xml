@@ -4,13 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/game_view"
+    android:id="@+id/hunting_view"
     android:layout_centerVertical="true"
     android:layout_centerHorizontal="true"
     tools:layout_editor_absoluteX="-190dp"
     tools:layout_editor_absoluteY="71dp"
-    tools:context=".Game_view_Activity">
+    tools:context=".Hunting3">
 
+    <ImageView
+        android:id="@+id/gorilla_view"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="800dp"
+        tools:layout_editor_absoluteY="350dp" />
+
+    <ImageView
+        android:id="@+id/gorilla_view2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/gorilla_view3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/gorilla_view4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/gorilla_view5"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/gorilla_view6"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/sword_view"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <ImageView
+        android:id="@+id/test_sword_view"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="750dp"
+        tools:layout_editor_absoluteY="300dp" />
 
     <ImageView
         android:id="@+id/background"
@@ -152,18 +207,6 @@
         tools:layout_editor_absoluteY="200dp"
         app:srcCompat="@drawable/tap_screen"/>
 
-    <TextView
-        android:id="@+id/revival_count"
-        android:layout_width="360dp"
-        android:layout_height="200dp"
-        app:layout_editor_absoluteX="200dp"
-        app:layout_editor_absoluteY="120dp"
-        android:text="Countdown"
-        android:textAlignment="center"
-        android:textSize="40sp"
-        android:textStyle="bold|italic"
-        android:textColor="#F44336"/>
-
     <ImageView
         android:id="@+id/cliff_view"
         android:layout_width="20dp"
@@ -198,18 +241,6 @@
         android:layout_height="300dp"
         tools:layout_editor_absoluteX="750dp"
         tools:layout_editor_absoluteY="100dp" />
-
-    <TextView
-        android:id="@+id/revival_count"
-        android:layout_width="360dp"
-        android:layout_height="200dp"
-        app:layout_editor_absoluteX="200dp"
-        app:layout_editor_absoluteY="120dp"
-        android:text="Countdown"
-        android:textAlignment="center"
-        android:textSize="40sp"
-        android:textStyle="bold|italic"
-        android:textColor="#F44336"/>
 
     <ImageView
         android:id="@+id/boulder_view"
@@ -1126,7 +1157,7 @@
         android:textStyle="bold|italic"
         app:layout_editor_absoluteX="160dp"
         app:layout_editor_absoluteY="120dp"
-        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteX="160dp"
         tools:layout_editor_absoluteY="120dp" />
 
 

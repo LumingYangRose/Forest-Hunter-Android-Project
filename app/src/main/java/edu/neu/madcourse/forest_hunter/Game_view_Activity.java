@@ -213,6 +213,7 @@ public class Game_view_Activity extends AppCompatActivity {
             speed_index= 25;
         }
 
+        countdownHandler = new android.os.Handler();
         time = 0;
         lives = 3;
         revival = true;
@@ -588,18 +589,18 @@ public class Game_view_Activity extends AppCompatActivity {
         findViewById(R.id.game_view).setOnTouchListener(new OnSwipeTouchListener() {
             @Override
             public boolean onSwipeTop() {
-                if(hair_view.getY() > 348 && !jumped)
+                if(hair_view.getY() > 348*dpi_ratio && !jumped)
                 {
-                    move_character_y(200);
+                    move_character_y((int)(200*dpi_ratio));
                 }
                 return true;
             }
 
             @Override
             public boolean onSwipeBottom() {
-                if(hair_view.getY() < 648 && !jumped)
+                if(hair_view.getY() < 648*dpi_ratio && !jumped)
                 {
-                    move_character_y(-200);
+                    move_character_y((int)(-200*dpi_ratio));
                 }
                 return true;
             }
@@ -651,7 +652,7 @@ public class Game_view_Activity extends AppCompatActivity {
         in_game_dialog.show();
     }
 
-    public int get_score()
+    public static int get_score()
     {
         return score;
     }
@@ -661,25 +662,14 @@ public class Game_view_Activity extends AppCompatActivity {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
 
+            LayoutInflater inflater = getActivity().getLayoutInflater();
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             View dialog_view = getLayoutInflater().inflate(R.layout.game_lose, null);
 
-            Button retry_game = dialog_view.findViewById(R.id.try_again);
             Button exit_to_main = dialog_view.findViewById(R.id.exit_to_main_menu);
 
             builder.setView(dialog_view);
-            retry_game.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dismiss();
-                    paused = false;
-                    // getActivity().finish();
-                    getActivity().recreate();
-                    Intent intent = new Intent(getContext(), Game_view_Activity.class);
-                    // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                }
-            });
+
 
             exit_to_main.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -726,19 +716,19 @@ public class Game_view_Activity extends AppCompatActivity {
         {
             if(stage.current_stage_index == 0) {
                 setUpTutorial(time);
-                setUpStage1(time);
+                //setUpStage1(time);
                 setUpProgressBar(time);
             }
             else if (stage.current_stage_index == 1)
             {
                 setUpTutorial(time);
-                setUpStage2(time);
+                //setUpStage2(time);
                 setUpProgressBar(time);
             }
 
             for (ImageView iv: boulder_list) {
-                if ((Math.abs(iv.getX()-chest_view.getX()) <= 100)
-                        && (Math.abs(iv.getY()-chest_view.getY()) <= 80)) {
+                if ((Math.abs(iv.getX()-chest_view.getX()) <= 100*dpi_ratio)
+                        && (Math.abs(iv.getY()-chest_view.getY()) <= 80*dpi_ratio)) {
                     if (lives>0 && !invincible) {
                         hearts.get(lives - 1).setVisibility(View.INVISIBLE);
                         lives--;
@@ -762,7 +752,7 @@ public class Game_view_Activity extends AppCompatActivity {
                 }
             }
             for (ImageView cliff: cliff_list) {
-                if (Math.abs(cliff.getX()-chest_view.getX()) <= 100) {
+                if (Math.abs(cliff.getX()-chest_view.getX()) <= 100*dpi_ratio) {
                     if (lives>0 && !invincible && !jumped) {
                         hearts.get(lives-1).setVisibility(View.INVISIBLE);
                         lives--;
@@ -786,8 +776,8 @@ public class Game_view_Activity extends AppCompatActivity {
                 }
             }
             for (ImageView food: food_list) {
-                if (food.getVisibility()==View.VISIBLE && Math.abs(food.getX()-chest_view.getX())<=100
-                        && Math.abs(food.getY()-chest_view.getY())<=100 && !jumped) {
+                if (food.getVisibility()==View.VISIBLE && Math.abs(food.getX()-chest_view.getX())<=100*dpi_ratio
+                        && Math.abs(food.getY()-chest_view.getY())<=100*dpi_ratio && !jumped) {
                     score += 100;
                     score_view.setText("Score: " + score);
                     food.setVisibility(View.INVISIBLE);
@@ -818,6 +808,7 @@ public class Game_view_Activity extends AppCompatActivity {
             }
 
             showHuntingInfo(time);
+
 
             if (time >= SET_ONE_LENGTH && time < SET_ONE_LENGTH+32 && !paused) {
                 playerEscape();
@@ -1067,9 +1058,9 @@ public class Game_view_Activity extends AppCompatActivity {
 
     public static void characterJump(int jump_countdown) {
         if (jump_countdown>15) {
-            move_character_y(6.00f);
+            move_character_y((float)(6*dpi_ratio));
         } else if (jump_countdown>3 && jump_countdown<=15) {
-            move_character_y(-6.00f);
+            move_character_y((float)(-6*dpi_ratio));
         }
     }
 
@@ -1180,15 +1171,15 @@ public class Game_view_Activity extends AppCompatActivity {
         ImageView boulder7 = findViewById(R.id.boulder_view7);
         ImageView boulder8 = findViewById(R.id.boulder_view8);
         ImageView boulder9 = findViewById(R.id.boulder_view9);
-        boulder1.setY((int)(screen_height*0.74-400));
-        boulder2.setY((int)(screen_height*0.74-400));
-        boulder3.setY((int)(screen_height*0.74-200));
-        boulder4.setY((int)(screen_height*0.74-200));
-        boulder5.setY((int)(screen_height*0.74));
-        boulder6.setY((int)(screen_height*0.74));
-        boulder7.setY((int)(screen_height*0.74-400));
-        boulder8.setY((int)(screen_height*0.74-200));
-        boulder9.setY((int)(screen_height*0.74));
+        boulder1.setY((int)(screen_height*0.72-400*dpi_ratio));
+        boulder2.setY((int)(screen_height*0.72-400*dpi_ratio));
+        boulder3.setY((int)(screen_height*0.72-200*dpi_ratio));
+        boulder4.setY((int)(screen_height*0.72-200*dpi_ratio));
+        boulder5.setY((int)(screen_height*0.72));
+        boulder6.setY((int)(screen_height*0.72));
+        boulder7.setY((int)(screen_height*0.72-400*dpi_ratio));
+        boulder8.setY((int)(screen_height*0.72-200*dpi_ratio));
+        boulder9.setY((int)(screen_height*0.72));
         boulder_list.add(boulder1);
         boulder_list.add(boulder2);
         boulder_list.add(boulder3);
@@ -1219,10 +1210,10 @@ public class Game_view_Activity extends AppCompatActivity {
         cliff_list.add(cliff5);
         for (ImageView iv: cliff_list) {
             iv.setX(screen_width + 100*screenRatioX);
-            iv.setY(280);
+            iv.setY((float)(280*dpi_ratio));
             iv.setImageResource(R.drawable.water_river);
-            iv.getLayoutParams().width = 220;
-            iv.getLayoutParams().height = 800;
+            iv.getLayoutParams().width = (int)(220*dpi_ratio);
+            iv.getLayoutParams().height = (int)(800*dpi_ratio);
         }
     }
 
@@ -1236,14 +1227,14 @@ public class Game_view_Activity extends AppCompatActivity {
         ImageView food7 = findViewById(R.id.food_view7);
         ImageView food8 = findViewById(R.id.food_view8);
         ImageView food9 = findViewById(R.id.food_view9);
-        food1.setY((int)(screen_height*0.74-400));
-        food2.setY((int)(screen_height*0.74-400));
-        food3.setY((int)(screen_height*0.74-200));
-        food4.setY((int)(screen_height*0.74-200));
+        food1.setY((int)(screen_height*0.74-400*dpi_ratio));
+        food2.setY((int)(screen_height*0.74-400*dpi_ratio));
+        food3.setY((int)(screen_height*0.74-200*dpi_ratio));
+        food4.setY((int)(screen_height*0.74-200*dpi_ratio));
         food5.setY((int)(screen_height*0.74));
         food6.setY((int)(screen_height*0.74));
-        food7.setY((int)(screen_height*0.74-400));
-        food8.setY((int)(screen_height*0.74-200));
+        food7.setY((int)(screen_height*0.74-400*dpi_ratio));
+        food8.setY((int)(screen_height*0.74-200*dpi_ratio));
         food9.setY((int)(screen_height*0.74));
         food_list.add(food1);
         food_list.add(food2);
@@ -1293,9 +1284,15 @@ public class Game_view_Activity extends AppCompatActivity {
         if (time >= SET_ONE_LENGTH+40 && time < SET_ONE_LENGTH+120 && !paused) {
             hunting_info.setVisibility(View.VISIBLE);
             hunting_info.setText("Congratulations! Nothing horrific is chasing after you \n ... \n for NOW!");
-        } else if (time >= SET_ONE_LENGTH+120 && !paused) {
+        } else if (time >= SET_ONE_LENGTH+120 && !paused && time < SET_ONE_LENGTH+200) {
             hunting_info.setTextSize(44);
             hunting_info.setText("It's HUNTING TIME!!!");
+        } else if (time == SET_ONE_LENGTH+200 && !paused) {
+            score_controller.lives = lives;
+            score_controller.score = score;
+            Intent hunting = new Intent(this, Hunting.class);
+            finish();
+            startActivity(hunting);
         }
     }
 
@@ -1833,6 +1830,7 @@ public class Game_view_Activity extends AppCompatActivity {
         if (time >= 150 && time < 290 && !paused) {
             boulder_list.get(6).setX(boulder_list.get(6).getX() - speed_index * screenRatioX);
         } //Added
+
 
         if (time >= 150 && time < 290 && !paused) {
             boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);

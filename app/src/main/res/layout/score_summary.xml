@@ -14,18 +14,18 @@
         android:layout_gravity="center">
 
         <TextView
+            android:id="@+id/score_summary"
             android:layout_width="600dp"
-            android:layout_height="100dp"
+            android:layout_height="200dp"
             android:layout_marginBottom="40dp"
-            android:background="@drawable/lose_text"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="42sp"
+            android:textSize="32sp"
             android:textStyle="bold|italic" />
 
         <Button
-            android:id="@+id/exit_to_main_menu"
-            android:layout_width="320dp"
+            android:id="@+id/exit_to_main_menu_b"
+            android:layout_width="240dp"
             android:layout_height="60dp"
             android:backgroundTint="#00E676"
             android:text="EXIT"

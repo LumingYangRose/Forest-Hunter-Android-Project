@@ -17,12 +17,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +35,7 @@ import java.util.List;
 import authentication.login_Activity;
 import edu.neu.madcourse.forest_hunter.Appearance;
 import edu.neu.madcourse.forest_hunter.R;
+import message.Utils;
 import user.Login_User;
 import user.User;
 
@@ -55,6 +61,12 @@ public class Friends extends AppCompatActivity {
     TextView friend_stage_2_score_view;
     ImageButton Search_friend_button;
     ImageButton go_back_button;
+
+    String target_username;
+    String self_username = Login_User.current_User.username;
+    String targetToken = "";
+    String CLIENT_REGISTRATION_TOKEN = login_Activity.CLIENT_REGISTRATION_TOKEN;
+    String SERVER_KEY = "AIzaSyAMQQ9MJxTGqLdTx1avANgvaIutoyaw9qE";
 
     private int current_hair_index = Appearance.current_hair_index;
     private int current_head_index = Appearance.current_head_index;
@@ -116,7 +128,7 @@ public class Friends extends AppCompatActivity {
         friend_nickname_view = findViewById(R.id.friend_nickname);
         friend_nickname_view.setText(current_user_nickname);
 
-        target_nick_username = current_user_name;
+        target_nick_username = current_user_nickname;
         friend_nickname_view.setText(target_nick_username);
 
         friend_stage_1_score_view = findViewById(R.id.stage_1_best_score);
@@ -297,7 +309,6 @@ public class Friends extends AppCompatActivity {
     }
 
     public void search_friend_dialog() {
-        Log.v("test", "index=");
 
         final AlertDialog.Builder dialog;
         final EditText input_nickname;
@@ -343,13 +354,14 @@ public class Friends extends AppCompatActivity {
                             if (pss.child("nickname").exists()) {
                                 String temp_nickname = pss.child("nickname").getValue().toString();
                                 if (temp_nickname.equals(search_nick_username)) {
-                                    if (!Login_User.current_User.friend_list.contains(search_nick_username)) {
+                                    if (!Login_User.current_User.friend_list.contains(search_nick_username) && !search_nick_username.equals(Login_User.current_User.nickname) ) {
+                                        target_username = pss.child("username").getValue().toString();
                                         Login_User.current_User.friend_list.add(search_nick_username);
                                         Task update_user = mDatabase.child("users").child(Login_User.current_User.username).setValue(Login_User.current_User);
                                         find_friend_nickname = true;
                                         Toast.makeText(Friends.this, "Successfully add " + search_nick_username + " to your friend list.", Toast.LENGTH_SHORT).show();
                                         Toast.makeText(Friends.this, "Please enter this page again to check your new friend", Toast.LENGTH_SHORT).show();
-
+                                        sendMessageToOtherUser(view);
                                     } else {
                                         find_friend_nickname = true;
                                         Toast.makeText(Friends.this, search_nick_username + " is already in your friend list", Toast.LENGTH_SHORT).show();
@@ -391,6 +403,7 @@ public class Friends extends AppCompatActivity {
                 for (DataSnapshot pss : snapshot.getChildren()) {
                     if (pss.child("nickname").exists()) {
                         if (pss.child("nickname").getValue().toString().equals(target_nick_username)) {
+
                             friend_stage_1_score_view.setText(pss.child("highest_score_list").child("0").getValue().toString());
                             friend_stage_2_score_view.setText(pss.child("highest_score_list").child("1").getValue().toString());
                             //TODO setup character features
@@ -411,105 +424,65 @@ public class Friends extends AppCompatActivity {
                             current_foot_wear_index = Integer.parseInt(pss.child("Character_setting").child("0").child("current_foot_wear_index").getValue().toString());
                             current_chest_index = Integer.parseInt(pss.child("Character_setting").child("0").child("current_chest_index").getValue().toString());
 
-                            //hair_view = findViewById(R.id.hair_view);
                             hair_view.setBackground(null);
                             hair_view.setImageResource(ap.hair_image_id_list[current_hair_index]);
 
-                            //head_view = findViewById(R.id.head_view);
                             head_view.setBackground(null);
                             head_view.setImageResource(ap.head_image_id_list[current_head_index]);
 
-                            //eye_view = findViewById(R.id.eyes_view);
                             eye_view.setBackground(null);
                             eye_view.setImageResource(ap.eye_image_id_list[current_eye_index]);
 
-                            //nose_view = findViewById(R.id.nose_view);
                             nose_view.setBackground(null);
                             nose_view.setImageResource(ap.nose_image_id_list[current_nose_index]);
 
-                            //mouth_view = findViewById(R.id.mouth_view);
                             mouth_view.setBackground(null);
                             mouth_view.setImageResource(ap.mouth_image_id_list[current_mouth_index]);
 
-                            //l_eyebrow_view = findViewById(R.id.l_eyebrow_view);
                             l_eyebrow_view.setBackground(null);
                             l_eyebrow_view.setImageResource(ap.l_eye_brow_image_id_list[current_l_eye_brow_index]);
 
-                            //r_eyebrow_view = findViewById(R.id.r_eyebrow_view);
                             r_eyebrow_view.setBackground(null);
                             r_eyebrow_view.setImageResource(ap.r_eye_brow_image_id_list[current_r_eye_brow_index]);
 
-                            //ear_view = findViewById(R.id.ear_view);
                             ear_view.setBackground(null);
                             ear_view.setImageResource(ap.ear_image_id_list[current_ear_index]);
 
-                            //chest_view = findViewById(R.id.chest_view);
-                            //chest_view = findViewById(R.id.chest_view_wear);
                             chest_view.setBackground(null);
                             chest_view.setImageResource(ap.chest_image_id_list[current_chest_index]);
 
-
-                            //r_arm_view = findViewById(R.id.r_arm_view);
-                            //l_arm_view = findViewById(R.id.l_arm_view);
-                            //r_shoulder_view = findViewById(R.id.r_shoulder_view);
-                            //l_shoulder_view = findViewById(R.id.l_shoulder_view);
-
-                            //chest_view_wear = findViewById(R.id.chest_view_wear);
                             if (current_chest_wear_index != 17) {
                                 chest_view_wear.setBackground(null);
                                 chest_view_wear.setImageResource(ap.chest_wear_image_id_list[current_chest_wear_index]);
 
                             }
 
-                            //r_arm_view_wear = findViewById(R.id.r_arm_view_wear);
-                            //l_arm_view_wear = findViewById(R.id.l_arm_view_wear);
                             r_arm_view_wear.setBackground(null);
                             r_arm_view_wear.setImageResource(ap.arm_r_l_wear_image_id_list[current_arm_wear_index][0]);
                             l_arm_view_wear.setBackground(null);
                             l_arm_view_wear.setImageResource(ap.arm_r_l_wear_image_id_list[current_arm_wear_index][1]);
 
 
-                            //r_shoulder_view_wear = findViewById(R.id.r_shoulder_view_wear);
-                            //l_shoulder_view_wear = findViewById(R.id.l_shoulder_view_wear);
                             r_shoulder_view_wear.setBackground(null);
                             r_shoulder_view_wear.setImageResource(ap.shoulder_r_l_wear_image_id_list[current_shoulder_wear_index][0]);
                             l_shoulder_view_wear.setBackground(null);
                             l_shoulder_view_wear.setImageResource(ap.shoulder_r_l_wear_image_id_list[current_shoulder_wear_index][1]);
 
-
-                            //r_hand_view = findViewById(R.id.r_hand_view);
-                            //l_hand_view = findViewById(R.id.l_hand_finger_view);
-
-                            //r_thigh_view = findViewById(R.id.r_thigh_view);
-                            //l_thigh_view = findViewById(R.id.l_thigh_view);
-                            //r_leg_view = findViewById(R.id.r_leg_view);
-                            //l_leg_view = findViewById(R.id.l_leg_view);
-                            //r_foot_view = findViewById(R.id.r_foot_view);
-                            //l_foot_view = findViewById(R.id.l_foot_view);
-
-                            //r_thigh_view_wear = findViewById(R.id.r_thigh_view_wear);
-                            //l_thigh_view_wear = findViewById(R.id.l_thigh_view_wear);
                             r_thigh_view_wear.setBackground(null);
                             r_thigh_view_wear.setImageResource(ap.thigh_r_l_wear_image_id_list[current_thigh_wear_index][0]);
                             l_thigh_view_wear.setBackground(null);
                             l_thigh_view_wear.setImageResource(ap.thigh_r_l_wear_image_id_list[current_thigh_wear_index][1]);
 
-                            //r_leg_view_wear = findViewById(R.id.r_leg_view_wear);
-                            //l_leg_view_wear = findViewById(R.id.l_leg_view_wear);
                             r_leg_view_wear.setBackground(null);
                             r_leg_view_wear.setImageResource(ap.leg_r_l_wear_image_id_list[current_leg_wear_index][0]);
                             l_leg_view_wear.setBackground(null);
                             l_leg_view_wear.setImageResource(ap.leg_r_l_wear_image_id_list[current_leg_wear_index][1]);
 
-
-                            //r_foot_view_wear = findViewById(R.id.r_foot_view_wear);
-                            //l_foot_view_wear = findViewById(R.id.l_foot_view_wear);
                             r_foot_view_wear.setBackground(null);
                             r_foot_view_wear.setImageResource(ap.foot_r_l_wear_image_id_list[current_foot_wear_index][0]);
                             l_foot_view_wear.setBackground(null);
                             l_foot_view_wear.setImageResource(ap.foot_r_l_wear_image_id_list[current_foot_wear_index][1]);
 
-                            //bottom_view_wear = findViewById(R.id.bottom_view_wear);
                             bottom_view_wear.setBackground(null);
                             bottom_view_wear.setImageResource(ap.bottom_wear_image_id_list[current_bottom_wear_index]);
                         }
@@ -525,6 +498,87 @@ public class Friends extends AppCompatActivity {
 
 
         });
+    }
+
+
+    //TODO
+
+    public void sendMessageToOtherUser(View view) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (target_username!=null) {
+                    sendMessageToOtherUser(target_username);
+                }
+            }
+        }).start();
+    }
+
+
+
+    private void sendMessageToOtherUser(String target_username) {
+
+        JSONObject jPayload = new JSONObject();
+        JSONObject jNotification = new JSONObject();
+        JSONObject jdata = new JSONObject();
+        try {
+            jNotification.put("title", self_username + "just added you to his friend list");
+            jNotification.put("body", "you want to add " +self_username + " as you friend? you can review his/her character.");
+            jNotification.put("sound", "default");
+            jNotification.put("badge", "1");
+            jNotification.put("click_action", "OPEN_ACTIVITY_1");
+
+
+            jdata.put("title", self_username + "just added you to his friend list");
+            jdata.put("content", "you want to add " +self_username + " as you friend? you can review his/her character.");
+
+
+            // get target token
+            DatabaseReference username_list_ref = mDatabase.child("users").child(target_username).child("CLIENT_REGISTRATION_TOKEN");
+            username_list_ref.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    targetToken = (String)dataSnapshot.getValue();
+                    Log.e("target_token", targetToken);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
+            FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+                @Override
+                public void onComplete(@NonNull Task<String> task) {
+                    if (!task.isSuccessful()) {
+                        Toast.makeText(Friends.this, "Something is wrong, please check your Internet connection!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (CLIENT_REGISTRATION_TOKEN.length() < 1) {
+                            CLIENT_REGISTRATION_TOKEN = task.getResult();
+                        }
+                        Log.e("CLIENT_REGISTRATION_TOKEN", CLIENT_REGISTRATION_TOKEN);
+                    }
+
+                }
+            });
+
+
+
+            jPayload.put("to", targetToken);
+            jPayload.put("priority", "high");
+            jPayload.put("notification", jNotification);
+            jPayload.put("data", jdata);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        final String resp = Utils.fcmHttpConnection(SERVER_KEY, jPayload);
+
     }
 
 

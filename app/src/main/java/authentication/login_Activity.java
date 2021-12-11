@@ -25,11 +25,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Friend_list_and_scoreboard.Friends;
 import edu.neu.madcourse.forest_hunter.Appearance;
 import edu.neu.madcourse.forest_hunter.MainActivity;
 import edu.neu.madcourse.forest_hunter.Music;
+import edu.neu.madcourse.forest_hunter.Music_controller;
 import edu.neu.madcourse.forest_hunter.R;
 import user.Login_User;
 import user.User;
@@ -43,7 +45,7 @@ public class login_Activity extends AppCompatActivity {
     ImageButton music_button;
     Music bgm;
 
-    private static String CLIENT_REGISTRATION_TOKEN;
+    public static String CLIENT_REGISTRATION_TOKEN;
     private DatabaseReference mDatabase;
 
     User login_user;
@@ -61,7 +63,15 @@ public class login_Activity extends AppCompatActivity {
                 .setProjectId("forest-hunter")
                 .setApiKey("AIzaSyAMQQ9MJxTGqLdTx1avANgvaIutoyaw9qE")
                 .build();
-        FirebaseApp.initializeApp(this, options, "edu.neu.madcourse.forest_hunter");
+
+        try {
+            FirebaseApp.initializeApp(this, options, "edu.neu.madcourse.forest_hunter");
+        }
+        catch(Exception err)
+        {
+            Log.i("already exists", "handling error");
+        }
+
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
@@ -109,6 +119,9 @@ public class login_Activity extends AppCompatActivity {
             }
         });
 
+        if(Music_controller.bgm != null) {
+            Music_controller.bgm.stop();
+        }
 
         //Handling Music
         bgm = new Music(this);
@@ -376,6 +389,7 @@ public class login_Activity extends AppCompatActivity {
                         if (find_nickname == false)
                         {
                             alert_dialog.dismiss();
+                            Toast.makeText(login_Activity.this, "Successfully Signed up!", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -434,7 +448,6 @@ public class login_Activity extends AppCompatActivity {
                 String password = input_password.getText().toString();
 
                 boolean is_password_valid = validate_password(password);
-
                 if (is_password_valid) {
                     authentication(username, password);
                 }
@@ -618,9 +631,138 @@ public class login_Activity extends AppCompatActivity {
                     }
 
                     //TODO
+                    ArrayList<Integer> temp_arm_wear_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_bottom_wear_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_chest_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_chest_wear_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_ear_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_eye_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_foot_wear_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_hair_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_head_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_l_eye_brow_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_leg_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_mouth_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_nose_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_r_eye_brow_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_shoulder_wear_index_list = new ArrayList<>();
+                    ArrayList<Integer> temp_thigh_wear_index_list = new ArrayList<>();
+
+                    if(snapshot.child(username).child("current_arm_wear_index_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_arm_wear_index_list").getChildren()) {
+                            temp_arm_wear_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_arm_wear_index_list = temp_arm_wear_index_list;
+
+                    if(snapshot.child(username).child("current_bottom_wear_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_bottom_wear_list").getChildren()) {
+                            temp_bottom_wear_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_bottom_wear_list = temp_arm_wear_index_list;
+
+                    if(snapshot.child(username).child("current_chest_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_chest_list").getChildren()) {
+                            temp_chest_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_chest_list = temp_chest_index_list;
+
+                    if(snapshot.child(username).child("current_chest_wear_index_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_chest_wear_index_list").getChildren()) {
+                            temp_chest_wear_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_chest_wear_index_list = temp_chest_wear_index_list;
+
+                    if(snapshot.child(username).child("current_ear_index_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_ear_index_list").getChildren()) {
+                            temp_ear_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_ear_index_list = temp_ear_index_list;
+
+                    if(snapshot.child(username).child("current_eye_index_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_eye_index_list").getChildren()) {
+                            temp_eye_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_eye_index_list = temp_eye_index_list;
+
+                    if(snapshot.child(username).child("current_foot_wear_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_foot_wear_list").getChildren()) {
+                            temp_foot_wear_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_foot_wear_list = temp_foot_wear_index_list;
+
+                    if(snapshot.child(username).child("current_hair_index_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_hair_index_list").getChildren()) {
+                            temp_hair_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_hair_index_list = temp_hair_index_list;
+
+                    if(snapshot.child(username).child("current_head_index_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_head_index_list").getChildren()) {
+                            temp_head_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_head_index_list = temp_head_index_list;
+
+                    if(snapshot.child(username).child("current_l_eye_brow_index_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_l_eye_brow_index_list").getChildren()) {
+                            temp_l_eye_brow_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_l_eye_brow_index_list = temp_l_eye_brow_index_list;
+
+                    if(snapshot.child(username).child("current_leg_wear_index_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_leg_wear_index_list").getChildren()) {
+                            temp_leg_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_leg_wear_index_list = temp_leg_index_list;
+
+                    if(snapshot.child(username).child("current_mouth_index_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_mouth_index_list").getChildren()) {
+                            temp_mouth_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_mouth_index_list = temp_mouth_index_list;
+
+                    if(snapshot.child(username).child("current_nose_index_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_nose_index_list").getChildren()) {
+                            temp_nose_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_nose_index_list = temp_nose_index_list;
+
+                    if(snapshot.child(username).child("current_r_eye_brow_index_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_r_eye_brow_index_list").getChildren()) {
+                            temp_r_eye_brow_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_r_eye_brow_index_list = temp_r_eye_brow_index_list;
+
+                    if(snapshot.child(username).child("current_shoulder_wear_index_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_shoulder_wear_index_list").getChildren()) {
+                            temp_shoulder_wear_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_shoulder_wear_index_list = temp_shoulder_wear_index_list;
+
+                    if(snapshot.child(username).child("current_thigh_wear_index_list").exists()) {
+                        for (DataSnapshot pss : snapshot.child(username).child("current_thigh_wear_index_list").getChildren()) {
+                            temp_thigh_wear_index_list.add(Integer.parseInt(pss.getValue().toString()));
+                        }
+                    }
+                    login_user.current_thigh_wear_index_list = temp_thigh_wear_index_list;
+
 
                     login_user.highest_score_list = temp_highest_score_list;
-
+                    login_user.CLIENT_REGISTRATION_TOKEN = CLIENT_REGISTRATION_TOKEN;
                     Task update_user = mDatabase.child("users").child(username).setValue(login_user);
 
                     // Save user info to local memory
@@ -629,6 +771,7 @@ public class login_Activity extends AppCompatActivity {
 
                     sleep(500);
                     activate_main_activity();
+                    finish();
                 }
                 else {
                     String content = "Username and password do not match or Username does not exist";
@@ -658,9 +801,10 @@ public class login_Activity extends AppCompatActivity {
                 if (!username.equals("") ) {
                     if (!snapshot.child(username).exists()) {
                         User user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN);
+                        user.highest_score_list.set(0, "0");
+                        user.highest_score_list.set(1, "0");
                         Task signup_user = mDatabase.child("users").child(username).setValue(user);
                         sleep(1000);
-                        Toast.makeText(login_Activity.this, "Successfully Signed up!", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(login_Activity.this, "This Username already exist, Please use another one", Toast.LENGTH_SHORT).show();
                     }
