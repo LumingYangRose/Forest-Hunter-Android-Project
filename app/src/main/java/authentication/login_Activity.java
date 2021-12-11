@@ -448,7 +448,6 @@ public class login_Activity extends AppCompatActivity {
                 String password = input_password.getText().toString();
 
                 boolean is_password_valid = validate_password(password);
-
                 if (is_password_valid) {
                     authentication(username, password);
                 }

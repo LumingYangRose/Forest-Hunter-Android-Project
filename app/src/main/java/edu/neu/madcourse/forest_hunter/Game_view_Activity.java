@@ -213,6 +213,7 @@ public class Game_view_Activity extends AppCompatActivity {
             speed_index= 25;
         }
 
+        countdownHandler = new android.os.Handler();
         time = 0;
         lives = 3;
         revival = true;
@@ -651,7 +652,7 @@ public class Game_view_Activity extends AppCompatActivity {
         in_game_dialog.show();
     }
 
-    public int get_score()
+    public static int get_score()
     {
         return score;
     }
@@ -665,22 +666,10 @@ public class Game_view_Activity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             View dialog_view = getLayoutInflater().inflate(R.layout.game_lose, null);
 
-            Button retry_game = dialog_view.findViewById(R.id.try_again);
             Button exit_to_main = dialog_view.findViewById(R.id.exit_to_main_menu);
 
             builder.setView(dialog_view);
-            retry_game.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dismiss();
-                    paused = false;
-                    getActivity().finish();
-                    getActivity().recreate();
-                    Intent intent = new Intent(getContext(), Game_view_Activity.class);
-                    // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                }
-            });
+
 
             exit_to_main.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -727,13 +716,13 @@ public class Game_view_Activity extends AppCompatActivity {
         {
             if(stage.current_stage_index == 0) {
                 setUpTutorial(time);
-                setUpStage1(time);
+                //setUpStage1(time);
                 setUpProgressBar(time);
             }
             else if (stage.current_stage_index == 1)
             {
                 setUpTutorial(time);
-                setUpStage2(time);
+                //setUpStage2(time);
                 setUpProgressBar(time);
             }
 
@@ -819,6 +808,7 @@ public class Game_view_Activity extends AppCompatActivity {
             }
 
             showHuntingInfo(time);
+
 
             if (time >= SET_ONE_LENGTH && time < SET_ONE_LENGTH+32 && !paused) {
                 playerEscape();
@@ -1294,9 +1284,15 @@ public class Game_view_Activity extends AppCompatActivity {
         if (time >= SET_ONE_LENGTH+40 && time < SET_ONE_LENGTH+120 && !paused) {
             hunting_info.setVisibility(View.VISIBLE);
             hunting_info.setText("Congratulations! Nothing horrific is chasing after you \n ... \n for NOW!");
-        } else if (time >= SET_ONE_LENGTH+120 && !paused) {
+        } else if (time >= SET_ONE_LENGTH+120 && !paused && time < SET_ONE_LENGTH+200) {
             hunting_info.setTextSize(44);
             hunting_info.setText("It's HUNTING TIME!!!");
+        } else if (time == SET_ONE_LENGTH+200 && !paused) {
+            score_controller.lives = lives;
+            score_controller.score = score;
+            Intent hunting = new Intent(this, Hunting.class);
+            finish();
+            startActivity(hunting);
         }
     }
 

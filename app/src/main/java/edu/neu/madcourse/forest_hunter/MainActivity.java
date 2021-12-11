@@ -182,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
     public void activate_game_view_activity() {
         Intent game_view_intent = new Intent(this, Game_view_Activity.class);
         startActivity(game_view_intent);
-
     }
 
     public void activate_friends_view_activity() {

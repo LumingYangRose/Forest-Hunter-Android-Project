@@ -614,6 +614,19 @@
         app:srcCompat="@drawable/pic_character_board" />
 
     <TextView
+        android:id="@+id/my_coins"
+        android:layout_width="300dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="128dp"
+        android:gravity="center"
+        android:text="Your Coins:"
+        android:textColor="#FFEB3B"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@+id/character_customize_board_view"
+        app:layout_constraintEnd_toEndOf="@+id/character_customize_board_view" />
+
+    <TextView
         android:id="@+id/edit_name_textview"
         android:layout_width="112dp"
         android:layout_height="36dp"

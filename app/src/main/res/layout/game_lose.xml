@@ -24,17 +24,6 @@
             android:textStyle="bold|italic" />
 
         <Button
-            android:id="@+id/try_again"
-            android:layout_width="320dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="20dp"
-            android:backgroundTint="#00E676"
-            android:text="RETRY"
-            android:textColor="@color/black"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <Button
             android:id="@+id/exit_to_main_menu"
             android:layout_width="320dp"
             android:layout_height="60dp"

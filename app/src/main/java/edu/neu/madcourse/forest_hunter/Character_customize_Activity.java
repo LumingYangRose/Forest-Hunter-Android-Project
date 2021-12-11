@@ -113,6 +113,8 @@ public class Character_customize_Activity extends AppCompatActivity {
     private int price = 500;
     private DatabaseReference reference;
     private TextView name;
+    private String username;
+    private TextView myCoins;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -268,6 +270,22 @@ public class Character_customize_Activity extends AppCompatActivity {
 
         reference = FirebaseDatabase.getInstance().getReference();
 
+        myCoins = findViewById(R.id.my_coins);
+        username = Login_User.current_User.username;
+
+        reference.child("users").child(username).child("num_of_gold").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int value = snapshot.getValue(Integer.class);
+                myCoins.setText("Your Coins :" + value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         //TODO STEP 3 set the switch case for the page
         appearance_last_button1 = findViewById(R.id.appearance_last_button1);
         appearance_last_button1.setOnClickListener(new View.OnClickListener() {
@@ -297,7 +315,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_hair_index_list.add(current_hair_index);
                                     appearance_change_textview1_lock1.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_hair_index_list").setValue(value.current_hair_index_list);
@@ -332,7 +352,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_mouth_index_list.add(current_mouth_index);
                                     appearance_change_textview1_lock1.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_mouth_index_list").setValue(value.current_mouth_index_list);
@@ -368,7 +390,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_chest_wear_index_list.add(current_chest_wear_index);
                                     appearance_change_textview1_lock1.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_mouth_index_list").setValue(value.current_chest_wear_index_list);
@@ -405,7 +429,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_thigh_wear_index_list.add(current_thigh_wear_index);
                                     appearance_change_textview1_lock1.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_mouth_index_list").setValue(value.current_thigh_wear_index_list);
@@ -449,7 +475,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_hair_index_list.add(current_hair_index);
                                     appearance_change_textview1_lock1.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_hair_index_list").setValue(value.current_hair_index_list);
@@ -485,7 +513,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_mouth_index_list.add(current_mouth_index);
                                     appearance_change_textview1_lock1.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_mouth_index_list").setValue(value.current_mouth_index_list);
@@ -520,7 +550,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_chest_wear_index_list.add(current_chest_wear_index);
                                     appearance_change_textview1_lock1.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_mouth_index_list").setValue(value.current_chest_wear_index_list);
@@ -558,7 +590,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_thigh_wear_index_list.add(current_thigh_wear_index);
                                     appearance_change_textview1_lock1.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_mouth_index_list").setValue(value.current_thigh_wear_index_list);
@@ -601,7 +635,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_head_index_list.add(current_head_index);
                                     appearance_change_textview2_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_head_index_list").setValue(value.current_head_index_list);
@@ -636,7 +672,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_l_eye_brow_index_list.add(current_l_eye_brow_index);
                                     appearance_change_textview2_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_l_eye_brow_index_list").setValue(value.current_l_eye_brow_index_list);
@@ -672,7 +710,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_shoulder_wear_index_list.add(current_shoulder_wear_index);
                                     appearance_change_textview2_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_shoulder_wear_index_list").setValue(value.current_shoulder_wear_index_list);
@@ -709,7 +749,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_leg_wear_index_list.add(current_leg_wear_index);
                                     appearance_change_textview2_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_leg_wear_index_list").setValue(value.current_leg_wear_index_list);
@@ -751,7 +793,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_head_index_list.add(current_head_index);
                                     appearance_change_textview2_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_head_index_list").setValue(value.current_head_index_list);
@@ -784,7 +828,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_l_eye_brow_index_list.add(current_l_eye_brow_index);
                                     appearance_change_textview2_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_l_eye_brow_index_list").setValue(value.current_l_eye_brow_index_list);
@@ -820,7 +866,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_shoulder_wear_index_list.add(current_shoulder_wear_index);
                                     appearance_change_textview2_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_shoulder_wear_index_list").setValue(value.current_shoulder_wear_index_list);
@@ -856,7 +904,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_leg_wear_index_list.add(current_leg_wear_index);
                                     appearance_change_textview2_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_leg_wear_index_list").setValue(value.current_leg_wear_index_list);
@@ -898,7 +948,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_eye_index_list.add(current_eye_index);
                                     appearance_change_textview3_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_eye_index_list")
@@ -931,7 +983,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_r_eye_brow_index_list.add(current_r_eye_brow_index);
                                     appearance_change_textview3_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_r_eye_brow_index_list")
@@ -968,7 +1022,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_arm_wear_index_list.add(current_arm_wear_index);
                                     appearance_change_textview3_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_arm_wear_index_list")
@@ -1005,7 +1061,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_foot_wear_list.add(current_foot_wear_index);
                                     appearance_change_textview3_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_foot_wear_list")
@@ -1048,7 +1106,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_eye_index_list.add(current_eye_index);
                                     appearance_change_textview3_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_eye_index_list")
@@ -1082,7 +1142,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_r_eye_brow_index_list.add(current_r_eye_brow_index);
                                     appearance_change_textview3_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_r_eye_brow_index_list")
@@ -1119,7 +1181,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_arm_wear_index_list.add(current_arm_wear_index);
                                     appearance_change_textview3_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_arm_wear_index_list")
@@ -1156,7 +1220,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_foot_wear_list.add(current_foot_wear_index);
                                     appearance_change_textview3_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_foot_wear_list")
@@ -1199,7 +1265,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_nose_index_list.add(current_nose_index);
                                     appearance_change_textview4_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_nose_index_list")
@@ -1232,7 +1300,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_ear_index_list.add(current_ear_index);
                                     appearance_change_textview4_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_ear_index_list")
@@ -1266,7 +1336,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_bottom_wear_list.add(current_bottom_wear_index);
                                     appearance_change_textview4_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_bottom_wear_list")
@@ -1305,7 +1377,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_chest_list.add(current_chest_index);
                                     appearance_change_textview4_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_chest_list")
@@ -1349,7 +1423,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_nose_index_list.add(current_nose_index);
                                     appearance_change_textview4_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_nose_index_list")
@@ -1383,7 +1459,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_ear_index_list.add(current_ear_index);
                                     appearance_change_textview4_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_ear_index_list")
@@ -1417,7 +1495,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_bottom_wear_list.add(current_bottom_wear_index);
                                     appearance_change_textview4_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_bottom_wear_list")
@@ -1457,7 +1537,9 @@ public class Character_customize_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 if (value.num_of_gold >= price) {
-                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - 200);
+                                    reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(value.num_of_gold - price);
+                                    value.num_of_gold -= price;
+                                    Login_User.current_User.num_of_gold = value.num_of_gold;
                                     value.current_chest_list.add(current_chest_index);
                                     appearance_change_textview4_lock.setVisibility(View.GONE);
                                     reference.child("users").child(Login_User.current_User.username).child("current_chest_list")
