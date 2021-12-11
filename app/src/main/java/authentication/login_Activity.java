@@ -803,6 +803,11 @@ public class login_Activity extends AppCompatActivity {
                         User user = new User(username, password, s_question, s_question_answer, CLIENT_REGISTRATION_TOKEN);
                         user.highest_score_list.set(0, "0");
                         user.highest_score_list.set(1, "0");
+                        try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         Task signup_user = mDatabase.child("users").child(username).setValue(user);
                         sleep(1000);
                     } else {
