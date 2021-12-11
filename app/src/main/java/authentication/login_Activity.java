@@ -31,6 +31,7 @@ import Friend_list_and_scoreboard.Friends;
 import edu.neu.madcourse.forest_hunter.Appearance;
 import edu.neu.madcourse.forest_hunter.MainActivity;
 import edu.neu.madcourse.forest_hunter.Music;
+import edu.neu.madcourse.forest_hunter.Music_controller;
 import edu.neu.madcourse.forest_hunter.R;
 import user.Login_User;
 import user.User;
@@ -114,6 +115,9 @@ public class login_Activity extends AppCompatActivity {
             }
         });
 
+        if(Music_controller.bgm != null) {
+            Music_controller.bgm.stop();
+        }
 
         //Handling Music
         bgm = new Music(this);

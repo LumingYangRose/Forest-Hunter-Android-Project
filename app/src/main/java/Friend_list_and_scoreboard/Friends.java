@@ -309,7 +309,6 @@ public class Friends extends AppCompatActivity {
     }
 
     public void search_friend_dialog() {
-        Log.v("test", "index=");
 
         final AlertDialog.Builder dialog;
         final EditText input_nickname;
@@ -355,8 +354,8 @@ public class Friends extends AppCompatActivity {
                             if (pss.child("nickname").exists()) {
                                 String temp_nickname = pss.child("nickname").getValue().toString();
                                 if (temp_nickname.equals(search_nick_username)) {
-                                    if (!Login_User.current_User.friend_list.contains(search_nick_username)) {
-                                        target_username = pss.child("username").getValue().toString(); //TODO
+                                    if (!Login_User.current_User.friend_list.contains(search_nick_username) && !search_nick_username.equals(Login_User.current_User.nickname) ) {
+                                        target_username = pss.child("username").getValue().toString();
                                         Login_User.current_User.friend_list.add(search_nick_username);
                                         Task update_user = mDatabase.child("users").child(Login_User.current_User.username).setValue(Login_User.current_User);
                                         find_friend_nickname = true;

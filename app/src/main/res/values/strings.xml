@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Forest Hunter</string>
+    <string name="channel_id">Forest_hunter</string>
 </resources>

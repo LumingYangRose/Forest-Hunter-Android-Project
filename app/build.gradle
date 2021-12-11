@@ -40,7 +40,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore'
     implementation 'com.google.firebase:firebase-database'
-    implementation 'com.google.firebase:firebase-messaging: 20.1.6' //Need to add
+    implementation 'com.google.firebase:firebase-messaging: 20.0.2' //Need to add
     implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
     implementation 'com.firebaseui:firebase-ui-storage:7.2.0'
 
