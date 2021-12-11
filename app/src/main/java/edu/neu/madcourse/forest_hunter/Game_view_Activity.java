@@ -661,7 +661,6 @@ public class Game_view_Activity extends AppCompatActivity {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-            LayoutInflater inflater = getActivity().getLayoutInflater();
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             View dialog_view = getLayoutInflater().inflate(R.layout.game_lose, null);
 
@@ -674,7 +673,7 @@ public class Game_view_Activity extends AppCompatActivity {
                 public void onClick(View view) {
                     dismiss();
                     paused = false;
-                    getActivity().finish();
+                    // getActivity().finish();
                     getActivity().recreate();
                     Intent intent = new Intent(getContext(), Game_view_Activity.class);
                     // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
