@@ -95,6 +95,9 @@ public class Hunting extends AppCompatActivity {
     private TextView tutorial_info;
     private static ArrayList<ImageView> all_image_view_list;
     private ArrayList<ImageView> gorilla_list;
+    private ArrayList<ImageView> turkey_list;
+    private ArrayList<ImageView> sheep_list;
+
 
 
     private static int count = 0;
@@ -285,9 +288,9 @@ public class Hunting extends AppCompatActivity {
 
         // bullet view
         bullet_view = findViewById(R.id.sword_view);
-        bullet_view.setImageResource(R.drawable.sword);
-        bullet_view.getLayoutParams().width = 80;
-        bullet_view.getLayoutParams().height = 80;
+        bullet_view.setImageResource(R.drawable.dagger);
+        bullet_view.getLayoutParams().width = 100;
+        bullet_view.getLayoutParams().height = 100;
 
         bullet_view.setX(500);
         bullet_view.setY((float)(600 * dpi_ratio));
@@ -295,12 +298,16 @@ public class Hunting extends AppCompatActivity {
 
 
         gorilla_list = new ArrayList<>();
+        turkey_list = new ArrayList<>();
+        sheep_list = new ArrayList<>();
 
 
         all_image_view_list = new ArrayList<>();
 
 
         setUpGorilla();
+        setUpturkey();
+        setUpSheep();
 
 
         ap = new Appearance();
@@ -690,7 +697,55 @@ public class Hunting extends AppCompatActivity {
                     if (lives>0 && bullet_view.getVisibility() != View.INVISIBLE) {
                         iv.setVisibility(View.INVISIBLE);
                         bullet_view.setVisibility(View.INVISIBLE);
-                        score += 100;
+                        score += 30;
+                        score_view.setText("Score: " + score);
+                    }
+                }
+            }
+
+            for (ImageView iv: turkey_list) {
+                if ((Math.abs(iv.getX()-chest_view.getX()) <= 100*dpi_ratio)
+                        && (Math.abs(iv.getY()-chest_view.getY()) <= 100*dpi_ratio)) {
+                    if (iv.getVisibility() == View.VISIBLE) {
+                        iv.setVisibility(View.INVISIBLE);
+                        bullet_view.setVisibility(View.INVISIBLE);
+                        score -= 80;
+                        score_view.setText("Score: " + score);
+                        invincible = true;
+                        invincible_countdown = 20;
+                    }
+                }
+
+                if ((Math.abs(iv.getX()-bullet_view.getX()) <= 100*dpi_ratio)
+                        && (Math.abs(iv.getY()-bullet_view.getY()) <= 100*dpi_ratio)) {
+                    if (lives>0 && bullet_view.getVisibility() != View.INVISIBLE) {
+                        iv.setVisibility(View.INVISIBLE);
+                        bullet_view.setVisibility(View.INVISIBLE);
+                        score += 150;
+                        score_view.setText("Score: " + score);
+                    }
+                }
+            }
+
+            for (ImageView iv: sheep_list) {
+                if ((Math.abs(iv.getX()-chest_view.getX()) <= 100*dpi_ratio)
+                        && (Math.abs(iv.getY()-chest_view.getY()) <= 100*dpi_ratio)) {
+                    if (iv.getVisibility() == View.VISIBLE) {
+                        iv.setVisibility(View.INVISIBLE);
+                        bullet_view.setVisibility(View.INVISIBLE);
+                        score -= 60;
+                        score_view.setText("Score: " + score);
+                        invincible = true;
+                        invincible_countdown = 20;
+                    }
+                }
+
+                if ((Math.abs(iv.getX()-bullet_view.getX()) <= 100*dpi_ratio)
+                        && (Math.abs(iv.getY()-bullet_view.getY()) <= 100*dpi_ratio)) {
+                    if (lives>0 && bullet_view.getVisibility() != View.INVISIBLE) {
+                        iv.setVisibility(View.INVISIBLE);
+                        bullet_view.setVisibility(View.INVISIBLE);
+                        score += 200;
                         score_view.setText("Score: " + score);
                     }
                 }
@@ -1091,6 +1146,7 @@ public class Hunting extends AppCompatActivity {
         Handler4.removeCallbacks(refresh_bullet_view);
     }
 
+
     public void setUpGorilla() {
         ImageView gorilla1 = findViewById(R.id.gorilla_view1);
         ImageView gorilla2 = findViewById(R.id.gorilla_view2);
@@ -1117,7 +1173,7 @@ public class Hunting extends AppCompatActivity {
         gorilla7.setY((int)(screen_height*0.72-200*dpi_ratio));
         gorilla8.setY((int)(screen_height*0.72-200*dpi_ratio));
         gorilla9.setY((int)(screen_height*0.72));
-        
+
 
         gorilla_list.add(gorilla1);
         gorilla_list.add(gorilla2);
@@ -1134,6 +1190,52 @@ public class Hunting extends AppCompatActivity {
         for (ImageView iv: gorilla_list) {
             iv.setX(screen_width + 100*screenRatioX);
             iv.setImageResource(R.drawable.gorilla);
+            iv.getLayoutParams().width = (int)(200*dpi_ratio);
+            iv.getLayoutParams().height = (int)(200*dpi_ratio);
+        }
+    }
+
+    public void setUpturkey() {
+        ImageView turkey1 = findViewById(R.id.turkey_view1);
+        ImageView turkey2 = findViewById(R.id.turkey_view2);
+        ImageView turkey3 = findViewById(R.id.turkey_view3);
+
+
+        turkey1.setY((int)(screen_height*0.72-400*dpi_ratio));
+        turkey2.setY((int)(screen_height*0.72-200*dpi_ratio));
+        turkey3.setY((int)(screen_height*0.72));
+
+        turkey_list.add(turkey1);
+        turkey_list.add(turkey2);
+        turkey_list.add(turkey3);
+
+
+        for (ImageView iv: turkey_list) {
+            iv.setX(screen_width + 100*screenRatioX);
+            iv.setImageResource(R.drawable.turkey);
+            iv.getLayoutParams().width = (int)(200*dpi_ratio);
+            iv.getLayoutParams().height = (int)(200*dpi_ratio);
+        }
+    }
+
+    public void setUpSheep() {
+        ImageView sheep1 = findViewById(R.id.sheep_view1);
+        ImageView sheep2 = findViewById(R.id.sheep_view2);
+        ImageView sheep3 = findViewById(R.id.sheep_view3);
+
+
+        sheep1.setY((int)(screen_height*0.72-400*dpi_ratio));
+        sheep2.setY((int)(screen_height*0.72-200*dpi_ratio));
+        sheep3.setY((int)(screen_height*0.72));
+
+        sheep_list.add(sheep1);
+        sheep_list.add(sheep2);
+        sheep_list.add(sheep3);
+
+
+        for (ImageView iv: sheep_list) {
+            iv.setX(screen_width + 100*screenRatioX);
+            iv.setImageResource(R.drawable.sheep);
             iv.getLayoutParams().width = (int)(200*dpi_ratio);
             iv.getLayoutParams().height = (int)(200*dpi_ratio);
         }
@@ -1165,14 +1267,25 @@ public class Hunting extends AppCompatActivity {
     }
 
     public void setUpStage1(int time) {
-        if (time >= 80 && time < 400 && !paused) {
+//        period duration: 140
+//        reappear should occur at least 20 after the end of previous appearance
+        if (time >= 80 && time < 220 && !paused) {
             gorilla_list.get(2).setX(gorilla_list.get(2).getX() - speed_index * screenRatioX);
         }
-        if (time >= 100 && time < 240 && !paused) {
+        if (time >= 100 && time < 340 && !paused) {
             gorilla_list.get(4).setX(gorilla_list.get(4).getX() - speed_index * screenRatioX);
         }
-        if (time >= 130 && time < 400 && !paused) {
+        if (time >= 130 && time < 270 && !paused) {
             gorilla_list.get(0).setX(gorilla_list.get(0).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 150 && time < 290 && !paused) {
+            sheep_list.get(1).setX(sheep_list.get(1).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 200 && time < 340 && !paused) {
+            turkey_list.get(0).setX(turkey_list.get(0).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 200 && time < 340 && !paused) {
+            turkey_list.get(1).setX(turkey_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 260 && time < 400 && !paused) {
             if (time == 260) {
@@ -1181,12 +1294,40 @@ public class Hunting extends AppCompatActivity {
             }
             gorilla_list.get(4).setX(gorilla_list.get(4).getX() - speed_index * screenRatioX);
         }
+        if (time >= 300 && time < 440 && !paused) {
+            sheep_list.get(0).setX(sheep_list.get(0).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 200 && time < 340 && !paused) {
+            if (time == 200) {
+                turkey_list.get(2).setX(screen_width + 100*screenRatioX);
+                turkey_list.get(2).setVisibility(View.VISIBLE);
+            }
+            turkey_list.get(2).setX(turkey_list.get(2).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 350 && time < 490 && !paused) {
+            if (time == 350) {
+                turkey_list.get(0).setX(screen_width + 100*screenRatioX);
+                turkey_list.get(0).setVisibility(View.VISIBLE);
+            }
+            turkey_list.get(0).setX(turkey_list.get(0).getX() - speed_index * screenRatioX);
+        }
+
+        if (time >= 370 && time < 510 && !paused) {
+            if (time == 370) {
+                sheep_list.get(1).setX(screen_width + 100*screenRatioX);
+                sheep_list.get(1).setVisibility(View.VISIBLE);
+            }
+            sheep_list.get(1).setX(sheep_list.get(1).getX() - speed_index * screenRatioX);
+        }
         if (time >= 420 && time < 560 && !paused) {
             if (time == 420) {
                 gorilla_list.get(0).setX(screen_width + 100*screenRatioX);
                 gorilla_list.get(0).setVisibility(View.VISIBLE);
             }
             gorilla_list.get(0).setX(gorilla_list.get(0).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 480 && time < 620 && !paused) {
+            sheep_list.get(1).setX(sheep_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 420 && time < 560 && !paused) {
             if (time == 420) {
@@ -1195,6 +1336,21 @@ public class Hunting extends AppCompatActivity {
             }
             gorilla_list.get(2).setX(gorilla_list.get(2).getX() - speed_index * screenRatioX);
         }
+        if (time >= 520 && time < 660 && !paused) {
+            if (time == 520) {
+                turkey_list.get(1).setX(screen_width + 100*screenRatioX);
+                turkey_list.get(1).setVisibility(View.VISIBLE);
+            }
+            turkey_list.get(1).setX(turkey_list.get(1).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 520 && time < 660 && !paused) {
+            if (time == 520) {
+                sheep_list.get(2).setX(screen_width + 100*screenRatioX);
+                sheep_list.get(2).setVisibility(View.VISIBLE);
+            }
+            sheep_list.get(2).setX(sheep_list.get(2).getX() - speed_index * screenRatioX);
+        }
+
         if (time >= 420  && time < 560 && !paused) {
             if (time == 420) {
                 gorilla_list.get(4).setX(screen_width + 100*screenRatioX);
@@ -1202,8 +1358,23 @@ public class Hunting extends AppCompatActivity {
             }
             gorilla_list.get(4).setX(gorilla_list.get(4).getX() - speed_index * screenRatioX);
         }
+        if (time >= 640  && time < 780 && !paused) {
+            if (time == 640) {
+                sheep_list.get(1).setX(screen_width + 100*screenRatioX);
+                sheep_list.get(1).setVisibility(View.VISIBLE);
+            }
+            sheep_list.get(1).setX(sheep_list.get(1).getX() - speed_index * screenRatioX);
+        }
+
         if (time >= 500 && time < 640 && !paused) {
             gorilla_list.get(3).setX(gorilla_list.get(3).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 680 && time < 820 && !paused) {
+            if (time == 680) {
+                turkey_list.get(1).setX(screen_width + 100*screenRatioX);
+                turkey_list.get(1).setVisibility(View.VISIBLE);
+            }
+            turkey_list.get(1).setX(turkey_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 620 && time < 760 && !paused) {
             if (time == 620) {
@@ -1212,12 +1383,30 @@ public class Hunting extends AppCompatActivity {
             }
             gorilla_list.get(2).setX(gorilla_list.get(2).getX() - speed_index * screenRatioX);
         }
+        if (time >= 700  && time < 840 && !paused) {
+            if (time == 700) {
+                sheep_list.get(0).setX(screen_width + 100*screenRatioX);
+                sheep_list.get(0).setVisibility(View.VISIBLE);
+            }
+            sheep_list.get(0).setX(sheep_list.get(0).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 950 && time < 1040 && !paused) {
+            turkey_list.get(2).setX(turkey_list.get(2).getX() - speed_index * screenRatioX);
+        }
+
         if (time >= 660 && time < 800 && !paused) {
             if (time == 660) {
                 gorilla_list.get(0).setX(screen_width + 100*screenRatioX);
                 gorilla_list.get(0).setVisibility(View.VISIBLE);
             }
             gorilla_list.get(0).setX(gorilla_list.get(0).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 700 && time < 840 && !paused) {
+            if (time == 700) {
+                turkey_list.get(2).setX(screen_width + 100*screenRatioX);
+                turkey_list.get(2).setVisibility(View.VISIBLE);
+            }
+            turkey_list.get(2).setX(turkey_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 780 && time < 920 && !paused) {
             if (time == 780) {
@@ -1232,6 +1421,13 @@ public class Hunting extends AppCompatActivity {
                 gorilla_list.get(3).setVisibility(View.VISIBLE);
             }
             gorilla_list.get(3).setX(gorilla_list.get(3).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 900 && time < 1040 && !paused) {
+            if (time == 900) {
+                turkey_list.get(1).setX(screen_width + 100*screenRatioX);
+                turkey_list.get(1).setVisibility(View.VISIBLE);
+            }
+            turkey_list.get(1).setX(turkey_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 780 && time < 920 && !paused) {
             if (time == 780) {
