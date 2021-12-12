@@ -46,7 +46,7 @@
         android:layout_below="@+id/forest_store"
         android:layout_alignEnd="@+id/store_board_view"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="55dp"
         android:layout_marginEnd="37dp"
         android:layout_toEndOf="@+id/imageView3"
         android:gravity="center_vertical"
@@ -80,7 +80,7 @@
         android:layout_below="@+id/ll_500"
         android:layout_alignEnd="@+id/store_board_view"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="27dp"
         android:layout_marginEnd="41dp"
         android:layout_toEndOf="@+id/imageView4"
         android:gravity="center_vertical"
@@ -108,15 +108,15 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="429dp"
-        android:layout_height="44dp"
+        android:layout_width="385dp"
+        android:layout_height="57dp"
         android:layout_below="@+id/ll_1000"
         android:layout_alignEnd="@+id/store_board_view"
         android:layout_alignBottom="@+id/store_board_view"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="42dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginBottom="81dp"
         android:layout_toEndOf="@+id/imageView5"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -163,32 +163,32 @@
         android:layout_height="50dp"
         android:layout_alignStart="@+id/store_board_view"
         android:layout_alignTop="@+id/store_board_view"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="121dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="116dp"
         app:srcCompat="@drawable/coin1" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="58dp"
-        android:layout_height="62dp"
+        android:layout_width="56dp"
+        android:layout_height="57dp"
         android:layout_alignStart="@+id/store_board_view"
         android:layout_alignTop="@+id/store_board_view"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="186dp"
-        android:layout_marginBottom="143dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="172dp"
+        android:layout_marginBottom="177dp"
         app:srcCompat="@drawable/coin2" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
+        android:layout_width="61dp"
+        android:layout_height="64dp"
         android:layout_alignStart="@+id/store_board_view"
         android:layout_alignTop="@+id/store_board_view"
         android:layout_alignBottom="@+id/store_board_view"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="266dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="245dp"
+        android:layout_marginBottom="74dp"
         app:srcCompat="@drawable/coin3" />
 
     <TextView
