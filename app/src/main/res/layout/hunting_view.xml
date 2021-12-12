@@ -116,6 +116,44 @@
         app:srcCompat="@drawable/tap_screen"/>
 
     <ImageView
+        android:id="@+id/turkey_view1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="800dp"
+        tools:layout_editor_absoluteY="350dp" />
+    <ImageView
+        android:id="@+id/turkey_view2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="800dp"
+        tools:layout_editor_absoluteY="350dp" />
+    <ImageView
+        android:id="@+id/turkey_view3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="800dp"
+        tools:layout_editor_absoluteY="350dp" />
+
+    <ImageView
+        android:id="@+id/sheep_view1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="800dp"
+        tools:layout_editor_absoluteY="350dp" />
+    <ImageView
+        android:id="@+id/sheep_view2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="800dp"
+        tools:layout_editor_absoluteY="350dp" />
+    <ImageView
+        android:id="@+id/sheep_view3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="800dp"
+        tools:layout_editor_absoluteY="350dp" />
+
+    <ImageView
         android:id="@+id/gorilla_view1"
         android:layout_width="20dp"
         android:layout_height="20dp"
