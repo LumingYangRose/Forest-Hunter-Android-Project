@@ -731,7 +731,7 @@ public class Game_view_Activity extends AppCompatActivity {
                         && (Math.abs(iv.getY()-chest_view.getY()) <= 80*dpi_ratio)) {
                     if (lives>0 && !invincible) {
                         hearts.get(lives - 1).setVisibility(View.INVISIBLE);
-                        lives--;
+//                        lives--;
                         if (lives <= 0) {
                             paused = true;
                             if (!revival) {
@@ -755,7 +755,7 @@ public class Game_view_Activity extends AppCompatActivity {
                 if (Math.abs(cliff.getX()-chest_view.getX()) <= 100*dpi_ratio) {
                     if (lives>0 && !invincible && !jumped) {
                         hearts.get(lives-1).setVisibility(View.INVISIBLE);
-                        lives--;
+//                        lives--;
                         if (lives <= 0) {
                             paused = true;
                             if (!revival) {

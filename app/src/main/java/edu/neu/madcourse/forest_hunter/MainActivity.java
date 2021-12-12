@@ -180,7 +180,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void activate_game_view_activity() {
-        Intent game_view_intent = new Intent(this, Game_view_Activity.class);
+//        Intent game_view_intent = new Intent(this, Game_view_Activity.class);
+//        startActivity(game_view_intent);
+        Intent game_view_intent = new Intent(this, Hunting.class);
         startActivity(game_view_intent);
     }
 

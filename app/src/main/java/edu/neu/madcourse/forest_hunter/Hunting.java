@@ -759,6 +759,7 @@ public class Hunting extends AppCompatActivity {
             }
             Login_User.current_User.num_of_gold += gold;
             reference.child("users").child(Login_User.current_User.username).child("num_of_gold").setValue(Login_User.current_User.num_of_gold);
+
             if (stage.current_stage_index == 0)
             {
                 if(Integer.parseInt(Login_User.current_User.highest_score_list.get(0)) < score ) {
@@ -1164,507 +1165,97 @@ public class Hunting extends AppCompatActivity {
     }
 
     public void setUpStage1(int time) {
-        if (time >= 220 && time < 360 ) {
-            gorilla_list.get(0).setX(gorilla_list.get(0).getX() - speed_index * screenRatioX);
-        }
-        if (time >= 260 && time < 400) {
+        if (time >= 80 && time < 400 && !paused) {
             gorilla_list.get(2).setX(gorilla_list.get(2).getX() - speed_index * screenRatioX);
         }
-        if (time >= 260 && time < 400) {
+        if (time >= 100 && time < 240 && !paused) {
             gorilla_list.get(4).setX(gorilla_list.get(4).getX() - speed_index * screenRatioX);
         }
-        if (time >= 300 && time < 440) {
-            gorilla_list.get(5).setX(gorilla_list.get(5).getX() - speed_index * screenRatioX);
-        }
-        if (time >= 340 && time < 480) {
+        if (time >= 130 && time < 400 && !paused) {
             gorilla_list.get(0).setX(gorilla_list.get(0).getX() - speed_index * screenRatioX);
         }
-        if (time >= 420 && time < 560 ) {
+        if (time >= 260 && time < 400 && !paused) {
+            if (time == 260) {
+                gorilla_list.get(4).setX(screen_width + 100*screenRatioX);
+                gorilla_list.get(4).setVisibility(View.VISIBLE);
+            }
+            gorilla_list.get(4).setX(gorilla_list.get(4).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 420 && time < 560 && !paused) {
+            if (time == 420) {
+                gorilla_list.get(0).setX(screen_width + 100*screenRatioX);
+                gorilla_list.get(0).setVisibility(View.VISIBLE);
+            }
             gorilla_list.get(0).setX(gorilla_list.get(0).getX() - speed_index * screenRatioX);
         }
-        if (time >= 420 && time < 560) {
+        if (time >= 420 && time < 560 && !paused) {
+            if (time == 420) {
+                gorilla_list.get(2).setX(screen_width + 100*screenRatioX);
+                gorilla_list.get(2).setVisibility(View.VISIBLE);
+            }
             gorilla_list.get(2).setX(gorilla_list.get(2).getX() - speed_index * screenRatioX);
         }
-        if (time >= 420  && time < 560) {
+        if (time >= 420  && time < 560 && !paused) {
             if (time == 420) {
                 gorilla_list.get(4).setX(screen_width + 100*screenRatioX);
                 gorilla_list.get(4).setVisibility(View.VISIBLE);
             }
             gorilla_list.get(4).setX(gorilla_list.get(4).getX() - speed_index * screenRatioX);
         }
-
-        if (time >= 500 && time < 640) {
+        if (time >= 500 && time < 640 && !paused) {
             gorilla_list.get(3).setX(gorilla_list.get(3).getX() - speed_index * screenRatioX);
         }
-
-        if (time >= 620 && time < 760) {
+        if (time >= 620 && time < 760 && !paused) {
             if (time == 620) {
                 gorilla_list.get(2).setX(screen_width + 100*screenRatioX);
                 gorilla_list.get(2).setVisibility(View.VISIBLE);
             }
             gorilla_list.get(2).setX(gorilla_list.get(2).getX() - speed_index * screenRatioX);
         }
-//        if (time >= 660 && time < 800 && !paused) {
-//            if (time == 660) {
-//                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 660 && time < 800 && !paused) {
-//            if (time == 660) {
-//                gorilla_list.get(0).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(0).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(0).setX(gorilla_list.get(0).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 700 && time < 840 && !paused) {
-//            cliff_list.get(3).setX(cliff_list.get(3).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 740 && time < 880 && !paused) {
-//            cliff_list.get(4).setX(cliff_list.get(4).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 780 && time < 920 && !paused) {
-//            if (time == 780) {
-//                gorilla_list.get(1).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(1).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(1).setX(gorilla_list.get(1).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 780 && time < 920 && !paused) {
-//            if (time == 780) {
-//                gorilla_list.get(3).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(3).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(3).setX(gorilla_list.get(3).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 780 && time < 920 && !paused) {
-//            if (time == 780) {
-//                gorilla_list.get(4).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(4).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(4).setX(gorilla_list.get(4).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 820 && time < 960 && !paused) {
-//            if (time == 820) {
-//                boulder_list.get(0).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 820 && time < 960 && !paused) {
-//            if (time == 820) {
-//                boulder_list.get(5).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(5).setX(boulder_list.get(5).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 840 && time < 980 && !paused) {
-//            if (time == 840) {
-//                gorilla_list.get(0).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(0).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(0).setX(gorilla_list.get(0).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 840 && time < 980 && !paused) {
-//            if (time == 840) {
-//                gorilla_list.get(5).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(5).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(5).setX(gorilla_list.get(5).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 860 && time < 1000 && !paused) {
-//            if (time == 860) {
-//                boulder_list.get(1).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(1).setX(boulder_list.get(1).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 860 && time < 1000 && !paused) {
-//            if (time == 860) {
-//                boulder_list.get(4).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(4).setX(boulder_list.get(4).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 900 && time < 1040 && !paused) {
-//            if (time == 900) {
-//                cliff_list.get(0).setX(screen_width + 100*screenRatioX);
-//            }
-//            cliff_list.get(0).setX(cliff_list.get(0).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 920 && time < 1060 && !paused) {
-//            if (time == 920) {
-//                gorilla_list.get(1).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(1).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(1).setX(gorilla_list.get(1).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 920 && time < 1060 && !paused) {
-//            if (time == 920) {
-//                boulder_list.get(7).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 920 && time < 1060 && !paused) {
-//            if (time == 920) {
-//                boulder_list.get(8).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(8).setX(boulder_list.get(8).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 960 && time < 1100 && !paused) {
-//            if (time == 960) {
-//                boulder_list.get(6).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(6).setX(boulder_list.get(6).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 960 && time < 1100 && !paused) {
-//            if (time == 960) {
-//                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 980 && time < 1120 && !paused) {
-//            if (time == 980) {
-//                gorilla_list.get(2).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(2).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(2).setX(gorilla_list.get(2).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1000 && time < 1140 && !paused) {
-//            if (time == 1000) {
-//                gorilla_list.get(0).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(0).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(0).setX(gorilla_list.get(0).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1040 && time < 1180 && !paused) {
-//            if (time == 1040) {
-//                cliff_list.get(1).setX(screen_width + 100*screenRatioX);
-//            }
-//            cliff_list.get(1).setX(cliff_list.get(1).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1080 && time < 1220 && !paused) {
-//            if (time == 1080) {
-//                boulder_list.get(0).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1080 && time < 1220 && !paused) {
-//            if (time == 1080) {
-//                gorilla_list.get(4).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(4).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(4).setX(gorilla_list.get(4).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1100 && time < 1240 && !paused) {
-//            if (time == 1100) {
-//                boulder_list.get(5).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(5).setX(boulder_list.get(5).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1120 && time < 1260 && !paused) {
-//            if (time == 1120) {
-//                boulder_list.get(3).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1120 && time < 1260 && !paused) {
-//            if (time == 1120) {
-//                gorilla_list.get(6).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(6).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(6).setX(gorilla_list.get(6).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1160 && time < 1300 && !paused) {
-//            if (time == 1160) {
-//                cliff_list.get(2).setX(screen_width + 100*screenRatioX);
-//            }
-//            cliff_list.get(2).setX(cliff_list.get(2).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1200 && time < 1340 && !paused) {
-//            if (time == 1200) {
-//                boulder_list.get(7).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1220 && time < 1360 && !paused) {
-//            if (time == 1220) {
-//                cliff_list.get(3).setX(screen_width + 100*screenRatioX);
-//            }
-//            cliff_list.get(3).setX(cliff_list.get(3).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1240 && time < 1380 && !paused) {
-//            if (time == 1240) {
-//                boulder_list.get(8).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(8).setX(boulder_list.get(8).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1240 && time < 1380 && !paused) {
-//            if (time == 1240) {
-//                gorilla_list.get(1).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(1).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(1).setX(gorilla_list.get(6).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1260 && time < 1400 && !paused) {
-//            if (time == 1260) {
-//                cliff_list.get(4).setX(screen_width + 100*screenRatioX);
-//            }
-//            cliff_list.get(4).setX(cliff_list.get(4).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1280 && time < 1420 && !paused) {
-//            if (time == 1280) {
-//                boulder_list.get(6).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(6).setX(boulder_list.get(6).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1300 && time < 1440 && !paused) {
-//            if (time == 1300) {
-//                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1300 && time < 1440 && !paused) {
-//            if (time == 1300) {
-//                gorilla_list.get(5).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(5).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(5).setX(gorilla_list.get(5).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1320 && time < 1460 && !paused) {
-//            if (time == 1320) {
-//                cliff_list.get(0).setX(screen_width + 100*screenRatioX);
-//            }
-//            cliff_list.get(0).setX(cliff_list.get(0).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1340 && time < 1480 && !paused) {
-//            if (time == 1340) {
-//                gorilla_list.get(3).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(3).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(3).setX(gorilla_list.get(3).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1360 && time < 1500 && !paused) {
-//            if (time == 1360) {
-//                gorilla_list.get(0).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(0).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(0).setX(gorilla_list.get(0).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1360 && time < 1500 && !paused) {
-//            if (time == 1360) {
-//                boulder_list.get(3).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1380 && time < 1520 && !paused) {
-//            if (time == 1380) {
-//                boulder_list.get(0).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1380 && time < 1520 && !paused) {
-//            if (time == 1380) {
-//                gorilla_list.get(8).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(8).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(8).setX(gorilla_list.get(8).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1400 && time < 1540 && !paused) {
-//            if (time == 1400) {
-//                cliff_list.get(1).setX(screen_width + 100*screenRatioX);
-//            }
-//            cliff_list.get(1).setX(cliff_list.get(1).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1440 && time < 1580 && !paused) {
-//            if (time == 1440) {
-//                boulder_list.get(7).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1460 && time < 1600 && !paused) {
-//            if (time == 1460) {
-//                boulder_list.get(1).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(1).setX(boulder_list.get(1).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1460 && time < 1600 && !paused) {
-//            if (time == 1460) {
-//                boulder_list.get(4).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(4).setX(boulder_list.get(4).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1480 && time < 1620 && !paused) {
-//            if (time == 1480) {
-//                gorilla_list.get(6).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(6).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(6).setX(gorilla_list.get(6).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1480 && time < 1620 && !paused) {
-//            if (time == 1480) {
-//                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1500 && time < 1640 && !paused) {
-//            if (time == 1500) {
-//                boulder_list.get(6).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(6).setX(boulder_list.get(6).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1500 && time < 1640 && !paused) {
-//            if (time == 1500) {
-//                boulder_list.get(5).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(5).setX(boulder_list.get(5).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1520 && time < 1660 && !paused) {
-//            if (time == 1520) {
-//                boulder_list.get(3).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1520 && time < 1660 && !paused) {
-//            if (time == 1520) {
-//                gorilla_list.get(4).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(4).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(4).setX(gorilla_list.get(4).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1540 && time < 1680 && !paused) {
-//            if (time == 1540) {
-//                cliff_list.get(2).setX(screen_width + 100*screenRatioX);
-//            }
-//            cliff_list.get(2).setX(cliff_list.get(2).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1580 && time < 1720 && !paused) {
-//            if (time == 1580) {
-//                gorilla_list.get(1).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(1).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(1).setX(gorilla_list.get(1).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1600 && time < 1740 && !paused) {
-//            if (time == 1600) {
-//                gorilla_list.get(7).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(7).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(7).setX(gorilla_list.get(7).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1620 && time < 1760 && !paused) {
-//            if (time == 1620) {
-//                gorilla_list.get(5).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(5).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(5).setX(gorilla_list.get(5).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1660 && time < 1800 && !paused) {
-//            if (time == 1660) {
-//                cliff_list.get(3).setX(screen_width + 100*screenRatioX);
-//            }
-//            cliff_list.get(3).setX(cliff_list.get(3).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1680 && time < 1820 && !paused) {
-//            if (time == 1680) {
-//                boulder_list.get(1).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(1).setX(boulder_list.get(1).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1700 && time < 1840 && !paused) {
-//            if (time == 1700) {
-//                boulder_list.get(7).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1720 && time < 1860 && !paused) {
-//            if (time == 1720) {
-//                boulder_list.get(8).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(8).setX(boulder_list.get(8).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1740 && time < 1880 && !paused) {
-//            if (time == 1740) {
-//                cliff_list.get(4).setX(screen_width + 100*screenRatioX);
-//            }
-//            cliff_list.get(4).setX(cliff_list.get(4).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1760 && time < 1900 && !paused) {
-//            if (time == 1760) {
-//                gorilla_list.get(0).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(0).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(0).setX(gorilla_list.get(0).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1780 && time < 1920 && !paused) {
-//            if (time == 1780) {
-//                boulder_list.get(0).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1800 && time < 1940 && !paused) {
-//            if (time == 1800) {
-//                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1820 && time < 1960 && !paused) {
-//            if (time == 1820) {
-//                boulder_list.get(4).setX(screen_width + 100*screenRatioX);
-//            }
-//            boulder_list.get(4).setX(boulder_list.get(4).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1840 && time < 1980 && !paused) {
-//            if (time == 1840) {
-//                cliff_list.get(0).setX(screen_width + 100*screenRatioX);
-//            }
-//            cliff_list.get(0).setX(cliff_list.get(0).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1880) {
-//            if (time == 1880) {
-//                gorilla_list.get(6).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(6).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(6).setX(gorilla_list.get(6).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1880) {
-//            if (time == 1880) {
-//                gorilla_list.get(2).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(2).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(2).setX(gorilla_list.get(2).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1880) {
-//            if (time == 1880) {
-//                gorilla_list.get(8).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(8).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(8).setX(gorilla_list.get(8).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1920) {
-//            if (time == 1920) {
-//                gorilla_list.get(1).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(1).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(1).setX(gorilla_list.get(1).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1920) {
-//            if (time == 1920) {
-//                gorilla_list.get(3).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(3).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(3).setX(gorilla_list.get(3).getX() - speed_index * screenRatioX);
-//        }
-//        if (time >= 1920) {
-//            if (time == 1920) {
-//                gorilla_list.get(4).setX(screen_width + 100*screenRatioX);
-//                gorilla_list.get(4).setVisibility(View.VISIBLE);
-//            }
-//            gorilla_list.get(4).setX(gorilla_list.get(4).getX() - speed_index * screenRatioX);
-//        }
-//        if (time == SET_ONE_LENGTH + 200 && !paused
-//        ) {
-//            paused = true;
-//        }
-//    }
+        if (time >= 660 && time < 800 && !paused) {
+            if (time == 660) {
+                gorilla_list.get(0).setX(screen_width + 100*screenRatioX);
+                gorilla_list.get(0).setVisibility(View.VISIBLE);
+            }
+            gorilla_list.get(0).setX(gorilla_list.get(0).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 780 && time < 920 && !paused) {
+            if (time == 780) {
+                gorilla_list.get(1).setX(screen_width + 100*screenRatioX);
+                gorilla_list.get(1).setVisibility(View.VISIBLE);
+            }
+            gorilla_list.get(1).setX(gorilla_list.get(1).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 780 && time < 920 && !paused) {
+            if (time == 780) {
+                gorilla_list.get(3).setX(screen_width + 100*screenRatioX);
+                gorilla_list.get(3).setVisibility(View.VISIBLE);
+            }
+            gorilla_list.get(3).setX(gorilla_list.get(3).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 780 && time < 920 && !paused) {
+            if (time == 780) {
+                gorilla_list.get(4).setX(screen_width + 100*screenRatioX);
+                gorilla_list.get(4).setVisibility(View.VISIBLE);
+            }
+            gorilla_list.get(4).setX(gorilla_list.get(4).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 840 && time < 980 && !paused) {
+            if (time == 840) {
+                gorilla_list.get(0).setX(screen_width + 100*screenRatioX);
+                gorilla_list.get(0).setVisibility(View.VISIBLE);
+            }
+            gorilla_list.get(0).setX(gorilla_list.get(0).getX() - speed_index * screenRatioX);
+        }
+        if (time >= 840 && time < 980 && !paused) {
+            if (time == 840) {
+                gorilla_list.get(5).setX(screen_width + 100*screenRatioX);
+                gorilla_list.get(5).setVisibility(View.VISIBLE);
+            }
+            gorilla_list.get(5).setX(gorilla_list.get(5).getX() - speed_index * screenRatioX);
+        }
 
-}
+    }
     public void setting_dialog(View view) {
 
         final AlertDialog.Builder dialog;
