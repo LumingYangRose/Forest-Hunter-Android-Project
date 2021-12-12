@@ -35,7 +35,7 @@ public class MapObject {
 
     public int getDistance(MapObject o) {
         int dist;
-        dist = (int)Math.sqrt((o.getPosX() - this.getPosX()) * (o.getPosX() - this.getPosX()) + (o.getPosY() - this.getPosY()) * (o.getPosY() - this.getPosY()));
+        dist = (int) Math.sqrt((o.getPosX() - this.getPosX()) * (o.getPosX() - this.getPosX()) + (o.getPosY() - this.getPosY()) * (o.getPosY() - this.getPosY()));
         return dist;
     }
 

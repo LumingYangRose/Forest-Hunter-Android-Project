@@ -9,7 +9,7 @@ public class Cliff extends MovingObject {
     }
 
     public boolean inRange(Character character) {
-        if (Math.abs(this.posx-character.posx) < this.imageW/2) {
+        if (Math.abs(this.posx - character.posx) < this.imageW / 2) {
             return true;
         } else {
             return false;

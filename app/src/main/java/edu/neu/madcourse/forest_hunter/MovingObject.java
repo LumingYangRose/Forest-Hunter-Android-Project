@@ -21,7 +21,7 @@ public class MovingObject extends MapObject {
     }
 
     public int getSpeed() {
-        int speed = (int)Math.sqrt(vx*vx + vy*vy);
+        int speed = (int) Math.sqrt(vx * vx + vy * vy);
         return speed;
     }
 

@@ -167,7 +167,7 @@ public class Game_view_Activity extends AppCompatActivity {
     private static boolean jumped;
     private SensorManager sm;
     private Sensor shake_sensor;
-    private float acelVal,acelLast,shake;
+    private float acelVal, acelLast, shake;
 
     private static int score;
     int lives;
@@ -204,13 +204,10 @@ public class Game_view_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_view);
 
-        if (stage.current_stage_index == 0)
-        {
-            speed_index= 22;
-        }
-        else
-        {
-            speed_index= 25;
+        if (stage.current_stage_index == 0) {
+            speed_index = 22;
+        } else {
+            speed_index = 25;
         }
 
         countdownHandler = new android.os.Handler();
@@ -235,9 +232,9 @@ public class Game_view_Activity extends AppCompatActivity {
         progress_bar = findViewById(R.id.game_progress);
         progress_bar.setProgress(0);
 
-        sm=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        sm = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         shake_sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sm.registerListener(sensorListener,shake_sensor, SensorManager.SENSOR_DELAY_NORMAL);
+        sm.registerListener(sensorListener, shake_sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
         swipe_up = findViewById(R.id.swipe_up);
         swipe_down = findViewById(R.id.swipe_down);
@@ -270,18 +267,18 @@ public class Game_view_Activity extends AppCompatActivity {
         float float_h = screen_height;
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
-        int dpi = (int)(metrics.density * 160f);
+        int dpi = (int) (metrics.density * 160f);
 
-        dpi_ratio = dpi/440.00;
+        dpi_ratio = dpi / 440.00;
 
         tutorial_info.setX((float) (1280 * dpi_ratio));
         hunting_info.setX((float) (720 * dpi_ratio));
-        swipe_up.setX((float) (960* dpi_ratio));
-        swipe_up.setY((float) (240* dpi_ratio));
-        swipe_down.setX((float) (960* dpi_ratio));
-        swipe_down.setY((float) (640* dpi_ratio));
-        tap_screen.setX((float) (960* dpi_ratio));
-        tap_screen.setY((float) (440* dpi_ratio));
+        swipe_up.setX((float) (960 * dpi_ratio));
+        swipe_up.setY((float) (240 * dpi_ratio));
+        swipe_down.setX((float) (960 * dpi_ratio));
+        swipe_down.setY((float) (640 * dpi_ratio));
+        tap_screen.setX((float) (960 * dpi_ratio));
+        tap_screen.setY((float) (440 * dpi_ratio));
 
         screenRatioX = float_w / screen_width;
         screenRatioY = float_h / screen_height;
@@ -289,15 +286,12 @@ public class Game_view_Activity extends AppCompatActivity {
         forest_background_view = findViewById(R.id.background);
         second_forest_background_view = findViewById(R.id.background2);
 
-        if(stage.current_stage_index == 1)
-        {
+        if (stage.current_stage_index == 1) {
             forest_background_view.setBackground(null);
             forest_background_view.setImageResource(R.drawable.stage_2_background);
             second_forest_background_view.setBackground(null);
             second_forest_background_view.setImageResource(R.drawable.stage_2_background);
-        }
-        else
-        {
+        } else {
             forest_background_view.setBackground(null);
             forest_background_view.setImageResource(R.drawable.pic_forest_background);
             second_forest_background_view.setBackground(null);
@@ -330,17 +324,16 @@ public class Game_view_Activity extends AppCompatActivity {
         crocodile.setX((int) (moveX - 400 * dpi_ratio));
         crocodile.setY(450);
         lion = findViewById(R.id.lion);
-        lion.setX((int)(moveX - 400*dpi_ratio));
+        lion.setX((int) (moveX - 400 * dpi_ratio));
         lion.setY(400);
 
-        if(stage.current_stage_index == 0) {
+        if (stage.current_stage_index == 0) {
 
             crocodile.setImageResource(R.drawable.walking_crocodile);
             lion.setVisibility(View.INVISIBLE);
             AnimationDrawable walking_crocodile = (AnimationDrawable) crocodile.getDrawable();
             walking_crocodile.start();
-        }
-        else if (stage.current_stage_index == 1) {
+        } else if (stage.current_stage_index == 1) {
 
             lion.setImageResource(R.drawable.walking_lion);
             crocodile.setVisibility(View.INVISIBLE);
@@ -449,18 +442,18 @@ public class Game_view_Activity extends AppCompatActivity {
         l_leg_view_wear.setImageResource(ap.leg_r_l_wear_image_id_list[Appearance.current_leg_wear_index][1]);
 
         // setup imageview for the run image
-        l_leg_view_run =findViewById(R.id.l_leg_view_run);
-        l_thigh_view_run =findViewById(R.id.l_thigh_view_run);
-        l_leg_view_wear_run =findViewById(R.id.l_leg_view_wear_run);
+        l_leg_view_run = findViewById(R.id.l_leg_view_run);
+        l_thigh_view_run = findViewById(R.id.l_thigh_view_run);
+        l_leg_view_wear_run = findViewById(R.id.l_leg_view_wear_run);
         l_leg_view_wear_run.setBackground(null);
         l_leg_view_wear_run.setImageResource(ap.leg_r_l_wear_image_id_list[Appearance.current_leg_wear_index][1]);
 
-        l_thigh_view_wear_run =findViewById(R.id.l_thigh_view_wear_run);
+        l_thigh_view_wear_run = findViewById(R.id.l_thigh_view_wear_run);
         l_thigh_view_wear_run.setBackground(null);
         l_thigh_view_wear_run.setImageResource(ap.thigh_r_l_wear_image_id_list[Appearance.current_thigh_wear_index][1]);
 
-        l_foot_view_run =findViewById(R.id.l_foot_view_run);
-        l_foot_view_wear_run =findViewById(R.id.l_foot_view_wear_run);
+        l_foot_view_run = findViewById(R.id.l_foot_view_run);
+        l_foot_view_wear_run = findViewById(R.id.l_foot_view_wear_run);
         l_foot_view_wear_run.setBackground(null);
         l_foot_view_wear_run.setImageResource(ap.foot_r_l_wear_image_id_list[Appearance.current_foot_wear_index][1]);
 
@@ -471,18 +464,18 @@ public class Game_view_Activity extends AppCompatActivity {
         l_foot_view_run.setVisibility(View.INVISIBLE);
         l_foot_view_wear_run.setVisibility(View.INVISIBLE);
 
-        r_leg_view_run =findViewById(R.id.r_leg_view_run);
-        r_thigh_view_run =findViewById(R.id.r_thigh_view_run);
-        r_leg_view_wear_run =findViewById(R.id.r_leg_view_wear_run);
+        r_leg_view_run = findViewById(R.id.r_leg_view_run);
+        r_thigh_view_run = findViewById(R.id.r_thigh_view_run);
+        r_leg_view_wear_run = findViewById(R.id.r_leg_view_wear_run);
         r_leg_view_wear_run.setBackground(null);
         r_leg_view_wear_run.setImageResource(ap.leg_r_l_wear_image_id_list[Appearance.current_leg_wear_index][1]);
 
-        r_thigh_view_wear_run =findViewById(R.id.r_thigh_view_wear_run);
-       r_thigh_view_wear_run.setBackground(null);
+        r_thigh_view_wear_run = findViewById(R.id.r_thigh_view_wear_run);
+        r_thigh_view_wear_run.setBackground(null);
         r_thigh_view_wear_run.setImageResource(ap.thigh_r_l_wear_image_id_list[Appearance.current_thigh_wear_index][1]);
 
-        r_foot_view_run =findViewById(R.id.r_foot_view_run);
-        r_foot_view_wear_run =findViewById(R.id.r_foot_view_wear_run);
+        r_foot_view_run = findViewById(R.id.r_foot_view_run);
+        r_foot_view_wear_run = findViewById(R.id.r_foot_view_wear_run);
         r_foot_view_wear_run.setBackground(null);
         r_foot_view_wear_run.setImageResource(ap.foot_r_l_wear_image_id_list[Appearance.current_foot_wear_index][0]);
 
@@ -580,7 +573,7 @@ public class Game_view_Activity extends AppCompatActivity {
         findViewById(R.id.game_view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (jump_countdown<=0 && !jumped) {
+                if (jump_countdown <= 0 && !jumped) {
                     jumped = true;
                     jump_countdown = 27;
                 }
@@ -589,18 +582,16 @@ public class Game_view_Activity extends AppCompatActivity {
         findViewById(R.id.game_view).setOnTouchListener(new OnSwipeTouchListener() {
             @Override
             public boolean onSwipeTop() {
-                if(hair_view.getY() > 348*dpi_ratio && !jumped)
-                {
-                    move_character_y((int)(200*dpi_ratio));
+                if (hair_view.getY() > 348 * dpi_ratio && !jumped) {
+                    move_character_y((int) (200 * dpi_ratio));
                 }
                 return true;
             }
 
             @Override
             public boolean onSwipeBottom() {
-                if(hair_view.getY() < 648*dpi_ratio && !jumped)
-                {
-                    move_character_y((int)(-200*dpi_ratio));
+                if (hair_view.getY() < 648 * dpi_ratio && !jumped) {
+                    move_character_y((int) (-200 * dpi_ratio));
                 }
                 return true;
             }
@@ -652,8 +643,7 @@ public class Game_view_Activity extends AppCompatActivity {
         in_game_dialog.show();
     }
 
-    public static int get_score()
-    {
+    public static int get_score() {
         return score;
     }
 
@@ -685,10 +675,8 @@ public class Game_view_Activity extends AppCompatActivity {
         }
     }
 
-    private Runnable refresh_view = new Runnable()
-    {
-        public void run()
-        {
+    private Runnable refresh_view = new Runnable() {
+        public void run() {
             if (!paused) {
                 forest_background_view.setX(forest_background_view.getX() - speed_index * screenRatioX);
                 second_forest_background_view.setX(second_forest_background_view.getX() - speed_index * screenRatioX);
@@ -710,26 +698,22 @@ public class Game_view_Activity extends AppCompatActivity {
         }
     };
 
-    private Runnable game_play = new Runnable()
-    {
-        public void run()
-        {
-            if(stage.current_stage_index == 0) {
+    private Runnable game_play = new Runnable() {
+        public void run() {
+            if (stage.current_stage_index == 0) {
                 setUpTutorial(time);
                 setUpStage1(time);
                 setUpProgressBar(time);
-            }
-            else if (stage.current_stage_index == 1)
-            {
+            } else if (stage.current_stage_index == 1) {
                 setUpTutorial(time);
                 setUpStage2(time);
                 setUpProgressBar(time);
             }
 
-            for (ImageView iv: boulder_list) {
-                if ((Math.abs(iv.getX()-chest_view.getX()) <= 100*dpi_ratio)
-                        && (Math.abs(iv.getY()-chest_view.getY()) <= 80*dpi_ratio)) {
-                    if (lives>0 && !invincible) {
+            for (ImageView iv : boulder_list) {
+                if ((Math.abs(iv.getX() - chest_view.getX()) <= 100 * dpi_ratio)
+                        && (Math.abs(iv.getY() - chest_view.getY()) <= 80 * dpi_ratio)) {
+                    if (lives > 0 && !invincible) {
                         hearts.get(lives - 1).setVisibility(View.INVISIBLE);
                         lives--;
                         if (lives <= 0) {
@@ -751,10 +735,10 @@ public class Game_view_Activity extends AppCompatActivity {
                     }
                 }
             }
-            for (ImageView cliff: cliff_list) {
-                if (Math.abs(cliff.getX()-chest_view.getX()) <= 100*dpi_ratio) {
-                    if (lives>0 && !invincible && !jumped) {
-                        hearts.get(lives-1).setVisibility(View.INVISIBLE);
+            for (ImageView cliff : cliff_list) {
+                if (Math.abs(cliff.getX() - chest_view.getX()) <= 100 * dpi_ratio) {
+                    if (lives > 0 && !invincible && !jumped) {
+                        hearts.get(lives - 1).setVisibility(View.INVISIBLE);
                         lives--;
                         if (lives <= 0) {
                             paused = true;
@@ -775,9 +759,9 @@ public class Game_view_Activity extends AppCompatActivity {
                     }
                 }
             }
-            for (ImageView food: food_list) {
-                if (food.getVisibility()==View.VISIBLE && Math.abs(food.getX()-chest_view.getX())<=100*dpi_ratio
-                        && Math.abs(food.getY()-chest_view.getY())<=100*dpi_ratio && !jumped) {
+            for (ImageView food : food_list) {
+                if (food.getVisibility() == View.VISIBLE && Math.abs(food.getX() - chest_view.getX()) <= 100 * dpi_ratio
+                        && Math.abs(food.getY() - chest_view.getY()) <= 100 * dpi_ratio && !jumped) {
                     score += 100;
                     score_view.setText("Score: " + score);
                     food.setVisibility(View.INVISIBLE);
@@ -785,23 +769,23 @@ public class Game_view_Activity extends AppCompatActivity {
             }
             characterJump(jump_countdown);
             getHit(invincible_countdown);
-            if (invincible_countdown>0) {
+            if (invincible_countdown > 0) {
                 if (!paused) {
                     invincible_countdown--;
                 }
             } else {
                 invincible = false;
             }
-            if (jump_countdown>3) {
+            if (jump_countdown > 3) {
                 jump_countdown--;
-            } else if (jump_countdown<=3 && jump_countdown>0) {
+            } else if (jump_countdown <= 3 && jump_countdown > 0) {
                 jumped = false;
                 jump_countdown--;
             }
 
             if (!paused) {
                 time++;
-                if (time%4 == 0) {
+                if (time % 4 == 0) {
                     score += 1;
                     score_view.setText("Score: " + score);
                 }
@@ -810,10 +794,10 @@ public class Game_view_Activity extends AppCompatActivity {
             showHuntingInfo(time);
 
 
-            if (time >= SET_ONE_LENGTH && time < SET_ONE_LENGTH+32 && !paused) {
+            if (time >= SET_ONE_LENGTH && time < SET_ONE_LENGTH + 32 && !paused) {
                 playerEscape();
             }
-            if (time == SET_ONE_LENGTH+20) {
+            if (time == SET_ONE_LENGTH + 20) {
                 lion.setVisibility(View.INVISIBLE);
                 crocodile.setVisibility(View.INVISIBLE);
             }
@@ -823,12 +807,9 @@ public class Game_view_Activity extends AppCompatActivity {
         }
     };
 
-    private Runnable refresh_character_view = new Runnable()
-    {
-        public void run()
-        {
-            if (count == 0)
-            {
+    private Runnable refresh_character_view = new Runnable() {
+        public void run() {
+            if (count == 0) {
                 l_leg_view_run.setVisibility(View.VISIBLE);
                 l_thigh_view_run.setVisibility(View.VISIBLE);
                 l_leg_view_wear_run.setVisibility(View.VISIBLE);
@@ -858,9 +839,7 @@ public class Game_view_Activity extends AppCompatActivity {
                 r_foot_view.setVisibility(View.INVISIBLE);
 
                 count += 1;
-            }
-            else if (count == 1 && !jumped)
-            {
+            } else if (count == 1 && !jumped) {
                 l_leg_view_run.setVisibility(View.INVISIBLE);
                 l_thigh_view_run.setVisibility(View.INVISIBLE);
                 l_leg_view_wear_run.setVisibility(View.INVISIBLE);
@@ -896,10 +875,8 @@ public class Game_view_Activity extends AppCompatActivity {
         }
     };
 
-    private Runnable revivalCountdown = new Runnable()
-    {
-        public void run()
-        {
+    private Runnable revivalCountdown = new Runnable() {
+        public void run() {
             if (revival_countdown > 0 && revival) {
                 revival_info.setText("SHAKE IT to get extra life!\n" + revival_countdown + "s");
                 revival_countdown--;
@@ -923,14 +900,14 @@ public class Game_view_Activity extends AppCompatActivity {
     private final SensorEventListener sensorListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
-            float x =event.values[0];
-            float y =event.values[1];
-            float z =event.values[2];
+            float x = event.values[0];
+            float y = event.values[1];
+            float z = event.values[2];
             acelLast = acelVal;
-            acelVal=(float) Math.sqrt((double) (x*x)+(y*y)+(z*z));
+            acelVal = (float) Math.sqrt((double) (x * x) + (y * y) + (z * z));
             shake = acelVal - acelLast;
 
-            if(shake>8){
+            if (shake > 8) {
                 if (lives <= 0 && paused && revival) {
                     revival = false;
                     lives = 1;
@@ -938,13 +915,13 @@ public class Game_view_Activity extends AppCompatActivity {
                 }
             }
         }
+
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
         }
     };
 
-    public void oncreate_resize_move_character(int moveX, int moveY)
-    {
+    public void oncreate_resize_move_character(int moveX, int moveY) {
         ArrayList<ImageView> head_image_view_list = new ArrayList<>();
 
         head_image_view_list.add(hair_view);
@@ -955,15 +932,14 @@ public class Game_view_Activity extends AppCompatActivity {
         head_image_view_list.add(l_eyebrow_view);
         head_image_view_list.add(r_eyebrow_view);
 
-        for (ImageView iv:head_image_view_list)
-        {
+        for (ImageView iv : head_image_view_list) {
             iv.getLayoutParams().width = (int) (iv.getLayoutParams().width * ratio);
             iv.getLayoutParams().height = (int) (iv.getLayoutParams().height * ratio);
 
             int x = (int) iv.getX();
             int y = (int) iv.getY();
 
-            iv.setX(x + moveX - (float)head_adjustment);
+            iv.setX(x + moveX - (float) head_adjustment);
             iv.setY(y + moveY);
 
         }
@@ -974,17 +950,17 @@ public class Game_view_Activity extends AppCompatActivity {
         r_eyebrow_view.setY(r_eyebrow_view.getY() - 2);
 
         move_after_resize(ear_view, moveX, moveY, ratio, ear_adjustment_y, ear_adjustment_x);
-        move_after_resize(chest_view,moveX, moveY, ratio, chest_adjustment_y, chest_adjustment_x);
+        move_after_resize(chest_view, moveX, moveY, ratio, chest_adjustment_y, chest_adjustment_x);
         move_after_resize(r_arm_view, moveX, moveY, ratio, r_arm_adjustment_y, r_arm_adjustment_x);
         move_after_resize(l_arm_view, moveX, moveY, ratio, l_arm_adjustment_y, l_arm_adjustment_x);
         move_after_resize(r_shoulder_view, moveX, moveY, ratio, r_shoulder_adjustment_y, r_shoulder_adjustment_x);
         move_after_resize(l_shoulder_view, moveX, moveY, ratio, l_shoulder_adjustment_y, l_shoulder_adjustment_x);
 
 
-        move_after_resize(chest_view_wear,moveX, moveY, ratio, chest_adjustment_y, chest_adjustment_x);
+        move_after_resize(chest_view_wear, moveX, moveY, ratio, chest_adjustment_y, chest_adjustment_x);
         move_after_resize(r_arm_view_wear, moveX, moveY, ratio, r_arm_adjustment_y, r_arm_adjustment_x);
         move_after_resize(l_arm_view_wear, moveX, moveY, ratio, l_arm_adjustment_y, l_arm_adjustment_x);
-        move_after_resize(r_shoulder_view_wear, moveX, moveY, ratio, r_shoulder_adjustment_y, r_shoulder_adjustment_x -5);
+        move_after_resize(r_shoulder_view_wear, moveX, moveY, ratio, r_shoulder_adjustment_y, r_shoulder_adjustment_x - 5);
         move_after_resize(l_shoulder_view_wear, moveX, moveY, ratio, l_shoulder_adjustment_y, l_shoulder_adjustment_x);
 
         move_after_resize(r_hand_view, moveX, moveY, ratio, r_hand_adjustment_y, r_hand_adjustment_x);
@@ -1005,25 +981,24 @@ public class Game_view_Activity extends AppCompatActivity {
         move_after_resize(l_foot_view_wear, moveX, moveY, ratio, l_foot_adjustment_y, l_foot_adjustment_x);
         move_after_resize(bottom_view_wear, moveX, moveY, ratio, bottom_adjustment_y, bottom_adjustment_x);
 
-        move_after_resize(l_leg_view_run, moveX, moveY, ratio, l_leg_adjustment_y - 15.00, l_leg_adjustment_x +6.00);
-        move_after_resize(l_leg_view_wear_run, moveX, moveY, ratio, l_leg_adjustment_y -15.00, l_leg_adjustment_x +6.00);
+        move_after_resize(l_leg_view_run, moveX, moveY, ratio, l_leg_adjustment_y - 15.00, l_leg_adjustment_x + 6.00);
+        move_after_resize(l_leg_view_wear_run, moveX, moveY, ratio, l_leg_adjustment_y - 15.00, l_leg_adjustment_x + 6.00);
         move_after_resize(l_thigh_view_run, moveX, moveY, ratio, l_thigh_adjustment_y, l_thigh_adjustment_x);
         move_after_resize(l_thigh_view_wear_run, moveX, moveY, ratio, l_thigh_adjustment_y, l_thigh_adjustment_x);
-        move_after_resize(l_foot_view_run, moveX, moveY, ratio, l_foot_adjustment_y -45.00 , l_foot_adjustment_x + 138.00);
+        move_after_resize(l_foot_view_run, moveX, moveY, ratio, l_foot_adjustment_y - 45.00, l_foot_adjustment_x + 138.00);
         move_after_resize(l_foot_view_wear_run, moveX, moveY, ratio, l_foot_adjustment_y - 45.00, l_foot_adjustment_x + 138.00);//TODO
 
 
         move_after_resize(r_leg_view_run, moveX, moveY, ratio, r_leg_adjustment_y - 15.00, r_leg_adjustment_x + 20.00);
-        move_after_resize(r_leg_view_wear_run, moveX, moveY, ratio, r_leg_adjustment_y -15.00, r_leg_adjustment_x + 20.00);
+        move_after_resize(r_leg_view_wear_run, moveX, moveY, ratio, r_leg_adjustment_y - 15.00, r_leg_adjustment_x + 20.00);
         move_after_resize(r_thigh_view_run, moveX, moveY, ratio, r_thigh_adjustment_y, r_thigh_adjustment_x);
         move_after_resize(r_thigh_view_wear_run, moveX, moveY, ratio, r_thigh_adjustment_y, r_thigh_adjustment_x);
-        move_after_resize(r_foot_view_run, moveX, moveY, ratio, r_foot_adjustment_y - 24.00 , r_foot_adjustment_x +5.00);
-        move_after_resize(r_foot_view_wear_run, moveX, moveY, ratio, r_foot_adjustment_y - 24.00, r_foot_adjustment_x +5.00);//TODO
+        move_after_resize(r_foot_view_run, moveX, moveY, ratio, r_foot_adjustment_y - 24.00, r_foot_adjustment_x + 5.00);
+        move_after_resize(r_foot_view_wear_run, moveX, moveY, ratio, r_foot_adjustment_y - 24.00, r_foot_adjustment_x + 5.00);//TODO
 
     }
 
-    public void move_after_resize(ImageView view, int moveX, int moveY, double ratio, double adjustment_y, double adjustment_x)
-    {
+    public void move_after_resize(ImageView view, int moveX, int moveY, double ratio, double adjustment_y, double adjustment_x) {
         view.getLayoutParams().width = (int) (view.getLayoutParams().width * ratio);
         view.getLayoutParams().height = (int) (view.getLayoutParams().height * ratio);
 
@@ -1034,9 +1009,8 @@ public class Game_view_Activity extends AppCompatActivity {
         view.setY((float) (y + moveY - adjustment_y * dpi_ratio));
     }
 
-    public static void move_character_x(float new_X)
-    {
-        for (ImageView iv: all_image_view_list) {
+    public static void move_character_x(float new_X) {
+        for (ImageView iv : all_image_view_list) {
             float origin_x = iv.getX();
             iv.setX(origin_x + new_X);
         }
@@ -1045,9 +1019,8 @@ public class Game_view_Activity extends AppCompatActivity {
         lion.setX(croc_x + new_X);
     }
 
-    public static void move_character_y(float new_Y)
-    {
-        for (ImageView iv: all_image_view_list) {
+    public static void move_character_y(float new_Y) {
+        for (ImageView iv : all_image_view_list) {
             float origin_y = iv.getY();
             iv.setY(origin_y - new_Y);
         }
@@ -1057,20 +1030,20 @@ public class Game_view_Activity extends AppCompatActivity {
     }
 
     public static void characterJump(int jump_countdown) {
-        if (jump_countdown>15) {
-            move_character_y((float)(6*dpi_ratio));
-        } else if (jump_countdown>3 && jump_countdown<=15) {
-            move_character_y((float)(-6*dpi_ratio));
+        if (jump_countdown > 15) {
+            move_character_y((float) (6 * dpi_ratio));
+        } else if (jump_countdown > 3 && jump_countdown <= 15) {
+            move_character_y((float) (-6 * dpi_ratio));
         }
     }
 
     public static void getHit(int invincible_countdown) {
-        if (invincible_countdown>0 && invincible_countdown%2 == 0) {
-            for (ImageView iv: all_image_view_list) {
+        if (invincible_countdown > 0 && invincible_countdown % 2 == 0) {
+            for (ImageView iv : all_image_view_list) {
                 iv.setVisibility(View.INVISIBLE);
             }
-        } else if (invincible_countdown>0 && invincible_countdown%2 == 1) {
-            for (ImageView iv: all_image_view_list) {
+        } else if (invincible_countdown > 0 && invincible_countdown % 2 == 1) {
+            for (ImageView iv : all_image_view_list) {
                 iv.setVisibility(View.VISIBLE);
             }
         }
@@ -1102,16 +1075,14 @@ public class Game_view_Activity extends AppCompatActivity {
                                 result = onSwipeLeft();
                             }
                         }
-                    }
-                    else if (Math.abs(difference_Y) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
+                    } else if (Math.abs(difference_Y) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
                         if (difference_Y > 0) {
                             result = onSwipeBottom();
                         } else {
                             result = onSwipeTop();
                         }
                     }
-                }
-                catch (Exception exception) {
+                } catch (Exception exception) {
                     exception.printStackTrace();
                 }
                 return result;
@@ -1171,15 +1142,15 @@ public class Game_view_Activity extends AppCompatActivity {
         ImageView boulder7 = findViewById(R.id.boulder_view7);
         ImageView boulder8 = findViewById(R.id.boulder_view8);
         ImageView boulder9 = findViewById(R.id.boulder_view9);
-        boulder1.setY((int)(screen_height*0.72-400*dpi_ratio));
-        boulder2.setY((int)(screen_height*0.72-400*dpi_ratio));
-        boulder3.setY((int)(screen_height*0.72-200*dpi_ratio));
-        boulder4.setY((int)(screen_height*0.72-200*dpi_ratio));
-        boulder5.setY((int)(screen_height*0.72));
-        boulder6.setY((int)(screen_height*0.72));
-        boulder7.setY((int)(screen_height*0.72-400*dpi_ratio));
-        boulder8.setY((int)(screen_height*0.72-200*dpi_ratio));
-        boulder9.setY((int)(screen_height*0.72));
+        boulder1.setY((int) (screen_height * 0.72 - 400 * dpi_ratio));
+        boulder2.setY((int) (screen_height * 0.72 - 400 * dpi_ratio));
+        boulder3.setY((int) (screen_height * 0.72 - 200 * dpi_ratio));
+        boulder4.setY((int) (screen_height * 0.72 - 200 * dpi_ratio));
+        boulder5.setY((int) (screen_height * 0.72));
+        boulder6.setY((int) (screen_height * 0.72));
+        boulder7.setY((int) (screen_height * 0.72 - 400 * dpi_ratio));
+        boulder8.setY((int) (screen_height * 0.72 - 200 * dpi_ratio));
+        boulder9.setY((int) (screen_height * 0.72));
         boulder_list.add(boulder1);
         boulder_list.add(boulder2);
         boulder_list.add(boulder3);
@@ -1189,8 +1160,8 @@ public class Game_view_Activity extends AppCompatActivity {
         boulder_list.add(boulder7);
         boulder_list.add(boulder8);
         boulder_list.add(boulder9);
-        for (ImageView iv: boulder_list) {
-            iv.setX(screen_width + 100*screenRatioX);
+        for (ImageView iv : boulder_list) {
+            iv.setX(screen_width + 100 * screenRatioX);
             iv.setImageResource(R.drawable.rock_boulder1);
             iv.getLayoutParams().width = 240;
             iv.getLayoutParams().height = 240;
@@ -1208,12 +1179,12 @@ public class Game_view_Activity extends AppCompatActivity {
         cliff_list.add(cliff3);
         cliff_list.add(cliff4);
         cliff_list.add(cliff5);
-        for (ImageView iv: cliff_list) {
-            iv.setX(screen_width + 100*screenRatioX);
-            iv.setY((float)(280*dpi_ratio));
+        for (ImageView iv : cliff_list) {
+            iv.setX(screen_width + 100 * screenRatioX);
+            iv.setY((float) (280 * dpi_ratio));
             iv.setImageResource(R.drawable.water_river);
-            iv.getLayoutParams().width = (int)(220*dpi_ratio);
-            iv.getLayoutParams().height = (int)(800*dpi_ratio);
+            iv.getLayoutParams().width = (int) (220 * dpi_ratio);
+            iv.getLayoutParams().height = (int) (800 * dpi_ratio);
         }
     }
 
@@ -1227,15 +1198,15 @@ public class Game_view_Activity extends AppCompatActivity {
         ImageView food7 = findViewById(R.id.food_view7);
         ImageView food8 = findViewById(R.id.food_view8);
         ImageView food9 = findViewById(R.id.food_view9);
-        food1.setY((int)(screen_height*0.74-400*dpi_ratio));
-        food2.setY((int)(screen_height*0.74-400*dpi_ratio));
-        food3.setY((int)(screen_height*0.74-200*dpi_ratio));
-        food4.setY((int)(screen_height*0.74-200*dpi_ratio));
-        food5.setY((int)(screen_height*0.74));
-        food6.setY((int)(screen_height*0.74));
-        food7.setY((int)(screen_height*0.74-400*dpi_ratio));
-        food8.setY((int)(screen_height*0.74-200*dpi_ratio));
-        food9.setY((int)(screen_height*0.74));
+        food1.setY((int) (screen_height * 0.74 - 400 * dpi_ratio));
+        food2.setY((int) (screen_height * 0.74 - 400 * dpi_ratio));
+        food3.setY((int) (screen_height * 0.74 - 200 * dpi_ratio));
+        food4.setY((int) (screen_height * 0.74 - 200 * dpi_ratio));
+        food5.setY((int) (screen_height * 0.74));
+        food6.setY((int) (screen_height * 0.74));
+        food7.setY((int) (screen_height * 0.74 - 400 * dpi_ratio));
+        food8.setY((int) (screen_height * 0.74 - 200 * dpi_ratio));
+        food9.setY((int) (screen_height * 0.74));
         food_list.add(food1);
         food_list.add(food2);
         food_list.add(food3);
@@ -1245,8 +1216,8 @@ public class Game_view_Activity extends AppCompatActivity {
         food_list.add(food7);
         food_list.add(food8);
         food_list.add(food9);
-        for (ImageView food: food_list) {
-            food.setX(screen_width + 100*screenRatioX);
+        for (ImageView food : food_list) {
+            food.setX(screen_width + 100 * screenRatioX);
             food.setImageResource(R.drawable.r_weapon_banana);
             food.getLayoutParams().width = 160;
             food.getLayoutParams().height = 160;
@@ -1254,26 +1225,26 @@ public class Game_view_Activity extends AppCompatActivity {
     }
 
     public void setUpTutorial(int time) {
-        if (time==5) {
+        if (time == 5) {
             swipe_down.setVisibility(View.VISIBLE);
             swipe_up.setVisibility(View.VISIBLE);
             tutorial_info.setVisibility(View.VISIBLE);
         }
-        if (time==80) {
+        if (time == 80) {
             swipe_down.setVisibility(View.INVISIBLE);
             swipe_up.setVisibility(View.INVISIBLE);
             tap_screen.setVisibility(View.VISIBLE);
             tutorial_info.setText("Tap screen to Jump");
         }
-        if (time==160) {
+        if (time == 160) {
             tap_screen.setVisibility(View.INVISIBLE);
             tutorial_info.setVisibility(View.INVISIBLE);
         }
     }
 
     public void setUpProgressBar(int time) {
-        int ratio = SET_ONE_LENGTH/progress_bar.getMax();
-        progress_bar.setProgress(time/ratio);
+        int ratio = SET_ONE_LENGTH / progress_bar.getMax();
+        progress_bar.setProgress(time / ratio);
     }
 
     public void playerEscape() {
@@ -1281,13 +1252,13 @@ public class Game_view_Activity extends AppCompatActivity {
     }
 
     public void showHuntingInfo(int time) {
-        if (time >= SET_ONE_LENGTH+40 && time < SET_ONE_LENGTH+120 && !paused) {
+        if (time >= SET_ONE_LENGTH + 40 && time < SET_ONE_LENGTH + 120 && !paused) {
             hunting_info.setVisibility(View.VISIBLE);
             hunting_info.setText("Congratulations! Nothing horrific is chasing after you \n ... \n for NOW!");
-        } else if (time >= SET_ONE_LENGTH+120 && !paused && time < SET_ONE_LENGTH+200) {
+        } else if (time >= SET_ONE_LENGTH + 120 && !paused && time < SET_ONE_LENGTH + 200) {
             hunting_info.setTextSize(44);
             hunting_info.setText("It's HUNTING TIME!!!");
-        } else if (time == SET_ONE_LENGTH+200 && !paused) {
+        } else if (time == SET_ONE_LENGTH + 200 && !paused) {
             score_controller.lives = lives;
             score_controller.score = score;
             Intent hunting = new Intent(this, Hunting.class);
@@ -1318,9 +1289,9 @@ public class Game_view_Activity extends AppCompatActivity {
         if (time >= 420 && time < 560 && !paused) {
             food_list.get(2).setX(food_list.get(2).getX() - speed_index * screenRatioX);
         }
-        if (time >= 420  && time < 560 && !paused) {
+        if (time >= 420 && time < 560 && !paused) {
             if (time == 420) {
-                food_list.get(4).setX(screen_width + 100*screenRatioX);
+                food_list.get(4).setX(screen_width + 100 * screenRatioX);
                 food_list.get(4).setVisibility(View.VISIBLE);
             }
             food_list.get(4).setX(food_list.get(4).getX() - speed_index * screenRatioX);
@@ -1336,7 +1307,7 @@ public class Game_view_Activity extends AppCompatActivity {
         }
         if (time >= 540 && time < 680 && !paused) {
             if (time == 540) {
-                boulder_list.get(5).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(5).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(5).setX(boulder_list.get(5).getX() - speed_index * screenRatioX);
         }
@@ -1348,32 +1319,32 @@ public class Game_view_Activity extends AppCompatActivity {
         }
         if (time >= 620 && time < 760 && !paused) {
             if (time == 620) {
-                boulder_list.get(0).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 620 && time < 760 && !paused) {
             if (time == 620) {
-                boulder_list.get(4).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(4).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(4).setX(boulder_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 620 && time < 760 && !paused) {
             if (time == 620) {
-                food_list.get(2).setX(screen_width + 100*screenRatioX);
+                food_list.get(2).setX(screen_width + 100 * screenRatioX);
                 food_list.get(2).setVisibility(View.VISIBLE);
             }
             food_list.get(2).setX(food_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 660 && time < 800 && !paused) {
             if (time == 660) {
-                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(2).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 660 && time < 800 && !paused) {
             if (time == 660) {
-                food_list.get(0).setX(screen_width + 100*screenRatioX);
+                food_list.get(0).setX(screen_width + 100 * screenRatioX);
                 food_list.get(0).setVisibility(View.VISIBLE);
             }
             food_list.get(0).setX(food_list.get(0).getX() - speed_index * screenRatioX);
@@ -1386,435 +1357,435 @@ public class Game_view_Activity extends AppCompatActivity {
         }
         if (time >= 780 && time < 920 && !paused) {
             if (time == 780) {
-                food_list.get(1).setX(screen_width + 100*screenRatioX);
+                food_list.get(1).setX(screen_width + 100 * screenRatioX);
                 food_list.get(1).setVisibility(View.VISIBLE);
             }
             food_list.get(1).setX(food_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 780 && time < 920 && !paused) {
             if (time == 780) {
-                food_list.get(3).setX(screen_width + 100*screenRatioX);
+                food_list.get(3).setX(screen_width + 100 * screenRatioX);
                 food_list.get(3).setVisibility(View.VISIBLE);
             }
             food_list.get(3).setX(food_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 780 && time < 920 && !paused) {
             if (time == 780) {
-                food_list.get(4).setX(screen_width + 100*screenRatioX);
+                food_list.get(4).setX(screen_width + 100 * screenRatioX);
                 food_list.get(4).setVisibility(View.VISIBLE);
             }
             food_list.get(4).setX(food_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 820 && time < 960 && !paused) {
             if (time == 820) {
-                boulder_list.get(0).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 820 && time < 960 && !paused) {
             if (time == 820) {
-                boulder_list.get(5).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(5).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(5).setX(boulder_list.get(5).getX() - speed_index * screenRatioX);
         }
         if (time >= 840 && time < 980 && !paused) {
             if (time == 840) {
-                food_list.get(0).setX(screen_width + 100*screenRatioX);
+                food_list.get(0).setX(screen_width + 100 * screenRatioX);
                 food_list.get(0).setVisibility(View.VISIBLE);
             }
             food_list.get(0).setX(food_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 840 && time < 980 && !paused) {
             if (time == 840) {
-                food_list.get(5).setX(screen_width + 100*screenRatioX);
+                food_list.get(5).setX(screen_width + 100 * screenRatioX);
                 food_list.get(5).setVisibility(View.VISIBLE);
             }
             food_list.get(5).setX(food_list.get(5).getX() - speed_index * screenRatioX);
         }
         if (time >= 860 && time < 1000 && !paused) {
             if (time == 860) {
-                boulder_list.get(1).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(1).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(1).setX(boulder_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 860 && time < 1000 && !paused) {
             if (time == 860) {
-                boulder_list.get(4).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(4).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(4).setX(boulder_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 900 && time < 1040 && !paused) {
             if (time == 900) {
-                cliff_list.get(0).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(0).setX(cliff_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 920 && time < 1060 && !paused) {
             if (time == 920) {
-                food_list.get(1).setX(screen_width + 100*screenRatioX);
+                food_list.get(1).setX(screen_width + 100 * screenRatioX);
                 food_list.get(1).setVisibility(View.VISIBLE);
             }
             food_list.get(1).setX(food_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 920 && time < 1060 && !paused) {
             if (time == 920) {
-                boulder_list.get(7).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(7).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
         }
         if (time >= 920 && time < 1060 && !paused) {
             if (time == 920) {
-                boulder_list.get(8).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(8).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(8).setX(boulder_list.get(8).getX() - speed_index * screenRatioX);
         }
         if (time >= 960 && time < 1100 && !paused) {
             if (time == 960) {
-                boulder_list.get(6).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(6).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(6).setX(boulder_list.get(6).getX() - speed_index * screenRatioX);
         }
         if (time >= 960 && time < 1100 && !paused) {
             if (time == 960) {
-                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(2).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 980 && time < 1120 && !paused) {
             if (time == 980) {
-                food_list.get(2).setX(screen_width + 100*screenRatioX);
+                food_list.get(2).setX(screen_width + 100 * screenRatioX);
                 food_list.get(2).setVisibility(View.VISIBLE);
             }
             food_list.get(2).setX(food_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 1000 && time < 1140 && !paused) {
             if (time == 1000) {
-                food_list.get(0).setX(screen_width + 100*screenRatioX);
+                food_list.get(0).setX(screen_width + 100 * screenRatioX);
                 food_list.get(0).setVisibility(View.VISIBLE);
             }
             food_list.get(0).setX(food_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1040 && time < 1180 && !paused) {
             if (time == 1040) {
-                cliff_list.get(1).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(1).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(1).setX(cliff_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 1080 && time < 1220 && !paused) {
             if (time == 1080) {
-                boulder_list.get(0).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1080 && time < 1220 && !paused) {
             if (time == 1080) {
-                food_list.get(4).setX(screen_width + 100*screenRatioX);
+                food_list.get(4).setX(screen_width + 100 * screenRatioX);
                 food_list.get(4).setVisibility(View.VISIBLE);
             }
             food_list.get(4).setX(food_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 1100 && time < 1240 && !paused) {
             if (time == 1100) {
-                boulder_list.get(5).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(5).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(5).setX(boulder_list.get(5).getX() - speed_index * screenRatioX);
         }
         if (time >= 1120 && time < 1260 && !paused) {
             if (time == 1120) {
-                boulder_list.get(3).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(3).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 1120 && time < 1260 && !paused) {
             if (time == 1120) {
-                food_list.get(6).setX(screen_width + 100*screenRatioX);
+                food_list.get(6).setX(screen_width + 100 * screenRatioX);
                 food_list.get(6).setVisibility(View.VISIBLE);
             }
             food_list.get(6).setX(food_list.get(6).getX() - speed_index * screenRatioX);
         }
         if (time >= 1160 && time < 1300 && !paused) {
             if (time == 1160) {
-                cliff_list.get(2).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(2).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(2).setX(cliff_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 1200 && time < 1340 && !paused) {
             if (time == 1200) {
-                boulder_list.get(7).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(7).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
         }
         if (time >= 1220 && time < 1360 && !paused) {
             if (time == 1220) {
-                cliff_list.get(3).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(3).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(3).setX(cliff_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 1240 && time < 1380 && !paused) {
             if (time == 1240) {
-                boulder_list.get(8).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(8).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(8).setX(boulder_list.get(8).getX() - speed_index * screenRatioX);
         }
         if (time >= 1240 && time < 1380 && !paused) {
             if (time == 1240) {
-                food_list.get(1).setX(screen_width + 100*screenRatioX);
+                food_list.get(1).setX(screen_width + 100 * screenRatioX);
                 food_list.get(1).setVisibility(View.VISIBLE);
             }
             food_list.get(1).setX(food_list.get(6).getX() - speed_index * screenRatioX);
         }
         if (time >= 1260 && time < 1400 && !paused) {
             if (time == 1260) {
-                cliff_list.get(4).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(4).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(4).setX(cliff_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 1280 && time < 1420 && !paused) {
             if (time == 1280) {
-                boulder_list.get(6).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(6).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(6).setX(boulder_list.get(6).getX() - speed_index * screenRatioX);
         }
         if (time >= 1300 && time < 1440 && !paused) {
             if (time == 1300) {
-                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(2).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 1300 && time < 1440 && !paused) {
             if (time == 1300) {
-                food_list.get(5).setX(screen_width + 100*screenRatioX);
+                food_list.get(5).setX(screen_width + 100 * screenRatioX);
                 food_list.get(5).setVisibility(View.VISIBLE);
             }
             food_list.get(5).setX(food_list.get(5).getX() - speed_index * screenRatioX);
         }
         if (time >= 1320 && time < 1460 && !paused) {
             if (time == 1320) {
-                cliff_list.get(0).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(0).setX(cliff_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1340 && time < 1480 && !paused) {
             if (time == 1340) {
-                food_list.get(3).setX(screen_width + 100*screenRatioX);
+                food_list.get(3).setX(screen_width + 100 * screenRatioX);
                 food_list.get(3).setVisibility(View.VISIBLE);
             }
             food_list.get(3).setX(food_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 1360 && time < 1500 && !paused) {
             if (time == 1360) {
-                food_list.get(0).setX(screen_width + 100*screenRatioX);
+                food_list.get(0).setX(screen_width + 100 * screenRatioX);
                 food_list.get(0).setVisibility(View.VISIBLE);
             }
             food_list.get(0).setX(food_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1360 && time < 1500 && !paused) {
             if (time == 1360) {
-                boulder_list.get(3).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(3).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 1380 && time < 1520 && !paused) {
             if (time == 1380) {
-                boulder_list.get(0).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1380 && time < 1520 && !paused) {
             if (time == 1380) {
-                food_list.get(8).setX(screen_width + 100*screenRatioX);
+                food_list.get(8).setX(screen_width + 100 * screenRatioX);
                 food_list.get(8).setVisibility(View.VISIBLE);
             }
             food_list.get(8).setX(food_list.get(8).getX() - speed_index * screenRatioX);
         }
         if (time >= 1400 && time < 1540 && !paused) {
             if (time == 1400) {
-                cliff_list.get(1).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(1).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(1).setX(cliff_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 1440 && time < 1580 && !paused) {
             if (time == 1440) {
-                boulder_list.get(7).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(7).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
         }
         if (time >= 1460 && time < 1600 && !paused) {
             if (time == 1460) {
-                boulder_list.get(1).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(1).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(1).setX(boulder_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 1460 && time < 1600 && !paused) {
             if (time == 1460) {
-                boulder_list.get(4).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(4).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(4).setX(boulder_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 1480 && time < 1620 && !paused) {
             if (time == 1480) {
-                food_list.get(6).setX(screen_width + 100*screenRatioX);
+                food_list.get(6).setX(screen_width + 100 * screenRatioX);
                 food_list.get(6).setVisibility(View.VISIBLE);
             }
             food_list.get(6).setX(food_list.get(6).getX() - speed_index * screenRatioX);
         }
         if (time >= 1480 && time < 1620 && !paused) {
             if (time == 1480) {
-                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(2).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 1500 && time < 1640 && !paused) {
             if (time == 1500) {
-                boulder_list.get(6).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(6).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(6).setX(boulder_list.get(6).getX() - speed_index * screenRatioX);
         }
         if (time >= 1500 && time < 1640 && !paused) {
             if (time == 1500) {
-                boulder_list.get(5).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(5).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(5).setX(boulder_list.get(5).getX() - speed_index * screenRatioX);
         }
         if (time >= 1520 && time < 1660 && !paused) {
             if (time == 1520) {
-                boulder_list.get(3).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(3).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 1520 && time < 1660 && !paused) {
             if (time == 1520) {
-                food_list.get(4).setX(screen_width + 100*screenRatioX);
+                food_list.get(4).setX(screen_width + 100 * screenRatioX);
                 food_list.get(4).setVisibility(View.VISIBLE);
             }
             food_list.get(4).setX(food_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 1540 && time < 1680 && !paused) {
             if (time == 1540) {
-                cliff_list.get(2).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(2).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(2).setX(cliff_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 1580 && time < 1720 && !paused) {
             if (time == 1580) {
-                food_list.get(1).setX(screen_width + 100*screenRatioX);
+                food_list.get(1).setX(screen_width + 100 * screenRatioX);
                 food_list.get(1).setVisibility(View.VISIBLE);
             }
             food_list.get(1).setX(food_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 1600 && time < 1740 && !paused) {
             if (time == 1600) {
-                food_list.get(7).setX(screen_width + 100*screenRatioX);
+                food_list.get(7).setX(screen_width + 100 * screenRatioX);
                 food_list.get(7).setVisibility(View.VISIBLE);
             }
             food_list.get(7).setX(food_list.get(7).getX() - speed_index * screenRatioX);
         }
         if (time >= 1620 && time < 1760 && !paused) {
             if (time == 1620) {
-                food_list.get(5).setX(screen_width + 100*screenRatioX);
+                food_list.get(5).setX(screen_width + 100 * screenRatioX);
                 food_list.get(5).setVisibility(View.VISIBLE);
             }
             food_list.get(5).setX(food_list.get(5).getX() - speed_index * screenRatioX);
         }
         if (time >= 1660 && time < 1800 && !paused) {
             if (time == 1660) {
-                cliff_list.get(3).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(3).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(3).setX(cliff_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 1680 && time < 1820 && !paused) {
             if (time == 1680) {
-                boulder_list.get(1).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(1).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(1).setX(boulder_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 1700 && time < 1840 && !paused) {
             if (time == 1700) {
-                boulder_list.get(7).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(7).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
         }
         if (time >= 1720 && time < 1860 && !paused) {
             if (time == 1720) {
-                boulder_list.get(8).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(8).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(8).setX(boulder_list.get(8).getX() - speed_index * screenRatioX);
         }
         if (time >= 1740 && time < 1880 && !paused) {
             if (time == 1740) {
-                cliff_list.get(4).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(4).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(4).setX(cliff_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 1760 && time < 1900 && !paused) {
             if (time == 1760) {
-                food_list.get(0).setX(screen_width + 100*screenRatioX);
+                food_list.get(0).setX(screen_width + 100 * screenRatioX);
                 food_list.get(0).setVisibility(View.VISIBLE);
             }
             food_list.get(0).setX(food_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1780 && time < 1920 && !paused) {
             if (time == 1780) {
-                boulder_list.get(0).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1800 && time < 1940 && !paused) {
             if (time == 1800) {
-                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(2).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 1820 && time < 1960 && !paused) {
             if (time == 1820) {
-                boulder_list.get(4).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(4).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(4).setX(boulder_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 1840 && time < 1980 && !paused) {
             if (time == 1840) {
-                cliff_list.get(0).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(0).setX(cliff_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1880) {
             if (time == 1880) {
-                food_list.get(6).setX(screen_width + 100*screenRatioX);
+                food_list.get(6).setX(screen_width + 100 * screenRatioX);
                 food_list.get(6).setVisibility(View.VISIBLE);
             }
             food_list.get(6).setX(food_list.get(6).getX() - speed_index * screenRatioX);
         }
         if (time >= 1880) {
             if (time == 1880) {
-                food_list.get(2).setX(screen_width + 100*screenRatioX);
+                food_list.get(2).setX(screen_width + 100 * screenRatioX);
                 food_list.get(2).setVisibility(View.VISIBLE);
             }
             food_list.get(2).setX(food_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 1880) {
             if (time == 1880) {
-                food_list.get(8).setX(screen_width + 100*screenRatioX);
+                food_list.get(8).setX(screen_width + 100 * screenRatioX);
                 food_list.get(8).setVisibility(View.VISIBLE);
             }
             food_list.get(8).setX(food_list.get(8).getX() - speed_index * screenRatioX);
         }
         if (time >= 1920) {
             if (time == 1920) {
-                food_list.get(1).setX(screen_width + 100*screenRatioX);
+                food_list.get(1).setX(screen_width + 100 * screenRatioX);
                 food_list.get(1).setVisibility(View.VISIBLE);
             }
             food_list.get(1).setX(food_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 1920) {
             if (time == 1920) {
-                food_list.get(3).setX(screen_width + 100*screenRatioX);
+                food_list.get(3).setX(screen_width + 100 * screenRatioX);
                 food_list.get(3).setVisibility(View.VISIBLE);
             }
             food_list.get(3).setX(food_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 1920) {
             if (time == 1920) {
-                food_list.get(4).setX(screen_width + 100*screenRatioX);
+                food_list.get(4).setX(screen_width + 100 * screenRatioX);
                 food_list.get(4).setVisibility(View.VISIBLE);
             }
             food_list.get(4).setX(food_list.get(4).getX() - speed_index * screenRatioX);
@@ -1862,7 +1833,7 @@ public class Game_view_Activity extends AppCompatActivity {
         if (time >= 260 && time < 400 && !paused) {
             food_list.get(4).setX(food_list.get(4).getX() - speed_index * screenRatioX);
         }
-        if (time >=270  && time < 520 && !paused) {
+        if (time >= 270 && time < 520 && !paused) {
             cliff_list.get(0).setX(cliff_list.get(0).getX() - speed_index * screenRatioX);
         } //Added
         if (time >= 280 && time < 430 && !paused) {
@@ -1905,7 +1876,7 @@ public class Game_view_Activity extends AppCompatActivity {
             boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
         } //Added
 
-        if (time >=380  && time < 520 && !paused) {
+        if (time >= 380 && time < 520 && !paused) {
             cliff_list.get(2).setX(cliff_list.get(2).getX() - speed_index * screenRatioX);
         } //Added
         if (time >= 420 && time < 560 && !paused) {
@@ -1914,12 +1885,12 @@ public class Game_view_Activity extends AppCompatActivity {
         if (time >= 420 && time < 560 && !paused) {
             food_list.get(2).setX(food_list.get(2).getX() - speed_index * screenRatioX);
         }
-        if (time >=440  && time < 580 && !paused) {
+        if (time >= 440 && time < 580 && !paused) {
             cliff_list.get(3).setX(cliff_list.get(3).getX() - speed_index * screenRatioX);
         } //Added
-        if (time >= 420  && time < 560 && !paused) {
+        if (time >= 420 && time < 560 && !paused) {
             if (time == 420) {
-                food_list.get(4).setX(screen_width + 100*screenRatioX);
+                food_list.get(4).setX(screen_width + 100 * screenRatioX);
                 food_list.get(4).setVisibility(View.VISIBLE);
             }
             food_list.get(4).setX(food_list.get(4).getX() - speed_index * screenRatioX);
@@ -1935,7 +1906,7 @@ public class Game_view_Activity extends AppCompatActivity {
         }
         if (time >= 540 && time < 680 && !paused) {
             if (time == 540) {
-                boulder_list.get(5).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(5).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(5).setX(boulder_list.get(5).getX() - speed_index * screenRatioX);
         }
@@ -1947,26 +1918,26 @@ public class Game_view_Activity extends AppCompatActivity {
         }
         if (time >= 620 && time < 760 && !paused) {
             if (time == 620) {
-                boulder_list.get(0).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 620 && time < 760 && !paused) {
             if (time == 620) {
-                boulder_list.get(4).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(4).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(4).setX(boulder_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 620 && time < 760 && !paused) {
             if (time == 620) {
-                food_list.get(2).setX(screen_width + 100*screenRatioX);
+                food_list.get(2).setX(screen_width + 100 * screenRatioX);
                 food_list.get(2).setVisibility(View.VISIBLE);
             }
             food_list.get(2).setX(food_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 660 && time < 800 && !paused) {
             if (time == 660) {
-                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(2).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
         }
@@ -1975,7 +1946,7 @@ public class Game_view_Activity extends AppCompatActivity {
         }//Added
         if (time >= 660 && time < 800 && !paused) {
             if (time == 660) {
-                food_list.get(0).setX(screen_width + 100*screenRatioX);
+                food_list.get(0).setX(screen_width + 100 * screenRatioX);
                 food_list.get(0).setVisibility(View.VISIBLE);
             }
             food_list.get(0).setX(food_list.get(0).getX() - speed_index * screenRatioX);
@@ -1996,21 +1967,21 @@ public class Game_view_Activity extends AppCompatActivity {
 
         if (time >= 780 && time < 920 && !paused) {
             if (time == 780) {
-                food_list.get(1).setX(screen_width + 100*screenRatioX);
+                food_list.get(1).setX(screen_width + 100 * screenRatioX);
                 food_list.get(1).setVisibility(View.VISIBLE);
             }
             food_list.get(1).setX(food_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 780 && time < 920 && !paused) {
             if (time == 780) {
-                food_list.get(3).setX(screen_width + 100*screenRatioX);
+                food_list.get(3).setX(screen_width + 100 * screenRatioX);
                 food_list.get(3).setVisibility(View.VISIBLE);
             }
             food_list.get(3).setX(food_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 780 && time < 920 && !paused) {
             if (time == 780) {
-                food_list.get(4).setX(screen_width + 100*screenRatioX);
+                food_list.get(4).setX(screen_width + 100 * screenRatioX);
                 food_list.get(4).setVisibility(View.VISIBLE);
             }
             food_list.get(4).setX(food_list.get(4).getX() - speed_index * screenRatioX);
@@ -2022,135 +1993,135 @@ public class Game_view_Activity extends AppCompatActivity {
 
         if (time >= 820 && time < 960 && !paused) {
             if (time == 820) {
-                boulder_list.get(0).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 820 && time < 960 && !paused) {
             if (time == 820) {
-                boulder_list.get(5).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(5).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(5).setX(boulder_list.get(5).getX() - speed_index * screenRatioX);
         }
         if (time >= 840 && time < 980 && !paused) {
             if (time == 840) {
-                food_list.get(0).setX(screen_width + 100*screenRatioX);
+                food_list.get(0).setX(screen_width + 100 * screenRatioX);
                 food_list.get(0).setVisibility(View.VISIBLE);
             }
             food_list.get(0).setX(food_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 840 && time < 980 && !paused) {
             if (time == 840) {
-                food_list.get(5).setX(screen_width + 100*screenRatioX);
+                food_list.get(5).setX(screen_width + 100 * screenRatioX);
                 food_list.get(5).setVisibility(View.VISIBLE);
             }
             food_list.get(5).setX(food_list.get(5).getX() - speed_index * screenRatioX);
         }
         if (time >= 860 && time < 1000 && !paused) {
             if (time == 860) {
-                boulder_list.get(1).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(1).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(1).setX(boulder_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 860 && time < 1000 && !paused) {
             if (time == 860) {
-                boulder_list.get(4).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(4).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(4).setX(boulder_list.get(4).getX() - speed_index * screenRatioX);
         }
         //TODO
         if (time >= 880 && time < 1020 && !paused) {
             if (time == 880) {
-                boulder_list.get(3).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(3).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);
         }
 
         if (time >= 900 && time < 1040 && !paused) {
             if (time == 900) {
-                cliff_list.get(0).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(0).setX(cliff_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 920 && time < 1060 && !paused) {
             if (time == 920) {
-                food_list.get(1).setX(screen_width + 100*screenRatioX);
+                food_list.get(1).setX(screen_width + 100 * screenRatioX);
                 food_list.get(1).setVisibility(View.VISIBLE);
             }
             food_list.get(1).setX(food_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 920 && time < 1060 && !paused) {
             if (time == 920) {
-                boulder_list.get(7).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(7).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
         }
         if (time >= 920 && time < 1060 && !paused) {
             if (time == 920) {
-                boulder_list.get(8).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(8).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(8).setX(boulder_list.get(8).getX() - speed_index * screenRatioX);
         }
         if (time >= 960 && time < 1100 && !paused) {
             if (time == 960) {
-                boulder_list.get(6).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(6).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(6).setX(boulder_list.get(6).getX() - speed_index * screenRatioX);
         }
         if (time >= 960 && time < 1100 && !paused) {
             if (time == 960) {
-                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(2).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 980 && time < 1120 && !paused) {
             if (time == 980) {
-                food_list.get(2).setX(screen_width + 100*screenRatioX);
+                food_list.get(2).setX(screen_width + 100 * screenRatioX);
                 food_list.get(2).setVisibility(View.VISIBLE);
             }
             food_list.get(2).setX(food_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 1000 && time < 1140 && !paused) {
             if (time == 1000) {
-                food_list.get(0).setX(screen_width + 100*screenRatioX);
+                food_list.get(0).setX(screen_width + 100 * screenRatioX);
                 food_list.get(0).setVisibility(View.VISIBLE);
             }
             food_list.get(0).setX(food_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1040 && time < 1180 && !paused) {
             if (time == 1040) {
-                cliff_list.get(1).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(1).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(1).setX(cliff_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 1080 && time < 1220 && !paused) {
             if (time == 1080) {
-                boulder_list.get(0).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1080 && time < 1220 && !paused) {
             if (time == 1080) {
-                food_list.get(4).setX(screen_width + 100*screenRatioX);
+                food_list.get(4).setX(screen_width + 100 * screenRatioX);
                 food_list.get(4).setVisibility(View.VISIBLE);
             }
             food_list.get(4).setX(food_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 1100 && time < 1240 && !paused) {
             if (time == 1100) {
-                boulder_list.get(5).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(5).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(5).setX(boulder_list.get(5).getX() - speed_index * screenRatioX);
         }
         if (time >= 1120 && time < 1260 && !paused) {
             if (time == 1120) {
-                boulder_list.get(3).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(3).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 1120 && time < 1260 && !paused) {
             if (time == 1120) {
-                food_list.get(6).setX(screen_width + 100*screenRatioX);
+                food_list.get(6).setX(screen_width + 100 * screenRatioX);
                 food_list.get(6).setVisibility(View.VISIBLE);
             }
             food_list.get(6).setX(food_list.get(6).getX() - speed_index * screenRatioX);
@@ -2158,20 +2129,20 @@ public class Game_view_Activity extends AppCompatActivity {
         //TODO
         if (time >= 1130 && time < 1270 && !paused) {
             if (time == 1130) {
-                cliff_list.get(0).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(0).setX(cliff_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1140 && time < 1280 && !paused) {
             if (time == 1140) {
-                food_list.get(2).setX(screen_width + 100*screenRatioX);
+                food_list.get(2).setX(screen_width + 100 * screenRatioX);
                 food_list.get(2).setVisibility(View.VISIBLE);
             }
             food_list.get(2).setX(food_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 1165 && time < 1300 && !paused) {
             if (time == 1165) {
-                cliff_list.get(2).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(2).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(2).setX(cliff_list.get(2).getX() - speed_index * screenRatioX);
         }
@@ -2179,14 +2150,14 @@ public class Game_view_Activity extends AppCompatActivity {
         //TODO
         if (time >= 1180 && time < 1320 && !paused) {
             if (time == 1180) {
-                food_list.get(3).setX(screen_width + 100*screenRatioX);
+                food_list.get(3).setX(screen_width + 100 * screenRatioX);
                 food_list.get(3).setVisibility(View.VISIBLE);
             }
             food_list.get(3).setX(food_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 1180 && time < 1320 && !paused) {
             if (time == 1180) {
-                food_list.get(0).setX(screen_width + 100*screenRatioX);
+                food_list.get(0).setX(screen_width + 100 * screenRatioX);
                 food_list.get(0).setVisibility(View.VISIBLE);
             }
             food_list.get(0).setX(food_list.get(0).getX() - speed_index * screenRatioX);
@@ -2194,115 +2165,115 @@ public class Game_view_Activity extends AppCompatActivity {
 
         if (time >= 1200 && time < 1340 && !paused) {
             if (time == 1200) {
-                boulder_list.get(7).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(7).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
         }
         if (time >= 1220 && time < 1360 && !paused) {
             if (time == 1220) {
-                cliff_list.get(3).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(3).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(3).setX(cliff_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 1240 && time < 1380 && !paused) {
             if (time == 1240) {
-                boulder_list.get(8).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(8).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(8).setX(boulder_list.get(8).getX() - speed_index * screenRatioX);
         }
         if (time >= 1240 && time < 1380 && !paused) {
             if (time == 1240) {
-                food_list.get(1).setX(screen_width + 100*screenRatioX);
+                food_list.get(1).setX(screen_width + 100 * screenRatioX);
                 food_list.get(1).setVisibility(View.VISIBLE);
             }
             food_list.get(1).setX(food_list.get(6).getX() - speed_index * screenRatioX);
         }
         if (time >= 1260 && time < 1400 && !paused) {
             if (time == 1260) {
-                cliff_list.get(4).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(4).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(4).setX(cliff_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 1280 && time < 1420 && !paused) {
             if (time == 1280) {
-                boulder_list.get(6).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(6).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(6).setX(boulder_list.get(6).getX() - speed_index * screenRatioX);
         }
         if (time >= 1300 && time < 1440 && !paused) {
             if (time == 1300) {
-                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(2).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 1300 && time < 1440 && !paused) {
             if (time == 1300) {
-                food_list.get(5).setX(screen_width + 100*screenRatioX);
+                food_list.get(5).setX(screen_width + 100 * screenRatioX);
                 food_list.get(5).setVisibility(View.VISIBLE);
             }
             food_list.get(5).setX(food_list.get(5).getX() - speed_index * screenRatioX);
         }
         if (time >= 1320 && time < 1460 && !paused) {
             if (time == 1320) {
-                cliff_list.get(0).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(0).setX(cliff_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1340 && time < 1480 && !paused) {
             if (time == 1340) {
-                food_list.get(3).setX(screen_width + 100*screenRatioX);
+                food_list.get(3).setX(screen_width + 100 * screenRatioX);
                 food_list.get(3).setVisibility(View.VISIBLE);
             }
             food_list.get(3).setX(food_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 1360 && time < 1500 && !paused) {
             if (time == 1360) {
-                food_list.get(0).setX(screen_width + 100*screenRatioX);
+                food_list.get(0).setX(screen_width + 100 * screenRatioX);
                 food_list.get(0).setVisibility(View.VISIBLE);
             }
             food_list.get(0).setX(food_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1360 && time < 1500 && !paused) {
             if (time == 1360) {
-                boulder_list.get(3).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(3).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 1380 && time < 1520 && !paused) {
             if (time == 1380) {
-                boulder_list.get(0).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1380 && time < 1520 && !paused) {
             if (time == 1380) {
-                food_list.get(8).setX(screen_width + 100*screenRatioX);
+                food_list.get(8).setX(screen_width + 100 * screenRatioX);
                 food_list.get(8).setVisibility(View.VISIBLE);
             }
             food_list.get(8).setX(food_list.get(8).getX() - speed_index * screenRatioX);
         }
         if (time >= 1400 && time < 1540 && !paused) {
             if (time == 1400) {
-                cliff_list.get(1).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(1).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(1).setX(cliff_list.get(1).getX() - speed_index * screenRatioX);
         }
 
         if (time >= 1470 && time < 1600 && !paused) {
             if (time == 1470) {
-                boulder_list.get(1).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(1).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(1).setX(boulder_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 1470 && time < 1600 && !paused) {
             if (time == 1470) {
-                boulder_list.get(4).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(4).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(4).setX(boulder_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 1480 && time < 1620 && !paused) {
             if (time == 1480) {
-                food_list.get(6).setX(screen_width + 100*screenRatioX);
+                food_list.get(6).setX(screen_width + 100 * screenRatioX);
                 food_list.get(6).setVisibility(View.VISIBLE);
             }
             food_list.get(6).setX(food_list.get(6).getX() - speed_index * screenRatioX);
@@ -2310,176 +2281,176 @@ public class Game_view_Activity extends AppCompatActivity {
 
         if (time >= 1500 && time < 1620 && !paused) {
             if (time == 1500) {
-                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(2).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 1520 && time < 1680 && !paused) {
             if (time == 1520) {
-                boulder_list.get(6).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(6).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(6).setX(boulder_list.get(6).getX() - speed_index * screenRatioX);
         }
 
         if (time >= 1520 && time < 1680 && !paused) {
             if (time == 1520) {
-                boulder_list.get(5).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(5).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(5).setX(boulder_list.get(5).getX() - speed_index * screenRatioX);
         }
 
         if (time >= 1540 && time < 1680 && !paused) {
             if (time == 1540) {
-                cliff_list.get(2).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(2).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(2).setX(cliff_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 1550 && time < 1680 && !paused) {
             if (time == 1550) {
-                cliff_list.get(4).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(4).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(4).setX(cliff_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 1580 && time < 1720 && !paused) {
             if (time == 1580) {
-                food_list.get(1).setX(screen_width + 100*screenRatioX);
+                food_list.get(1).setX(screen_width + 100 * screenRatioX);
                 food_list.get(1).setVisibility(View.VISIBLE);
             }
             food_list.get(1).setX(food_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 1580 && time < 1720 && !paused) {
             if (time == 1580) {
-                boulder_list.get(3).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(3).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(3).setX(boulder_list.get(3).getX() - speed_index * screenRatioX);
         }//TODO
         if (time >= 1580 && time < 1720 && !paused) {
             if (time == 1580) {
-                boulder_list.get(8).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(8).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(8).setX(boulder_list.get(8).getX() - speed_index * screenRatioX);
         }
 
         if (time >= 1600 && time < 1740 && !paused) {
             if (time == 1600) {
-                food_list.get(7).setX(screen_width + 100*screenRatioX);
+                food_list.get(7).setX(screen_width + 100 * screenRatioX);
                 food_list.get(7).setVisibility(View.VISIBLE);
             }
             food_list.get(7).setX(food_list.get(7).getX() - speed_index * screenRatioX);
         }
         if (time >= 1620 && time < 1760 && !paused) {
             if (time == 1620) {
-                food_list.get(5).setX(screen_width + 100*screenRatioX);
+                food_list.get(5).setX(screen_width + 100 * screenRatioX);
                 food_list.get(5).setVisibility(View.VISIBLE);
             }
             food_list.get(5).setX(food_list.get(5).getX() - speed_index * screenRatioX);
         }
         if (time >= 1660 && time < 1800 && !paused) {
             if (time == 1660) {
-                cliff_list.get(3).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(3).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(3).setX(cliff_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 1680 && time < 1820 && !paused) {
             if (time == 1680) {
-                boulder_list.get(1).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(1).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(1).setX(boulder_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 1680 && time < 1820 && !paused) {
             if (time == 1680) {
-                boulder_list.get(2).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(2).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(2).setX(boulder_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 1700 && time < 1840 && !paused) {
             if (time == 1700) {
-                boulder_list.get(7).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(7).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
         }
 
         if (time >= 1720 && time < 1860 && !paused) {
             if (time == 1720) {
-                boulder_list.get(8).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(8).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(8).setX(boulder_list.get(8).getX() - speed_index * screenRatioX);
         }
         if (time >= 1740 && time < 1880 && !paused) {
             if (time == 1740) {
-                cliff_list.get(4).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(4).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(4).setX(cliff_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 1760 && time < 1900 && !paused) {
             if (time == 1760) {
-                food_list.get(0).setX(screen_width + 100*screenRatioX);
+                food_list.get(0).setX(screen_width + 100 * screenRatioX);
                 food_list.get(0).setVisibility(View.VISIBLE);
             }
             food_list.get(0).setX(food_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1780 && time < 1920 && !paused) {
             if (time == 1780) {
-                boulder_list.get(0).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(0).setX(boulder_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1800 && time < 1940 && !paused) {
             if (time == 1800) {
-                boulder_list.get(7).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(7).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(7).setX(boulder_list.get(7).getX() - speed_index * screenRatioX);
         }
         if (time >= 1820 && time < 1960 && !paused) {
             if (time == 1820) {
-                boulder_list.get(4).setX(screen_width + 100*screenRatioX);
+                boulder_list.get(4).setX(screen_width + 100 * screenRatioX);
             }
             boulder_list.get(4).setX(boulder_list.get(4).getX() - speed_index * screenRatioX);
         }
         if (time >= 1840 && time < 1980 && !paused) {
             if (time == 1840) {
-                cliff_list.get(0).setX(screen_width + 100*screenRatioX);
+                cliff_list.get(0).setX(screen_width + 100 * screenRatioX);
             }
             cliff_list.get(0).setX(cliff_list.get(0).getX() - speed_index * screenRatioX);
         }
         if (time >= 1880) {
             if (time == 1880) {
-                food_list.get(6).setX(screen_width + 100*screenRatioX);
+                food_list.get(6).setX(screen_width + 100 * screenRatioX);
                 food_list.get(6).setVisibility(View.VISIBLE);
             }
             food_list.get(6).setX(food_list.get(6).getX() - speed_index * screenRatioX);
         }
         if (time >= 1880) {
             if (time == 1880) {
-                food_list.get(2).setX(screen_width + 100*screenRatioX);
+                food_list.get(2).setX(screen_width + 100 * screenRatioX);
                 food_list.get(2).setVisibility(View.VISIBLE);
             }
             food_list.get(2).setX(food_list.get(2).getX() - speed_index * screenRatioX);
         }
         if (time >= 1880) {
             if (time == 1880) {
-                food_list.get(8).setX(screen_width + 100*screenRatioX);
+                food_list.get(8).setX(screen_width + 100 * screenRatioX);
                 food_list.get(8).setVisibility(View.VISIBLE);
             }
             food_list.get(8).setX(food_list.get(8).getX() - speed_index * screenRatioX);
         }
         if (time >= 1920) {
             if (time == 1920) {
-                food_list.get(1).setX(screen_width + 100*screenRatioX);
+                food_list.get(1).setX(screen_width + 100 * screenRatioX);
                 food_list.get(1).setVisibility(View.VISIBLE);
             }
             food_list.get(1).setX(food_list.get(1).getX() - speed_index * screenRatioX);
         }
         if (time >= 1920) {
             if (time == 1920) {
-                food_list.get(3).setX(screen_width + 100*screenRatioX);
+                food_list.get(3).setX(screen_width + 100 * screenRatioX);
                 food_list.get(3).setVisibility(View.VISIBLE);
             }
             food_list.get(3).setX(food_list.get(3).getX() - speed_index * screenRatioX);
         }
         if (time >= 1920) {
             if (time == 1920) {
-                food_list.get(4).setX(screen_width + 100*screenRatioX);
+                food_list.get(4).setX(screen_width + 100 * screenRatioX);
                 food_list.get(4).setVisibility(View.VISIBLE);
             }
             food_list.get(4).setX(food_list.get(4).getX() - speed_index * screenRatioX);

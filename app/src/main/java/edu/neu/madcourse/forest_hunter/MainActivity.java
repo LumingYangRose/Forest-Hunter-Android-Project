@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                try{
+                try {
                     Intent intent = new Intent(MainActivity.this, login_Activity.class);
                     startActivity(intent);
                 } finally {
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if(Music_controller.bgm == null) {
+        if (Music_controller.bgm == null) {
             Music_controller.bgm = new Music(this);
         }
         Music_controller.bgm.play_music(Music_controller.bgm.current_bgm_index);
@@ -297,15 +297,12 @@ public class MainActivity extends AppCompatActivity {
         change_stage_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(state_value[0] == 0)
-                {
+                if (state_value[0] == 0) {
                     state_value[0] = 1;
                     show_stage_2_scoreboard(dialog_view);
                     change_stage_button.setText("Crazy Crocodile Scoreboard");
                     stage_name.setImageResource(R.drawable.mad_lion_text);
-                }
-                else if (state_value[0] == 1)
-                {
+                } else if (state_value[0] == 1) {
                     state_value[0] = 0;
                     show_stage_1_scoreboard(dialog_view);
                     change_stage_button.setText("Mad Lion Scoreboard");
@@ -413,8 +410,7 @@ public class MainActivity extends AppCompatActivity {
         alert_dialog.show();
     }
 
-    public void show_stage_1_scoreboard(View dialog_view)
-    {
+    public void show_stage_1_scoreboard(View dialog_view) {
         ArrayList<Integer> temp_stage_1_highest_score_list = new ArrayList<>(stage_1_highest_score_list);
         ArrayList<Integer> stage_1_top_score_list = new ArrayList<Integer>();
         ArrayList<String> stage_1_nickname_list = new ArrayList<String>();
@@ -422,12 +418,9 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> temp_nickname_list = new ArrayList<String>(nickname_list);
 
         int num_card;
-        if (num_of_player <= 5)
-        {
+        if (num_of_player <= 5) {
             num_card = num_of_player;
-        }
-        else
-        {
+        } else {
             num_card = 5;
         }
 
@@ -438,12 +431,9 @@ public class MainActivity extends AppCompatActivity {
         int temp_top_score_index = 0;
         int temp = num_of_player;
 
-        for (i = 0; i < num_card; i++)
-        {
-            for (j = 0; j < temp; j++)
-            {
-                if (temp_stage_1_highest_score_list.get(j) > temp_max)
-                {
+        for (i = 0; i < num_card; i++) {
+            for (j = 0; j < temp; j++) {
+                if (temp_stage_1_highest_score_list.get(j) > temp_max) {
                     temp_top_score_index = j;
                     temp_max = temp_stage_1_highest_score_list.get(j);
                 }
@@ -458,43 +448,33 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        if(num_card == 1)
-        {
-            top_1_player_card.setText("No.1  " + stage_1_nickname_list.get(0) + " " + stage_1_top_score_list.get(0) );
-        }
-        else if(num_card == 2)
-        {
-            top_1_player_card.setText("No.1  " + stage_1_nickname_list.get(0) + " " + stage_1_top_score_list.get(0) );
-            top_2_player_card.setText("No.2  " + stage_1_nickname_list.get(1) + " " + stage_1_top_score_list.get(1) );
-        }
-        else if(num_card == 3)
-        {
-            top_1_player_card.setText("No.1  " + stage_1_nickname_list.get(0) + " " + stage_1_top_score_list.get(0) );
-            top_2_player_card.setText("No.2  " + stage_1_nickname_list.get(1) + " " + stage_1_top_score_list.get(1) );
-            top_3_player_card.setText("No.3  " + stage_1_nickname_list.get(2) + " " + stage_1_top_score_list.get(2) );
+        if (num_card == 1) {
+            top_1_player_card.setText("No.1  " + stage_1_nickname_list.get(0) + " " + stage_1_top_score_list.get(0));
+        } else if (num_card == 2) {
+            top_1_player_card.setText("No.1  " + stage_1_nickname_list.get(0) + " " + stage_1_top_score_list.get(0));
+            top_2_player_card.setText("No.2  " + stage_1_nickname_list.get(1) + " " + stage_1_top_score_list.get(1));
+        } else if (num_card == 3) {
+            top_1_player_card.setText("No.1  " + stage_1_nickname_list.get(0) + " " + stage_1_top_score_list.get(0));
+            top_2_player_card.setText("No.2  " + stage_1_nickname_list.get(1) + " " + stage_1_top_score_list.get(1));
+            top_3_player_card.setText("No.3  " + stage_1_nickname_list.get(2) + " " + stage_1_top_score_list.get(2));
 
-        }
-        else if(num_card == 4)
-        {
-            top_1_player_card.setText("No.1  " + stage_1_nickname_list.get(0) + " " + stage_1_top_score_list.get(0) );
-            top_2_player_card.setText("No.2  " + stage_1_nickname_list.get(1) + " " + stage_1_top_score_list.get(1) );
-            top_3_player_card.setText("No.3  " + stage_1_nickname_list.get(2) + " " + stage_1_top_score_list.get(2) );
-            top_4_player_card.setText("No.4  " + stage_1_nickname_list.get(3) + " " + stage_1_top_score_list.get(3) );
-        }
-        else if(num_card == 5)
-        {
-            top_1_player_card.setText("No.1  " + stage_1_nickname_list.get(0) + " " + stage_1_top_score_list.get(0) );
-            top_2_player_card.setText("No.2  " + stage_1_nickname_list.get(1) + " " + stage_1_top_score_list.get(1) );
-            top_3_player_card.setText("No.3  " + stage_1_nickname_list.get(2) + " " + stage_1_top_score_list.get(2) );
-            top_4_player_card.setText("No.4  " + stage_1_nickname_list.get(3) + " " + stage_1_top_score_list.get(3) );
-            top_5_player_card.setText("No.5  " + stage_1_nickname_list.get(4) + " " + stage_1_top_score_list.get(3) );
+        } else if (num_card == 4) {
+            top_1_player_card.setText("No.1  " + stage_1_nickname_list.get(0) + " " + stage_1_top_score_list.get(0));
+            top_2_player_card.setText("No.2  " + stage_1_nickname_list.get(1) + " " + stage_1_top_score_list.get(1));
+            top_3_player_card.setText("No.3  " + stage_1_nickname_list.get(2) + " " + stage_1_top_score_list.get(2));
+            top_4_player_card.setText("No.4  " + stage_1_nickname_list.get(3) + " " + stage_1_top_score_list.get(3));
+        } else if (num_card == 5) {
+            top_1_player_card.setText("No.1  " + stage_1_nickname_list.get(0) + " " + stage_1_top_score_list.get(0));
+            top_2_player_card.setText("No.2  " + stage_1_nickname_list.get(1) + " " + stage_1_top_score_list.get(1));
+            top_3_player_card.setText("No.3  " + stage_1_nickname_list.get(2) + " " + stage_1_top_score_list.get(2));
+            top_4_player_card.setText("No.4  " + stage_1_nickname_list.get(3) + " " + stage_1_top_score_list.get(3));
+            top_5_player_card.setText("No.5  " + stage_1_nickname_list.get(4) + " " + stage_1_top_score_list.get(3));
         }
 
     }
 
 
-    public void show_stage_2_scoreboard(View dialog_view)
-    {
+    public void show_stage_2_scoreboard(View dialog_view) {
         ArrayList<Integer> temp_stage_2_highest_score_list = new ArrayList<>(stage_2_highest_score_list);
         ArrayList<Integer> stage_2_top_score_list = new ArrayList<Integer>();
         ArrayList<String> stage_2_nickname_list = new ArrayList<String>();
@@ -503,12 +483,9 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> temp_nickname_list = new ArrayList<String>(nickname_list);
 
         int num_card;
-        if (num_of_player <= 5)
-        {
+        if (num_of_player <= 5) {
             num_card = num_of_player;
-        }
-        else
-        {
+        } else {
             num_card = 5;
         }
 
@@ -519,12 +496,9 @@ public class MainActivity extends AppCompatActivity {
         int temp_top_score_index = 0;
         int temp = num_of_player;
 
-        for (i = 0; i < num_card; i++)
-        {
-            for (j = 0; j < temp; j++)
-            {
-                if (temp_stage_2_highest_score_list.get(j) > temp_max)
-                {
+        for (i = 0; i < num_card; i++) {
+            for (j = 0; j < temp; j++) {
+                if (temp_stage_2_highest_score_list.get(j) > temp_max) {
                     temp_top_score_index = j;
                     temp_max = temp_stage_2_highest_score_list.get(j);
                 }
@@ -539,37 +513,28 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        if(num_card == 1)
-        {
-            top_1_player_card.setText("No.1  " + stage_2_nickname_list.get(0) + " " + stage_2_top_score_list.get(0) );
-        }
-        else if(num_card == 2)
-        {
-            top_1_player_card.setText("No.1  " + stage_2_nickname_list.get(0) + " " + stage_2_top_score_list.get(0) );
-            top_2_player_card.setText("No.2  " + stage_2_nickname_list.get(1) + " " + stage_2_top_score_list.get(1) );
-        }
-        else if(num_card == 3)
-        {
-            top_1_player_card.setText("No.1  " + stage_2_nickname_list.get(0) + " " + stage_2_top_score_list.get(0) );
-            top_2_player_card.setText("No.2  " + stage_2_nickname_list.get(1) + " " + stage_2_top_score_list.get(1) );
-            top_3_player_card.setText("No.3  " + stage_2_nickname_list.get(2) + " " + stage_2_top_score_list.get(2) );
+        if (num_card == 1) {
+            top_1_player_card.setText("No.1  " + stage_2_nickname_list.get(0) + " " + stage_2_top_score_list.get(0));
+        } else if (num_card == 2) {
+            top_1_player_card.setText("No.1  " + stage_2_nickname_list.get(0) + " " + stage_2_top_score_list.get(0));
+            top_2_player_card.setText("No.2  " + stage_2_nickname_list.get(1) + " " + stage_2_top_score_list.get(1));
+        } else if (num_card == 3) {
+            top_1_player_card.setText("No.1  " + stage_2_nickname_list.get(0) + " " + stage_2_top_score_list.get(0));
+            top_2_player_card.setText("No.2  " + stage_2_nickname_list.get(1) + " " + stage_2_top_score_list.get(1));
+            top_3_player_card.setText("No.3  " + stage_2_nickname_list.get(2) + " " + stage_2_top_score_list.get(2));
 
-        }
-        else if(num_card == 4)
-        {
-            top_1_player_card.setText("No.1  " + stage_2_nickname_list.get(0) + " " + stage_2_top_score_list.get(0) );
-            top_2_player_card.setText("No.2  " + stage_2_nickname_list.get(1) + " " + stage_2_top_score_list.get(1) );
-            top_3_player_card.setText("No.3  " + stage_2_nickname_list.get(2) + " " + stage_2_top_score_list.get(2) );
-            top_4_player_card.setText("No.4  " + stage_2_nickname_list.get(3) + " " + stage_2_top_score_list.get(3) );
-        }
-        else if(num_card == 5)
-        {
+        } else if (num_card == 4) {
+            top_1_player_card.setText("No.1  " + stage_2_nickname_list.get(0) + " " + stage_2_top_score_list.get(0));
+            top_2_player_card.setText("No.2  " + stage_2_nickname_list.get(1) + " " + stage_2_top_score_list.get(1));
+            top_3_player_card.setText("No.3  " + stage_2_nickname_list.get(2) + " " + stage_2_top_score_list.get(2));
+            top_4_player_card.setText("No.4  " + stage_2_nickname_list.get(3) + " " + stage_2_top_score_list.get(3));
+        } else if (num_card == 5) {
 
-            top_1_player_card.setText("No.1  " + stage_2_nickname_list.get(0) + " " + stage_2_top_score_list.get(0) );
-            top_2_player_card.setText("No.2  " + stage_2_nickname_list.get(1) + " " + stage_2_top_score_list.get(1) );
-            top_3_player_card.setText("No.3  " + stage_2_nickname_list.get(2) + " " + stage_2_top_score_list.get(2) );
-            top_4_player_card.setText("No.4  " + stage_2_nickname_list.get(3) + " " + stage_2_top_score_list.get(3) );
-            top_5_player_card.setText("No.5  " + stage_2_nickname_list.get(4) + " " + stage_2_top_score_list.get(3) );
+            top_1_player_card.setText("No.1  " + stage_2_nickname_list.get(0) + " " + stage_2_top_score_list.get(0));
+            top_2_player_card.setText("No.2  " + stage_2_nickname_list.get(1) + " " + stage_2_top_score_list.get(1));
+            top_3_player_card.setText("No.3  " + stage_2_nickname_list.get(2) + " " + stage_2_top_score_list.get(2));
+            top_4_player_card.setText("No.4  " + stage_2_nickname_list.get(3) + " " + stage_2_top_score_list.get(3));
+            top_5_player_card.setText("No.5  " + stage_2_nickname_list.get(4) + " " + stage_2_top_score_list.get(3));
         }
 
     }

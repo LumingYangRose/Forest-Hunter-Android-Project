@@ -9,7 +9,7 @@ public class Boulder extends MovingObject {
     }
 
     public boolean inRange(Character character) {
-        if (this.getDistance(character) < this.imageW/2) {
+        if (this.getDistance(character) < this.imageW / 2) {
             return true;
         } else {
             return false;

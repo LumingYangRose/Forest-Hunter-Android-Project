@@ -1668,188 +1668,140 @@ public class Character_customize_Activity extends AppCompatActivity {
                 boolean all_items_owned_15;
                 boolean all_items_owned_16;
 
-                if (value.current_hair_index_list.contains(current_hair_index))
-                {
+                if (value.current_hair_index_list.contains(current_hair_index)) {
                     all_items_owned_1 = true;
-                    Log.i("test1","test1");
+                    Log.i("test1", "test1");
                     Appearance.current_hair_index = current_hair_index;
                     value.Character_setting.get(0).current_hair_index = Appearance.current_hair_index;
-                }
-                else
-                {
+                } else {
                     all_items_owned_1 = false;
-                    Log.i("test1!!!!!","test1!!!!");
+                    Log.i("test1!!!!!", "test1!!!!");
                 }
-                if (value.current_head_index_list.contains(current_head_index))
-                {
+                if (value.current_head_index_list.contains(current_head_index)) {
                     all_items_owned_2 = true;
-                    Log.i("test2","test2");
+                    Log.i("test2", "test2");
                     Appearance.current_head_index = current_head_index;
                     value.Character_setting.get(0).current_head_index = Appearance.current_head_index;
-                }
-                else
-                {
+                } else {
                     all_items_owned_2 = false;
                 }
-                if (value.current_eye_index_list.contains(current_eye_index))
-                {
+                if (value.current_eye_index_list.contains(current_eye_index)) {
                     all_items_owned_3 = true;
-                    Log.i("test3","test3");
-                }
-                else
-                {
+                    Log.i("test3", "test3");
+                } else {
                     all_items_owned_3 = false;
                 }
 
-                if (value.current_nose_index_list.contains(current_nose_index))
-                {
+                if (value.current_nose_index_list.contains(current_nose_index)) {
                     all_items_owned_4 = true;
-                    Log.i("test4","test4");
+                    Log.i("test4", "test4");
                     Appearance.current_nose_index = current_nose_index;
                     value.Character_setting.get(0).current_nose_index = Appearance.current_nose_index;
-                }
-                else
-                {
+                } else {
                     all_items_owned_4 = false;
                 }
 
-                if (value.current_mouth_index_list.contains(current_mouth_index))
-                {
+                if (value.current_mouth_index_list.contains(current_mouth_index)) {
                     all_items_owned_5 = true;
-                    Log.i("test5","test5");
+                    Log.i("test5", "test5");
                     Appearance.current_mouth_index = current_mouth_index;
                     value.Character_setting.get(0).current_mouth_index = Appearance.current_mouth_index;
-                }
-                else
-                {
+                } else {
                     all_items_owned_5 = false;
                 }
-                if (value.current_l_eye_brow_index_list.contains(current_l_eye_brow_index))
-                {
+                if (value.current_l_eye_brow_index_list.contains(current_l_eye_brow_index)) {
                     all_items_owned_6 = true;
-                    Log.i("test6","test6");
+                    Log.i("test6", "test6");
                     Appearance.current_l_eye_brow_index = current_l_eye_brow_index;
                     value.Character_setting.get(0).current_l_eye_brow_index = Appearance.current_l_eye_brow_index;
 
-                }
-                else
-                {
+                } else {
                     all_items_owned_6 = false;
                 }
-                if (value.current_r_eye_brow_index_list.contains(current_r_eye_brow_index))
-                {
+                if (value.current_r_eye_brow_index_list.contains(current_r_eye_brow_index)) {
                     all_items_owned_7 = true;
-                    Log.i("test7","test7");
+                    Log.i("test7", "test7");
                     Appearance.current_r_eye_brow_index = current_r_eye_brow_index;
                     value.Character_setting.get(0).current_r_eye_brow_index = Appearance.current_r_eye_brow_index;
-                }
-                else
-                {
+                } else {
                     all_items_owned_7 = false;
                 }
-                if (value.current_ear_index_list.contains(current_ear_index))
-                {
+                if (value.current_ear_index_list.contains(current_ear_index)) {
                     all_items_owned_8 = true;
-                    Log.i("test8","test8");
+                    Log.i("test8", "test8");
                     Appearance.current_ear_index = current_ear_index;
                     value.Character_setting.get(0).current_ear_index = Appearance.current_ear_index;
-                }
-                else
-                {
+                } else {
                     all_items_owned_8 = false;
                 }
-                if (value.current_chest_wear_index_list.contains(current_chest_wear_index))
-                {
+                if (value.current_chest_wear_index_list.contains(current_chest_wear_index)) {
                     all_items_owned_9 = true;
-                    Log.i("test9","test9");
+                    Log.i("test9", "test9");
                     Appearance.current_chest_wear_index = current_chest_wear_index;
                     value.Character_setting.get(0).current_chest_wear_index = Appearance.current_chest_wear_index;
-                }
-                else
-                {
+                } else {
                     all_items_owned_9 = false;
                 }
-                if (value.current_arm_wear_index_list.contains(current_arm_wear_index))
-                {
+                if (value.current_arm_wear_index_list.contains(current_arm_wear_index)) {
                     all_items_owned_10 = true;
-                    Log.i("test10","test10");
+                    Log.i("test10", "test10");
                     Appearance.current_arm_wear_index = current_arm_wear_index;
                     value.Character_setting.get(0).current_arm_wear_index = Appearance.current_arm_wear_index;
 
-                }
-                else
-                {
+                } else {
                     all_items_owned_10 = false;
-                    Log.i("test10","test10");
+                    Log.i("test10", "test10");
                 }
-                if (value.current_shoulder_wear_index_list.contains(current_shoulder_wear_index))
-                {
+                if (value.current_shoulder_wear_index_list.contains(current_shoulder_wear_index)) {
                     all_items_owned_11 = true;
-                    Log.i("test11","test11");
+                    Log.i("test11", "test11");
                     Appearance.current_shoulder_wear_index = current_shoulder_wear_index;
                     value.Character_setting.get(0).current_shoulder_wear_index = Appearance.current_shoulder_wear_index;
-                }
-                else
-                {
+                } else {
                     all_items_owned_11 = false;
                 }
-                if (value.current_leg_wear_index_list.contains(current_leg_wear_index))
-                {
+                if (value.current_leg_wear_index_list.contains(current_leg_wear_index)) {
                     all_items_owned_12 = true;
-                    Log.i("test12","test12");
+                    Log.i("test12", "test12");
                     Appearance.current_leg_wear_index = current_leg_wear_index;
                     value.Character_setting.get(0).current_leg_wear_index = Appearance.current_leg_wear_index;
 
-                }
-                else
-                {
+                } else {
                     all_items_owned_12 = false;
                 }
-                if (value.current_thigh_wear_index_list.contains(current_thigh_wear_index))
-                {
+                if (value.current_thigh_wear_index_list.contains(current_thigh_wear_index)) {
                     all_items_owned_13 = true;
-                    Log.i("test13","test13");
+                    Log.i("test13", "test13");
                     Appearance.current_thigh_wear_index = current_thigh_wear_index;
                     value.Character_setting.get(0).current_thigh_wear_index = Appearance.current_thigh_wear_index;
-                }
-                else
-                {
+                } else {
                     all_items_owned_13 = false;
                 }
-                if (value.current_bottom_wear_list.contains(current_bottom_wear_index))
-                {
+                if (value.current_bottom_wear_list.contains(current_bottom_wear_index)) {
 
                     all_items_owned_14 = true;
-                    Log.i("test14","test14");
+                    Log.i("test14", "test14");
                     Appearance.current_bottom_wear_index = current_bottom_wear_index;
                     value.Character_setting.get(0).current_foot_wear_index = Appearance.current_foot_wear_index;
-                }
-                else
-                {
+                } else {
                     all_items_owned_14 = false;
                 }
-                if (value.current_foot_wear_list.contains(current_foot_wear_index))
-                {
+                if (value.current_foot_wear_list.contains(current_foot_wear_index)) {
 
                     all_items_owned_15 = true;
-                    Log.i("test15","test15");
+                    Log.i("test15", "test15");
                     Appearance.current_foot_wear_index = current_foot_wear_index;
                     value.Character_setting.get(0).current_foot_wear_index = Appearance.current_foot_wear_index;
 
-                }
-                else
-                {
+                } else {
                     all_items_owned_15 = false;
                 }
-                if (value.current_chest_list.contains(current_chest_index))
-                {
+                if (value.current_chest_list.contains(current_chest_index)) {
                     all_items_owned_16 = true;
-                    Log.i("test16","test16");
+                    Log.i("test16", "test16");
                     Appearance.current_chest_index = current_chest_index;
                     value.Character_setting.get(0).current_chest_index = Appearance.current_chest_index;
-                }
-                else
-                {
+                } else {
                     all_items_owned_16 = false;
                 }
 
@@ -1872,13 +1824,11 @@ public class Character_customize_Activity extends AppCompatActivity {
                         && all_items_owned_13 == true
                         && all_items_owned_14 == true
                         && all_items_owned_15 == true
-                        && all_items_owned_16 == true)
-                {
+                        && all_items_owned_16 == true) {
                     Toast.makeText(Character_customize_Activity.this, "save successfully", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(Character_customize_Activity.this, "You don't own at least one of the selected item.", Toast.LENGTH_SHORT).show();
                 }
-
 
 
             }

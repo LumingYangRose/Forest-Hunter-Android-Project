@@ -7,15 +7,17 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PRIVILEGE_PHONE_STATE"/>
-    <uses-feature android:name="android.hardware.sensor.accelerometer"
-        android:required="true"/>
+    <uses-permission android:name="android.permission.READ_PRIVILEGE_PHONE_STATE" />
+
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -27,38 +29,38 @@
         <activity
             android:name=".Character_customize_Activity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Game_view_Activity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Store_Activity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="Friend_list_and_scoreboard.Friends"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Hunting"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-                android:name="authentication.login_Activity"
-                android:exported="true"
-                android:theme="@style/Theme.AppCompat.NoActionBar"
-                android:screenOrientation="landscape">
+            android:name="authentication.login_Activity"
+            android:exported="true"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -67,8 +69,8 @@
 
         <service
             android:name="com.google.firebase.messaging.FirebaseMessagingService"
-            android:exported="false" >
-            <intent-filter android:priority="-500" >
+            android:exported="false">
+            <intent-filter android:priority="-500">
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
@@ -83,7 +85,7 @@
 
         <service
             android:name="Friend_list_and_scoreboard.Friends"
-            android:exported="false" >
+            android:exported="false">
 
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -93,7 +95,7 @@
         <receiver
             android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
             android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+            android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
